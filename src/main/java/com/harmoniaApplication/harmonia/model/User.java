@@ -1,4 +1,4 @@
-package com.example.harmonia.model;
+package com.harmoniaApplication.harmonia.model;
 public class User {
     private String username;
     private String password;

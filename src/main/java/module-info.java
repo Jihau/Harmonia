@@ -10,6 +10,6 @@ module com.example.harmonia {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.harmonia to javafx.fxml;
-    exports com.example.harmonia;
+    opens com.harmoniaApplication.harmonia to javafx.fxml;
+    exports com.harmoniaApplication.harmonia;
 }

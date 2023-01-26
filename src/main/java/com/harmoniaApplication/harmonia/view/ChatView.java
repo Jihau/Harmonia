@@ -1,5 +1,5 @@
-package com.example.harmonia.view;
-import com.example.harmonia.model.Message;
+package com.harmoniaApplication.harmonia.view;
+import com.harmoniaApplication.harmonia.model.Message;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

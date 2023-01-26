@@ -1,7 +1,7 @@
-package com.example.harmonia.controller;
+package com.harmoniaApplication.harmonia.controller;
 
-import com.example.harmonia.model.User;
-import com.example.harmonia.view.LoginView;
+import com.harmoniaApplication.harmonia.model.User;
+import com.harmoniaApplication.harmonia.view.LoginView;
 
 public class LoginController {
     private LoginView view;
