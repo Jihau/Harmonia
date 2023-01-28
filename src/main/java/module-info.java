@@ -1,4 +1,4 @@
-module com.harmonia {
+module com.harmoniaApplication.harmonia {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,6 +10,6 @@ module com.harmonia {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.harmonia to javafx.fxml;
-    exports com.harmonia;
+    opens com.harmoniaApplication.harmonia to javafx.fxml;
+    exports com.harmoniaApplication.harmonia;
 }
