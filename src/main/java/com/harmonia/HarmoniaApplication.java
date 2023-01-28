@@ -11,7 +11,6 @@ public class HarmoniaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-        fxmlLoader.setController(new HarmoniaController());
         Scene scene = new Scene(fxmlLoader.load(), 1020, 740);
         stage.setTitle("Harmonia");
         stage.setScene(scene);
@@ -19,6 +18,6 @@ public class HarmoniaApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }
