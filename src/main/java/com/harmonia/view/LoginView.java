@@ -1,4 +1,4 @@
-package com.harmoniaApplication.harmonia.view;
+package com.harmonia.view;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.control.TextField;

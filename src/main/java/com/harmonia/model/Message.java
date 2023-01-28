@@ -1,4 +1,4 @@
-package com.harmoniaApplication.harmonia.model;
+package com.harmonia.model;
 public class Message {
     private String sender;
     private String text;
