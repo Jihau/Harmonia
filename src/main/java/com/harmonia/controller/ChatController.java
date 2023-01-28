@@ -1,9 +1,9 @@
-package com.harmoniaApplication.harmonia.controller;
+package com.harmonia.controller;
 
 import java.util.*;
 
-import com.harmoniaApplication.harmonia.model.Message;
-import com.harmoniaApplication.harmonia.view.ChatView;
+import com.harmonia.model.Message;
+import com.harmonia.view.ChatView;
 
 public class ChatController {
     private ChatView view;

@@ -1,4 +1,4 @@
-package com.harmoniaApplication.harmonia;
+package com.harmonia;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
