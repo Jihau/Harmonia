@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: #333;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
+    </padding>
+
+    <Label text="Harmonia" style="-fx-font-size: 42; -fx-font-family: 'Bauhaus 93'; -fx-font-smoothing-type: LCD; -fx-text-fill: #b0b8ef;" />
+
+</VBox>
