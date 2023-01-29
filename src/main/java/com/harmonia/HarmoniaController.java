@@ -32,7 +32,17 @@ public class HarmoniaController {
     protected void onLoginButtonClick() {
         String username = usernameField.getText();
         String password = passwordField.getText();
-        welcomeText.setText("Welcome to Harmonia!");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("harmonia-view.fxml"));
+            Stage stage = (Stage) registerLink.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1020, 740);
+            stage.setScene(scene);
+            stage.setTitle("Harmonia");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -57,6 +67,7 @@ public class HarmoniaController {
             Scene scene = new Scene((root), 1020, 740);
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.setScene(scene);
+            stage.setTitle("Harmonia");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
