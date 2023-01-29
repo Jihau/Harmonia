@@ -14,7 +14,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
     </padding>
 
-    <Label text="Harmonia" style="-fx-font-size: 42; -fx-font-family: 'Bauhaus 93'; -fx-font-smoothing-type: LCD; -fx-text-fill: #b0b8ef;" />
+    <Label text="Harmonia" style="-fx-font-size: 42; -fx-font-family: 'Bauhaus 93'; -fx-font-smoothing-type: LCD; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #66a9bd 0%, #6b7ecc 50%, #584bad 50%, #7470db 50%);" />
 
     <Label fx:id="welcomeText" style="-fx-text-fill: #acf3f1;"/>
     <Label text="Username:" style="-fx-text-fill: #acdef3;" />
