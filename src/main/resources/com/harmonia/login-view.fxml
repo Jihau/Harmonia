@@ -5,18 +5,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.Background?>
+<?import javafx.scene.layout.BackgroundFill?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.harmonia.HarmoniaController">
+      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: #333;">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Label text="Username:" />
-    <TextField fx:id="usernameField" />
-    <Label text="Password:" />
-    <PasswordField fx:id="passwordField" />
-    <Button text="Login" onAction="#onLoginButtonClick"/>
+    <Label text="Harmonia" style="-fx-font-size: 42; -fx-font-family: 'Bauhaus 93'; -fx-font-smoothing-type: LCD; -fx-text-fill: #ceb0ef;" />
+
+    <Label fx:id="welcomeText" style="-fx-text-fill: #f3ace7;"/>
+    <Label text="Username:" style="-fx-text-fill: #f3ace7;" />
+    <TextField fx:id="usernameField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#ceb0ef;"/>
+    <Label text="Password:" style="-fx-text-fill: #f3ace7;" />
+    <PasswordField fx:id="passwordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#ceb0ef;"/>
+    <Button text="Login" onAction="#onLoginButtonClick" style="-fx-background-color: #313131; -fx-border-color:#ceb0ef; -fx-text-fill: #f3ace7"/>
 </VBox>
