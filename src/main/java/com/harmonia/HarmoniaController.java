@@ -40,7 +40,7 @@ public class HarmoniaController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
             Stage stage = (Stage) registerLink.getScene().getWindow();
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(loader.load(), 1020, 740);
             stage.setScene(scene);
             stage.setTitle("Register to Harmonia");
             stage.show();
