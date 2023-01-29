@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%)">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
+    </padding>
+
+    <Label text="Registration" style="-fx-font-size: 36; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #66a9bd 0%, #6b7ecc 50%, #584bad 50%, #7470db 50%); -fx-font-family: 'Bauhaus 93';"/>
+
+    <Label text="Email:" style="-fx-text-fill: #acdef3;" />
+    <TextField fx:id="emailField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;"/>
+    <Label text="Username:" style="-fx-text-fill: #acdef3;" />
+    <TextField fx:id="usernameField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;" />
+    <Label text="Password:" style="-fx-text-fill: #acdef3;" />
+    <PasswordField fx:id="passwordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;"/>
+    <Label text="Repeat Password:" style="-fx-text-fill: #acdef3;" />
+    <PasswordField fx:id="repeatPasswordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;"/>
+    <Button fx:id="closeButton" text="Register" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-border-radius: 4; -fx-text-fill: #acdef3 " onAction="#onCloseButtonClick" />
+</VBox>
+
+
+
