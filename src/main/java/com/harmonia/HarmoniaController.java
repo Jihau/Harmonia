@@ -73,7 +73,7 @@ public class HarmoniaController {
             Scene scene = new Scene((root), 1020, 740);
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Harmonia");
+            stage.setTitle("Sign in to Harmonia");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
