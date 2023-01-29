@@ -6,7 +6,7 @@
 
 <?import javafx.scene.control.Button?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: #333;">
+      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%);">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
     </padding>
@@ -15,6 +15,6 @@
 
     <Label text="Welcome to Harmonia!" style="-fx-text-fill: #acdef3"/>
 
-    <Button fx:id="logoutButton" text="Logout" onAction="#logoutOnButtonClick" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-text-fill: #acdef3"/>
+    <Button fx:id="logoutButton" text="Logout" onAction="#logoutOnButtonClick" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-border-radius: 4; -fx-text-fill: #acdef3"/>
 
 </VBox>
