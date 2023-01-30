@@ -9,31 +9,67 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+/**
+ * Class representing the main controller of the Harmonia application.
+ *
+ * @author OTP1 Group 3: Johanna Toivanen, Mohammed Al-Jewari, Sampo Savolainen, Jesper Ojala
+ * @version 1.0
+ * @since 1.0
+ */
+
 public class HarmoniaController {
+    /**
+     * The email field for the user in registration view.
+     */
     @FXML
     public TextField emailField;
 
+    /**
+     * The repeat password field for the user in registration view.
+     */
     @FXML
     public PasswordField repeatPasswordField;
 
+    /**
+     * The logout button.
+     */
     @FXML
     public Button logoutButton;
 
+    /**
+     * The username field for the user.
+     */
     @FXML
     private TextField usernameField;
 
+    /**
+     * The password field for the user.
+     */
     @FXML
     private PasswordField passwordField;
 
+    /**
+     * The welcome text label.
+     */
     @FXML
     private Label welcomeText;
 
+    /**
+     * The register link in registration view.
+     */
     @FXML
     private Hyperlink registerLink;
 
+    /**
+     * The close button.
+     */
     @FXML
     private Button closeButton;
 
+    /**
+     * Handles the action when the login button is clicked. Loads the main
+     * UI / main app view.
+     */
     @FXML
     protected void onLoginButtonClick() {
         String username = usernameField.getText();
@@ -51,6 +87,10 @@ public class HarmoniaController {
 
     }
 
+    /**
+     * Handles the action when the login button is clicked. Loads the registration
+     * UI / registration view.
+     */
     @FXML
     protected void onRegisterLinkClicked() {
         try {
@@ -65,6 +105,10 @@ public class HarmoniaController {
         }
     }
 
+    /**
+     * Handles the action when the login button is clicked. Loads the login
+     * UI / login view.
+     */
     @FXML
     protected void onCloseButtonClick(ActionEvent event) {
         try {
@@ -79,6 +123,10 @@ public class HarmoniaController {
             e.printStackTrace();
         }
     }
+    /**
+     * Handles the action when the logout button is clicked. Loads the login
+     * UI / login view again.
+     */
 
     public void logoutOnButtonClick(ActionEvent event) {
         try {
