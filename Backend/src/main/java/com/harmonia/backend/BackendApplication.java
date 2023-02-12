@@ -1,4 +1,4 @@
-package com.example.backend;
+package com.harmonia.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
