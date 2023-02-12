@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.harmonia</groupId>
-    <artifactId>Harmonia</artifactId>
+    <artifactId>Frontend</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Harmonia</name>
+    <name>Frontend</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
