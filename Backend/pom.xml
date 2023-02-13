@@ -55,6 +55,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>se.bjurr.springresttemplateclient</groupId>
+            <artifactId>spring-resttemplate-client</artifactId>
+            <version>1.4.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.velopayments</groupId>
+            <artifactId>java-spring-resttemplate</artifactId>
+            <version>2.32.2</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

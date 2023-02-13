@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    //private static final String API_URL = "http://localhost:8080/api/users";
+
     @Autowired
     private UserRepository userRepository;
 
@@ -15,7 +17,7 @@ public class UserService {
     }
 
     public User addUser(User user) {
-        if (user.getEmail().trim().length()==0){
+        if (user.getEmail().trim().length() == 0) {
             return null;
         }
         return userRepository.save(user);
