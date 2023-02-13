@@ -1,11 +1,11 @@
 package com.harmonia.controller;
 
-import com.harmonia.model.User;
+import com.harmonia.po.UserPO;
 import com.harmonia.view.LoginView;
 
 public class LoginController {
     private LoginView view;
-    private User user;
+    private UserPO user;
 
     public LoginController(LoginView view) {
         this.view = view;
