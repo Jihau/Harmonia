@@ -42,7 +42,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="Loginbutton" alignment="CENTER" mnemonicParsing="false" onAction="#LoginButtonClick" prefHeight="34.0" prefWidth="200.0" text="Login" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button fx:id="LoginButton" alignment="CENTER" mnemonicParsing="false" onAction="#LoginButtonClick" prefHeight="34.0" prefWidth="200.0" text="Login" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>

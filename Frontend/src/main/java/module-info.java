@@ -11,6 +11,6 @@ module com.harmonia {
     requires eu.hansolo.tilesfx;
 
     opens com.harmonia to javafx.fxml;
-    opens com.harmonia.controller to javafx.fxml;
+    //opens com.harmonia.controller to javafx.fxml;
     exports com.harmonia;
 }
