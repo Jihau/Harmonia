@@ -77,7 +77,7 @@ public class HarmoniaController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("harmonia-view.fxml"));
             Stage stage = (Stage) registerLink.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1020, 740);
+            Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Harmonia");
             stage.show();
@@ -96,7 +96,7 @@ public class HarmoniaController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
             Stage stage = (Stage) registerLink.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1020, 740);
+            Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Register to Harmonia");
             stage.show();
@@ -114,7 +114,7 @@ public class HarmoniaController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1020, 740);
+            Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) closeButton.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Sign in to Harmonia");
@@ -132,7 +132,7 @@ public class HarmoniaController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
             Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1020, 740);
+            Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) logoutButton.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Sign in to Harmonia");
