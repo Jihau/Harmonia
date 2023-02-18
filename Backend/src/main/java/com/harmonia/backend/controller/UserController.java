@@ -16,8 +16,17 @@ public class UserController {
 
     @GetMapping
     @CrossOrigin
-    public Iterable<User> listUsers() {
+    public Iterable<User> listUsers(@RequestParam(name = "username", required = false) String userName) {
+        if(userName != null) {
+            return userService.listUsersByUserName(userName);
+        }
         return userService.listUsers();
+    }
+
+    @GetMapping ("username/{username}")
+    @CrossOrigin
+    public Iterable<User> listUsersByUserName(@PathVariable("username") String userName) {
+        return userService.listUsersByUserName(userName);
     }
 
     @PostMapping

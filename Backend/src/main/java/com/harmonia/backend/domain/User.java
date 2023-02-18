@@ -3,6 +3,9 @@ package com.harmonia.backend.domain;
 import jakarta.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="User.listUsersByUserName", query = "FROM User u WHERE u.username LIKE :username")
+})
 @Table(name = "user")
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,7 +13,7 @@ public class User {
     @Column(name = "UserId")
     private Long userId;
     @Basic
-    @Column(name = "Username")
+    @Column(name = "Username", unique = true)
     private String username;
     @Basic
     @Column(name = "email")
