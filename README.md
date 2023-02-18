@@ -21,4 +21,4 @@
 > To use Harmonia, users must first register and log in. The application then provides suggestions for user communities based on user choices and interests.
 
 ## Credits
-> Developed by Metropolia students.
+> Developed by Metropolia students TVT21-O Group 3.
