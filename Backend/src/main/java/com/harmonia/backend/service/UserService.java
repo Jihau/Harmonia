@@ -17,10 +17,15 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    public Iterable<User> listUsersByUserName(String userName) {
+        return userRepository.listUsersByUserName("%" + userName + "%");
+    }
+
     public User addUser(User user) {
         if (user.getEmail().trim().length() == 0) {
             return null;
         }
+        // logic check the username before adding it
         return userRepository.save(user);
     }
 
