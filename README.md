@@ -3,22 +3,22 @@
 
 ## Features
 > - More privacy and simpler UI than other communication apps.
-- Inbuilt plugins to replace bots.
-- Suggests user communities based on user choices and interests.
-- User registration and login required.
+> - Inbuilt plugins to replace bots.
+> - Suggests user communities based on user choices and interests.
+> - User registration and login required.
 
 ## Technologies
 > - Maven
-- Spring Boot (for the backend)
-- JavaFX (for the frontend)
-- Azure (for the network)
-- JUnit Jupiter (for testing)
+> - Spring Boot (for the backend)
+> - JavaFX (for the frontend)
+> - Azure (for the network)
+> - JUnit Jupiter (for testing)
 
 ## Installation
-> - Currently, there is no installation process for Harmonia.
+> Currently, there is no installation process for Harmonia.
 
 ## Usage
-> - To use Harmonia, users must first register and log in. The application then provides suggestions for user communities based on user choices and interests.
+> To use Harmonia, users must first register and log in. The application then provides suggestions for user communities based on user choices and interests.
 
 ## Credits
 > Developed by Metropolia students.
