@@ -1,5 +1,7 @@
 package com.harmonia.backend.domain;
 
+import com.harmonia.backend.repository.UserRepository;
+import com.harmonia.backend.service.UserService;
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +26,11 @@ public class User {
     @Basic
     @Column(name = "Profile_icon")
     private String profileIcon;
+
+
+    public User() {
+    }
+
 
     public Long getUserId() {
         return userId;
