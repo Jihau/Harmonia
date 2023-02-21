@@ -33,4 +33,19 @@ public class UserClientTest {
         String response = userClient.listUsers();
         assertNotEquals(response.length(),0);
     }
+
+    @Test
+    public void deleteUserTest() {
+        UserPO userPO = new UserPO();
+        userPO.setUsername("JihauTest3");
+        userPO.setEmail("lihau@test5.com");
+        userPO.setPassword("very123");
+        userPO.setProfileIcon("https://i.imgur.com/yfhVP8e.png");
+        UserPO responseUserPO = userClient.addUser(userPO);
+
+
+        int response = userClient.removeUser(userPO).getStatusCode().value();
+
+        assertEquals(200, response);
+    }
 }
