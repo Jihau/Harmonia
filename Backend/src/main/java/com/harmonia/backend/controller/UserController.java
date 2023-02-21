@@ -67,6 +67,6 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@RequestBody User user){
         System.out.println("Controller: User with id : " + user.getUserId() + "is deleted.");
         userService.deleteUser(user);
-        return new ResponseEntity<>(user.getUsername() + " has been deleted", HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
