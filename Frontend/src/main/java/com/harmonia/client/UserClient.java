@@ -27,6 +27,20 @@ public class UserClient {
     }
 
     public UserPO addUser(UserPO user) {
+        
+        ResponseEntity<UserPO> response = request(user, HttpMethod.POST);
+
+        return response.getBody();
+    }
+
+    public ResponseEntity<UserPO> removeUser(UserPO user) {
+        
+        ResponseEntity<UserPO> response = request(user, HttpMethod.DELETE);
+
+        return response;
+    } 
+
+    private static ResponseEntity<UserPO> request(UserPO user, HttpMethod method ) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
@@ -39,8 +53,8 @@ public class UserClient {
         Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(user.getUserId()));
 
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL, HttpMethod.POST, request,
+        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL, method, request,
                 UserPO.class, params);
-        return response.getBody();
+        return response;
     }
 }
