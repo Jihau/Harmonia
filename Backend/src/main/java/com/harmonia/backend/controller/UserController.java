@@ -3,6 +3,8 @@ package com.harmonia.backend.controller;
 import com.harmonia.backend.domain.User;
 import com.harmonia.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
@@ -58,5 +60,13 @@ public class UserController {
 //        } else {
 //            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 //        }
+    }
+
+    @DeleteMapping
+    @CrossOrigin
+    public ResponseEntity<String> deleteUser(@RequestBody User user){
+        System.out.println("Controller: User with id : " + user.getUserId() + "is deleted.");
+        userService.deleteUser(user);
+        return new ResponseEntity<>(user.getUsername() + " has been deleted", HttpStatus.OK);
     }
 }
