@@ -20,8 +20,8 @@ public class UserClientTest {
     @Test
     public void addUserTest() {
         UserPO userPO = new UserPO();
-        userPO.setUsername("JihauTest1");
-        userPO.setEmail("lihau@test1.com");
+        userPO.setUsername("JihauTest3");
+        userPO.setEmail("lihau@test5.com");
         userPO.setPassword("very123");
         userPO.setProfileIcon("https://i.imgur.com/yfhVP8e.png");
         UserPO responseUserPO = userClient.addUser(userPO);
