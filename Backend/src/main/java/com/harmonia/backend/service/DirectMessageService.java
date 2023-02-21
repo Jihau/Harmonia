@@ -25,4 +25,9 @@ public class DirectMessageService {
     public Iterable<DirectMessage> listMessages() {
         return directMessageRepository.findAll();
     }
+
+    public void deleteDirectMessage(DirectMessage dm){
+        directMessageRepository.deleteById(dm.getDmessageId());
+        System.out.println("Message with ID: " + dm.getDmessageId() + " is deleted.");
+    }
 }
