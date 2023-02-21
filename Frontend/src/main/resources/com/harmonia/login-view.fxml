@@ -1,26 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.harmonia.HarmoniaController" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%);">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="30.0"/>
-    </padding>
-
-    <Label text="Harmonia" style="-fx-font-size: 42; -fx-font-family: 'Bauhaus 93'; -fx-font-smoothing-type: LCD; -fx-text-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, #66a9bd 0%, #6b7ecc 50%, #584bad 50%, #7470db 50%);" />
-
-    <Label fx:id="welcomeText" style="-fx-text-fill: #acf3f1;"/>
-    <Label text="Username:" style="-fx-text-fill: #acdef3;" />
-    <TextField fx:id="usernameField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;"/>
-    <Label text="Password:" style="-fx-text-fill: #acdef3;" />
-    <PasswordField fx:id="passwordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;"/>
-    <Button text="Login" onAction="#onLoginButtonClick" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-border-radius: 4; -fx-text-fill: #acdef3"/>
-    <Hyperlink fx:id="registerLink" text="No account yet? Register here" style="-fx-font-size: 11; -fx-font-family: 'Droid Sans'; -fx-text-fill: #b0d5ef" onAction="#onRegisterLinkClicked"/>
-</VBox>
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
+   <children>
+      <ImageView fitHeight="720.0" fitWidth="1289.0" layoutX="-4.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/LoginBg.png" />
+         </image>
+      </ImageView>
+      <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/navMenu.css">
+         <children>
+            <Label layoutX="57.0" layoutY="95.0" text="HARMONIA" textFill="WHITE">
+               <font>
+                  <Font name="Lato Regular" size="40.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" layoutX="33.0" layoutY="189.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <font>
+                  <Font name="Lato Regular" size="18.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordField" layoutX="33.0" layoutY="285.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form" stylesheets="@css/navMenu.css">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </PasswordField>
+            <Button fx:id="loginButton" layoutX="33.0" layoutY="504.0" onAction="#onLoginButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" text="LOGIN">
+               <font>
+                  <Font name="Lato Regular" size="24.0" />
+               </font></Button>
+            <Label layoutX="41.0" layoutY="164.0" styleClass="Label" text="Username:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font></Label>
+            <Label layoutX="43.0" layoutY="260.0" styleClass="Label" text="Password:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font></Label>
+            <Hyperlink fx:id="registerLink" layoutX="33.0" layoutY="474.0" onAction="#onRegisterLinkClicked" styleClass="Label" text="No account yet? Register here">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font></Hyperlink>
+         </children>
+         <effect>
+            <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
+               <color>
+                  <Color red="0.10588235408067703" green="0.364705890417099" blue="0.8627451062202454" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
