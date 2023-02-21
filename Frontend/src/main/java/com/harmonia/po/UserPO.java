@@ -12,6 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
  */
+import java.lang.module.ModuleDescriptor.Exports;
 public class UserPO implements Serializable {
     int userId;
     String username;
@@ -19,7 +20,7 @@ public class UserPO implements Serializable {
     String password;
     String profileIcon;
 
-    public UserPO() {
+    public UserPO() {        
     }
 
     public int getUserId() {
@@ -61,4 +62,5 @@ public class UserPO implements Serializable {
     public void setProfileIcon(String profileIcon) {
         this.profileIcon = profileIcon;
     }
+    Exports po;
 }
