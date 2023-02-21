@@ -36,6 +36,9 @@ public class HarmoniaController {
     @FXML
     public Button logoutButton;
 
+    @FXML
+    public Button loginButton;
+
     /**
      * The username field for the user.
      */
@@ -76,7 +79,7 @@ public class HarmoniaController {
         String password = passwordField.getText();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) registerLink.getScene().getWindow();
+            Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Harmonia");

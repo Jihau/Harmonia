@@ -5,6 +5,8 @@ import com.harmonia.backend.repository.DirectMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class DirectMessageService {
     @Autowired
@@ -24,5 +26,21 @@ public class DirectMessageService {
 
     public Iterable<DirectMessage> listMessages() {
         return directMessageRepository.findAll();
+    }
+
+    public void deleteDirectMessage(DirectMessage dm){
+        directMessageRepository.deleteById(dm.getDmessageId());
+        System.out.println("Message with ID: " + dm.getDmessageId() + " is deleted.");
+    }
+
+    public void editDirectMessage(Long directMessageId, String newText){
+        Optional<DirectMessage> optionalDirectMessage = directMessageRepository.findById(directMessageId);
+        if (optionalDirectMessage.isPresent()){
+            DirectMessage directMessage = optionalDirectMessage.get();
+            directMessage.setMessageText(newText);
+            directMessageRepository.save(directMessage);
+        }else {
+            throw new IllegalArgumentException("Message not found");
+        }
     }
 }

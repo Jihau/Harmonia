@@ -22,7 +22,7 @@ public class HarmoniaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1020, 740);
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Harmonia");
         stage.setScene(scene);
         stage.show();
