@@ -72,4 +72,9 @@ public class UserService {
         System.out.println(user);
         return user;
     }
+
+    public void deleteUser(User user){
+        userRepository.deleteById(user.getUserId());
+        System.out.println("User with id " + user.getUserId() + " has been deleted!");
+    }
 }
