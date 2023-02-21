@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("dmessage")
 public class DirectMessageController {
@@ -26,17 +28,24 @@ public class DirectMessageController {
 
     @PostMapping
     @CrossOrigin
-    public DirectMessage sendMessage(@RequestBody DirectMessage directMessage){
+    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage){
         return directMessageService.addDirectMessage(directMessage);
     }
 
     @DeleteMapping
     @CrossOrigin
-    public ResponseEntity<String> deleteMessage(@RequestBody DirectMessage directMessage) {
+    public ResponseEntity<String> deleteDMessage(@RequestBody DirectMessage directMessage) {
 
         System.out.println("C: the message with id : " + directMessage.getDmessageId() + " is deleted");
         directMessageService.deleteDirectMessage(directMessage);
 
         return new ResponseEntity<>("Message has been deleted", HttpStatus.OK);
+    }
+
+    @PutMapping("/{messageId}")
+    @CrossOrigin
+    public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody DirectMessage directMessage){
+       directMessageService.editDirectMessage(messageId, directMessage.getMessageText());
+       return ResponseEntity.ok("Message has been edited");
     }
 }
