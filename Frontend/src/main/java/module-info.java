@@ -12,6 +12,7 @@ module com.harmonia {
     requires spring.web;
 
     opens com.harmonia to javafx.fxml;
+    opens com.harmonia.po;
     //opens com.harmonia.controller to javafx.fxml;
     exports com.harmonia;
 }

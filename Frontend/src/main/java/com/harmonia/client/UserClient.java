@@ -5,6 +5,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,11 @@ public class UserClient {
         headers.set("Content-Type", "application/json");
 
         RestTemplate restTemplate = new RestTemplate();
+
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+
         HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
+        
         Map<String, String> params = new HashMap<>();
         params.put("id", String.valueOf(user.getUserId()));
 

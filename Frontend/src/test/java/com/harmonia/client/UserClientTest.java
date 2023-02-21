@@ -22,7 +22,8 @@ public class UserClientTest {
         UserPO userPO = new UserPO();
         userPO.setUsername("JihauTest1");
         userPO.setEmail("lihau@test1.com");
-        userPO.setPassword("veryStrongPassword123");
+        userPO.setPassword("very123");
+        userPO.setProfileIcon("https://i.imgur.com/yfhVP8e.png");
         UserPO responseUserPO = userClient.addUser(userPO);
         assertEquals(responseUserPO.getUsername(),userPO.getUsername());
     }
