@@ -29,9 +29,8 @@ public class DirectMessageController {
 
     @PostMapping
     @CrossOrigin
-    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage, @RequestParam Long authorId,@RequestParam Long recipientId){
-        System.out.println(authorId);
-        return directMessageService.addDirectMessage(directMessage,authorId,recipientId);
+    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage){
+        return directMessageService.addDirectMessage(directMessage);
     }
 
     @DeleteMapping

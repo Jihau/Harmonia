@@ -17,33 +17,12 @@ public class DirectMessageService {
         this.directMessageRepository = directMessageRepository;
     }
 
-
-    /*
-    public DirectMessage addDirectMessage(String messageText, User author, User recipient) {
-    if (messageText == null || messageText.trim().length() == 0) {
-        return null;
-    }
-    // Create a new DirectMessage object and set the fields
-    DirectMessage dm = new DirectMessage();
-    dm.setMessageText(messageText);
-    dm.setAuthor(author);
-    dm.setRecipient(recipient);
-    // Save the DirectMessage object to the repository
-    return directMessageRepository.save(dm);
-}
-     */
-    public DirectMessage addDirectMessage(DirectMessage dm, Long authorId, Long recipientId) {
+    public DirectMessage addDirectMessage(DirectMessage dm) {
 
         // logic check the message before adding it
         if (dm.getMessageText() == null || dm.getMessageText().trim().length() == 0) {
             return null;
         }
-
-        int authorIdInt = authorId.intValue();
-        int recipientIdInt = recipientId.intValue();
-        dm.setAuthorId(authorIdInt);
-        dm.setRecipientId(recipientIdInt);
-
         return directMessageRepository.save(dm);
     }
 
