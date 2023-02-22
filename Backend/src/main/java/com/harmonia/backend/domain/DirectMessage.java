@@ -26,11 +26,13 @@ public class DirectMessage {
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
 
-    @Basic
+
+    @JsonProperty("authorId")
     @Column(name = "AuthorId")
     private int authorId;
 
-    @Basic
+
+    @JsonProperty("recipientId")
     @Column(name = "RecipientId")
     private int recipientId;
 
@@ -43,7 +45,6 @@ public class DirectMessage {
     public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
-
     public Date getTimestamp() {
         return timestamp;
     }
@@ -59,7 +60,6 @@ public class DirectMessage {
     public void setDmessageId(Long dmessageId) {
         this.dmessageId = dmessageId;
     }
-
 
     public int getAuthorId() { return authorId;}
 
