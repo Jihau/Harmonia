@@ -1,6 +1,7 @@
 package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.DirectMessage;
+import com.harmonia.backend.domain.User;
 import com.harmonia.backend.service.DirectMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,8 +29,9 @@ public class DirectMessageController {
 
     @PostMapping
     @CrossOrigin
-    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage){
-        return directMessageService.addDirectMessage(directMessage);
+    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage, @RequestParam Long authorId,@RequestParam Long recipientId){
+        System.out.println(authorId);
+        return directMessageService.addDirectMessage(directMessage,authorId,recipientId);
     }
 
     @DeleteMapping

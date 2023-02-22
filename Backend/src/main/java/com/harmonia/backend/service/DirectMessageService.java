@@ -1,6 +1,7 @@
 package com.harmonia.backend.service;
 
 import com.harmonia.backend.domain.DirectMessage;
+import com.harmonia.backend.domain.User;
 import com.harmonia.backend.repository.DirectMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,33 @@ public class DirectMessageService {
         this.directMessageRepository = directMessageRepository;
     }
 
-    public DirectMessage addDirectMessage(DirectMessage dm) {
+
+    /*
+    public DirectMessage addDirectMessage(String messageText, User author, User recipient) {
+    if (messageText == null || messageText.trim().length() == 0) {
+        return null;
+    }
+    // Create a new DirectMessage object and set the fields
+    DirectMessage dm = new DirectMessage();
+    dm.setMessageText(messageText);
+    dm.setAuthor(author);
+    dm.setRecipient(recipient);
+    // Save the DirectMessage object to the repository
+    return directMessageRepository.save(dm);
+}
+     */
+    public DirectMessage addDirectMessage(DirectMessage dm, Long authorId, Long recipientId) {
+
+        // logic check the message before adding it
         if (dm.getMessageText() == null || dm.getMessageText().trim().length() == 0) {
             return null;
         }
-        // logic check the message before adding it
+
+        int authorIdInt = authorId.intValue();
+        int recipientIdInt = recipientId.intValue();
+        dm.setAuthorId(authorIdInt);
+        dm.setRecipientId(recipientIdInt);
+
         return directMessageRepository.save(dm);
     }
 

@@ -6,6 +6,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "direct_message", schema = "harmoniadb")
@@ -24,6 +25,16 @@ public class DirectMessage {
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
+
+    @Basic
+    @Column(name = "AuthorId")
+    private int authorId;
+
+    @Basic
+    @Column(name = "RecipientId")
+    private int recipientId;
+
+
 
     public String getMessageText() {
         return messageText;
@@ -49,24 +60,34 @@ public class DirectMessage {
         this.dmessageId = dmessageId;
     }
 
-    @Override
+
+    public int getAuthorId() { return authorId;}
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(int recipientId) {
+        this.recipientId = recipientId;
+    } @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         DirectMessage that = (DirectMessage) o;
-
-        if (dmessageId != that.dmessageId) return false;
-        if (messageText != null ? !messageText.equals(that.messageText) : that.messageText != null) return false;
-        if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
-        return true;
+        if (!Objects.equals(dmessageId, that.dmessageId)) return false;
+        return Objects.equals(messageText, that.messageText) &&
+                Objects.equals(timestamp, that.timestamp) &&
+                Objects.equals(authorId, that.authorId) &&
+                Objects.equals(recipientId, that.recipientId);
     }
 
     @Override
     public int hashCode() {
-        int result = messageText != null ? messageText.hashCode() : 0;
-        result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
-        result = 31 * result + Long.hashCode(dmessageId);
-        return result;
+        return Objects.hash(dmessageId, messageText, timestamp, authorId, recipientId);
     }
 }
+
