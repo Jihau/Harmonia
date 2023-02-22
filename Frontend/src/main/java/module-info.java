@@ -10,9 +10,11 @@ module com.harmonia {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires spring.web;
+    requires java.desktop;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
-    //opens com.harmonia.controller to javafx.fxml;
+    
+    opens com.harmonia.controller to javafx.fxml;
     exports com.harmonia;
 }
