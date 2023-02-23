@@ -41,4 +41,8 @@ public class ServerService {
             throw new IllegalArgumentException("Can't change the name");
         }
     }
+
+    public Iterable<Server> listServersByServerName(String serverName){
+        return serverRepository.listServersByServerName("%" + serverName +"%");
+    }
 }
