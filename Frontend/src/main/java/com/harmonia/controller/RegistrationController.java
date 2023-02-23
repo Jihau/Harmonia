@@ -12,9 +12,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class RegistrationController {
+    @FXML
+    AnchorPane root;
+
     @FXML
     TextField emailField;
 
@@ -32,8 +36,7 @@ public class RegistrationController {
     
     @FXML
     public void onRegisterButtonClick() {
-        
-        UserClient userclient = UserClient.getInstance();
+        UserClient userclient = new UserClient();
 
         String email = emailField.getText();
         String username = emailField.getText();
@@ -58,14 +61,19 @@ public class RegistrationController {
                 Alert createdAlert = new Alert(AlertType.INFORMATION);
                 createdAlert.setTitle("Account created");
                 createdAlert.setContentText("click to go to login");
+                createdAlert.setHeaderText("Account created");
                 createdAlert.showAndWait();
 
-                FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("intro-view.fxml"));
+                System.out.println("redirecting");
+
+                FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-                Stage stage = (Stage) RegisterButton.getScene().getWindow();
+                Stage stage = (Stage) root.getScene().getWindow();
                 stage.setScene(scene);
                 stage.setTitle("Harmonia");
                 stage.show();
+
+                
 
             } catch (Exception e) {
                 Alert ServerAlert = new Alert(AlertType.ERROR);
