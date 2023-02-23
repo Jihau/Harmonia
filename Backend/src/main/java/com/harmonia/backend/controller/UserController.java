@@ -75,4 +75,14 @@ public class UserController {
     public ResponseEntity<User> editUsersByUserId(@PathVariable Long userId,@RequestBody User user) {
         return new ResponseEntity<>(userService.editUser(userId, user), HttpStatus.OK);
     }
+
+    @PutMapping("/{userId}/password")
+    public ResponseEntity<User> changePassword(@PathVariable Long userId, @RequestBody Map<String, String> password) {
+        String newPassword = password.get("password");
+        User user = userService.changePassword(userId, newPassword);
+        if (user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
+    }
 }
