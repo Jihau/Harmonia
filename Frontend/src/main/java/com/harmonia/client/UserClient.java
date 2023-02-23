@@ -13,9 +13,15 @@ import java.util.Map;
 public class UserClient {
     private static final String BASE_URL = "http://localhost:8080/user";
     private final RestTemplate restTemplate;
+    private static UserClient instance = null;
 
-    public UserClient() {
+    private UserClient() {
         restTemplate = new RestTemplate();
+    }
+
+    public static UserClient getInstance() {
+        if (instance==null) { instance = new UserClient(); }
+        return instance;
     }
 
     public String listUsers() {

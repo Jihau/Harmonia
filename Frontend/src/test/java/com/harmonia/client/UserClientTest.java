@@ -14,7 +14,7 @@ public class UserClientTest {
 
     @BeforeEach
     public void loadVariables(){
-        userClient = new UserClient();
+        userClient = UserClient.getInstance();
     }
 
     @Test

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%)" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.harmonia.controllers.RegistrationController">
+<VBox alignment="CENTER" spacing="20.0" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%)" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.RegistrationController">
 
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
@@ -23,5 +23,5 @@
     <PasswordField fx:id="passwordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;" />
     <Label style="-fx-text-fill: #acdef3;" text="Repeat Password:" />
     <PasswordField fx:id="repeatPasswordField" maxWidth="200" style="-fx-control-inner-background: #282828; -fx-border-color:#b8b0ef; -fx-border-radius: 4;" />
-    <Button fx:id="registerButton" onAction="#onCloseButtonClick" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-border-radius: 4; -fx-text-fill: #acdef3 " text="Register" />
+    <Button fx:id="registerButton" onAction="#onRegisterButtonClick" style="-fx-background-color: #313131; -fx-border-color:#b8b0ef; -fx-border-radius: 4; -fx-text-fill: #acdef3 " text="Register" />
 </VBox>
