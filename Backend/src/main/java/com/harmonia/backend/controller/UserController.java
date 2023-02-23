@@ -69,4 +69,10 @@ public class UserController {
         userService.deleteUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/{userId}")
+    @CrossOrigin
+    public ResponseEntity<User> editUsersByUserId(@PathVariable Long userId,@RequestBody User user) {
+        return new ResponseEntity<>(userService.editUser(userId, user), HttpStatus.OK);
+    }
 }
