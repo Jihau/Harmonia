@@ -39,7 +39,7 @@ public class RegistrationController {
         UserClient userclient = new UserClient();
 
         String email = emailField.getText();
-        String username = emailField.getText();
+        String username = usernameField.getText();
 
         String pword = passwordField.getText();
         String RepeatPword = repeatPasswordField.getText();
