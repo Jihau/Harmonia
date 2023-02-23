@@ -78,7 +78,7 @@ public class HarmoniaController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("harmonia-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
@@ -97,7 +97,7 @@ public class HarmoniaController {
     @FXML
     protected void onRegisterLinkClicked() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
             Stage stage = (Stage) registerLink.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
@@ -115,7 +115,7 @@ public class HarmoniaController {
     @FXML
     protected void onCloseButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) closeButton.getScene().getWindow();
@@ -133,7 +133,7 @@ public class HarmoniaController {
 
     public void logoutOnButtonClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) logoutButton.getScene().getWindow();

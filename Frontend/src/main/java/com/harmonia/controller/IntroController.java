@@ -4,6 +4,7 @@ import com.harmonia.*;
 import com.harmonia.HarmoniaApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -19,9 +20,10 @@ public class IntroController {
     protected void LoginButtonClick() {
         try {
             //FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root, 1020, 740);
             Stage stage = (Stage) LoginButton.getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader.load(), 1020, 740);
             stage.setScene(scene);
             stage.setTitle("Harmonia");
             stage.show();
@@ -33,8 +35,8 @@ public class IntroController {
     @FXML
     protected void registerButtonClick() {
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
             Stage stage = (Stage) RegisterButton.getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load(), 1020, 740);
             stage.setScene(scene);
