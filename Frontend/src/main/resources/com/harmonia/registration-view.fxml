@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
+   <children>
+      <ImageView fitHeight="861.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/RegisterBg.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/navMenu.css">
+         <effect>
+            <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
+               <color>
+                  <Color red="0.10588235408067703" green="0.364705890417099" blue="0.8627451062202454" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Button fx:id="registerButton" layoutX="33.0" layoutY="498.0" onAction="#onCloseButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/navMenu.css" text="REGISTER">
+               <font>
+                  <Font name="Lato Regular" size="24.0" />
+               </font>
+            </Button>
+            <PasswordField fx:id="repeatPasswordField" layoutX="34.0" layoutY="419.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </PasswordField>
+            <Label layoutX="45.0" layoutY="394.0" style="-fx-text-fill: #acdef3;" text="Repeat Password:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="passwordField" layoutX="34.0" layoutY="322.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </PasswordField>
+            <Label layoutX="47.0" layoutY="296.0" style="-fx-text-fill: #acdef3;" text="Password:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameField" layoutX="34.0" layoutY="226.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <Label layoutX="45.0" layoutY="201.0" style="-fx-text-fill: #acdef3;" text="Username:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailField" layoutX="34.0" layoutY="131.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TextField>
+            <Label layoutX="48.0" layoutY="105.0" style="-fx-text-fill: #acdef3;" text="Email:">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="31.0" text="REGISTRATION" textFill="WHITE">
+               <font>
+                  <Font name="Lato Regular" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

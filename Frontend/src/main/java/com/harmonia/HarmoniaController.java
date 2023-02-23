@@ -97,7 +97,7 @@ public class HarmoniaController {
     @FXML
     protected void onRegisterLinkClicked() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
             Stage stage = (Stage) registerLink.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
