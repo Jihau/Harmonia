@@ -89,6 +89,15 @@ public class User {
     }
 
     @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", profileIcon='" + profileIcon + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result = Long.hashCode(userId);
         result = 31 * result + (username != null ? username.hashCode() : 0);
