@@ -34,12 +34,12 @@ public class UserController {
         return userService.listUsersByUserName(userName);
     }
 
-    @PostMapping
-    public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
-    }
+//    @PostMapping
+//    public User addUser(@RequestBody User user) {
+//        return userService.addUser(user);
+//    }
 
-    @PostMapping("register")
+    @PostMapping
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
