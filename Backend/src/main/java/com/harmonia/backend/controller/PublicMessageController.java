@@ -34,10 +34,8 @@ public class PublicMessageController {
     @DeleteMapping
     @CrossOrigin
     public ResponseEntity<String> deletePMessage(@RequestBody PublicMessage publicMessage) {
-
         System.out.println("C: the message with id : " + publicMessage.getPMessageId() + " is deleted");
         publicMessageService.deletePublicMessage(publicMessage);
-
         return new ResponseEntity<>("Message has been deleted", HttpStatus.OK);
     }
 
