@@ -1,6 +1,5 @@
 package com.harmonia.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -23,8 +22,8 @@ public class PublicMessage {
     @Column(name = "ChannelId")
     private int channelId;
     @Basic
-    @Column(name = "UserId")
-    private int userId;
+    @Column(name = "AuthorId")
+    private int authorId;
     @Basic
     @Column(name = "Timestamp")
     @NotNull
@@ -63,12 +62,12 @@ public class PublicMessage {
         this.channelId = channelId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAuthorId() {
+        return authorId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setAuthorId(int userId) {
+        this.authorId = userId;
     }
 
     @Override
@@ -80,7 +79,7 @@ public class PublicMessage {
 
         if (pmessageId != that.pmessageId) return false;
         if (channelId != that.channelId) return false;
-        if (userId != that.userId) return false;
+        if (authorId != that.authorId) return false;
         if (messageText != null ? !messageText.equals(that.messageText) : that.messageText != null) return false;
         if (timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
 
@@ -93,7 +92,7 @@ public class PublicMessage {
         result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
         result = 31 * result + Long.hashCode(pmessageId);
         result = 31 * result + channelId;
-        result = 31 * result + userId;
+        result = 31 * result + authorId;
         return result;
     }
 }

@@ -1,6 +1,5 @@
 package com.harmonia.backend.service;
 
-import com.harmonia.backend.domain.DirectMessage;
 import com.harmonia.backend.domain.Server;
 import com.harmonia.backend.repository.ServerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +30,11 @@ public class ServerService {
         System.out.println("Server with ID: " + serverId + " is deleted.");
     }
 
-    public void editServerName(Long serverId, String serverName) {
+    public void editServerName(Long serverId, String serverName, String serverCategory) {
         Optional<Server> server = serverRepository.findById(serverId);
         if (server.isPresent()){
             server.get().setServerName(serverName);
+            server.get().setServerCategory(serverCategory);
             serverRepository.save(server.get());
             System.out.println("Server id " + serverId + " name has been updated to " + serverName + " successfully");
         } else {

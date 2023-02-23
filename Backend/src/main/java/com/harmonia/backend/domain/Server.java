@@ -13,8 +13,8 @@ public class Server {
     @Column(name = "ServerName")
     private String serverName;
     @Basic
-    @Column(name = "ServerCatagory")
-    private String serverCatagory;
+    @Column(name = "ServerCategory")
+    private String serverCategory;
     @JsonProperty("OwnerId")
     @Column(name = "OwnerId")
     private int ownerId;
@@ -35,12 +35,12 @@ public class Server {
         this.serverName = serverName;
     }
 
-    public String getServerCatagory() {
-        return serverCatagory;
+    public String getServerCategory() {
+        return serverCategory;
     }
 
-    public void setServerCatagory(String serverCatagory) {
-        this.serverCatagory = serverCatagory;
+    public void setServerCategory(String serverCategory) {
+        this.serverCategory = serverCategory;
     }
 
     public int getOwnerId() {
@@ -61,7 +61,7 @@ public class Server {
         if (serverId != server.serverId) return false;
         if (ownerId != server.ownerId) return false;
         if (serverName != null ? !serverName.equals(server.serverName) : server.serverName != null) return false;
-        if (serverCatagory != null ? !serverCatagory.equals(server.serverCatagory) : server.serverCatagory != null)
+        if (serverCategory != null ? !serverCategory.equals(server.serverCategory) : server.serverCategory != null)
             return false;
 
         return true;
@@ -71,7 +71,7 @@ public class Server {
     public int hashCode() {
         int result = Long.hashCode(serverId);
         result = 31 * result + (serverName != null ? serverName.hashCode() : 0);
-        result = 31 * result + (serverCatagory != null ? serverCatagory.hashCode() : 0);
+        result = 31 * result + (serverCategory != null ? serverCategory.hashCode() : 0);
         result = 31 * result + ownerId;
         return result;
     }
