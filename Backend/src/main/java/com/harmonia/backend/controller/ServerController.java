@@ -41,8 +41,8 @@ public class ServerController {
 
     @PutMapping("/{serverId}")
     @CrossOrigin
-    public ResponseEntity<String> editServer(@PathVariable Long serverId, @RequestBody Server serverName){
-        serverService.editServerName(serverId, serverName.getServerName());
+    public ResponseEntity<String> editServer(@PathVariable Long serverId, @RequestBody Server server){
+        serverService.editServerName(serverId, server.getServerName(), server.getServerCategory());
         return ResponseEntity.ok("Server name has been edited");
     }
 }
