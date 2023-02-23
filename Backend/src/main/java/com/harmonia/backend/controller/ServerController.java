@@ -18,6 +18,17 @@ public class ServerController {
         this.serverService = serverService;
     }
 
+
+    @GetMapping("/{serverName}")
+    @CrossOrigin
+    public Iterable<Server> listServersByServerName(@PathVariable("serverName") String serverName){
+        return serverService.listServersByServerName(serverName);
+    }
+
+
+
+
+
     @GetMapping
     @CrossOrigin
     public Iterable<Server> listServers(){

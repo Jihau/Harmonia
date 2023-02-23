@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name="Server.listServersByServerName", query = "FROM Server server where server.serverName like :serverName")
+})
 public class Server {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
