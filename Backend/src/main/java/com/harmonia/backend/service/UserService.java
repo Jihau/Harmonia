@@ -89,4 +89,15 @@ public class UserService {
         }
         return null;
     }
+
+    public User changePassword(Long userId, String newPassword) {
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
+            user.setPassword(hashedPassword);
+            return userRepository.save(user);
+        }
+        return null;
+    }
 }
