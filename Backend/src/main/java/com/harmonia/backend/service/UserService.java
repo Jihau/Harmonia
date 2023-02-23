@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -76,5 +78,15 @@ public class UserService {
     public void deleteUser(User user){
         userRepository.deleteById(user.getUserId());
         System.out.println("User with id " + user.getUserId() + " has been deleted!");
+    }
+
+    public User editUser(Long userId, User user) {
+        Optional<User> existingUser = userRepository.findById(userId);
+        if (existingUser.isPresent()){
+            existingUser.get().setProfileIcon(user.getProfileIcon());
+            System.out.println("User's with id " + userId + " username has been updated to " + existingUser.get() + " successfully");
+            return userRepository.save(existingUser.get());
+        }
+        return null;
     }
 }
