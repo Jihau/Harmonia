@@ -27,7 +27,7 @@
             </DropShadow>
          </effect>
          <children>
-            <Button fx:id="registerButton" layoutX="33.0" layoutY="504.0" onAction="#onCloseButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/navMenu.css" text="REGISTER">
+            <Button fx:id="registerButton" layoutX="33.0" layoutY="498.0" onAction="#onCloseButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/navMenu.css" text="REGISTER">
                <font>
                   <Font name="Lato Regular" size="24.0" />
                </font>
