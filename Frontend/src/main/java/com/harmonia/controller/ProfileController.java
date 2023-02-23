@@ -68,12 +68,12 @@ public class ProfileController {
     @FXML
     public void onFListButtonClick(ActionEvent click) {
         System.out.println("Changing to friendslist-view");
-        changeScene("messages-View.fxml");
+        changeScene("messages-view.fxml");
     }
 
     @FXML public void onProfileToChannelsButtonClick(ActionEvent click) {
         System.out.println("changing to intro-view");
-        changeScene("Intro-view.fxml");
+        changeScene("intro-view.fxml");
     }
 
     @FXML
@@ -85,7 +85,7 @@ public class ProfileController {
     @FXML
     private void changeScene(String fxmlFile) {
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
             FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource(fxmlFile));
             System.out.println(getClass().getResource(fxmlFile));
             Stage stage = (Stage) root.getScene().getWindow();

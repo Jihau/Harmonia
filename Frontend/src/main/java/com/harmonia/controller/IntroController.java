@@ -35,8 +35,8 @@ public class IntroController {
     @FXML
     protected void registerButtonClick() {
         try {
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrationView.fxml"));
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("RegistrationView.fxml"));
+            //FXMLLoader loader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
             Stage stage = (Stage) RegisterButton.getScene().getWindow();
             Scene scene = new Scene(fxmlLoader.load(), 1020, 740);
             stage.setScene(scene);
