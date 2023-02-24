@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class UserService {
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -54,7 +54,6 @@ public class UserService {
     public User findByUsernameAndPassword(String username, String password) {
         //Find the user by username
         User user = userRepository.findByUsername(username);
-        System.out.println("response password " + user.getPassword());
         System.out.println("request password " + password);
         System.out.println(user);
 
