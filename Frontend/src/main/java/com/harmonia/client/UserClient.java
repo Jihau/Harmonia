@@ -57,14 +57,14 @@ public class UserClient {
         return restTemplate.exchange(BASE_URL+"/"+target+"/password", HttpMethod.PUT, request, Void.class);
     }
 
-    public ResponseEntity<UserPO> editUser(UserPO user) {
+    public UserPO editUser(UserPO user) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<UserPO> request = new HttpEntity<>(headers);
+        HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("userId", String.valueOf(user.getUserId()));
 
-        return restTemplate.exchange(BASE_URL+"/"+user.getUserId(), HttpMethod.PUT, request, UserPO.class);
+        return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class).getBody();
     }
 
     public static HttpStatusCode validate(String username, String passwrd) {
