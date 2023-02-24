@@ -1,6 +1,7 @@
 package com.harmonia.backend.service;
 
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -8,11 +9,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class UserService {
     @Autowired
-    private final UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -21,12 +24,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Iterable<User> listUsers() {
-        return userRepository.findAll();
+    public Iterable<UserResponse> listUsers() {
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false).map(UserResponse::new).collect(Collectors.toList());
     }
 
-    public Iterable<User> listUsersByUserName(String userName) {
-        return userRepository.listUsersByUserName("%" + userName + "%");
+    public Iterable<UserResponse> listUsersByUserName(String userName) {
+        return userRepository.listUsersByUserName("%" + userName + "%").stream().map(UserResponse::new).collect(Collectors.toList());
     }
 
     public User addUser(User user) {
@@ -38,7 +41,7 @@ public class UserService {
     }
 
 
-    public User createUser(User user) {
+    public UserResponse createUser(User user) {
         //check if the username is already taken!
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new RuntimeException("Username already taken");
@@ -48,19 +51,18 @@ public class UserService {
 
         //Save the user
         user.setPassword(hashedPassword);
-        return userRepository.save(user);
+        return new UserResponse(userRepository.save(user));
     }
 
-    public User findByUsernameAndPassword(String username, String password) {
+    public UserResponse findByUsernameAndPassword(String username, String password) {
         //Find the user by username
         User user = userRepository.findByUsername(username);
-        System.out.println("response password " + user.getPassword());
         System.out.println("request password " + password);
         System.out.println(user);
 
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             System.out.println("Logged in!");
-            return user;
+            return new UserResponse(user);
         } else {
             System.out.println("Failed");
             return null;
@@ -75,9 +77,9 @@ public class UserService {
         return user;
     }
 
-    public void deleteUser(User user){
-        userRepository.deleteById(user.getUserId());
-        System.out.println("User with id " + user.getUserId() + " has been deleted!");
+    public void deleteUser(Long userId){
+        userRepository.deleteById(userId);
+        System.out.println("User with id " + userId + " has been deleted!");
     }
 
     public User editUser(Long userId, User user) {
@@ -90,13 +92,13 @@ public class UserService {
         return null;
     }
 
-    public User changePassword(Long userId, String newPassword) {
+    public UserResponse changePassword(Long userId, String newPassword) {
         Optional<User> optionalUser = userRepository.findById(userId);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             String hashedPassword = BCrypt.hashpw(newPassword, BCrypt.gensalt());
             user.setPassword(hashedPassword);
-            return userRepository.save(user);
+            return new UserResponse(userRepository.save(user));
         }
         return null;
     }

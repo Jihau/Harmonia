@@ -6,134 +6,80 @@ import com.harmonia.po.ValidationPOJO;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.filter.reactive.HiddenHttpMethodFilter;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.spi.IIOServiceProvider;
+import static com.harmonia.constants.HarmoniaConstants.*;
 
 public class UserClient {
-    private static final String BASE_URL = "http://localhost:8080/user";
-    private final RestTemplate restTemplate;
+
+    private RestTemplate restTemplate;
 
     public UserClient() {
         restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
-    public String listUsers() {
-        //return restTemplate.getForObject(BASE_URL, UserPO[].class);
+    public UserPO[] listUsers() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
-        HttpEntity<?>httpEntity= new HttpEntity<>(headers);
-        return restTemplate.exchange(BASE_URL, HttpMethod.GET, httpEntity, String.class).getBody();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> request = new HttpEntity<>(headers);
+        return restTemplate.exchange(USERS_LIST_URL, HttpMethod.GET, request, UserPO[].class).getBody();
     }
 
     public UserPO addUser(UserPO user) {
-        
-        ResponseEntity<UserPO> response = request(user, HttpMethod.POST);
-
-        return response.getBody();
-    }
-
-    public ResponseEntity<UserPO> removeUser(UserPO user) {
-        
-        ResponseEntity<UserPO> response = request(user, HttpMethod.DELETE);
-
-        return response;
-    }
-
-    public ResponseEntity<UserPO> putUser(UserPO user) {
-
-        ResponseEntity<UserPO> response = request(user,HttpMethod.PUT);
-
-        return response;
-    }
-
-    public ResponseEntity<UserPO> editPassword(UserPO user) {
-
-        //This lacks validation!!!
-
         HttpHeaders headers = new HttpHeaders();
-
-        headers.set("Content-Type", "application/json");
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
+        headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
-        
-        Map<String, String> params = new HashMap<>();
-        params.put("id", String.valueOf(user.getUserId()));
-
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL+"/"+user.getUserId()+"/password", HttpMethod.PUT, request,
-                UserPO.class, params);
-        return response;
+        Map<String, String> urlParameters = new HashMap<>();
+        return restTemplate.exchange(USERS_ADD_URL, HttpMethod.POST, request, UserPO.class, urlParameters).getBody();
     }
 
-    public ResponseEntity<UserPO> editProfileIcon(UserPO user) {
+    public void removeUser(int userId) {
         HttpHeaders headers = new HttpHeaders();
-
-        headers.set("Content-Type", "application/json");
-
-        RestTemplate restTemplate = new RestTemplate();
-
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-        HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
-        
-        Map<String, String> params = new HashMap<>();
-        params.put("id", String.valueOf(user.getUserId()));
-
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL+"/"+user.getUserId()+"/password", HttpMethod.PUT, request,
-                UserPO.class, params);
-        return response;
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> request = new HttpEntity<>(headers);
+        // Loading values in the URL
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(userId));
+        restTemplate.exchange(USERS_DELETE_URL, HttpMethod.DELETE, request, Void.class, urlParameters);
     }
 
-    private static ResponseEntity<UserPO> request(UserPO user, HttpMethod method ) {
+    public ResponseEntity editPassword(int target, String newpassword) {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<?> request = new HttpEntity<>(headers);
+        return restTemplate.exchange(BASE_URL+"/"+target+"/password", HttpMethod.PUT, request, Void.class);
+    }
 
-        RestTemplate restTemplate = new RestTemplate();
+    public ResponseEntity<UserPO> editUser(UserPO user) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<UserPO> request = new HttpEntity<>(headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(user.getUserId()));
 
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-        HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
-        
-        Map<String, String> params = new HashMap<>();
-        params.put("id", String.valueOf(user.getUserId()));
-
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL, method, request,
-                UserPO.class, params);
-        return response;
+        return restTemplate.exchange(BASE_URL+"/"+user.getUserId(), HttpMethod.PUT, request, UserPO.class);
     }
 
     public static HttpStatusCode validate(String username, String passwrd) {
-    
-    System.out.println("Validating for \nusername: " + username + "\npassword: " + passwrd);
-
         ValidationPOJO validateMe = new ValidationPOJO(username, passwrd);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
         RestTemplate restTemplate = new RestTemplate();
-
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
         HttpEntity<ValidationPOJO> request = new HttpEntity<>(validateMe ,headers);
 
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL+"/login", HttpMethod.POST, request, UserPO.class);
-
+        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, UserPO.class);
 
         return response.getStatusCode();
-
     }
 }

@@ -46,11 +46,11 @@ public class SettingsController {
 
         this.user = new UserPO();
 
-        this.user.setUserId(1);
-        this.user.setUsername("marko1");
-        this.user.setEmail("Marko@gmail.com");
+        this.user.setUserId(14);
+        this.user.setUsername("jokke");
+        this.user.setEmail("jokke@gmail.com");
         this.user.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049");
-        this.user.setPassword("marko123");
+        this.user.setPassword("jokke123");
 
         
         /* placeholder, get user from session */
@@ -65,16 +65,17 @@ public class SettingsController {
         /* I don't think this will work after getting the userdata from the database because of password hashing. We need to either hash the current password or validate this request with the backend */
         UserPO user = this.getUser();
 
-        System.out.println(user);
-
         System.out.println("Updating user:");
 
-        if (!passwordField.getText().equals(null) && oldPasswordField.getText().equals(user.getPassword())) {
+        System.out.println(passwordField.getText());
+        System.out.println(oldPasswordField.getText().equals(user.getPassword()));
+
+
+        if (!passwordField.getText().equals("") && oldPasswordField.getText().equals(user.getPassword())) {
 
             System.out.println("new password detected and old password checked");
 
             try {
-
                 System.out.println("Trying to put with new password");
 
                 UserClient userclient = new UserClient();
@@ -83,13 +84,16 @@ public class SettingsController {
 
                 System.out.println(UserClient.validate(user.getUsername(), user.getPassword()).value());
 
-                if (UserClient.validate(user.getUsername(), user.getPassword()).value()==200) 
+                if (UserClient.validate(user.getUsername(), user.getPassword()).value()==200);
+
+                System.out.println("User validated");
+
                 user.setUsername(UsernameField.getText());
                 user.setProfileIcon(profImgField.getText());
                 user.setPassword(passwordField.getText());
 
-                userclient.editPassword(user);
-
+                userclient.editUser(user);
+                
                 Alert UpdatedAlert = new Alert(AlertType.CONFIRMATION);
                 UpdatedAlert.setHeaderText("User updated");
                 UpdatedAlert.setContentText("Your user details were succesfully updated.");
@@ -101,15 +105,13 @@ public class SettingsController {
                 System.out.println("Failed to update user");
                 e.printStackTrace();
             }
-        } else {
+        } else if (passwordField.getText()=="") {
             System.out.println("Trying to put without new password");
             try {
                 UserClient userclient = new UserClient();
                 
                 user.setUsername(UsernameField.getText());
                 user.setProfileIcon(profImgField.getText());
-
-                userclient.putUser(user);
 
                 Alert UpdatedAlert = new Alert(AlertType.CONFIRMATION);
                 UpdatedAlert.setHeaderText("User updated");
