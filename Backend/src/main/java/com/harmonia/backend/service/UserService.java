@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -69,25 +69,28 @@ public class UserService {
         }
     }
 
-    public User findByUsername(String username) {
+    public UserResponse findByUsername(String username) {
         //Find the user by username
         User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return null;
+        }
         System.out.println("response password " + user.getPassword());
         System.out.println(user);
-        return user;
+        return new UserResponse(user);
     }
 
-    public void deleteUser(Long userId){
+    public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
         System.out.println("User with id " + userId + " has been deleted!");
     }
 
-    public User editUser(Long userId, User user) {
+    public UserResponse editUser(Long userId, User user) {
         Optional<User> existingUser = userRepository.findById(userId);
-        if (existingUser.isPresent()){
+        if (existingUser.isPresent()) {
             existingUser.get().setProfileIcon(user.getProfileIcon());
             System.out.println("User's with id " + userId + " username has been updated to " + existingUser.get() + " successfully");
-            return userRepository.save(existingUser.get());
+            return new UserResponse(userRepository.save(existingUser.get()));
         }
         return null;
     }
