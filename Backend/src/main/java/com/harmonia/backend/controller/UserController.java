@@ -61,7 +61,7 @@ public class UserController {
 
     @PutMapping("/{userId}")
     @CrossOrigin
-    public ResponseEntity<User> editUsersByUserId(@PathVariable Long userId,@RequestBody User user) {
+    public ResponseEntity<UserResponse> editUsersByUserId(@PathVariable Long userId,@RequestBody User user) {
         return new ResponseEntity<>(userService.editUser(userId, user), HttpStatus.OK);
     }
 
