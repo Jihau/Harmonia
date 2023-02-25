@@ -90,7 +90,7 @@ public class UserService {
         if (existingUser.isPresent()) {
             existingUser.get().setProfileIcon(user.getProfileIcon());
             System.out.println("User's with id " + userId + " username has been updated to " + existingUser.get() + " successfully");
-            return new UserResponse(userRepository.save(user));
+            return new UserResponse(userRepository.save(existingUser.get()));
         }
         return null;
     }
