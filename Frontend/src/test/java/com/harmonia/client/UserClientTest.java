@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpEntity;
@@ -16,21 +17,17 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class UserClientTest {
-  /*  @InjectMocks
+    @InjectMocks
     UserClient userClient;
-      */
-    UserClient userClient = new UserClient();
 
     @Mock
     RestTemplate restTemplate;
@@ -62,10 +59,18 @@ public class UserClientTest {
 
     @Test
     public void deleteUserTest() {
-  /*      ResponseEntity<Void> response = userClient.removeUser(2);
-        when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), any(Class.class), any(Map.class)))
-                .thenReturn(new ResponseEntity<Void>(HttpStatus.OK));
+        lenient().when(restTemplate.exchange(anyString(),
+                Mockito.any(),
+                Mockito.<HttpEntity<Void>>any(),
+                Mockito.<Class<Void>>any(),
+                Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+        ResponseEntity<Void> response = userClient.removeUser(2);
+        verify(restTemplate, times(1)).exchange(anyString(),
+                Mockito.any(),
+                Mockito.<HttpEntity<Void>>any(),
+                Mockito.<Class<Void>>any(),
+                Mockito.anyMap());
+        assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-   */
     }
 }
