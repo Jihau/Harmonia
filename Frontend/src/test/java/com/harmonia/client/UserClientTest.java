@@ -64,7 +64,7 @@ public class UserClientTest {
                 Mockito.<HttpEntity<Void>>any(),
                 Mockito.<Class<Void>>any(),
                 Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
-        ResponseEntity<Void> response = userClient.removeUser(2);
+        ResponseEntity<Void> response = userClient.removeUser(1);
         verify(restTemplate, times(1)).exchange(anyString(),
                 Mockito.any(),
                 Mockito.<HttpEntity<Void>>any(),
