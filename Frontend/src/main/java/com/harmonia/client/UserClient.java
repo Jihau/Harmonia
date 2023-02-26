@@ -64,7 +64,7 @@ public class UserClient {
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("userId", String.valueOf(user.getUserId()));
 
-        return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class).getBody();
+        return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
     }
 
     public static HttpStatusCode validate(String username, String passwrd) {
