@@ -50,14 +50,15 @@ public class UserClient {
         restTemplate.exchange(USERS_DELETE_URL, HttpMethod.DELETE, request, Void.class, urlParameters);
     }
 
-    public ResponseEntity editPassword(int target, String newpassword) {
+    public ResponseEntity<Void> editPassword(int target, String newpassword) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
+
         return restTemplate.exchange(BASE_URL+"/"+target+"/password", HttpMethod.PUT, request, Void.class);
     }
 
-    public UserPO editUser(UserPO user) {
+    public UserPO editIcon(UserPO user) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
@@ -65,6 +66,16 @@ public class UserClient {
         urlParameters.put("userId", String.valueOf(user.getUserId()));
 
         return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
+    }
+
+    public UserPO editPassword(UserPO user) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(user.getUserId()));
+
+        return restTemplate.exchange(USERS_EDIT_URL+"/password", HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
     }
 
     public static HttpStatusCode validate(String username, String passwrd) {

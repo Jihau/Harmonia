@@ -15,7 +15,7 @@ public class EditUserClientTest {
         UserPO request = new UserPO();
         request.setUserId(1);
         request.setProfileIcon("https://i.imgur.com/yfhVP8e.png");
-        UserPO responseUserPO = userClient.editUser(request);
+        UserPO responseUserPO = userClient.editIcon(request);
         assertEquals(request.getProfileIcon(), responseUserPO.getProfileIcon());
     }
 }

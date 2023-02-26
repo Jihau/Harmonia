@@ -51,7 +51,6 @@ public class SettingsController {
         this.user.setEmail("jokke@gmail.com");
         this.user.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049");
         this.user.setPassword("jokke123");
-
         
         /* placeholder, get user from session */
 
@@ -88,11 +87,12 @@ public class SettingsController {
 
                 System.out.println("User validated");
 
-                user.setUsername(UsernameField.getText());
                 user.setProfileIcon(profImgField.getText());
                 user.setPassword(passwordField.getText());
 
-                userclient.editUser(user);
+                userclient.editPassword(user);
+                userclient.editIcon(user);
+
                 
                 Alert UpdatedAlert = new Alert(AlertType.CONFIRMATION);
                 UpdatedAlert.setHeaderText("User updated");
@@ -100,6 +100,12 @@ public class SettingsController {
                 UpdatedAlert.setTitle("Success");
                 UpdatedAlert.showAndWait();
 
+                FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+                Stage stage = (Stage) root.getScene().getWindow();
+                Scene scene = new Scene(loader.load(), 1280, 720);
+                stage.setScene(scene);
+                stage.setTitle("Harmonia");
+                stage.show();
                 
             } catch (Exception e) {
                 System.out.println("Failed to update user");
