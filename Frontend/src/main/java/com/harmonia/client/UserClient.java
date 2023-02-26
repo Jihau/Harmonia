@@ -40,22 +40,22 @@ public class UserClient {
         return restTemplate.exchange(USERS_ADD_URL, HttpMethod.POST, request, UserPO.class, urlParameters).getBody();
     }
 
-    public void removeUser(int userId) {
+    public ResponseEntity<Void> removeUser(int userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
         // Loading values in the URL
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("userId", String.valueOf(userId));
-        restTemplate.exchange(USERS_DELETE_URL, HttpMethod.DELETE, request, Void.class, urlParameters);
+        return restTemplate.exchange(USERS_DELETE_URL, HttpMethod.DELETE, request, Void.class, urlParameters);
     }
 
-    public ResponseEntity<Void> editPassword(int target, String newpassword) {
+    public UserPO editPassword(int target, String newpassword) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
 
-        return restTemplate.exchange(BASE_URL+"/"+target+"/password", HttpMethod.PUT, request, Void.class);
+        return restTemplate.exchange(BASE_URL+"/"+target+"/password", HttpMethod.PUT, request, UserPO.class).getBody();
     }
 
     public UserPO editIcon(UserPO user) {
