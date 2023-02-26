@@ -19,7 +19,7 @@
             <Image url="@img/LoginBg.png" />
          </image>
       </ImageView>
-      <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/navMenu.css">
+      <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <children>
             <Label layoutX="57.0" layoutY="95.0" text="HARMONIA" textFill="WHITE">
                <font>
@@ -34,7 +34,7 @@
                   <Font name="Lato Regular" size="18.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="33.0" layoutY="285.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form" stylesheets="@css/navMenu.css">
+            <PasswordField fx:id="passwordField" layoutX="33.0" layoutY="285.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form" stylesheets="@css/form.css">
                <effect>
                   <DropShadow />
                </effect>

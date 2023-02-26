@@ -1,19 +1,3 @@
-/*
-
-*/
-.menuBg{
+.background{
     -fx-background-color: #0e1821;
-    -fx-background-radius: 10px;
-}
-.form{
-    -fx-background-color: #182A39;
-    -fx-text-fill: white;
-    -fx-background-radius: 15px;
-}
-.LogButton{
-    -fx-text-fill: white;
-    -fx-background-color: #1b5ddc;
-}
-.Label{
-    -fx-text-fill: #b0d5ef;
 }
