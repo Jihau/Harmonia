@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "tbl_channel", schema = "harmoniadb")
+@Table(name = "channel", schema = "harmoniadb")
 public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -22,8 +22,7 @@ public class Channel {
     Long channelId;
 
     @Column(name = "ChannelName")
-    @NotNull
-    String channelName;
+    @NotNull String channelName;
 
     @Column(name = "CreationDate")
     @NotNull
@@ -31,28 +30,17 @@ public class Channel {
     Date timestamp;
 
     @Column(name = "ChannelType")
-    @NotNull
-    String channelType;
+    @NotNull String channelType;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ServerId")
-    @JoinColumn(name = "ServerId",foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT))
     Server server;
 
     @Column(name = "ServerId")
-    @NotNull
-    Long serverId;
+    @NotNull Long serverId;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("UserId")
-    @JoinColumn(name = "UserId",foreignKey = @ForeignKey(name = "Channel_Owner_fk", value = ConstraintMode.CONSTRAINT))
-    User user;
-
-    @Column(name = "UserId")
-    @NotNull
-    Long userId;
 
     @OneToMany(targetEntity = PublicMessage.class, mappedBy = "channel", fetch = FetchType.EAGER)
     Set<PublicMessage> publicMessages;

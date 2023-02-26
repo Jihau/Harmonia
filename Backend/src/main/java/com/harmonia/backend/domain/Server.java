@@ -1,5 +1,6 @@
 package com.harmonia.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -13,8 +14,15 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name="Server.listServersByServerName", query = "FROM Server server where server.serverName like :serverName")
 })
-@Table(name = "tbl_server", schema = "harmoniadb")
+@Table(name = "server", schema = "harmoniadb")
 public class Server {
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @MapsId("UserId")
+    @JoinColumn(name = "OwnerId", foreignKey = @ForeignKey(name = "Owner_ofServer_fk", value = ConstraintMode.CONSTRAINT))
+    User Owner;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "ServerId")
@@ -25,7 +33,7 @@ public class Server {
     private String serverCategory;
     @JsonProperty("OwnerId")
     @Column(name = "OwnerId")
-    private int ownerId;
+    private Long ownerId;
     @OneToMany(targetEntity = Channel.class, mappedBy = "server", fetch = FetchType.EAGER)
     Set<Channel> channel;
 }

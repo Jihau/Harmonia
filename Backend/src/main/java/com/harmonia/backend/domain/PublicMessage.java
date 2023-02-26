@@ -10,7 +10,8 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.sql.Date;
+
 
 @Getter
 @Setter
@@ -28,21 +29,27 @@ public class PublicMessage {
     @Column(name = "PmessageId")
     private Long pmessageId;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ChannelId")
-    @JoinColumn(name = "ChannelId")
+    @JoinColumn(name = "ChannelId", foreignKey = @ForeignKey(name = "Pmessages_byChannel_fk", value = ConstraintMode.CONSTRAINT))
     Channel channel;
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @MapsId("UserId")
+    @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofPMessage_fk", value = ConstraintMode.CONSTRAINT))
+    User Author;
+
     @Column(name = "ChannelId")
-    private int channelId;
+    private Long channelId;
     @Basic
     @Column(name = "AuthorId")
-    private int authorId;
+    private Long authorId;
     @Basic
     @Column(name = "Timestamp")
     @NotNull
     @Generated(GenerationTime.INSERT)
-    private Timestamp timestamp;
+    private Date timestamp;
 
 
 
