@@ -31,4 +31,11 @@ public class ChannelController {
         channelService.deleteChannel(channel);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/{channelId}")
+    @CrossOrigin
+    public ResponseEntity<String> editChannel(@PathVariable Long channelId, @RequestBody Channel channel){
+        channelService.editChannel(channelId,channel.getChannelName());
+        return ResponseEntity.ok("Channel name has been updated!");
+    }
 }

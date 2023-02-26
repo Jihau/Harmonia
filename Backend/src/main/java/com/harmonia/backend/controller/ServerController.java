@@ -25,10 +25,6 @@ public class ServerController {
         return serverService.listServersByServerName(serverName);
     }
 
-
-
-
-
     @GetMapping
     @CrossOrigin
     public Iterable<Server> listServers(){

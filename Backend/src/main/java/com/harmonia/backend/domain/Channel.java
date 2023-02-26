@@ -9,11 +9,12 @@ import org.hibernate.annotations.GenerationTime;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "channel", schema = "harmoniadb")
+@Table(name = "tbl_channel", schema = "harmoniadb")
 public class Channel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,15 +25,19 @@ public class Channel {
     @NotNull
     String channelName;
 
-    @Column(name = "Timestamp")
+    @Column(name = "CreationDate")
     @NotNull
     @Generated(GenerationTime.INSERT)
     Date timestamp;
 
+    @Column(name = "ChannelType")
+    @NotNull
+    String channelType;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("ServerId")
-    @JoinColumn(name = "ServerId")
+    @JoinColumn(name = "ServerId",foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT))
     Server server;
 
     @Column(name = "ServerId")
@@ -42,11 +47,13 @@ public class Channel {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("UserId")
-    @JoinColumn(name = "UserId")
+    @JoinColumn(name = "UserId",foreignKey = @ForeignKey(name = "Channel_Owner_fk", value = ConstraintMode.CONSTRAINT))
     User user;
 
     @Column(name = "UserId")
     @NotNull
     Long userId;
 
+    @OneToMany(targetEntity = PublicMessage.class, mappedBy = "channel", fetch = FetchType.EAGER)
+    Set<PublicMessage> publicMessages;
 }

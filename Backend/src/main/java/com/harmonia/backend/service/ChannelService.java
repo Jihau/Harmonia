@@ -23,4 +23,15 @@ public class ChannelService {
     public void deleteChannel(Channel channel){
         channelRepository.deleteById(channel.getChannelId());
     }
+
+    public void editChannel(Long channelId, String channelName){
+        Optional<Channel> channel = channelRepository.findById(channelId);
+        if (channel.isPresent()) {
+            channel.get().setChannelName(channelName);
+            channelRepository.save(channel.get());
+            System.out.println("Channel with id " + channelId + " name has been updated to " + channelName + " successfully.");
+        } else {
+            throw new IllegalArgumentException(("Can't change the name!"));
+        }
+    }
 }

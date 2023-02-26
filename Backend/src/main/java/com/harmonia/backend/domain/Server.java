@@ -13,6 +13,7 @@ import java.util.Set;
 @NamedQueries({
         @NamedQuery(name="Server.listServersByServerName", query = "FROM Server server where server.serverName like :serverName")
 })
+@Table(name = "tbl_server", schema = "harmoniadb")
 public class Server {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
