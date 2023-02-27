@@ -1,5 +1,6 @@
 package com.harmonia.model;
-public class Message {
+public class Message implements Comparable<Message> {
+
     private int id;
     private int receiverId;
     private int senderId;
@@ -11,8 +12,6 @@ public class Message {
         this.receiverId = receiver;
         this.text = messageText;
         this.timestamp = timestamp;
-
-
     }
 
     public String getText() { return  this.text; }
@@ -26,4 +25,9 @@ public class Message {
     public int getMessageId() { return this.id; }
 
     public void setText(String newText) { this.text = newText; }
+
+    @Override
+    public int compareTo(Message other) {
+        return this.timestamp.compareTo(other.timestamp);
+    }
 }
