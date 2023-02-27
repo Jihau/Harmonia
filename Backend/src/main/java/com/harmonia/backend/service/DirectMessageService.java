@@ -30,9 +30,14 @@ public class DirectMessageService {
         return directMessageRepository.findAll();
     }
 
-    //Get DMs per recipient id
+    //Get DMs by recipient id
     public Iterable<DirectMessage> listDmessagesByRecipientId(Long recipientId){
         return directMessageRepository.listDMsByRecipientId(recipientId);
+    }
+
+    //Get DMs by author id
+    public Iterable<DirectMessage> listDmessagesByAuthorId(Long authorId){
+        return directMessageRepository.listDMsByAuthorId(authorId);
     }
 
     public void deleteDirectMessage(DirectMessage dm){

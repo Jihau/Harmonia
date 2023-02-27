@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DirectMessageRepository extends CrudRepository<DirectMessage, Long> {
     List<DirectMessage> listDMsByRecipientId(Long recipientId);
+    List<DirectMessage> listDMsByAuthorId(Long authorId);
 }
