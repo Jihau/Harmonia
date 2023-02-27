@@ -1,5 +1,5 @@
-package com.harmonia.model;
-public class Message implements Comparable<Message> {
+package com.harmonia.po;
+public class MessagePO implements Comparable<MessagePO> {
 
 
     int id;
@@ -21,17 +21,17 @@ public class Message implements Comparable<Message> {
     }
 
     String text;
-   String timestamp;
+    String timestamp;
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
-   public Message(){
+    public MessagePO(){
 
-   }
+    }
 
-    public Message(int receiver, int sender, int text, String timestamp, String messageText) {
+    public MessagePO(int receiver, int sender, int text, String timestamp, String messageText) {
         this.senderId = sender;
         this.receiverId = receiver;
         this.text = messageText;
@@ -51,7 +51,7 @@ public class Message implements Comparable<Message> {
     public void setText(String newText) { this.text = newText; }
 
     @Override
-    public int compareTo(Message other) {
+    public int compareTo(MessagePO other) {
         return this.timestamp.compareTo(other.timestamp);
     }
 
