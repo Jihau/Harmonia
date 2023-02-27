@@ -32,7 +32,6 @@ public class LoginController {
     Label errorLabel;
 
     public boolean login(String username, String password) {
-
         return UserClient.validate(username, password).value()==200;     
     }
 
@@ -53,10 +52,12 @@ public class LoginController {
     @FXML
     public void onLoginButtonClick() {
     
-    if (usernameField.getText()=="" || passwordField.getText()=="") { errorLabel.setVisible(true); return;}
+    if (usernameField.getText()=="" || passwordField.getText()=="") {errorLabel.setText("Please fill both fields!"); errorLabel.setVisible(true); return;}
         if (login(usernameField.getText(), passwordField.getText())) {
             logInRedirect();
         }
+        errorLabel.setText("Login failed");
+        errorLabel.setVisible(true);
     }
 
     @FXML
