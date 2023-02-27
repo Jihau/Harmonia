@@ -46,12 +46,17 @@ public class UserService {
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new RuntimeException("Username already taken");
         }
-        //hashing and salting the password
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        if (user.getUsername().trim().length() != 0 && user.getEmail().trim().length() != 0) {
+            //hashing and salting the password
+            String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+            user.setPassword(hashedPassword);
+            //Save the user
+            return new UserResponse(userRepository.save(user));
 
-        //Save the user
-        user.setPassword(hashedPassword);
-        return new UserResponse(userRepository.save(user));
+        }else {
+            throw new RuntimeException("All fields must be filled");
+        }
+
     }
 
     public UserResponse findByUsernameAndPassword(String username, String password) {
