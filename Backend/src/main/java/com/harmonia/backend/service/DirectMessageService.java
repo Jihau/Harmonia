@@ -30,6 +30,11 @@ public class DirectMessageService {
         return directMessageRepository.findAll();
     }
 
+    //Get DMs per recipient id
+    public Iterable<DirectMessage> listDmessagesByRecipientId(Long recipientId){
+        return directMessageRepository.listDMsByRecipientId(recipientId);
+    }
+
     public void deleteDirectMessage(DirectMessage dm){
         directMessageRepository.deleteById(dm.getDmessageId());
         System.out.println("Message with ID: " + dm.getDmessageId() + " is deleted.");
