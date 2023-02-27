@@ -9,10 +9,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.LoginController">
    <children>
       <ImageView fitHeight="720.0" fitWidth="1289.0" layoutX="-4.0" pickOnBounds="true">
          <image>
@@ -21,11 +24,36 @@
       </ImageView>
       <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <children>
-            <Label layoutX="57.0" layoutY="95.0" text="HARMONIA" textFill="WHITE">
+            <Label layoutX="62.0" layoutY="14.0" text="HARMONIA" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
             </Label>
+            <Pane layoutY="72.0" prefHeight="58.0" prefWidth="338.0">
+               <children>
+                  <Label fx:id="errorLabel" alignment="CENTER" prefHeight="58.0" prefWidth="338.0" text="Please fill both fields!" visible="false">
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.75789475440979" blue="0.5684210658073425" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <TextField fx:id="usernameField" layoutX="33.0" layoutY="189.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
                <effect>
                   <DropShadow />

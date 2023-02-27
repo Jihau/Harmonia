@@ -1,5 +1,7 @@
 package com.harmonia.controller;
 
+import java.io.IOException;
+
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
 import com.harmonia.po.UserPO;
@@ -9,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -33,6 +36,9 @@ public class RegistrationController {
 
     @FXML
     Button RegisterButton;
+
+    @FXML
+    Label errorLabel;
     
     @FXML
     public void onRegisterButtonClick() {
@@ -51,7 +57,7 @@ public class RegistrationController {
         addMe.setUsername(username);
         addMe.setProfileIcon("https://www.eurokolikot.com/image/cache/data/10800/suomi-2022-2-euro-kansallisbaletti-unc-1-200x200.jpg");
 
-        if (pword.equals(RepeatPword)) {
+        if (emailField.getText()!="" && usernameField.getText()!="" && pword.equals(RepeatPword)) {
             System.out.println("Passwords match");
             try {
                 System.out.println("Attempting HTTP");
@@ -73,21 +79,31 @@ public class RegistrationController {
                 stage.setTitle("Harmonia");
                 stage.show();
 
-                
-
             } catch (Exception e) {
                 Alert ServerAlert = new Alert(AlertType.ERROR);
                 ServerAlert.setTitle("Server error");
                 ServerAlert.setContentText("Please read stack trace to debug");
                 ServerAlert.showAndWait();
             }
-        } else {
-            Alert passwordAlert = new Alert(AlertType.WARNING);
+        } else if (emailField.getText()=="" || usernameField.getText()=="" || passwordField.getText()=="" || repeatPasswordField.getText()=="") {
+            errorLabel.setVisible(true);
+        }
+
+        if (!passwordField.getText().equals(repeatPasswordField.getText())) {
+                Alert passwordAlert = new Alert(AlertType.WARNING);
                 passwordAlert.setHeaderText("Passwords do not match");
                 passwordAlert.setContentText("The passwords you entered do not match. Please re-enter your passwords.");
                 passwordAlert.show();
         }
     }
-    
 
+    public void returnLinkOnClick() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Harmonia");
+        stage.show();
+    }
+    
 }
