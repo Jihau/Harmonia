@@ -135,7 +135,7 @@ public class ProfileController {
     @FXML
     public void onProfileToSettingsButtonClick(ActionEvent click) {
         System.out.println("changing to settings-view");
-        changeScene("settings-view.fxml");
+        changeScene("usersettings-view.fxml");
     }
 
     @FXML

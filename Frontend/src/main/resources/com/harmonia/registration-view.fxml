@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -9,17 +10,18 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.RegistrationController">
+<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.RegistrationController">
    <children>
-      <ImageView fitHeight="861.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="861.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" styleClass="Label">
          <image>
             <Image url="@img/RegisterBg.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
+      <AnchorPane layoutX="53.0" layoutY="60.0" prefHeight="586.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <effect>
             <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
                <color>
@@ -28,11 +30,20 @@
             </DropShadow>
          </effect>
          <children>
-            <Label layoutX="27.0" layoutY="31.0" text="REGISTRATION" textFill="WHITE">
+            <Label layoutX="33.0" layoutY="14.0" text="REGISTRATION" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
             </Label>
+            <Pane layoutX="4.0" layoutY="70.0" prefHeight="34.0" prefWidth="335.0">
+               <children>
+                  <Label fx:id="errorLabel" alignment="CENTER" layoutY="-3.0" prefHeight="34.0" prefWidth="335.0" text="Please fill all the fields!" textAlignment="CENTER" textFill="RED" visible="false">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Label layoutX="48.0" layoutY="105.0" style="-fx-text-fill: #acdef3;" text="Email:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
@@ -85,7 +96,7 @@
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Button fx:id="registerButton" layoutX="33.0" layoutY="498.0" onAction="#onRegisterButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/form.css" text="REGISTER">
+            <Button fx:id="registerButton" layoutX="31.0" layoutY="511.0" onAction="#onRegisterButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/form.css" text="REGISTER">
                <font>
                   <Font name="Lato Regular" size="24.0" />
                </font>
@@ -93,6 +104,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Hyperlink fx:id="returnLink" layoutX="28.0" layoutY="476.0" onAction="#returnLinkOnClick" prefHeight="34.0" prefWidth="251.0" styleClass="Label" text="I already have an account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Hyperlink>
          </children>
       </AnchorPane>
    </children>

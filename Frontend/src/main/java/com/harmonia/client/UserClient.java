@@ -87,9 +87,9 @@ public class UserClient {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-        HttpEntity<ValidationPOJO> request = new HttpEntity<>(validateMe ,headers);
+        HttpEntity<ValidationPOJO> request = new HttpEntity<ValidationPOJO>(validateMe, headers);
 
-        ResponseEntity<UserPO> response = restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, UserPO.class);
+        ResponseEntity<?> response = restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, void.class);
 
         return response.getStatusCode();
     }
