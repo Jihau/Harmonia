@@ -119,63 +119,6 @@ public class HarmoniaController {
     @FXML
     private Button hSettingsBtn;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
-    @FXML
-    private Button fmFriendsBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
-    @FXML
-    private Button fmSettingsBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
-    @FXML
-    private Button fmProfileBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
-    @FXML
-    private Button fmHomePageBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
-    @FXML
-    private Button fmCommunityBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     */
 
     @FXML
     protected void onLoginButtonClick() {
@@ -264,36 +207,6 @@ public class HarmoniaController {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void onfmHomePageBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) fmHomePageBtn.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void onfmProfileBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) fmProfileBtn.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Sign in to Harmonia");
             stage.show();

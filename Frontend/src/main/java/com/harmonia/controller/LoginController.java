@@ -3,9 +3,11 @@ package com.harmonia.controller;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -13,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -23,16 +27,13 @@ public class LoginController {
     PasswordField passwordField;
 
     @FXML
-    Hyperlink toregisterLink;
+    Hyperlink registerLink;
 
     @FXML
     Button loginButton;
 
     @FXML
     Label errorLabel;
-
-
-    
 
     @FXML
     public void onLoginButtonClick() {
@@ -49,7 +50,7 @@ public class LoginController {
     protected void onRegisterLinkClicked() {
         try {
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
-            Stage stage = (Stage) toregisterLink.getScene().getWindow();
+            Stage stage = (Stage) registerLink.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Register to Harmonia");
