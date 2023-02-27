@@ -12,14 +12,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.Map;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static com.harmonia.constants.HarmoniaConstants.USERS_LIST_URL;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -55,6 +53,18 @@ public class UserClientTest {
 
     @Test
     public void listUsersTest() {
+        UserPO user1 = new UserPO();
+        user1.setUsername("ArrayTest");
+        user1.setEmail("lihau@Arraytest21.com");
+        user1.setPassword("ArrayTest123");
+        user1.setProfileIcon("https://i.imgur.com/yfhVP8e.png");
+        UserPO[] expectedUsers = new UserPO[] { user1, new UserPO() };
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<UserPO[]>>any()))
+                .thenReturn(new ResponseEntity<>(expectedUsers, HttpStatus.OK));
+        UserPO[] actualUsers = userClient.listUsers();
+        assertNotNull(actualUsers);
+        assertArrayEquals(expectedUsers, actualUsers);
+        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<UserPO[]>>any());
     }
 
     @Test
