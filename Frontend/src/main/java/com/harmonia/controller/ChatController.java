@@ -133,8 +133,8 @@ public class ChatController {
     }
     protected void populateListView(){
         conversationObject.clear();
-        for(MessagePO m : messageClient.getAllMessages().getBody()){
-            System.out.println(m);
+        for(MessagePO m : messageClient.getAllMessages()){
+            System.out.println(m.getText());
             conversationObject.add(m);
         }
         convertList();

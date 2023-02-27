@@ -14,7 +14,6 @@ import static com.harmonia.constants.HarmoniaConstants.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Exchanger;
 
 public class DirectMessageClient {
     private RestTemplate restTemplate;
@@ -24,12 +23,13 @@ public class DirectMessageClient {
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
-    public ResponseEntity<MessagePO[]> getAllMessages() {
+    public MessagePO[] getAllMessages() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
-        
-        return restTemplate.exchange(DM_GETALL_URL, HttpMethod.GET, request, MessagePO[].class);
+        ResponseEntity<MessagePO[]> response = restTemplate.exchange(DM_GETALL_URL, HttpMethod.GET, request, MessagePO[].class);
+        System.out.println(response.getBody());
+        return response.getBody();
     }
 
     public ResponseEntity<MessagePO[]> getMessagesByRecepientUID(int userId) {
