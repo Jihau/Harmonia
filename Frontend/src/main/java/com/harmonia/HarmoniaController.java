@@ -70,9 +70,113 @@ public class HarmoniaController {
     private Button closeButton;
 
     /**
-     * Handles the action when the login button is clicked. Loads the main
-     * UI / main app view.
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
      */
+    @FXML
+    private Button hHomePageBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button hCommunityBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button hFriendsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button hProfileBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button hSettingsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button fmFriendsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button fmSettingsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button fmProfileBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button fmHomePageBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button fmCommunityBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+
     @FXML
     protected void onLoginButtonClick() {
         String username = usernameField.getText();
@@ -107,6 +211,47 @@ public class HarmoniaController {
             e.printStackTrace();
         }
     }
+    @FXML
+    protected void onhHomePageBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            Stage stage = (Stage) hHomePageBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Explore");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onhFriendsBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
+            Stage stage = (Stage) hFriendsBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Friends & messages");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onhProfileBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
+            Stage stage = (Stage) hProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * Handles the action when the login button is clicked. Loads the login
@@ -126,6 +271,37 @@ public class HarmoniaController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    protected void onfmHomePageBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) fmHomePageBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onfmProfileBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) fmProfileBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Handles the action when the logout button is clicked. Loads the login
      * UI / login view again.

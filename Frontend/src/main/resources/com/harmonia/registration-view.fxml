@@ -19,7 +19,7 @@
             <Image url="@img/RegisterBg.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/navMenu.css">
+      <AnchorPane layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <effect>
             <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
                <color>
@@ -85,7 +85,7 @@
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Button fx:id="registerButton" layoutX="33.0" layoutY="498.0" onAction="#onRegisterButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/navMenu.css" text="REGISTER">
+            <Button fx:id="registerButton" layoutX="33.0" layoutY="498.0" onAction="#onRegisterButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" stylesheets="@css/form.css" text="REGISTER">
                <font>
                   <Font name="Lato Regular" size="24.0" />
                </font>

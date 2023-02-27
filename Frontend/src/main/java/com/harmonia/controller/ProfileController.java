@@ -1,6 +1,7 @@
 package com.harmonia.controller;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
@@ -46,6 +47,61 @@ public class ProfileController {
 
     @FXML
     Label UsernameText;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button pFriendsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button pSettingsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button pProfileBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button pHomePageBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     */
+    @FXML
+    private Button pCommunityBtn;
+
+    /**
+     * Handles the action when the login button is clicked. Loads the main
+     * UI / main app view.
+     */
 
     public void initialize() {
         friend.setEmail("example@example.com");
@@ -111,6 +167,36 @@ public class ProfileController {
         }
     
         return new ImageView(wr).getImage();
+    }
+
+    @FXML
+    protected void onpHomePageBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) pHomePageBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onpFriendsBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) pFriendsBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
