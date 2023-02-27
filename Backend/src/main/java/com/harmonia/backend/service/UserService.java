@@ -85,6 +85,14 @@ public class UserService {
         return new UserResponse(user);
     }
 
+    public UserResponse findUserById(Long userId) {
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return new UserResponse(user.get());
+        }
+        throw new RuntimeException("User not found");
+    }
+
     public void deleteUser(Long userId) {
         userRepository.deleteById(userId);
         System.out.println("User with id " + userId + " has been deleted!");

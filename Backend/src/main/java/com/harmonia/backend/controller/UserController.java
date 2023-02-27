@@ -34,6 +34,12 @@ public class UserController {
         return userService.listUsersByUserName(userName);
     }
 
+    @GetMapping("/{userId}")
+    @CrossOrigin
+    public UserResponse findUserById(@PathVariable Long userId) {
+        return userService.findUserById(userId);
+    }
+
     @PostMapping
     public UserResponse createUser(@RequestBody User user) {
         return userService.createUser(user);
