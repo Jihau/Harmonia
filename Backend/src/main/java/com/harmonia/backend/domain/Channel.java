@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenerationTime;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,32 +22,26 @@ public class Channel {
     Long channelId;
 
     @Column(name = "ChannelName")
-    @NotNull
-    String channelName;
+    @NotNull String channelName;
 
-    @Column(name = "Timestamp")
+    @Column(name = "CreationDate")
     @NotNull
     @Generated(GenerationTime.INSERT)
     Date timestamp;
 
+    @Column(name = "ChannelType")
+    @NotNull String channelType;
+
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ServerId")
-    @JoinColumn(name = "ServerId")
+    @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT))
     Server server;
 
     @Column(name = "ServerId")
-    @NotNull
-    Long serverId;
+    @NotNull Long serverId;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("UserId")
-    @JoinColumn(name = "UserId")
-    User user;
 
-    @Column(name = "UserId")
-    @NotNull
-    Long userId;
-
+    @OneToMany(targetEntity = PublicMessage.class, mappedBy = "channel", fetch = FetchType.EAGER)
+    Set<PublicMessage> publicMessages;
 }

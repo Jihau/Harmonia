@@ -29,8 +29,8 @@ public class PublicMessageService {
     }
 
     public void deletePublicMessage(PublicMessage pm){
-        publicMessageRepository.deleteById(pm.getPMessageId());
-        System.out.println("Message with ID: " + pm.getPMessageId() + " is deleted.");
+        publicMessageRepository.deleteById(pm.getPmessageId());
+        System.out.println("Message with ID: " + pm.getPmessageId() + " is deleted.");
     }
 
     public void editPublicMessage(Long pmessageId, String newText){
