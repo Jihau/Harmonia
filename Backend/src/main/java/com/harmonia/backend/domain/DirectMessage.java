@@ -19,6 +19,10 @@ import java.sql.Date;
 @NoArgsConstructor
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "DirectMessage.listDMsByRecipientId", query = "FROM DirectMessage dm where dm.recipient.id = :recipientId"),
+        @NamedQuery(name = "DirectMessage.listDMsByAuthorId", query = "FROM DirectMessage dm where dm.author.id = :authorId")
+})
 @Table(name = "direct_message", schema = "harmoniadb")
 public class DirectMessage {
     @JsonIgnore

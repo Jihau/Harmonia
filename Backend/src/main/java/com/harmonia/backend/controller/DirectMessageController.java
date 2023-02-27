@@ -27,6 +27,17 @@ public class DirectMessageController {
       return directMessageService.listMessages();
     }
 
+    @GetMapping("recipient/{recipientId}")
+    @CrossOrigin
+    public Iterable<DirectMessage> listDMsByRecipientId(@PathVariable("recipientId") Long recipientId){
+        return directMessageService.listDmessagesByRecipientId(recipientId);
+    }
+    @GetMapping("author/{authorId}")
+    @CrossOrigin
+    public Iterable<DirectMessage> listDMsByAuthorId(@PathVariable("authorId") Long authorId){
+        return directMessageService.listDmessagesByAuthorId(authorId);
+    }
+
     @PostMapping
     @CrossOrigin
     public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage){
