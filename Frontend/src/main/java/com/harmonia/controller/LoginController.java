@@ -23,7 +23,7 @@ public class LoginController {
     PasswordField passwordField;
 
     @FXML
-    Hyperlink toregisterLink;
+    Hyperlink registerLink;
 
     @FXML
     Button loginButton;
@@ -49,7 +49,7 @@ public class LoginController {
     protected void onRegisterLinkClicked() {
         try {
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
-            Stage stage = (Stage) toregisterLink.getScene().getWindow();
+            Stage stage = (Stage) registerLink.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Register to Harmonia");
