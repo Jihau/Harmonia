@@ -78,7 +78,7 @@
                   <Button fx:id="hCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onhFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onhProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="hSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onhSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                </children>
             </AnchorPane>
             <VBox alignment="CENTER" prefHeight="396.0" prefWidth="595.0" spacing="20.0" style="-fx-background-color: linear-gradient(from 0% 0% to 110% 250%, repeat, rgba(16,23,26,0.87) 0%, rgba(15,12,45,0.8) 50%, rgba(12,15,38,0.77) 50%, rgba(13,8,45,0.8) 50%);">

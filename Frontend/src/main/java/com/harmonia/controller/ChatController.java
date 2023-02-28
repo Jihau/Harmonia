@@ -4,19 +4,25 @@ import java.io.IOException;
 import java.util.*;
 
 import com.harmonia.HarmoniaApplication;
-import com.harmonia.model.Message;
+import com.harmonia.client.DirectMessageClient;
+import com.harmonia.po.MessagePO;
 import com.harmonia.view.ChatView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class ChatController {
     private ChatView view;
-    private List<Message> messages;
+    private List<MessagePO> messages;
 
     /**
      navigation button for nav menu
@@ -24,6 +30,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmFriendsBtn;
@@ -34,6 +42,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmSettingsBtn;
@@ -44,6 +54,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmProfileBtn;
@@ -54,6 +66,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmHomePageBtn;
@@ -64,20 +78,37 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmCommunityBtn;
 
-    public ChatController(ChatView view) {
-        this.view = view;
+    @FXML
+    private TextField sendMessageField;
+
+    @FXML
+    private Button sendBtn;
+
+    @FXML
+    private ListView ChatListView;
+
+    private DirectMessageClient messageClient;
+
+    ObservableList<MessagePO> conversationObject = FXCollections.observableArrayList();
+    ObservableList<String> conversationString = FXCollections.observableArrayList();
+
+
+    public void initialize() {
         this.messages = new ArrayList<>();
+        this.messageClient = new DirectMessageClient();
     }
 
     public ChatController(){
 
     }
 
-    public void sendMessage(Message message) {
+    public void sendMessage(MessagePO message) {
         // Add the message to the list and update the view
     }
 
@@ -109,5 +140,44 @@ public class ChatController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    protected void onfmSettingsBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) fmSettingsBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    protected void populateListView(){
+        conversationObject.clear();
+        for(MessagePO m : messageClient.getAllMessages()){
+            System.out.println(m.getText());
+            conversationObject.add(m);
+        }
+        convertList();
+        ChatListView.setItems(conversationString);
+    }
+
+    @FXML
+    public void onSendBtnClick(){
+        populateListView();
+    }
+
+    protected void convertList(){
+        conversationString.clear();
+        for (MessagePO m : conversationObject){
+            conversationString.add(m.toString());
+        }
+        //System.out.println(conversationObject);
+    }
+    protected void drawListView(){
+        ChatListView.setItems(conversationString);
     }
 }

@@ -85,11 +85,11 @@
             </AnchorPane>
             <VBox prefHeight="720.0" prefWidth="900.0">
                <children>
-                  <ListView prefHeight="660.0" prefWidth="839.0" />
+                  <ListView fx:id="ChatListView" prefHeight="660.0" prefWidth="839.0" />
                   <HBox prefHeight="100.0" prefWidth="1000.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="779.0" />
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Send" />
+                        <TextField fx:id="sendMessageField" prefHeight="25.0" prefWidth="779.0" />
+                        <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="61.0" text="Send" />
                      </children>
                   </HBox>
                </children>
