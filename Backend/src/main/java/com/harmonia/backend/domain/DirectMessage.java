@@ -48,13 +48,13 @@ public class DirectMessage {
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
 
-//    @JsonProperty("authorId")
-//    @Column(name = "AuthorId")
-//    private Long authorId;
-//    @JsonProperty("recipientId")
-//    @Column(name = "RecipientId")
-//    private Long recipientId;
-
-
+    /*
+    @JsonProperty("authorId")
+    @Column(name = "AuthorId")
+    private Long authorId;
+    @JsonProperty("recipientId")
+    @Column(name = "RecipientId")
+    private Long recipientId;
+     */
 }
 
