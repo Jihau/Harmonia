@@ -2,8 +2,11 @@ package com.harmonia.backend.service;
 
 import com.harmonia.backend.domain.DirectMessage;
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.mappers.DirectMessagesMapper;
+import com.harmonia.backend.po.DMessageRequest;
 import com.harmonia.backend.po.DmessageResponse;
 import com.harmonia.backend.repository.DirectMessageRepository;
+import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +14,40 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import static io.micrometer.common.util.StringUtils.isBlank;
+
 @Service
 public class DirectMessageService {
     @Autowired
     private DirectMessageRepository directMessageRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public DirectMessageService(DirectMessageRepository directMessageRepository){
         this.directMessageRepository = directMessageRepository;
     }
 
-    public DmessageResponse addDirectMessage(DirectMessage dm) {
+    public DirectMessage addDirectMessage(DMessageRequest dmessageRequest) throws Exception {
 
         // logic check the message before adding it
-        if (dm.getMessageText() == null || dm.getMessageText().trim().length() == 0) {
-            return null;
+        if (dmessageRequest == null || isBlank(dmessageRequest.getMessageText())) {
+            throw new Exception("You need to type something!");
         }
-        return new DmessageResponse(directMessageRepository.save(dm));
+        User author = null;
+        if (userRepository.findById(dmessageRequest.getAuthorId()).isPresent()) {
+            author = userRepository.findById(dmessageRequest.getAuthorId()).get();
+        } else {
+            throw new Exception("You need an author!");
+        }
+        User recipient = null;
+        if (userRepository.findById(dmessageRequest.getRecipientId()).isPresent()) {
+            recipient = userRepository.findById(dmessageRequest.getRecipientId()).get();
+        } else {
+            throw new Exception("You need an recipient!");
+        }
+        DirectMessage directMessage = DirectMessagesMapper.createDirectMessageFromDirectMessageRequest(dmessageRequest, author, recipient);
+        return directMessageRepository.save(directMessage);
     }
 
     public Iterable<DmessageResponse> listMessages() {

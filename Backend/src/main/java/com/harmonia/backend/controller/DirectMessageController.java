@@ -2,8 +2,10 @@ package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.DirectMessage;
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.po.DMessageRequest;
 import com.harmonia.backend.po.DmessageResponse;
 import com.harmonia.backend.service.DirectMessageService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,8 +42,13 @@ public class DirectMessageController {
     }
 
     @PostMapping
-    public DmessageResponse sendDMessage(@RequestBody DirectMessage directMessage){
-        return directMessageService.addDirectMessage(directMessage);
+    public ResponseEntity<DirectMessage> sendDMessage(@RequestBody DMessageRequest directMessageRequest) {
+        try {
+            return new ResponseEntity<>(directMessageService.addDirectMessage(directMessageRequest), HttpStatus.OK);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping
