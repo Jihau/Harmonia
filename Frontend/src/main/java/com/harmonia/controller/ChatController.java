@@ -112,14 +112,14 @@ public class ChatController {
         messageClient = new DirectMessageClient();
 
         MessagePO newMessage1 = new MessagePO();
-        newMessage1.setId(1);
+        newMessage1.setdmessageId(1);
         newMessage1.setText("Boi i love quake");
         newMessage1.setTimestamp("1");
 
         dummyMessages.add(newMessage1);
 
         MessagePO newMessage2 = new MessagePO();
-        newMessage2.setId(2);
+        newMessage2.setdmessageId(2);
         newMessage2.setText("i LOOOVE afps");
         newMessage2.setTimestamp("2");
         dummyMessages.add(newMessage2);
@@ -136,7 +136,8 @@ public class ChatController {
 
     }
 
-    public ResponseEntity<MessagePO> sendMessage(MessagePO message) {
+    public ResponseEntity<?> sendMessage(MessagePO message) {
+        System.out.println(message);
         return messageClient.addMessage(message);
     } 
     
@@ -155,6 +156,7 @@ public class ChatController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     protected void onfmProfileBtnClick(ActionEvent event) {
@@ -189,8 +191,8 @@ public class ChatController {
         newMessage.setReceiverId(chatTarget);
 
         dummyTexts.add(newMessage.getText());
-
-        ResponseEntity<MessagePO> response = this.sendMessage(newMessage);
+        
+        ResponseEntity<?> response = this.sendMessage(newMessage);
         System.out.println(response.getStatusCode());
     }
 

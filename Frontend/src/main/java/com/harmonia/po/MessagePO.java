@@ -12,7 +12,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
     String timestamp;
 
 
-    public void setId(int id) {
+    public void setdmessageId(int id) {
         this.dmessageId = id;
     }
 
@@ -36,7 +36,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
     }
 
     public MessagePO(int receiver, int sender, int messageId, String timestamp, String messageText) {
-        setId(messageId);
+        setdmessageId(messageId);
         setReceiverId(receiver);
         setSenderId(sender);
         setText(messageText);

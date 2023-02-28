@@ -42,13 +42,13 @@ public class DirectMessageClient {
         return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, MessagePO[].class, urlParameters);
     }
 
-    public ResponseEntity<MessagePO> addMessage(MessagePO newMessage) {
+    public ResponseEntity<Void> addMessage(MessagePO newMessage) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MessagePO> request = new HttpEntity<>(newMessage, headers);
         Map<String, String> urlParameters = new HashMap<>();
         
-        return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, MessagePO.class, urlParameters);
+        return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, void.class, urlParameters);
     }
 
     public ResponseEntity<?> removeMessage(MessagePO removeMe) {
