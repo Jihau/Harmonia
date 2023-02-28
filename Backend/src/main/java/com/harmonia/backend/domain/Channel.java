@@ -24,7 +24,7 @@ public class Channel {
     @Column(name = "ChannelName")
     @NotNull String channelName;
 
-    @Column(name = "CreationDate")
+    @Column(name = "CreationDate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @NotNull
     @Generated(GenerationTime.INSERT)
     Date timestamp;
@@ -35,11 +35,12 @@ public class Channel {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ServerId")
-    @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     Server server;
 
     @Column(name = "ServerId")
-    @NotNull Long serverId;
+    @NotNull
+    Long serverId;
 
 
     @OneToMany(targetEntity = PublicMessage.class, mappedBy = "channel", fetch = FetchType.EAGER)

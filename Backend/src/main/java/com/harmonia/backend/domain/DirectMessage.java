@@ -1,6 +1,5 @@
 package com.harmonia.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +16,6 @@ import java.sql.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 @Entity
 @NamedQueries({
         @NamedQuery(name = "DirectMessage.listDMsByRecipientId", query = "FROM DirectMessage dm where dm.recipient.id = :recipientId"),
@@ -25,15 +23,13 @@ import java.sql.Date;
 })
 @Table(name = "direct_message", schema = "harmoniadb")
 public class DirectMessage {
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @MapsId("UserId")
-    @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofDMessage_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofDMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User author;
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @MapsId("UserId")
-    @JoinColumn(name = "RecipientId", foreignKey = @ForeignKey(name = "Recipient_ofDMessage_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "RecipientId", foreignKey = @ForeignKey(name = "Recipient_ofDMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User recipient;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -43,18 +39,15 @@ public class DirectMessage {
     @NotNull
     @JsonProperty("Message_text")
     private String messageText;
-    @Column(name = "Timestamp")
+    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
-
     @JsonProperty("authorId")
     @Column(name = "AuthorId")
     private Long authorId;
     @JsonProperty("recipientId")
     @Column(name = "RecipientId")
     private Long recipientId;
-
-
 }
 
