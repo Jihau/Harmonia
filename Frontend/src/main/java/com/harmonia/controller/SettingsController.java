@@ -39,6 +39,66 @@ public class SettingsController {
     @FXML
     Button submitButton;
 
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
+     */
+    @FXML
+    Button sHomePageBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
+     */
+    @FXML
+    Button sCommunityBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
+     */
+    @FXML
+    Button sFriendsBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
+     */
+    @FXML
+    Button sProfileBtn;
+
+    /**
+     navigation button for nav menu
+     letter combination before name indicates in what view the button is from
+     h=harmonia-view
+     fm=messages-view
+     p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
+     */
+    @FXML
+    Button sSettingsBtn;
+
     public void initialize() {
 
         /* placeholder, get user from session */
@@ -141,5 +201,60 @@ public class SettingsController {
         UpdatedAlert.setContentText("Your user details were succesfully updated.");
         UpdatedAlert.setTitle("Success");
         UpdatedAlert.showAndWait();
+    }
+
+    @FXML
+    protected void onsHomePageBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            Stage stage = (Stage) sHomePageBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onsCommunityBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            Stage stage = (Stage) sCommunityBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onsFriendsBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
+            Stage stage = (Stage) sFriendsBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    protected void onsProfileBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
+            Stage stage = (Stage) sProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
