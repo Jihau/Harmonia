@@ -1,27 +1,31 @@
 package com.harmonia.po;
-public class MessagePO implements Comparable<MessagePO> {
+
+import java.io.Serializable;
+
+public class MessagePO implements Serializable, Comparable<MessagePO> {
 
 
-    int id;
+    int dmessageId;
+    int receiverId;
+    int senderId;
+    String Message_text;
+    String timestamp;
+
 
     public void setId(int id) {
-        this.id = id;
+        this.dmessageId = id;
     }
 
-    int receiverId;
 
     public void setReceiverId(int receiverId) {
         this.receiverId = receiverId;
     }
 
-    int senderId;
 
     public void setSenderId(int senderId) {
         this.senderId = senderId;
     }
 
-    String text;
-    String timestamp;
 
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
@@ -34,11 +38,11 @@ public class MessagePO implements Comparable<MessagePO> {
     public MessagePO(int receiver, int sender, int text, String timestamp, String messageText) {
         this.senderId = sender;
         this.receiverId = receiver;
-        this.text = messageText;
+        this.Message_text = messageText;
         this.timestamp = timestamp;
     }
 
-    public String getText() { return  this.text; }
+    public String getText() { return  this.Message_text; }
 
     public int getReceiverID() { return this.receiverId; }
 
@@ -46,9 +50,9 @@ public class MessagePO implements Comparable<MessagePO> {
 
     public String getTime() { return this.timestamp; }
 
-    public int getMessageId() { return this.id; }
+    public int getMessageId() { return this.dmessageId; }
 
-    public void setText(String newText) { this.text = newText; }
+    public void setText(String newText) { this.Message_text = newText; }
 
     @Override
     public int compareTo(MessagePO other) {
@@ -57,6 +61,6 @@ public class MessagePO implements Comparable<MessagePO> {
 
     @Override
     public String toString() {
-        return text;
+        return Message_text;
     }
 }
