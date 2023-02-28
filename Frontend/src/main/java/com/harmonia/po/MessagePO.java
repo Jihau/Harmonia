@@ -35,11 +35,12 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
 
     }
 
-    public MessagePO(int receiver, int sender, int text, String timestamp, String messageText) {
-        this.senderId = sender;
-        this.receiverId = receiver;
-        this.Message_text = messageText;
-        this.timestamp = timestamp;
+    public MessagePO(int receiver, int sender, int messageId, String timestamp, String messageText) {
+        setId(messageId);
+        setReceiverId(receiver);
+        setSenderId(sender);
+        setText(messageText);
+        setTimestamp(timestamp);
     }
 
     public String getText() { return  this.Message_text; }
@@ -59,8 +60,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         return this.timestamp.compareTo(other.timestamp);
     }
 
-    @Override
-    public String toString() {
-        return Message_text;
+    public String prettyString() {
+        return timestamp + ": " + Message_text;
     }
 }

@@ -1,7 +1,9 @@
 package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.po.MessagePO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,6 +45,15 @@ public class LoginController {
         errorLabel.setVisible(true);
         if (login(usernameField.getText(), passwordField.getText())) {
             logInRedirect();
+        }
+    }
+
+    public void initialize() {
+        DirectMessageClient dmclient = new DirectMessageClient();
+
+        MessagePO[] messages = dmclient.getAllMessages();
+        for (MessagePO messagePO : messages) {
+            System.out.println(messagePO);
         }
     }
 

@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
 import com.harmonia.po.MessagePO;
 
 import static com.harmonia.constants.HarmoniaConstants.*;
@@ -28,6 +27,7 @@ public class DirectMessageClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
         ResponseEntity<MessagePO[]> response = restTemplate.exchange(DM_GETALL_URL, HttpMethod.GET, request, MessagePO[].class);
+        System.out.println(DM_GETALL_URL);
         System.out.println(response.getBody());
         return response.getBody();
     }
