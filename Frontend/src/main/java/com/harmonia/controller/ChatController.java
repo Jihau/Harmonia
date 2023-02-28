@@ -18,11 +18,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class ChatController {
     private ChatView view;
@@ -122,15 +120,15 @@ public class ChatController {
         messageClient = new DirectMessageClient();
 
         MessagePO newMessage1 = new MessagePO();
-        newMessage1.setdmessageId(1);
-        newMessage1.setText("Boi i love quake");
+        newMessage1.setDmessageId(1);
+        newMessage1.setMessageText("Boi i love quake");
         newMessage1.setTimestamp("1");
 
         dummyMessages.add(newMessage1);
 
         MessagePO newMessage2 = new MessagePO();
-        newMessage2.setdmessageId(2);
-        newMessage2.setText("i LOOOVE afps");
+        newMessage2.setDmessageId(2);
+        newMessage2.setMessageText("i LOOOVE afps");
         newMessage2.setTimestamp("2");
         dummyMessages.add(newMessage2);
 
@@ -199,7 +197,7 @@ public class ChatController {
     protected void populateListView(){
         conversationObject.clear();
         for(MessagePO m : messageClient.getAllMessages()){
-            System.out.println(m.getText());
+            System.out.println(m.getMessageText());
             conversationObject.add(m);
         }
         convertList();
@@ -210,11 +208,11 @@ public class ChatController {
     @FXML
     public void onSendBtnClick(){
         MessagePO newMessage = new MessagePO();
-        newMessage.setText(sendMessageField.getText());
+        newMessage.setMessageText(sendMessageField.getText());
         newMessage.setSenderId(loggedInUser.getUserId());
-        newMessage.setReceiverId(chatTarget);
+        newMessage.setRecipientId(chatTarget);
 
-        dummyTexts.add(newMessage.getText());
+        dummyTexts.add(newMessage.getMessageText());
         
         ResponseEntity<?> response = this.sendMessage(newMessage);
         System.out.println(response.getStatusCode());

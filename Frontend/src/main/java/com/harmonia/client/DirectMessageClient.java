@@ -65,7 +65,7 @@ public class DirectMessageClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MessagePO> request = new HttpEntity<MessagePO>(message, headers);
         Map<String, String> urlParameters = new HashMap<>();
-        urlParameters.put("DmessageId", String.valueOf(message.getMessageId()));
+        urlParameters.put("DmessageId", String.valueOf(message.getDmessageId()));
 
         return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, MessagePO.class, urlParameters);
     }
