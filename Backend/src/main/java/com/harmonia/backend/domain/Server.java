@@ -21,7 +21,7 @@ public class Server {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @MapsId("UserId")
-    @JoinColumn(name = "OwnerId", foreignKey = @ForeignKey(name = "Owner_ofServer_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "OwnerId", foreignKey = @ForeignKey(name = "Owner_ofServer_fk", value = ConstraintMode.CONSTRAINT),nullable = false)
     User Owner;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
