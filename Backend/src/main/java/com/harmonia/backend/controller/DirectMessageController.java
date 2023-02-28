@@ -2,7 +2,10 @@ package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.DirectMessage;
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.po.DMessageRequest;
+import com.harmonia.backend.po.DmessageResponse;
 import com.harmonia.backend.service.DirectMessageService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,25 +26,29 @@ public class DirectMessageController {
 
     @GetMapping
     @CrossOrigin
-    public Iterable<DirectMessage> listMessages(@RequestParam(name="dmessageId", required = false) String dmId){
+    public Iterable<DmessageResponse> listMessages(@RequestParam(name="dmessageId", required = false) String dmId){
       return directMessageService.listMessages();
     }
 
     @GetMapping("recipient/{recipientId}")
     @CrossOrigin
-    public Iterable<DirectMessage> listDMsByRecipientId(@PathVariable("recipientId") Long recipientId){
+    public Iterable<DmessageResponse> listDMsByRecipientId(@PathVariable("recipientId") Long recipientId){
         return directMessageService.listDmessagesByRecipientId(recipientId);
     }
     @GetMapping("author/{authorId}")
     @CrossOrigin
-    public Iterable<DirectMessage> listDMsByAuthorId(@PathVariable("authorId") Long authorId){
+    public Iterable<DmessageResponse> listDMsByAuthorId(@PathVariable("authorId") Long authorId){
         return directMessageService.listDmessagesByAuthorId(authorId);
     }
 
     @PostMapping
-    @CrossOrigin
-    public DirectMessage sendDMessage(@RequestBody DirectMessage directMessage){
-        return directMessageService.addDirectMessage(directMessage);
+    public ResponseEntity<DirectMessage> sendDMessage(@RequestBody DMessageRequest directMessageRequest) {
+        try {
+            return new ResponseEntity<>(directMessageService.addDirectMessage(directMessageRequest), HttpStatus.OK);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 
     @DeleteMapping

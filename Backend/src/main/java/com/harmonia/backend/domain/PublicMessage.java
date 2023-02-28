@@ -31,13 +31,13 @@ public class PublicMessage {
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ChannelId")
-    @JoinColumn(name = "ChannelId", foreignKey = @ForeignKey(name = "Pmessages_byChannel_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "ChannelId", foreignKey = @ForeignKey(name = "Pmessages_byChannel_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     Channel channel;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("UserId")
-    @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofPMessage_fk", value = ConstraintMode.CONSTRAINT))
+    @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofPMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User Author;
 
     @Column(name = "ChannelId")
@@ -46,7 +46,7 @@ public class PublicMessage {
     @Column(name = "AuthorId")
     private Long authorId;
     @Basic
-    @Column(name = "Timestamp")
+    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
