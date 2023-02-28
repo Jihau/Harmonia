@@ -30,6 +30,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmFriendsBtn;
@@ -40,6 +42,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmSettingsBtn;
@@ -50,6 +54,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmProfileBtn;
@@ -60,6 +66,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmHomePageBtn;
@@ -70,6 +78,8 @@ public class ChatController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button fmCommunityBtn;
@@ -124,6 +134,20 @@ public class ChatController {
             Parent root = fxmlLoader.load();
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) fmProfileBtn.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    protected void onfmSettingsBtnClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) fmSettingsBtn.getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle("Sign in to Harmonia");
             stage.show();

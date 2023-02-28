@@ -54,6 +54,7 @@ public class ProfileController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=settings
      */
     @FXML
     private Button pFriendsBtn;
@@ -64,6 +65,7 @@ public class ProfileController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=settings
      */
     @FXML
     private Button pSettingsBtn;
@@ -74,6 +76,7 @@ public class ProfileController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=settings
      */
     @FXML
     private Button pProfileBtn;
@@ -84,6 +87,7 @@ public class ProfileController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=settings
      */
     @FXML
     private Button pHomePageBtn;
@@ -94,6 +98,7 @@ public class ProfileController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=settings
      */
     @FXML
     private Button pCommunityBtn;
@@ -195,6 +200,20 @@ public class ProfileController {
             stage.setTitle("Sign in to Harmonia");
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onpSettingsBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            Stage stage = (Stage) pSettingsBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

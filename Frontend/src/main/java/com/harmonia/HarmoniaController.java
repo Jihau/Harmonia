@@ -75,6 +75,8 @@ public class HarmoniaController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button hHomePageBtn;
@@ -85,6 +87,8 @@ public class HarmoniaController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button hCommunityBtn;
@@ -95,6 +99,8 @@ public class HarmoniaController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button hFriendsBtn;
@@ -105,6 +111,8 @@ public class HarmoniaController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button hProfileBtn;
@@ -115,6 +123,8 @@ public class HarmoniaController {
      h=harmonia-view
      fm=messages-view
      p=profile-view
+     s=usersettings-view
+     mc=mycommunities-view
      */
     @FXML
     private Button hSettingsBtn;
@@ -187,6 +197,20 @@ public class HarmoniaController {
         try {
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
             Stage stage = (Stage) hProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onhSettingsBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            Stage stage = (Stage) hSettingsBtn.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
             stage.setTitle("Profile");

@@ -3,107 +3,22 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
    <children>
-      <GridPane layoutX="405.0" layoutY="26.0" prefHeight="300.0" prefWidth="600.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="122.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="513.0" minWidth="10.0" prefWidth="478.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="ProfileToFriendButton" mnemonicParsing="false" onAction="#onFListButtonClick" prefWidth="80.0" text="Friends list" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="ProfileToChannelsButton" mnemonicParsing="false" onAction="#onProfileToChannelsButtonClick" prefWidth="80.0" text="Channels" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                  <Button fx:id="ProfileToHomeButton" mnemonicParsing="false" onAction="#onProfileToSettingsButtonClick" prefWidth="80.0" text="Settings" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-               </children>
-            </GridPane>
-            <Pane fx:id="ProfileCard" prefHeight="200.0" prefWidth="420.0" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="50.0" left="30.0" right="30.0" top="30.0" />
-               </GridPane.margin>
-               <children>
-                  <SplitPane fx:id="ProfileSplit" dividerPositions="0.5" prefHeight="220.0" prefWidth="416.0">
-                    <items>
-                      <AnchorPane fx:id="ProfileImageAnchor" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <Pane fx:id="ProfileImagePane" layoutY="-1.0" prefHeight="220.0" prefWidth="204.0">
-                                 <children>
-                                    <ImageView fx:id="profileImage" fitHeight="200.0" fitWidth="200.0" layoutX="2.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@img/profTemplate.jpg" />
-                                       </image></ImageView>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </AnchorPane>
-                      <AnchorPane fx:id="ProfileTextAnchor" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="208.0">
-                           <children>
-                              <GridPane fx:id="ProfileGrid" layoutY="2.0" prefHeight="218.0" prefWidth="204.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="80.0" />
-                                </rowConstraints>
-                                 <children>
-                                    <SplitPane dividerPositions="0.29797979797979796" prefHeight="156.0" prefWidth="204.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <Label fx:id="UserIdText" layoutY="-1.0" prefHeight="78.0" prefWidth="57.0" text="Label">
-                                                   <padding>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </padding>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                             <children>
-                                                <Label fx:id="UsernameText" layoutY="-1.0" prefHeight="80.0" prefWidth="139.0" text="Username">
-                                                   <padding>
-                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                                   </padding>
-                                                </Label>
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
-                                 </children>
-                              </GridPane>
-                           </children>
-                        </AnchorPane>
-                    </items>
-                  </SplitPane>
-               </children>
-            </Pane>
-         </children>
-      </GridPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#182a39" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#060b0e" height="335.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
+         <effect>
+            <DropShadow height="30.0" radius="14.5" width="30.0" />
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="78.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
       <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
          <children>
             <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
@@ -164,11 +79,37 @@
                </font>
             </Label>
             <Button fx:id="pFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onpFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="pSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onpSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="pProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="pHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onpHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="pCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
          </children>
       </AnchorPane>
+      <ImageView fx:id="profileImage" fitHeight="200.0" fitWidth="200.0" layoutX="399.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/profTemplate.jpg" />
+         </image>
+         <effect>
+            <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0" />
+         </effect>
+      </ImageView>
+      <Button fx:id="ProfileToFriendButton" layoutX="399.0" layoutY="399.0" mnemonicParsing="false" onAction="#onFListButtonClick" prefWidth="80.0" text="Friends list" />
+      <Button fx:id="ProfileToChannelsButton" layoutX="399.0" layoutY="445.0" mnemonicParsing="false" onAction="#onProfileToChannelsButtonClick" prefWidth="80.0" text="Channels" />
+      <Label fx:id="UserIdText" layoutX="612.0" layoutY="114.0" prefHeight="25.0" prefWidth="216.0" text="Label" textFill="WHITE">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <font>
+            <Font name="Lato Regular" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="UsernameText" layoutX="612.0" layoutY="125.0" prefHeight="80.0" prefWidth="346.0" text="Username" textFill="WHITE">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <font>
+            <Font name="Lato Regular" size="36.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
