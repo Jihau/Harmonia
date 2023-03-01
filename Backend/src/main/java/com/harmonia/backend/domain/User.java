@@ -6,6 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -33,4 +38,14 @@ public class User {
     @Basic
     @Column(name = "Profile_icon", nullable = false)
     private String profileIcon;
+
+    @Basic
+    @Column(name = "Bio", length = 200)
+    private String bio;
+
+    @Column(name = "Created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false)
+    @Generated(GenerationTime.INSERT)
+    Date timestamp;
+
+
 }
