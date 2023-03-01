@@ -25,6 +25,12 @@ public class ServerController {
         return serverService.listServersByServerName(serverName);
     }
 
+    @GetMapping("ownerId/{ownerId}")
+    @CrossOrigin
+    public Iterable<Server> listServersByOwnerId(@PathVariable("ownerId") Long ownerId){
+        return serverService.listServersByOwnerId(ownerId);
+    }
+
     @GetMapping
     @CrossOrigin
     public Iterable<Server> listServers(){

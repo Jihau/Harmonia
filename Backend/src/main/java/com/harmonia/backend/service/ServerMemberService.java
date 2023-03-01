@@ -11,6 +11,7 @@ import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,6 +24,10 @@ public class ServerMemberService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public List<ServerMember> listServersByMemberId(Long memberId) {
+        return serverMemberRepository.listServersByMemberId(memberId);
+    }
 
     public ServerMember addMemberToServer(ServerMemberRequest serverMemberRequest) throws Exception {
         Optional<User> member = userRepository.findById(serverMemberRequest.getMemberId());
