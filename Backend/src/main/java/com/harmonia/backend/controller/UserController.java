@@ -1,6 +1,7 @@
 package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.po.ChangePasswordRequest;
 import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,9 +73,8 @@ public class UserController {
     }
 
     @PutMapping("/{userId}/password")
-    public ResponseEntity<UserResponse> changePassword(@PathVariable Long userId, @RequestBody Map<String, String> password) {
-        String newPassword = password.get("password");
-        UserResponse user = userService.changePassword(userId, newPassword);
+    public ResponseEntity<UserResponse> changePassword(@PathVariable Long userId, @RequestBody ChangePasswordRequest changePasswordRequest) {
+        UserResponse user = userService.changePassword(userId, changePasswordRequest.getPassword());
         if (user == null) {
             return ResponseEntity.notFound().build();
         }

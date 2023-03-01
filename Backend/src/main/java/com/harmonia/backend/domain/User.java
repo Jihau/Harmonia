@@ -1,5 +1,6 @@
 package com.harmonia.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,12 +27,10 @@ public class User {
     @Basic
     @Column(name = "email", unique = true, nullable = false)
     private String email;
-    @Basic
+    @JsonIgnore
     @Column(name = "password", nullable = false)
     private String password;
     @Basic
     @Column(name = "Profile_icon", nullable = false)
     private String profileIcon;
-
-
 }

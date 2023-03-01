@@ -36,4 +36,6 @@ public class Server {
     private Long ownerId;
     @OneToMany(targetEntity = Channel.class, mappedBy = "server", fetch = FetchType.EAGER)
     Set<Channel> channel;
+    @OneToMany(targetEntity = ServerMember.class, mappedBy = "server", fetch = FetchType.EAGER)
+    Set<ServerMember> members;
 }
