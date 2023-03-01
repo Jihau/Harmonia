@@ -22,7 +22,7 @@ import java.sql.Date;
 public class ServerMember {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "PmessageId")
+    @Column(name = "ServerMemberId")
     private Long serverMemberId;
 
     @JsonIgnore
@@ -34,11 +34,10 @@ public class ServerMember {
     @Column(name = "ServerId", nullable = false)
     Long serverId;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @MapsId("UserId")
     @JoinColumn(name = "MemberId", foreignKey = @ForeignKey(name = "Server_member_user_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
-    User user;
+    User member;
 
     @Column(name = "MemberId", nullable = false)
     Long memberId;
@@ -46,7 +45,7 @@ public class ServerMember {
     @Column(name = "NickName")
     private String nickName;
 
-    @Column(name = "JoinDate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "JoinDate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date joinDate;
