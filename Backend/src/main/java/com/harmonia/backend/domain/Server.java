@@ -33,7 +33,6 @@ public class Server {
     private String serverName;
     @Column(name = "ServerCategory")
     private String serverCategory;
-    @JsonProperty("OwnerId")
     @Column(name = "OwnerId",nullable = false)
     private Long ownerId;
     @OneToMany(targetEntity = Channel.class, mappedBy = "server", fetch = FetchType.EAGER)

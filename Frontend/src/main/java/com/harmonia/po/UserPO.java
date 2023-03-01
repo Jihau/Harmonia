@@ -1,6 +1,7 @@
 package com.harmonia.po;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class UserPO implements Serializable {
     int userId;
@@ -8,8 +9,26 @@ public class UserPO implements Serializable {
     String email;
     String password;
     String profileIcon;
+    String bio;
+    Date timestamp;
 
     public UserPO() {
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public int getUserId() {
