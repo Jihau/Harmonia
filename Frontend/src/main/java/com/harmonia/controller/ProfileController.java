@@ -107,6 +107,8 @@ public class ProfileController {
      * Handles the action when the login button is clicked. Loads the main
      * UI / main app view.
      */
+    @FXML
+    private Button logoutButton;
 
     public void initialize() {
         friend.setEmail("example@example.com");
@@ -214,6 +216,20 @@ public class ProfileController {
             stage.setTitle("Profile");
             stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void logoutOnButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

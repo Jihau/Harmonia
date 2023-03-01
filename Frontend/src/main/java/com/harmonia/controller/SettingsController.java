@@ -6,8 +6,10 @@ import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
 import com.harmonia.po.*;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -98,6 +100,9 @@ public class SettingsController {
      */
     @FXML
     Button sSettingsBtn;
+
+    @FXML
+    Button logoutButton;
 
     public void initialize() {
 
@@ -254,6 +259,19 @@ public class SettingsController {
             stage.setTitle("Profile");
             stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void logoutOnButtonClick(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Sign in to Harmonia");
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
