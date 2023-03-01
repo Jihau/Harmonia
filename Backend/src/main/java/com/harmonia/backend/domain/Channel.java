@@ -21,15 +21,15 @@ public class Channel {
     @Column(name = "ChannelId")
     Long channelId;
 
-    @Column(name = "ChannelName")
+    @Column(name = "ChannelName",nullable = false)
     @NotNull String channelName;
 
-    @Column(name = "CreationDate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "CreationDate", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false)
     @NotNull
     @Generated(GenerationTime.INSERT)
     Date timestamp;
 
-    @Column(name = "ChannelType")
+    @Column(name = "ChannelType", nullable = false)
     @NotNull String channelType;
 
     @JsonIgnore
@@ -38,7 +38,7 @@ public class Channel {
     @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Channel_Server_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     Server server;
 
-    @Column(name = "ServerId")
+    @Column(name = "ServerId",nullable = false)
     @NotNull
     Long serverId;
 

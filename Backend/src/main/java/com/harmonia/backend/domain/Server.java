@@ -25,15 +25,17 @@ public class Server {
     User Owner;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ServerId")
+    @Column(name = "ServerId",nullable = false)
     private Long serverId;
-    @Column(name = "ServerName")
+    @Column(name = "ServerName",nullable = false)
     private String serverName;
     @Column(name = "ServerCategory")
     private String serverCategory;
     @JsonProperty("OwnerId")
-    @Column(name = "OwnerId")
+    @Column(name = "OwnerId",nullable = false)
     private Long ownerId;
     @OneToMany(targetEntity = Channel.class, mappedBy = "server", fetch = FetchType.EAGER)
     Set<Channel> channel;
+    @OneToMany(targetEntity = ServerMember.class, mappedBy = "server", fetch = FetchType.EAGER)
+    Set<ServerMember> members;
 }
