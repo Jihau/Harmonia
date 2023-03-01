@@ -1,6 +1,8 @@
 package com.harmonia.backend.service;
 
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.mappers.UserMapper;
+import com.harmonia.backend.po.CreateUserRequest;
 import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,7 @@ public class UserService {
     }
 
 
-    public UserResponse createUser(User user) {
+    public UserResponse createUser(CreateUserRequest user) {
         //check if the username is already taken!
         if (userRepository.findByUsername(user.getUsername()) != null) {
             throw new RuntimeException("Username already taken");
@@ -50,8 +52,10 @@ public class UserService {
             //hashing and salting the password
             String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
             user.setPassword(hashedPassword);
+
             //Save the user
-            return new UserResponse(userRepository.save(user));
+
+            return new UserResponse(userRepository.save(UserMapper.createUserFromCreateUserRequest(user)));
 
         }else {
             throw new RuntimeException("All fields must be filled");
@@ -101,8 +105,11 @@ public class UserService {
     public UserResponse editUser(Long userId, User user) {
         Optional<User> existingUser = userRepository.findById(userId);
         if (existingUser.isPresent()) {
-            existingUser.get().setProfileIcon(user.getProfileIcon());
-            System.out.println("User's with id " + userId + " username has been updated to " + existingUser.get() + " successfully");
+            if(user.getProfileIcon() != null) {
+                existingUser.get().setProfileIcon(user.getProfileIcon());
+            }
+            existingUser.get().setBio(user.getBio());
+            System.out.println("User's with id " + userId + " has been updated to " + existingUser.get() + " successfully");
             return new UserResponse(userRepository.save(existingUser.get()));
         }
         return null;

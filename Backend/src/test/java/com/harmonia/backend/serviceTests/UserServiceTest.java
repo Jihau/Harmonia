@@ -1,6 +1,7 @@
 package com.harmonia.backend.serviceTests;
 
 import com.harmonia.backend.domain.User;
+import com.harmonia.backend.po.CreateUserRequest;
 import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.repository.UserRepository;
 import com.harmonia.backend.service.UserService;
@@ -26,11 +27,10 @@ class UserServiceTest {
 
     @Test
     void testCreateUser() {
-        User user = new User();
+        CreateUserRequest user = new CreateUserRequest();
         user.setUsername("testJihau");
         user.setEmail("testJihau@test.com");
         user.setPassword("testjihau");
-        user.setProfileIcon("testjihau");
 
         User userResponse = new User();
         userResponse.setUserId(1L);
@@ -42,7 +42,7 @@ class UserServiceTest {
         when(userRepository.findByUsername(userResponse.getUsername())).thenReturn(null);
         when(userRepository.save(any())).thenReturn(userResponse);
 
-        UserResponse savedUser = userService.createUser(userResponse);
+        UserResponse savedUser = userService.createUser(user);
 
         assertEquals(userResponse.getUsername(), savedUser.getUsername());
     }
