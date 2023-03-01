@@ -12,7 +12,8 @@ import java.util.Set;
 @Setter
 @Entity
 @NamedQueries({
-        @NamedQuery(name="Server.listServersByServerName", query = "FROM Server server where server.serverName like :serverName")
+        @NamedQuery(name="Server.listServersByServerName", query = "FROM Server server where server.serverName like :serverName"),
+        @NamedQuery(name="Server.listServersByOwnerId", query = "FROM Server server where server.ownerId like :userId")
 })
 @Table(name = "server", schema = "harmoniadb")
 public class Server {
