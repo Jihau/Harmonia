@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -8,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -89,8 +92,13 @@
                   <HBox prefHeight="100.0" prefWidth="1000.0">
                      <children>
                         <TextField fx:id="sendMessageField" prefHeight="25.0" prefWidth="779.0" />
-                        <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="61.0" text="Send" />
-                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#onRefreshButtonClick" text="Refresh" />
+                        <ButtonBar prefHeight="40.0" prefWidth="265.0">
+                          <buttons>
+                              <Button fx:id="sendBtn" mnemonicParsing="false" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="61.0" text="Send" />
+                              <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#onRefreshButtonClick" text="Refresh" />
+                            <Button fx:id="editMessageButton" mnemonicParsing="false" onAction="#onEditButtonClick" text="Edit" />
+                          </buttons>
+                        </ButtonBar>
                      </children>
                   </HBox>
                </children>
@@ -103,5 +111,23 @@
             </VBox>
          </children>
       </HBox>
+      <Pane fx:id="editBox" layoutX="700.0" layoutY="578.0" prefHeight="63.0" prefWidth="401.0" style="-fx-border-color: black; -fx-background-color: lightGrey;" visible="false">
+         <children>
+            <Label layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" text="Edit Message" textAlignment="CENTER" />
+            <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me">
+               <opaqueInsets>
+                  <Insets left="5.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonCLick" text="Edit" />
+            <Button fx:id="cancelEditButton" layoutX="335.0" layoutY="25.0" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

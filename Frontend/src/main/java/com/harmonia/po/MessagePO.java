@@ -31,7 +31,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         return authorId;
     }
 
-    public void setauthorId(int authorId) {
+    public void setauthorId(long authorId) {
         this.authorId = authorId;
     }
 
@@ -54,6 +54,11 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
     @Override
     public int compareTo(MessagePO other) {
         return this.timestamp.compareTo(other.timestamp);
+    }
+
+    @Override
+    public String toString() {
+        return this.messageText;
     }
 
     public String prettyString() {

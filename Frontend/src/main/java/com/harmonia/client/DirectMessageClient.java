@@ -57,7 +57,7 @@ public class DirectMessageClient {
         HttpEntity<MessagePO> request = new HttpEntity<>(removeMe, headers);
         Map<String, String> urlParameters = new HashMap<>();
 
-        return restTemplate.exchange(DM_ADD_URL, HttpMethod.DELETE, request, MessagePO.class, urlParameters);
+        return restTemplate.exchange(DM_ADD_URL, HttpMethod.DELETE, request, void.class, urlParameters);
     }
 
     public ResponseEntity<?> editMessage(MessagePO message) {
@@ -69,6 +69,6 @@ public class DirectMessageClient {
 
         System.out.println(request.getBody().getauthorId());
 
-        return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, MessagePO.class, urlParameters);
+        return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, void.class, urlParameters);
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.model.Message;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 import com.harmonia.view.ChatView;
@@ -19,17 +20,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ChatController {
+
     private ChatView view;
     private List<MessagePO> messages;
     private UserPO loggedInUser;
     private int chatTargetId;
     private String chatTargetName;
+    private MessagePO selectedMessage;
+    
     /**
      navigation button for nav menu
      letter combination before name indicates in what view the button is from
@@ -93,8 +101,25 @@ public class ChatController {
     @FXML
     private TextField sendMessageField;
 
+  
+
     @FXML
     private Button sendBtn;
+
+    @FXML
+    private Button editButton;
+
+    @FXML
+    Pane editBox;
+
+    @FXML
+    private TextField editTextField;
+
+    @FXML
+    Button confirmEditButton;
+
+    @FXML
+    Button cancelEditButton;
 
     @FXML
     private ListView<String> ChatListView;
@@ -182,11 +207,12 @@ public class ChatController {
 
         for(MessagePO m : messageClient.getAllMessages()){
             System.out.println(m.getMessageText());
+            System.out.println(m.getRecipientId());
             conversationObject.add(m);
         }
         convertList();
         ChatListView.setItems(conversationString);
-
+        ChatListView.scrollTo(ChatListView.getItems().size());
     }
 
     @FXML
@@ -209,12 +235,13 @@ public class ChatController {
         System.out.println(response.getStatusCode());
 
         populateListView();
+        
     }
 
     protected void convertList(){
         conversationString.clear();
         for (MessagePO m : conversationObject){
-            if (m.getauthorId()==loggedInUser.getUserId()) {
+            if (m.getRecipientId()!=loggedInUser.getUserId()) {
                 conversationString.add("you: " + m.prettyString());
             } else {
                 conversationString.add(chatTargetName + ": " + m.prettyString());
@@ -225,4 +252,71 @@ public class ChatController {
     protected void drawListView(){
         ChatListView.setItems(conversationString);
     }
+
+    @FXML
+    public void onEditButtonClick() {
+        int index = ChatListView.getSelectionModel().getSelectedIndex();
+
+        MessagePO listSelectedMessage = conversationObject.get(index);
+
+        System.out.println(listSelectedMessage.getMessageText());
+        System.out.println(ChatListView.getSelectionModel().getSelectedItem());
+        if (listSelectedMessage.getRecipientId()!=loggedInUser.getUserId()) {
+            setSelectedMessage(listSelectedMessage); 
+            editBox.setVisible(true);
+        } else {
+            Alert notYourMessageAlert = new Alert(AlertType.ERROR);
+            notYourMessageAlert.setTitle("Not your message");
+            notYourMessageAlert.setHeaderText("Not your message!");
+            notYourMessageAlert.setContentText("You cannot edit messages from other people!");
+            notYourMessageAlert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void onConfirmEditButtonCLick() {
+
+        MessagePO editSelectedMessage = getSelectedMessage();
+
+        System.out.println("AuthorId: " + editSelectedMessage.getauthorId());
+        System.out.println("MessageId: " + editSelectedMessage.getDmessageId());
+
+        if (editTextField.getText()!="") {
+        
+        System.out.println(editTextField.getText());
+
+        editSelectedMessage.setMessageText(editTextField.getText());
+
+        System.out.println(editSelectedMessage.getDmessageId());
+        System.out.println(selectedMessage.getTimestamp());
+        System.out.println(selectedMessage.getMessageText());
+
+        messageClient.editMessage(editSelectedMessage);
+
+        editTextField.setStyle("");
+        editBox.setVisible(false);
+        editTextField.setText("");
+
+        } else {
+            editTextField.setPromptText("Please fill me before submitting!");
+            editTextField.setStyle("-fx-text-box-border: #B22222;");
+        }
+        populateListView();
+    }
+
+    @FXML
+    public void onCancelButtonClick() {
+        editTextField.setStyle("");
+        editTextField.setText("");
+        editBox.setVisible(false);
+    }
+
+    public MessagePO getSelectedMessage() {
+        return this.selectedMessage;
+    }
+
+    public void setSelectedMessage(MessagePO message) {
+        this.selectedMessage = message;
+    }
+
 }

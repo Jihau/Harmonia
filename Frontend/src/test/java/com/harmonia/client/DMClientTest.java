@@ -50,5 +50,9 @@ public class DMClientTest {
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<MessagePO[]>>any());
     }
 
+    public void editMessageTest() throws JsonProcessingException {
+
+    }
+
 
 }
