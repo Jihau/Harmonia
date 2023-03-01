@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.core.util.RequestPayload;
 import com.harmonia.po.MessagePO;
 
 import static com.harmonia.constants.HarmoniaConstants.*;
@@ -27,8 +29,6 @@ public class DirectMessageClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
         ResponseEntity<MessagePO[]> response = restTemplate.exchange(DM_GETALL_URL, HttpMethod.GET, request, MessagePO[].class);
-        System.out.println(DM_GETALL_URL);
-        System.out.println(response.getBody());
         return response.getBody();
     }
 
@@ -42,13 +42,13 @@ public class DirectMessageClient {
         return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, MessagePO[].class, urlParameters);
     }
 
-    public ResponseEntity<Void> addMessage(MessagePO newMessage) {
+    public ResponseEntity<MessagePO> addMessage(MessagePO newMessage) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MessagePO> request = new HttpEntity<>(newMessage, headers);
         Map<String, String> urlParameters = new HashMap<>();
         
-        return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, void.class, urlParameters);
+        return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, MessagePO.class, urlParameters);
     }
 
     public ResponseEntity<?> removeMessage(MessagePO removeMe) {
@@ -66,6 +66,8 @@ public class DirectMessageClient {
         HttpEntity<MessagePO> request = new HttpEntity<MessagePO>(message, headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("DmessageId", String.valueOf(message.getDmessageId()));
+
+        System.out.println(request.getBody().getauthorId());
 
         return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, MessagePO.class, urlParameters);
     }

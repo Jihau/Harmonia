@@ -1,12 +1,14 @@
 package com.harmonia.controller;
 
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.*;
 
 import org.springframework.http.ResponseEntity;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
+import com.harmonia.client.UserClient;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 import com.harmonia.view.ChatView;
@@ -26,7 +28,8 @@ public class ChatController {
     private ChatView view;
     private List<MessagePO> messages;
     private UserPO loggedInUser;
-    private int chatTarget;
+    private int chatTargetId;
+    private String chatTargetName;
     /**
      navigation button for nav menu
      letter combination before name indicates in what view the button is from
@@ -98,46 +101,24 @@ public class ChatController {
 
     private DirectMessageClient messageClient;
 
+    private UserClient userClient;
+
     ObservableList<MessagePO> conversationObject;
     ObservableList<String> conversationString;
 
-    @FXML
-    ObservableList<MessagePO> dummyMessages = FXCollections.observableArrayList();
-    
-    @FXML
-    ObservableList<String> dummyTexts = FXCollections.observableArrayList();
-
     public void initialize() {
-        // dummy data 
+        messageClient = new DirectMessageClient();
+
+        userClient = new UserClient();
         this.loggedInUser = new UserPO();
         loggedInUser.setUserId(1);
-        chatTarget = 2;
-
+        chatTargetId = 2;
+        chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
 
         conversationObject = FXCollections.observableArrayList();
         conversationString = FXCollections.observableArrayList();
-        messages = new ArrayList<>();
-        messageClient = new DirectMessageClient();
-
-        MessagePO newMessage1 = new MessagePO();
-        newMessage1.setDmessageId(1);
-        newMessage1.setMessageText("Boi i love quake");
-        newMessage1.setTimestamp("1");
-
-        dummyMessages.add(newMessage1);
-
-        MessagePO newMessage2 = new MessagePO();
-        newMessage2.setDmessageId(2);
-        newMessage2.setMessageText("i LOOOVE afps");
-        newMessage2.setTimestamp("2");
-        dummyMessages.add(newMessage2);
-
-        for (int i=3; i<30;i++) {
-            dummyMessages.add(newMessage2);
-        }
         
         populateListView();
-        
     }
 
     public ChatController(){
@@ -194,38 +175,54 @@ public class ChatController {
             e.printStackTrace();
         }
     }
+    
     protected void populateListView(){
+
         conversationObject.clear();
+
         for(MessagePO m : messageClient.getAllMessages()){
             System.out.println(m.getMessageText());
             conversationObject.add(m);
         }
         convertList();
-        ChatListView.setItems(dummyTexts);
+        ChatListView.setItems(conversationString);
 
     }
 
     @FXML
+    public void onRefreshButtonClick() {
+        populateListView();
+    }
+
+
+    @FXML
     public void onSendBtnClick(){
         MessagePO newMessage = new MessagePO();
-        newMessage.setMessageText(sendMessageField.getText());
-        newMessage.setSenderId(loggedInUser.getUserId());
-        newMessage.setRecipientId(chatTarget);
 
-        dummyTexts.add(newMessage.getMessageText());
+        newMessage.setMessageText(sendMessageField.getText());
+        newMessage.setauthorId(loggedInUser.getUserId());
+        newMessage.setRecipientId(chatTargetId);
+
+        conversationString.add("Pending... "  + newMessage.getMessageText());
         
         ResponseEntity<?> response = this.sendMessage(newMessage);
         System.out.println(response.getStatusCode());
+
+        populateListView();
     }
 
     protected void convertList(){
         conversationString.clear();
-        for (MessagePO m : dummyMessages){
-            dummyTexts.add(m.prettyString());
+        for (MessagePO m : conversationObject){
+            if (m.getauthorId()==loggedInUser.getUserId()) {
+                conversationString.add("you: " + m.prettyString());
+            } else {
+                conversationString.add(chatTargetName + ": " + m.prettyString());
+            }
         }
-        //System.out.println(conversationObject);
     }
+
     protected void drawListView(){
-        ChatListView.setItems(dummyTexts);
+        ChatListView.setItems(conversationString);
     }
 }

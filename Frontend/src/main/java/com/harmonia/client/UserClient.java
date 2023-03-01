@@ -93,4 +93,14 @@ public class UserClient {
 
         return response.getStatusCode();
     }
+
+    public UserPO getUserByID(int id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<UserPO> request = new HttpEntity<>(headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(id));
+
+        return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.GET, request, UserPO.class, urlParameters).getBody();
+    }
 }
