@@ -49,4 +49,8 @@ public class ServerService {
     public Iterable<Server> listServersByOwnerId(Long userId){
         return serverRepository.listServersByOwnerId(userId);
     }
+
+    public Iterable<Server> listServersByServerCategory(String serverCategory){
+        return serverRepository.listServersByServerCategory("%" + serverCategory +"%");
+    }
 }
