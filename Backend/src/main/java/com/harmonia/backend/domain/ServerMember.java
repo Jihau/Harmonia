@@ -17,6 +17,9 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@NamedQueries({
+        @NamedQuery(name="ServerMember.listServersByMemberId", query = "FROM ServerMember serverMember where serverMember.memberId = : memberId")
+})
 @Table(name = "server_members", schema = "harmoniadb")
 
 public class ServerMember {

@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface ServerRepository extends CrudRepository<Server, Long> {
     List<Server> listServersByServerName(String serverName);
+
+    List<Server> listServersByOwnerId(Long userId);
+
+    Iterable<Server> listServersByServerCategory(String serverCategory);
 }
