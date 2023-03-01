@@ -42,7 +42,7 @@ public class DirectMessage {
     private Long dmessageId;
     @Column(name = "Message_text", nullable = false)
     @NotNull
-    @JsonProperty("Message_text")
+    @JsonProperty("messageText")
     private String messageText;
     @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @NotNull
