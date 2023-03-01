@@ -32,7 +32,7 @@ public class DirectMessageClient {
         return response.getBody();
     }
 
-    public ResponseEntity<MessagePO[]> getMessagesByRecepientID(int userId) {
+    public ResponseEntity<MessagePO[]> getMessagesByRecipientID(int userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MessagePO> request = new HttpEntity<>(headers);

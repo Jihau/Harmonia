@@ -210,8 +210,8 @@ public class ChatController {
 
         conversationObject.clear();
 
-        for(MessagePO m : messageClient.getMessagesByRecepientID(loggedInUser.getUserId()).getBody()){
-            if (m.getauthorId()==chatTargetId)
+        for(MessagePO m : messageClient.getMessagesByRecipientID(loggedInUser.getUserId()).getBody()){
+            if (m.getAuthorId()==chatTargetId)
             conversationObject.add(m);
         }
 
@@ -243,7 +243,7 @@ public class ChatController {
         MessagePO newMessage = new MessagePO();
 
         newMessage.setMessageText(sendMessageField.getText());
-        newMessage.setauthorId((int)loggedInUser.getUserId());
+        newMessage.setAuthorId((int)loggedInUser.getUserId());
         newMessage.setRecipientId(chatTargetId);
 
         conversationString.add("Pending... "  + newMessage.getMessageText());
@@ -309,7 +309,7 @@ public class ChatController {
 
         MessagePO editSelectedMessage = getSelectedMessage();
 
-        System.out.println("AuthorId: " + editSelectedMessage.getauthorId());
+        System.out.println("AuthorId: " + editSelectedMessage.getAuthorId());
         System.out.println("MessageId: " + editSelectedMessage.getDmessageId());
 
         if (editTextField.getText()!="") {
@@ -317,7 +317,7 @@ public class ChatController {
         System.out.println(editTextField.getText());
 
         editSelectedMessage.setMessageText(editTextField.getText());
-        editSelectedMessage.setauthorId(loggedInUser.getUserId());
+        editSelectedMessage.setAuthorId(loggedInUser.getUserId());
         editSelectedMessage.setRecipientId(chatTargetId);
 
         messageClient.editMessage(editSelectedMessage);

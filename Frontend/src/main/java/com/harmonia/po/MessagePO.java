@@ -27,11 +27,11 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         this.recipientId = recipientId;
     }
 
-    public long getauthorId() {
+    public long getAuthorId() {
         return authorId;
     }
 
-    public void setauthorId(int authorId) {
+    public void setAuthorId(int authorId) {
         this.authorId = authorId;
     }
 
