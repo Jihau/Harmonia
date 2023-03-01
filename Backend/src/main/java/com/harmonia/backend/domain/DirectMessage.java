@@ -1,5 +1,6 @@
 package com.harmonia.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,11 +24,15 @@ import java.sql.Date;
 })
 @Table(name = "direct_message", schema = "harmoniadb")
 public class DirectMessage {
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("UserId")
     @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofDMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User author;
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("UserId")
     @JoinColumn(name = "RecipientId", foreignKey = @ForeignKey(name = "Recipient_ofDMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User recipient;
