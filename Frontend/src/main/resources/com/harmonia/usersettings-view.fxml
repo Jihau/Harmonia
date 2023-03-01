@@ -77,6 +77,18 @@
             <Button fx:id="sFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="sProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onsProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="sSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
+            <Label layoutX="90.0" layoutY="688.0" text="Logout" textFill="WHITE">
+               <font>
+                  <Font name="Lato Regular" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="58.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/logoutIcon.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="logoutButton" layoutX="-1.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="197.0" text="Button" />
          </children>
       </AnchorPane>
       <Label layoutX="221.0" layoutY="16.0" text="SETTINGS" textFill="WHITE">
@@ -124,7 +136,7 @@
             <Font size="18.0" />
          </font>
       </PasswordField>
-      <Button fx:id="submitButton" layoutX="216.0" layoutY="655.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="51.0" prefWidth="243.0" styleClass="LogButton" stylesheets="@css/form.css" text="SAVE CHANGES">
+      <Button fx:id="submitButton" layoutX="216.0" layoutY="536.0" mnemonicParsing="false" onAction="#onSaveButtonClick" prefHeight="51.0" prefWidth="243.0" styleClass="LogButton" stylesheets="@css/form.css" text="SAVE CHANGES">
          <font>
             <Font name="Lato Regular" size="24.0" />
          </font>
