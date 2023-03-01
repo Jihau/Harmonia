@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class DMClientTest {
     @InjectMocks
-    DirectMessageClient directMessacgeClient;
+    DirectMessageClient directMessacgeClient = new DirectMessageClient();
 
     @Mock
     RestTemplate restTemplate;
@@ -48,6 +48,17 @@ public class DMClientTest {
         assertNotNull(actualMessages);
         assertArrayEquals(expectedMessages, actualMessages);
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<MessagePO[]>>any());
+    }
+
+    @Test
+    public void editMessageTest() throws JsonProcessingException {
+        MessagePO editMessage = new MessagePO();
+        editMessage.setDmessageId(1);
+        editMessage.setMessageText("I'm edited");
+        editMessage.setTimestamp("2023-03-01");
+
+        ResponseEntity<?> response = directMessacgeClient.editMessage(editMessage);
+        assertEquals(response.getBody(), "Message has been edited");
     }
 
 

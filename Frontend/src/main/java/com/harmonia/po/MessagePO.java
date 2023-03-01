@@ -7,7 +7,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
 
     int dmessageId;
     int recipientId;
-    int senderId;
+    int authorId;
     String messageText;
     String timestamp;
 
@@ -19,7 +19,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         this.dmessageId = dmessageId;
     }
 
-    public int getRecipientId() {
+    public long getRecipientId() {
         return recipientId;
     }
 
@@ -27,12 +27,12 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         this.recipientId = recipientId;
     }
 
-    public int getSenderId() {
-        return senderId;
+    public long getAuthorId() {
+        return authorId;
     }
 
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
     }
 
     public String getMessageText() {
@@ -54,6 +54,11 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
     @Override
     public int compareTo(MessagePO other) {
         return this.timestamp.compareTo(other.timestamp);
+    }
+
+    @Override
+    public String toString() {
+        return this.messageText;
     }
 
     public String prettyString() {

@@ -1,12 +1,15 @@
 package com.harmonia.controller;
 
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.*;
 
 import org.springframework.http.ResponseEntity;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
+import com.harmonia.client.UserClient;
+import com.harmonia.model.Message;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 import com.harmonia.view.ChatView;
@@ -17,16 +20,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ChatController {
+
     private ChatView view;
     private List<MessagePO> messages;
     private UserPO loggedInUser;
-    private int chatTarget;
+    private int chatTargetId;
+    private String chatTargetName;
+    private MessagePO selectedMessage;
+    Comparator<MessagePO> comparator;
     /**
      navigation button for nav menu
      letter combination before name indicates in what view the button is from
@@ -93,54 +104,51 @@ public class ChatController {
     @FXML
     private TextField sendMessageField;
 
+  
+
     @FXML
     private Button sendBtn;
+
+    @FXML
+    private Button editButton;
+
+    @FXML
+    Pane editBox;
+
+    @FXML
+    private TextField editTextField;
+
+    @FXML
+    Button confirmEditButton;
+
+    @FXML
+    Button cancelEditButton;
 
     @FXML
     private ListView<String> ChatListView;
 
     private DirectMessageClient messageClient;
 
+    private UserClient userClient;
+
     ObservableList<MessagePO> conversationObject;
     ObservableList<String> conversationString;
 
-    @FXML
-    ObservableList<MessagePO> dummyMessages = FXCollections.observableArrayList();
-    
-    @FXML
-    ObservableList<String> dummyTexts = FXCollections.observableArrayList();
-
     public void initialize() {
-        // dummy data 
+        comparator = Comparator.comparingInt(MessagePO::getDmessageId);
+
+        messageClient = new DirectMessageClient();
+
+        userClient = new UserClient();
         this.loggedInUser = new UserPO();
         loggedInUser.setUserId(1);
-        chatTarget = 2;
-
+        chatTargetId = 2;
+        chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
 
         conversationObject = FXCollections.observableArrayList();
         conversationString = FXCollections.observableArrayList();
-        messages = new ArrayList<>();
-        messageClient = new DirectMessageClient();
-
-        MessagePO newMessage1 = new MessagePO();
-        newMessage1.setDmessageId(1);
-        newMessage1.setMessageText("Boi i love quake");
-        newMessage1.setTimestamp("1");
-
-        dummyMessages.add(newMessage1);
-
-        MessagePO newMessage2 = new MessagePO();
-        newMessage2.setDmessageId(2);
-        newMessage2.setMessageText("i LOOOVE afps");
-        newMessage2.setTimestamp("2");
-        dummyMessages.add(newMessage2);
-
-        for (int i=3; i<30;i++) {
-            dummyMessages.add(newMessage2);
-        }
         
         populateListView();
-        
     }
 
     public ChatController(){
@@ -197,36 +205,66 @@ public class ChatController {
             e.printStackTrace();
         }
     }
+    
     protected void populateListView(){
+
         conversationObject.clear();
-        for(MessagePO m : messageClient.getAllMessages()){
-            System.out.println(m.getMessageText());
+
+        for(MessagePO m : messageClient.getMessagesByRecipientID(loggedInUser.getUserId()).getBody()){
+            if (m.getAuthorId()==chatTargetId)
             conversationObject.add(m);
         }
-        convertList();
-        ChatListView.setItems(dummyTexts);
 
+        for (MessagePO m : messageClient.getMessagesByAuthorId(loggedInUser.getUserId()).getBody()) {
+            if (m.getRecipientId()==chatTargetId) {
+                conversationObject.add(m);
+            }
+        }
+
+
+        conversationObject.sort(comparator);
+        convertList();
+        if (conversationString.size()>0) {
+        ChatListView.setItems(conversationString);
+        ChatListView.scrollTo(ChatListView.getItems().size());
+        } else {
+            conversationString.add("No messages, send a message to start a conversation");
+        }
     }
+
+    @FXML
+    public void onRefreshButtonClick() {
+        populateListView();
+    }
+
 
     @FXML
     public void onSendBtnClick(){
         MessagePO newMessage = new MessagePO();
-        newMessage.setMessageText(sendMessageField.getText());
-        newMessage.setSenderId(loggedInUser.getUserId());
-        newMessage.setRecipientId(chatTarget);
 
-        dummyTexts.add(newMessage.getMessageText());
+        newMessage.setMessageText(sendMessageField.getText());
+        newMessage.setAuthorId((int)loggedInUser.getUserId());
+        newMessage.setRecipientId(chatTargetId);
+
+        conversationString.add("Pending... "  + newMessage.getMessageText());
         
         ResponseEntity<?> response = this.sendMessage(newMessage);
         System.out.println(response.getStatusCode());
+
+        populateListView();
+        
     }
 
     protected void convertList(){
         conversationString.clear();
-        for (MessagePO m : dummyMessages){
-            dummyTexts.add(m.prettyString());
+        for (MessagePO m : conversationObject){
+            if (m.getRecipientId()!=loggedInUser.getUserId()) {
+                conversationString.add("you: " + m.prettyString());
+            } else {
+                conversationString.add(chatTargetName + ": " + m.prettyString());
+            }
+
         }
-        //System.out.println(conversationObject);
     }
 
     public void logoutOnButtonClick(ActionEvent event) {
@@ -242,8 +280,72 @@ public class ChatController {
             e.printStackTrace();
         }
     }
-
     protected void drawListView(){
-        ChatListView.setItems(dummyTexts);
+        ChatListView.setItems(conversationString);
     }
+
+    @FXML
+    public void onEditButtonClick() {
+        int index = ChatListView.getSelectionModel().getSelectedIndex();
+
+        MessagePO listSelectedMessage = conversationObject.get(index);
+
+        System.out.println(listSelectedMessage.getMessageText());
+        System.out.println(ChatListView.getSelectionModel().getSelectedItem());
+        if (listSelectedMessage.getRecipientId()!=loggedInUser.getUserId()) {
+            setSelectedMessage(listSelectedMessage); 
+            editBox.setVisible(true);
+        } else {
+            Alert notYourMessageAlert = new Alert(AlertType.ERROR);
+            notYourMessageAlert.setTitle("Not your message");
+            notYourMessageAlert.setHeaderText("Not your message!");
+            notYourMessageAlert.setContentText("You cannot edit messages from other people!");
+            notYourMessageAlert.showAndWait();
+        }
+    }
+
+    @FXML
+    public void onConfirmEditButtonCLick() {
+
+        MessagePO editSelectedMessage = getSelectedMessage();
+
+        System.out.println("AuthorId: " + editSelectedMessage.getAuthorId());
+        System.out.println("MessageId: " + editSelectedMessage.getDmessageId());
+
+        if (editTextField.getText()!="") {
+        
+        System.out.println(editTextField.getText());
+
+        editSelectedMessage.setMessageText(editTextField.getText());
+        editSelectedMessage.setAuthorId(loggedInUser.getUserId());
+        editSelectedMessage.setRecipientId(chatTargetId);
+
+        messageClient.editMessage(editSelectedMessage);
+
+        editTextField.setStyle("");
+        editBox.setVisible(false);
+        editTextField.setText("");
+
+        } else {
+            editTextField.setPromptText("Please fill me before submitting!");
+            editTextField.setStyle("-fx-text-box-border: #B22222;");
+        }
+        populateListView();
+    }
+
+    @FXML
+    public void onCancelButtonClick() {
+        editTextField.setStyle("");
+        editTextField.setText("");
+        editBox.setVisible(false);
+    }
+
+    public MessagePO getSelectedMessage() {
+        return this.selectedMessage;
+    }
+
+    public void setSelectedMessage(MessagePO message) {
+        this.selectedMessage = message;
+    }
+
 }

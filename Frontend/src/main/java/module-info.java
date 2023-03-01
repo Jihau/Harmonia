@@ -11,6 +11,7 @@ module com.harmonia {
     requires eu.hansolo.tilesfx;
     requires spring.web;
     requires java.desktop;
+    requires com.fasterxml.jackson.core;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
