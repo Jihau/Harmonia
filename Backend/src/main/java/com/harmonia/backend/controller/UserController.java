@@ -2,6 +2,7 @@ package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.User;
 import com.harmonia.backend.po.ChangePasswordRequest;
+import com.harmonia.backend.po.CreateUserRequest;
 import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping
-    public UserResponse createUser(@RequestBody User user) {
+    public UserResponse createUser(@RequestBody CreateUserRequest user) {
         return userService.createUser(user);
     }
 
