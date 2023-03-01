@@ -18,6 +18,7 @@ public class DmessageResponse implements Serializable {
     String messageText;
     Date timestamp;
     Long recipientId;
+    Long authorId;
 
 
     public DmessageResponse(DirectMessage dm){
@@ -25,5 +26,6 @@ public class DmessageResponse implements Serializable {
         this.messageText = dm.getMessageText();
         this.timestamp = dm.getTimestamp();
         this.recipientId = dm.getRecipientId();
+        this.authorId = dm.getAuthorId();
     }
 }

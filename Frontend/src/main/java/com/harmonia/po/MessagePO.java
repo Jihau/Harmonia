@@ -6,8 +6,8 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
 
 
     int dmessageId;
-    long recipientId;
-    long authorId;
+    int recipientId;
+    int authorId;
     String messageText;
     String timestamp;
 
@@ -31,7 +31,7 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
         return authorId;
     }
 
-    public void setauthorId(long authorId) {
+    public void setauthorId(int authorId) {
         this.authorId = authorId;
     }
 

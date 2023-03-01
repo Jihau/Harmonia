@@ -32,14 +32,14 @@ public class DirectMessageClient {
         return response.getBody();
     }
 
-    public ResponseEntity<MessagePO[]> getMessagesByRecepientUID(int userId) {
+    public ResponseEntity<MessagePO[]> getMessagesByRecepientID(int userId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<MessagePO> request = new HttpEntity<>(headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("recipientId", String.valueOf(userId));
         
-        return restTemplate.exchange(DM_ADD_URL, HttpMethod.POST, request, MessagePO[].class, urlParameters);
+        return restTemplate.exchange(DM_GET_R_ID, HttpMethod.GET, request, MessagePO[].class, urlParameters);
     }
 
     public ResponseEntity<MessagePO> addMessage(MessagePO newMessage) {
@@ -67,8 +67,16 @@ public class DirectMessageClient {
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("DmessageId", String.valueOf(message.getDmessageId()));
 
-        System.out.println(request.getBody().getauthorId());
+        return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, String.class, urlParameters);
+    }
 
-        return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, void.class, urlParameters);
+    public ResponseEntity<MessagePO[]> getMessagesByAuthorId(long l) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<MessagePO> request = new HttpEntity<>(headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("authorId", String.valueOf(l));
+        
+        return restTemplate.exchange(DM_GET_A_ID, HttpMethod.GET, request, MessagePO[].class, urlParameters);
     }
 }

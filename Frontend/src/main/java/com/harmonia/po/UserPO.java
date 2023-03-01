@@ -3,7 +3,7 @@ package com.harmonia.po;
 import java.io.Serializable;
 
 public class UserPO implements Serializable {
-    long userId;
+    int userId;
     String username;
     String email;
     String password;
@@ -12,11 +12,11 @@ public class UserPO implements Serializable {
     public UserPO() {
     }
 
-    public long getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

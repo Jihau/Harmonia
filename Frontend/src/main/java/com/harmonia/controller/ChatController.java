@@ -37,7 +37,7 @@ public class ChatController {
     private int chatTargetId;
     private String chatTargetName;
     private MessagePO selectedMessage;
-    
+    Comparator<MessagePO> comparator;
     /**
      navigation button for nav menu
      letter combination before name indicates in what view the button is from
@@ -135,6 +135,8 @@ public class ChatController {
     ObservableList<String> conversationString;
 
     public void initialize() {
+        comparator = Comparator.comparingInt(MessagePO::getDmessageId);
+
         messageClient = new DirectMessageClient();
 
         userClient = new UserClient();
@@ -208,14 +210,26 @@ public class ChatController {
 
         conversationObject.clear();
 
-        for(MessagePO m : messageClient.getAllMessages()){
-            System.out.println(m.getMessageText());
-            System.out.println(m.getRecipientId());
+        for(MessagePO m : messageClient.getMessagesByRecepientID(loggedInUser.getUserId()).getBody()){
+            if (m.getauthorId()==chatTargetId)
             conversationObject.add(m);
         }
+
+        for (MessagePO m : messageClient.getMessagesByAuthorId(loggedInUser.getUserId()).getBody()) {
+            if (m.getRecipientId()==chatTargetId) {
+                conversationObject.add(m);
+            }
+        }
+
+
+        conversationObject.sort(comparator);
         convertList();
+        if (conversationString.size()>0) {
         ChatListView.setItems(conversationString);
         ChatListView.scrollTo(ChatListView.getItems().size());
+        } else {
+            conversationString.add("No messages, send a message to start a conversation");
+        }
     }
 
     @FXML
@@ -229,7 +243,7 @@ public class ChatController {
         MessagePO newMessage = new MessagePO();
 
         newMessage.setMessageText(sendMessageField.getText());
-        newMessage.setauthorId(loggedInUser.getUserId());
+        newMessage.setauthorId((int)loggedInUser.getUserId());
         newMessage.setRecipientId(chatTargetId);
 
         conversationString.add("Pending... "  + newMessage.getMessageText());
@@ -249,6 +263,7 @@ public class ChatController {
             } else {
                 conversationString.add(chatTargetName + ": " + m.prettyString());
             }
+
         }
     }
 
@@ -302,10 +317,8 @@ public class ChatController {
         System.out.println(editTextField.getText());
 
         editSelectedMessage.setMessageText(editTextField.getText());
-
-        System.out.println(editSelectedMessage.getDmessageId());
-        System.out.println(selectedMessage.getTimestamp());
-        System.out.println(selectedMessage.getMessageText());
+        editSelectedMessage.setauthorId(loggedInUser.getUserId());
+        editSelectedMessage.setRecipientId(chatTargetId);
 
         messageClient.editMessage(editSelectedMessage);
 
