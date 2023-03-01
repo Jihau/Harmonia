@@ -22,7 +22,7 @@ import java.sql.Date;
 public class PublicMessage {
     @Basic
     @NotNull
-    @Column(name = "Message_text")
+    @Column(name = "Message_text",nullable = false)
     private String messageText;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -40,13 +40,13 @@ public class PublicMessage {
     @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofPMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User Author;
 
-    @Column(name = "ChannelId")
+    @Column(name = "ChannelId",nullable = false)
     private Long channelId;
     @Basic
-    @Column(name = "AuthorId")
+    @Column(name = "AuthorId",nullable = false)
     private Long authorId;
     @Basic
-    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false)
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date timestamp;

@@ -40,7 +40,7 @@ public class DirectMessage {
     @Id
     @Column(name = "DmessageId")
     private Long dmessageId;
-    @Column(name = "Message_text")
+    @Column(name = "Message_text", nullable = false)
     @NotNull
     @JsonProperty("Message_text")
     private String messageText;
@@ -49,10 +49,10 @@ public class DirectMessage {
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
     @JsonProperty("authorId")
-    @Column(name = "AuthorId")
+    @Column(name = "AuthorId" ,nullable = false)
     private Long authorId;
     @JsonProperty("recipientId")
-    @Column(name = "RecipientId")
+    @Column(name = "RecipientId", nullable = false)
     private Long recipientId;
 }
 
