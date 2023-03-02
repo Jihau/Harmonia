@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ServerMemberRepository extends CrudRepository<ServerMember, Long> {
     List<ServerMember> listServersByMemberId(Long memberId);
+    List<ServerMember> listServerMembersByServerId(Long serverId);
 }

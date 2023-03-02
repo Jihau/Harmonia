@@ -29,6 +29,10 @@ public class ServerMemberService {
         return serverMemberRepository.listServersByMemberId(memberId);
     }
 
+    public List<ServerMember> listServerMembersByServerId(Long serverId){
+        return serverMemberRepository.listServerMembersByServerId(serverId);
+    }
+
     public ServerMember addMemberToServer(ServerMemberRequest serverMemberRequest) throws Exception {
         Optional<User> member = userRepository.findById(serverMemberRequest.getMemberId());
         if (member.isEmpty()) {
