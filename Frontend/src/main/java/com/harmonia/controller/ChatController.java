@@ -316,8 +316,6 @@ public class ChatController {
 
         if (editTextField.getText()!="") {
         
-        System.out.println(editTextField.getText());
-
         editSelectedMessage.setMessageText(editTextField.getText());
         editSelectedMessage.setAuthorId(loggedInUser.getUserId());
         editSelectedMessage.setRecipientId(chatTargetId);

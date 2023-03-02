@@ -57,5 +57,5 @@ public class PublicMessageClient {
 
         return restTemplate.exchange(PM_EDIT_URL, HttpMethod.PUT, request , String.class, urlParameters);
     }
-
+    
 }
