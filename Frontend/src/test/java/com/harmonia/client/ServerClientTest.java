@@ -52,4 +52,18 @@ public class ServerClientTest {
         assertArrayEquals(expectedServers, actualServers);
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any());
     }
+    @Test
+    public void listServersByNameTest() throws JsonProcessingException {
+
+        String response = "[{\"serverId\":2,\"serverName\":\"Harmonia's 2nd server\",\"serverCategory\":null,\"ownerId\":1,\"channel\":[],\"members\":[{\"serverMemberId\":2,\"serverId\":2,\"member\":{\"userId\":2,\"username\":\"test2\",\"email\":\"test2@gmail.com\",\"profileIcon\":\"https://i.imgur.com/yfhVP8e.png\",\"bio\":null,\"timestamp\":\"2023-03-01\"},\"memberId\":2,\"nickName\":\"TestMember\",\"joinDate\":\"2023-03-01\"},{\"serverMemberId\":1,\"serverId\":2,\"member\":{\"userId\":5,\"username\":\"Jihau\",\"email\":\"jiiihau@gmail.com\",\"profileIcon\":\"https://i.imgur.com/yfhVP8e.png\",\"bio\":null,\"timestamp\":\"2023-03-01\"},\"memberId\":5,\"nickName\":\"Jihau\",\"joinDate\":\"2023-03-01\"}]}]";
+        ServerPO[] expectedServers = serverReader.readValue(response);
+
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any()))
+                .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
+        ServerPO[] actualServers =  serverClient.listAllServers();
+        assertNotNull(actualServers);
+        assertArrayEquals(expectedServers, actualServers);
+        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any());
+    }
+
 }

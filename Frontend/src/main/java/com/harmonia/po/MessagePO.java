@@ -11,6 +11,14 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
     String messageText;
     String timestamp;
 
+    public String getMessageText() {
+        return messageText;
+    }
+
+    public void setMessageText(String messageText) {
+        this.messageText = messageText;
+    }
+
     public int getDmessageId() {
         return dmessageId;
     }
@@ -33,14 +41,6 @@ public class MessagePO implements Serializable, Comparable<MessagePO> {
 
     public void setAuthorId(int authorId) {
         this.authorId = authorId;
-    }
-
-    public String getMessageText() {
-        return messageText;
-    }
-
-    public void setMessageText(String messageText) {
-        this.messageText = messageText;
     }
 
     public String getTimestamp() {
