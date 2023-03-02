@@ -3,6 +3,7 @@ package com.harmonia.controller;
 import java.io.IOException;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.ServerClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.po.*;
 
@@ -11,15 +12,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class SettingsController {
+    @FXML
+    private ListView<String> serverListView;
+
+    private ServerClient serverClient;
+
+    private void populateServerListView() {
+        ServerPO[] servers = serverClient.listAllServers();
+        for (ServerPO server : servers) {
+            serverListView.getItems().add(server.getServerName());
+        }
+    }
+
     private UserPO user;
 
     UserClient userclient;
@@ -122,6 +132,12 @@ public class SettingsController {
         UsernameField.setText(this.user.getUsername());
         profImgField.setText(this.user.getProfileIcon());
 
+        /*
+        Listing servers
+         */
+
+        serverClient = new ServerClient();
+        populateServerListView();
     }
 
     public void onSaveButtonClick() {
