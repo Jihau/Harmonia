@@ -12,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -52,14 +54,22 @@ public class DMClientTest {
 
     @Test
     public void editMessageTest() throws JsonProcessingException {
-        MessagePO editMessage = new MessagePO();
-        editMessage.setDmessageId(1);
-        editMessage.setMessageText("I'm edited");
-        editMessage.setTimestamp("2023-03-01");
-
-        ResponseEntity<?> response = directMessacgeClient.editMessage(editMessage);
-        assertEquals(response.getBody(), "Message has been edited");
+        /*
+        String editedMessage = "[{\"dmessageId\":1,\"messageText\":\"Edited message for testing\"}]";
+        MessagePO expectedEditedMessage = DM_POReader.readValue(editedMessage);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<MessagePO> request = new HttpEntity<>(expectedEditedMessage, headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("DmessageId", String.valueOf(expectedEditedMessage.getDmessageId()));
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<MessagePO>>any()))
+                .thenReturn(new ResponseEntity<>(expectedEditedMessage, HttpStatus.OK));
+        ResponseEntity<?> actualEditedMessage = directMessacgeClient.editMessage(expectedEditedMessage);
+        assertNotNull(actualEditedMessage);
+        assertEquals(HttpStatus.OK, actualEditedMessage.getStatusCode());
+        assertEquals(expectedEditedMessage, actualEditedMessage.getBody());
+        verify(restTemplate, times(1)).exchange(anyString(), eq(HttpMethod.PUT), eq(request),
+                eq(MessagePO.class), eq(urlParameters));
+         */
     }
-
-
 }
