@@ -25,10 +25,10 @@ public class ChannelController {
         return channelService.addChannel(channel);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{channelId}")
     @CrossOrigin
-    public ResponseEntity<Void> deleteChannel(@RequestBody Channel channel) {
-        channelService.deleteChannel(channel);
+    public ResponseEntity<Void> deleteChannel(@PathVariable Long channelId) {
+        channelService.deleteChannel(channelId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -12,6 +12,10 @@ public class HarmoniaConstants {
     public static final String DM_GET_A_ID = BASE_URL + "/dmessage/author/{authorId}";
     public static final String DM_GET_R_ID = BASE_URL + "/dmessage/recipient/{recipientId}";
     public static final String SERVER_LIST_ALL_URL = BASE_URL + "/server";
+    public static final String CHANNEL_LIST_ALL_URL = BASE_URL + "/channel";
+    public static final String CHANNEL_ADD_URL = BASE_URL + "/channel";
+    public static final String CHANNEL_DELETE_URL = BASE_URL + "/channel/{channelId}";
+    public static final String CHANNEL_EDIT_URL = BASE_URL + "/channel/{channelId}";
     public static final String SERVER_LIST_BY_NAME_URL = BASE_URL + "/server/name/{serverName}";
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/{memberId}";
 }

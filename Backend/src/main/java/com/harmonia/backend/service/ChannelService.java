@@ -20,8 +20,8 @@ public class ChannelService {
         return channelRepository.findAll();
     }
 
-    public void deleteChannel(Channel channel){
-        channelRepository.deleteById(channel.getChannelId());
+    public void deleteChannel(Long channelId){
+        channelRepository.deleteById(channelId);
     }
 
     public void editChannel(Long channelId, String channelName){

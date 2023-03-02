@@ -14,6 +14,7 @@ public class ServerMemberController {
     @Autowired
     private ServerMemberService serverMemberService;
 
+
     @PostMapping
     public ResponseEntity<ServerMember> addServerMember(@RequestBody ServerMemberRequest serverMemberRequest) {
         try {
@@ -28,5 +29,11 @@ public class ServerMemberController {
     @CrossOrigin
     public Iterable<ServerMember> listServersByMemberId(@PathVariable("memberId") Long memberId) {
         return serverMemberService.listServersByMemberId(memberId);
+    }
+
+    @GetMapping("members/{serverId}")
+    @CrossOrigin
+    public Iterable<ServerMember> listServerMembersByServerId(@PathVariable("serverId") Long serverId){
+        return serverMemberService.listServerMembersByServerId(serverId);
     }
 }
