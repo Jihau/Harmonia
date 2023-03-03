@@ -5,6 +5,9 @@ import com.harmonia.po.ServerPO;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.harmonia.constants.HarmoniaConstants.SERVER_LIST_BY_MEMBER_ID_URL;
 
 public class ServerMemberClient {
@@ -14,11 +17,13 @@ public class ServerMemberClient {
         restTemplate = new RestTemplate();
     }
 
-    public ServerMemberPO[] listServersByMemberId() {
+    public ServerMemberPO[] listServersByMemberId(int memberId) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
-        ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(SERVER_LIST_BY_MEMBER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("memberId", String.valueOf(memberId));
+        ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(SERVER_LIST_BY_MEMBER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class, urlParameters);
         return response.getBody();
     }
 }
