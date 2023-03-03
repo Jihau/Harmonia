@@ -2,6 +2,7 @@ package com.harmonia.client;
 
 import com.harmonia.po.ServerPO;
 import org.springframework.http.*;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import static com.harmonia.constants.HarmoniaConstants.*;
@@ -11,6 +12,7 @@ public class ServerClient {
 
     public ServerClient() {
         restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
     public ServerPO[] listAllServers() {

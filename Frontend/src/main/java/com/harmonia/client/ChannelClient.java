@@ -2,6 +2,7 @@ package com.harmonia.client;
 
 import com.harmonia.po.ChannelPO;
 import org.springframework.http.*;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class ChannelClient {
 
     public ChannelClient() {
         restTemplate = new RestTemplate();
+        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
     public ChannelPO[] listAllChannels() {

@@ -1,12 +1,11 @@
 package com.harmonia.controller;
 
-import java.util.ArrayList;
-
 import com.harmonia.client.ChannelClient;
 import com.harmonia.client.PublicMessageClient;
 import com.harmonia.client.ServerClient;
 import com.harmonia.client.ServerMemberClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.ChannelPO;
 import com.harmonia.po.PublicMessagePO;
 import com.harmonia.po.ServerMemberPO;
@@ -16,6 +15,7 @@ import com.harmonia.po.UserPO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -23,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -39,23 +40,27 @@ public class ServerController {
     private ServerMemberClient serverMemberClient;
     private PublicMessageClient publicMessageClient;
     private ChannelClient channelClient;
-    
-
 
     @FXML
     private GridPane LeftSidebar;
 
     @FXML
-    private ListView<?> PublicMessages;
+    private ListView<String> PublicMessagesList;
 
     @FXML
-    private ListView<?> channelList;
+    private ListView<ChannelPO> channelList;
 
     @FXML
-    private ListView<?> memberList;
+    private ListView<String> memberList;
 
     @FXML
     private Label ServerName;
+
+    @FXML
+    private Label serverCategory;
+
+    @FXML
+    private Label serverMemberCount;
 
     @FXML
     private Label blindLabel;
@@ -96,8 +101,8 @@ public class ServerController {
     @FXML
     private TextField sendMessageField;
 
-    ObservableList<PublicMessagePO> publicMessagesList;
-    ObservableList<String> publicStringsList;
+    ObservableList<PublicMessagePO> PMObjectList;
+    ObservableList<String> PMStringList;
 
     ObservableList<ChannelPO> channelObjectList;
     ObservableList<String> channelStringList;
@@ -113,17 +118,19 @@ public class ServerController {
         this.serverMemberClient = new ServerMemberClient();
         this.channelClient = new ChannelClient();
         
-        loggedInUser = new UserPO();
-        loggedInUser.setUserId(1);
+        loggedInUser = HarmoniaConstants.LOGGED_USERS;
 
         selectedChannel = channelClient.listAllChannels()[0]; 
 
+        // selectedServer = serverClient.listAllServers()[0];
 
-        selectedServer = new ServerPO();
         selectedServer.setServerId(1);
+        selectedServer.setServerCategory("Test");
+        selectedServer.setServerName("Server test1");
+        selectedServer.setOwnerId(1);
 
-        publicMessagesList = FXCollections.observableArrayList();
-        publicStringsList = FXCollections.observableArrayList();
+        PMObjectList = FXCollections.observableArrayList();
+        PMStringList = FXCollections.observableArrayList();
 
         channelObjectList =  FXCollections.observableArrayList();
         channelStringList = FXCollections.observableArrayList();
@@ -133,27 +140,40 @@ public class ServerController {
 
 
         getObjects();
+        setServerInfo();
 
-        populateMessageList();
         populateUserList();
         populateChannelList();
 
+        channelList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getTarget()==null) {
+                    System.out.println("Null found");
+                } else {
+                    System.out.println("Deleting blind");
+                    root.getChildren().remove(channelBlind);
+                    ChannelPO selected = channelObjectList.get(channelList.getSelectionModel().getSelectedIndex());
+                    selectedChannel = selected;
+                    System.out.println(selected);
+                    populateMessageList();
+                }
+            }
+        });
     }
 
     public void populateChannelList() {
         channelObjectList.clear();
-
+        channelStringList.clear();
         for (ChannelPO channel : channelClient.listAllChannels().clone()) {
             if (channel.getServerId()==selectedServer.getServerId()) {
                 channelObjectList.add(channel);
             }
         }
-
         for (ChannelPO channel : channelObjectList)  {
             channelStringList.add("#" + channel.getChannelName());
         }
-
-        
+        channelList.getItems().addAll(channelObjectList);
     }
 
     public void populateUserList() {
@@ -168,28 +188,35 @@ public class ServerController {
         for (ServerMemberPO member : userObjectList) {
             userStringList.add(member.getNickName());
         }
-        
+        memberList.setItems(userStringList);
     }
 
     public void populateMessageList() {
-        publicMessagesList.clear();
-        publicStringsList.clear();
+        PMObjectList.clear();
+        PMStringList.clear();
         PublicMessagePO[] messageArray = publicMessageClient.getAllMessages();
-
+        
         for (PublicMessagePO message : messageArray) {
-            if (message.getChannelId()==selectedChannel.getChannelId()) { publicMessagesList.add(message); }
+            if (message.getChannelId()==selectedChannel.getChannelId()) { PMObjectList.add(message); }
         }
+        if (PMObjectList.size()>0) {
+            for (PublicMessagePO m: PMObjectList) {
+                String authorName = "Unknown";
 
-        for (PublicMessagePO m: publicMessagesList) {
-            String authorName = "Unknown";
+                for (ServerMemberPO member : userObjectList) {
+                    if (m.getAuthorId() == member.getUserId()) {
+                            authorName = member.getNickName();
+                            System.out.println("Author found");
+                        }
+                }
 
-            for (ServerMemberPO member : userObjectList) {
-                if (m.getAuthorId() == member.getUserId()) { authorName = member.getUsername(); }
+                PMStringList.add(  authorName + ": " + m.getMessageText() );
             }
-
-            publicStringsList.add(  authorName + ": " + m.getMessageText() );
-
+        } else {
+            PMStringList.add("No messages on channel yet.");
         }
+            PublicMessagesList.setItems(PMStringList);
+        
     }
 
 
@@ -220,9 +247,9 @@ public class ServerController {
 
     @FXML
     void onEditButtonClick(ActionEvent event) {
-        int index = PublicMessages.getSelectionModel().getSelectedIndex();
+        int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
 
-        PublicMessagePO listSelectedMessage = publicMessagesList.get(index);
+        PublicMessagePO listSelectedMessage = PMObjectList.get(index);
 
         if (listSelectedMessage.getAuthorId()==loggedInUser.getUserId()) {
             setSelectedMessage(listSelectedMessage); 
@@ -247,10 +274,12 @@ public class ServerController {
 
     @FXML
     void onRemoveMessageButttonClick(ActionEvent event) {
-        int index = PublicMessages.getSelectionModel().getSelectedIndex();
-        if (publicMessagesList.get(index).getAuthorId()==loggedInUser.getUserId()) { 
-            
-         }
+        int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
+        
+        if (PMObjectList.get(index).getAuthorId()==loggedInUser.getUserId()) {
+            publicMessageClient.removeMessage(selectedMessage);
+        }
+        populateMessageList();
     }
 
     @FXML
@@ -259,21 +288,32 @@ public class ServerController {
         if (message!="") {
             PublicMessagePO newMessage = new PublicMessagePO();
             newMessage.setAuthorId((long) loggedInUser.getUserId());
-            newMessage.setChannelId((long)selectedChannel.getChannelId());
+            newMessage.setChannelId((long) selectedChannel.getChannelId());
             newMessage.setMessageText(sendMessageField.getText());
 
+            publicMessageClient.sendPublicMessage(newMessage);
         }
+        populateMessageList();
     }
 
     public void getObjects() {
         channelObjectList.clear();
         userObjectList.clear();
-        publicMessagesList.clear();
-
+        PMObjectList.clear();
 
         this.channelObjectList.addAll(channelClient.listAllChannels());
         this.userObjectList.addAll(serverMemberClient.listMembersByServerId((long)selectedServer.getServerId()));
-        this.publicMessagesList.addAll(publicMessageClient.getAllMessages());
+        this.PMObjectList.addAll(publicMessageClient.getAllMessages());
     }
 
+    public void setServerInfo() {
+        ServerName.setText(selectedServer.getServerName());
+        serverCategory.setText(selectedServer.getServerCategory());
+        serverMemberCount.setText(String.valueOf(userObjectList.size()));
+    }
+
+    @FXML
+    public void onChannelListClick(ActionEvent event) {
+        System.out.println("Channel list clicked");
+    }
 }

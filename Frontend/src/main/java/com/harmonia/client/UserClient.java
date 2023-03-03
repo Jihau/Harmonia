@@ -83,7 +83,7 @@ public class UserClient {
         validateMe.setPassword(passwrd);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Content-Type", "application/json");
+        headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<UserPO> request = new HttpEntity<>(validateMe, headers);
 
         return restTemplate.exchange(USERS_LOGIN_URL, HttpMethod.POST, request, UserPO.class);

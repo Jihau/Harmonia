@@ -23,6 +23,45 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ServerController">
    <children>
+      <AnchorPane layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
+         <children>
+            <Pane fx:id="channelBlind" prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="348.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/LoginBg.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="blindLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="253.0" prefHeight="134.0" prefWidth="652.0" text="Choose a channel to start chatting">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006711409395973154">
+                                 <color>
+                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.61710524559021" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
       <GridPane prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="635.0" minWidth="10.0" prefWidth="322.0" />
@@ -68,13 +107,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label prefHeight="72.0" prefWidth="161.0" text="Category" />
-                                    <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="77.0" prefWidth="172.0" text="Server membercount" GridPane.columnIndex="1" />
+                                    <Label fx:id="serverCategory" prefHeight="72.0" prefWidth="161.0" text="Category" />
+                                    <Label fx:id="serverMemberCount" nodeOrientation="RIGHT_TO_LEFT" prefHeight="77.0" prefWidth="172.0" text="Server membercount" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ListView fx:id="channelList" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
+                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
                         <Label prefHeight="17.0" prefWidth="125.0" text="Channel List" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
@@ -98,12 +137,12 @@
                         <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="PublicMessages" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="PublicMessagesList" prefHeight="200.0" prefWidth="200.0" />
                         <HBox prefHeight="65.0" prefWidth="652.0" GridPane.rowIndex="1">
                            <children>
                               <BorderPane prefHeight="66.0" prefWidth="316.0">
                                  <center>
-                                    <TextField fx:id="sendMessageField" alignment="CENTER" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="779.0">
+                                    <TextField fx:id="sendMessageField" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="779.0" promptText="asdawdsdasdwa">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor>
@@ -181,45 +220,6 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
-         <children>
-            <Pane fx:id="channelBlind" prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
-               <children>
-                  <ImageView fitHeight="634.0" fitWidth="652.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/LoginBg.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="blindLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="253.0" prefHeight="134.0" prefWidth="652.0" text="Choose a channel to start chatting">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006711409395973154">
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.61710524559021" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
                </children>
             </Pane>
          </children>

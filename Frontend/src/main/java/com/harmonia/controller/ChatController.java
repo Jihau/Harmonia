@@ -350,7 +350,6 @@ public class ChatController {
     public void onRemoveMessageButttonClick() {
         int index = ChatListView.getSelectionModel().getSelectedIndex();
 
-
         if (conversationObject.get(index).getRecipientId()!=loggedInUser.getUserId()) {
             
             Alert deleteConfirmation = new Alert(AlertType.CONFIRMATION, "Delete message?", ButtonType.YES, ButtonType.NO);

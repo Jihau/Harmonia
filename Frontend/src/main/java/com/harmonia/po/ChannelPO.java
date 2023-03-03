@@ -59,4 +59,9 @@ public class ChannelPO implements Serializable {
     public void setPublicMessages(Set<PublicMessagePO> publicMessages) {
         this.publicMessages = publicMessages;
     }
+
+    @Override
+    public String toString() {
+        return this.channelName;
+    }
 }
