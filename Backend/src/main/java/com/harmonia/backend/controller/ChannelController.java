@@ -8,23 +8,44 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST controller for managing Channel entities.
+ */
 @RestController
 @RequestMapping("channel")
 public class ChannelController {
     @Autowired
     private ChannelService channelService;
 
+    /**
+     * GET endpoint for retrieving all Channel entities.
+     *
+     * @return an Iterable of Channel entities.
+     */
     @GetMapping
     @CrossOrigin
     public Iterable<Channel> listChannels() {
         return channelService.listChannels();
     }
+
+    /**
+     * POST endpoint for creating a new Channel entity.
+     *
+     * @param channel the Channel entity to create.
+     * @return the newly created Channel entity.
+     */
     @PostMapping
     @CrossOrigin
     public Channel saveChannel(@RequestBody Channel channel){
         return channelService.addChannel(channel);
     }
 
+    /**
+     * DELETE endpoint for deleting a Channel entity by ID.
+     *
+     * @param channelId the ID of the Channel entity to delete.
+     * @return a ResponseEntity with an HTTP status code.
+     */
     @DeleteMapping("/{channelId}")
     @CrossOrigin
     public ResponseEntity<Void> deleteChannel(@PathVariable Long channelId) {
@@ -32,6 +53,13 @@ public class ChannelController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * PUT endpoint for updating a Channel entity's name by ID.
+     *
+     * @param channelId the ID of the Channel entity to update.
+     * @param channel the updated Channel entity.
+     * @return a ResponseEntity with a success message and HTTP status code.
+     */
     @PutMapping("/{channelId}")
     @CrossOrigin
     public ResponseEntity<String> editChannel(@PathVariable Long channelId, @RequestBody Channel channel){
