@@ -19,7 +19,7 @@ public class ServerController {
     }
 
 
-    @GetMapping("/{serverName}")
+    @GetMapping("serverName/{serverName}")
     @CrossOrigin
     public Iterable<Server> listServersByServerName(@PathVariable("serverName") String serverName){
         return serverService.listServersByServerName(serverName);
@@ -50,7 +50,7 @@ public class ServerController {
     }
 
     @DeleteMapping
-    @RequestMapping("/{serverId}")
+    @RequestMapping("serverId/{serverId}")
     @CrossOrigin
     public ResponseEntity<String> deleteServer(@PathVariable("serverId") Long serverId) {
         System.out.println("C: Server with id : " + serverId + " is deleted successfully");
@@ -58,7 +58,7 @@ public class ServerController {
         return new ResponseEntity<>("Server has been deleted", HttpStatus.OK);
     }
 
-    @PutMapping("/{serverId}")
+    @PutMapping("serverId/{serverId}")
     @CrossOrigin
     public ResponseEntity<String> editServer(@PathVariable Long serverId, @RequestBody Server server){
         serverService.editServerName(serverId, server.getServerName(), server.getServerCategory());
