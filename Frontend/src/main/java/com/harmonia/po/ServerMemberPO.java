@@ -6,6 +6,7 @@ import java.util.Date;
 public class ServerMemberPO implements Serializable {
     int serverId;
     int memberId;
+    String serverName;
     Long serverMemberId;
     Long userId;
     String username;
@@ -16,6 +17,14 @@ public class ServerMemberPO implements Serializable {
     Date timestamp;
     String nickName;
     Date joinDate;
+
+    public String getServerName() {
+        return serverName;
+    }
+
+    public void setServerName(String serverName) {
+        this.serverName = serverName;
+    }
 
     public String getNickName() {
         return nickName;
@@ -112,4 +121,5 @@ public class ServerMemberPO implements Serializable {
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
     }
+
 }

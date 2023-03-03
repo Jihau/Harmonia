@@ -3,8 +3,10 @@ package com.harmonia.controller;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.MessagePO;
 
+import com.harmonia.po.UserPO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,10 +19,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 
 public class LoginController {
+
+    UserClient userClient = new UserClient();
 
     @FXML
     TextField usernameField;
@@ -86,7 +92,12 @@ public class LoginController {
     }
 
     public boolean login(String username, String password) {
-        return UserClient.validate(username, password).value()==200;     
+        ResponseEntity<UserPO> user = userClient.validate(username, password);
+        if (user.getStatusCode().equals(HttpStatus.OK)) {
+            HarmoniaConstants.LOGGED_USERS = user.getBody();
+            return true;
+        }
+        HarmoniaConstants.LOGGED_USERS = null;
+        return false;
     }
-
 }

@@ -60,10 +60,9 @@ public class ServerClientTest {
 
         Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any()))
                 .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
-        ServerPO[] actualServers =  serverClient.listAllServers();
+        ServerPO[] actualServers =  serverClient.listServersByName();
         assertNotNull(actualServers);
         assertArrayEquals(expectedServers, actualServers);
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any());
     }
-
 }

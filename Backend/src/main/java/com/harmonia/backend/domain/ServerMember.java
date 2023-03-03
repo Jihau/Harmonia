@@ -35,6 +35,12 @@ public class ServerMember {
     @JoinColumn(name = "ServerId", foreignKey = @ForeignKey(name = "Server_member_server_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     Server server;
 
+    @Transient
+    String serverName;
+    public String getServerName() {
+        return server.getServerName();
+    }
+
     @Column(name = "ServerId", nullable = false)
     Long serverId;
 
