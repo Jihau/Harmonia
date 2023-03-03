@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Objects;
+
 public class LoginController {
 
     UserClient userClient = new UserClient();
@@ -38,7 +40,7 @@ public class LoginController {
     @FXML
     public void onLoginButtonClick() {
     
-    if (usernameField.getText()=="" || passwordField.getText()=="") {errorLabel.setText("Please fill both fields!"); errorLabel.setVisible(true); return;}
+    if (Objects.equals(usernameField.getText(), "") || Objects.equals(passwordField.getText(), "")) {errorLabel.setText("Please fill both fields!"); errorLabel.setVisible(true); return;}
         errorLabel.setText("Login failed");
         errorLabel.setVisible(true);
         if (login(usernameField.getText(), passwordField.getText())) {
@@ -63,7 +65,7 @@ public class LoginController {
     @FXML
     public void logInRedirect() {
         try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);
