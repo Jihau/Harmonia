@@ -9,6 +9,7 @@ import com.harmonia.client.ServerMemberClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.po.ChannelPO;
 import com.harmonia.po.PublicMessagePO;
+import com.harmonia.po.ServerMemberPO;
 import com.harmonia.po.ServerPO;
 import com.harmonia.po.UserPO;
 
@@ -95,7 +96,7 @@ public class ServerController {
     ObservableList<ChannelPO> channelObjectList;
     ObservableList<String> channelStringList;
 
-    ObservableList<UserPO> userObjectList;
+    ObservableList<ServerMemberPO> userObjectList;
     ObservableList<String> userStringList;
 
     public void initialize() {
@@ -120,12 +121,26 @@ public class ServerController {
     }
 
     public void populateChannelList() {
-
+        channelObjectList.clear();
+        for (ChannelPO channel : channelClient.listAllChannels().clone()) {
+            if (channel.getServerId()==selectedServer.getServerId()) {
+                channelObjectList.add(channel);
+            }
+        }
     }
 
     public void populateUserList() {
         userObjectList.clear();
-        // get back to this
+        userStringList.clear();
+
+
+        for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long)selectedServer.getServerId())) {
+            userObjectList.add(member);
+        }
+
+        for (ServerMemberPO member : userObjectList) {
+            userStringList.add(member.getNickName());
+        }
     }
 
     public void populateMessageList() {
@@ -138,10 +153,15 @@ public class ServerController {
         }
 
         for (PublicMessagePO m: publicMessagesList) {
+            String authorName = "Unknown";
 
-            String authorName = userClient.getUserByID(m.getAuthorId().intValue()).getUsername();
+            // String authorName = userClient.getUserByID(m.getAuthorId().intValue()).getUsername();
 
-            publicStringsList.add( m.getMessageText())
+            for (ServerMemberPO member : userObjectList) {
+                if (m.getAuthorId() == member.getUserId()) { authorName = member.getUsername(); }
+            }
+
+            publicStringsList.add(  authorName + ": " + m.getMessageText() );
 
         }
     }
@@ -176,7 +196,7 @@ public class ServerController {
     void onEditButtonClick(ActionEvent event) {
         int index = PublicMessages.getSelectionModel().getSelectedIndex();
 
-        PublicMessagePO listSelectedMessage = conversationObject.get(index);
+        PublicMessagePO listSelectedMessage = publicMessagesList.get(index);
 
         if (listSelectedMessage.getAuthorId()==loggedInUser.getUserId()) {
             setSelectedMessage(listSelectedMessage); 
@@ -201,7 +221,10 @@ public class ServerController {
 
     @FXML
     void onRemoveMessageButttonClick(ActionEvent event) {
-
+        int index = PublicMessages.getSelectionModel().getSelectedIndex();
+        if (publicMessagesList.get(index).getAuthorId()==loggedInUser.getUserId()) { 
+            
+         }
     }
 
     @FXML
