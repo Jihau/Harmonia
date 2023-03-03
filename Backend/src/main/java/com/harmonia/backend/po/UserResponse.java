@@ -15,11 +15,13 @@ public class UserResponse implements Serializable {
     String username;
     String email;
     String profileIcon;
+    String bio;
 
     public UserResponse (User user){
         this.userId = user.getUserId();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.profileIcon = user.getProfileIcon();
+        this.bio = user.getBio();
     }
 }

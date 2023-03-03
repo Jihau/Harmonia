@@ -66,9 +66,7 @@ public class UserService {
     public UserResponse findByUsernameAndPassword(String username, String password) {
         //Find the user by username
         User user = userRepository.findByUsername(username);
-        System.out.println("request password " + password);
         System.out.println(user);
-
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             System.out.println("Logged in!");
             return new UserResponse(user);

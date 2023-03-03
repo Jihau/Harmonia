@@ -1,10 +1,13 @@
 package com.harmonia.controller;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.ServerClient;
+import com.harmonia.client.ServerMemberClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.*;
 
 import javafx.event.ActionEvent;
@@ -16,23 +19,27 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.springframework.http.HttpStatus;
 
 public class SettingsController {
+
+    UserClient userClient = new UserClient();
+
     @FXML
     private ListView<String> serverListView;
 
-    private ServerClient serverClient;
+    private ServerMemberClient serverMemberClient;
 
     private void populateServerListView() {
-        ServerPO[] servers = serverClient.listAllServers();
-        for (ServerPO server : servers) {
+        ServerMemberPO[] servers = serverMemberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        for (ServerMemberPO server : servers) {
             serverListView.getItems().add(server.getServerName());
         }
     }
 
     private UserPO user;
 
-    UserClient userclient;
+    UserClient userclient = new UserClient();
     @FXML
     AnchorPane root;
 
@@ -122,10 +129,9 @@ public class SettingsController {
 
         this.user = new UserPO();
 
-        this.user.setUserId(18);
-        this.user.setUsername("jokke");
-        this.user.setEmail("jokke@user.com");
-        this.user.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049");
+        this.user.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
+        this.user.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
+        /* this.user.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049"); */
         
         /* placeholder, get user from session */
 
@@ -136,67 +142,26 @@ public class SettingsController {
         Listing servers
          */
 
-        serverClient = new ServerClient();
+        serverMemberClient = new ServerMemberClient();
         populateServerListView();
     }
 
     public void onSaveButtonClick() {
-
-        userclient = new UserClient();
-
-        UserPO user = this.getUser();
-
-        System.out.println("Updating user:");
-
-        System.out.println("validating");
-
-        if (!passwordField.getText().equals("") && UserClient.validate(user.getUsername(), oldPasswordField.getText()).value()==200) {
-
-            System.out.println("new password detected and old password checked");
-
             try {
-                System.out.println("Trying to put with new password");
-
-                userclient = new UserClient();
-
-                System.out.println("Client opened");
-
-                user.setProfileIcon(profImgField.getText());
-                user.setPassword(passwordField.getText());
-
-                userclient.editPassword(user);
-                userclient.editIcon(user);
-
-                successAlert();
-                returnToMain();
-                
+                UserPO userPO = new UserPO();
+                userPO.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
+                userPO.setProfileIcon(profImgField.getText());
+                HarmoniaConstants.LOGGED_USERS = userclient.editIcon(userPO);
+                profImgField.setText(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
             } catch (Exception e) {
-                System.out.println("Failed to update user");
                 e.printStackTrace();
-            }
-        } else if (passwordField.getText()=="") {
-
-            System.out.println("Trying to put without new password");
-
-            try {
-                
-                if (UserClient.validate(user.getUsername(), oldPasswordField.getText()).value()==200) {
-                    user.setProfileIcon(profImgField.getText());
-                    userclient.editIcon(user);
-                }
-
-                successAlert();
-                
-                returnToMain();
-
-            } catch (Exception e) {
                 Alert failedalert = new Alert(AlertType.ERROR);
                 failedalert.setContentText("Failed to update user");
                 failedalert.show();
                 System.out.println("Failed to update user");
             }
         }
-    }
+
 
     private UserPO getUser() {
         return this.user;

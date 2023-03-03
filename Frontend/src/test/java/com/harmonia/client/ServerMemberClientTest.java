@@ -41,11 +41,11 @@ public class ServerMemberClientTest {
         String response = "[{\"serverMemberId\":1,\"serverId\":2,\"member\":{\"userId\":5,\"username\":\"Jihau\",\"email\":\"jiiihau@gmail.com\",\"profileIcon\":\"https://i.imgur.com/yfhVP8e.png\",\"bio\":null,\"timestamp\":\"2023-03-01\"},\"memberId\":5,\"nickName\":\"Jihau\",\"joinDate\":\"2023-03-01\"}]";
         ServerMemberPO[] expectedServers = serverMemberReader.readValue(response);
 
-        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any()))
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any(), Mockito.anyMap()))
                 .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
-        ServerMemberPO[] actualServers =  serverMemberClient.listServersByMemberId();
+        ServerMemberPO[] actualServers =  serverMemberClient.listServersByMemberId(5);
         assertNotNull(actualServers);
         assertArrayEquals(expectedServers, actualServers);
-        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any());
+        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any(), Mockito.anyMap());
     }
 }

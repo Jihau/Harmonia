@@ -78,7 +78,7 @@ public class UserClient {
         return restTemplate.exchange(USERS_EDIT_URL+"/password", HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
     }
 
-    public static HttpStatusCode validate(String username, String passwrd) {
+    public ResponseEntity<UserPO> validate(String username, String passwrd) {
         ValidationPOJO validateMe = new ValidationPOJO(username, passwrd);
 
         HttpHeaders headers = new HttpHeaders();
@@ -89,9 +89,7 @@ public class UserClient {
 
         HttpEntity<ValidationPOJO> request = new HttpEntity<ValidationPOJO>(validateMe, headers);
 
-        ResponseEntity<?> response = restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, void.class);
-
-        return response.getStatusCode();
+        return restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, UserPO.class);
     }
 
     public UserPO getUserByID(int id) {

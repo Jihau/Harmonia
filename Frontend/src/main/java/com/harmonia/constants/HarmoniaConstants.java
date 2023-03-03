@@ -1,5 +1,7 @@
 package com.harmonia.constants;
 
+import com.harmonia.po.UserPO;
+
 public class HarmoniaConstants {
     public static final String BASE_URL = "http://localhost:8080";
     public static final String USERS_DELETE_URL = BASE_URL + "/user/{userId}";
@@ -17,5 +19,6 @@ public class HarmoniaConstants {
     public static final String CHANNEL_DELETE_URL = BASE_URL + "/channel/{channelId}";
     public static final String CHANNEL_EDIT_URL = BASE_URL + "/channel/{channelId}";
     public static final String SERVER_LIST_BY_NAME_URL = BASE_URL + "/server/name/{serverName}";
-    public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/{memberId}";
+    public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
+    public static UserPO LOGGED_USERS = null;
 }

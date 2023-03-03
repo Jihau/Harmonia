@@ -7,6 +7,7 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
 
 import javafx.event.ActionEvent;
@@ -16,14 +17,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ProfileController {
+    @FXML
+    public Label BioText;
+
+    @FXML
+    public Label BioLabel;
+
     private UserPO friend = new UserPO();
     /* placeholder, get from DB on load later */
 
@@ -111,10 +120,10 @@ public class ProfileController {
     private Button logoutButton;
 
     public void initialize() {
-        friend.setEmail("example@example.com");
-        friend.setUsername("marko");
-        friend.setUserId(123);
-        friend.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049");
+        friend.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
+        friend.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
+        friend.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        friend.setProfileIcon(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
 
         try {
             Image profImage = new Image(friend.getProfileIcon());    
@@ -122,10 +131,10 @@ public class ProfileController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-                
-
         UsernameText.setText(friend.getUsername());
         UserIdText.setText("#" + String.valueOf(friend.getUserId()));
+        BioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
+        System.out.println(BioText.getText());
     }
 
     @FXML
