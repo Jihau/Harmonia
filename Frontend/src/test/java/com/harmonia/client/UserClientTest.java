@@ -83,4 +83,25 @@ public class UserClientTest {
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
+
+    @Test
+    public void loginUserTset() throws JsonProcessingException {
+        /*
+        lenient().when(restTemplate.exchange(anyString(),
+                Mockito.any(),
+                Mockito.<HttpEntity<Void>>any(),
+                Mockito.<Class<Void>>any(),
+                Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+
+        String expectedEesponse = "{\"userId\":3,\"username\":\"jokke\",\"email\":\"asdsadawdsad@gmail.com\",\"profileIcon\":\"https://i.imgur.com/yfhVP8e.png\",\"bio\":null}";
+        UserPO expected = userPOReader.readValue(expectedEesponse);
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<UserPO>>any()))
+                .thenReturn(new ResponseEntity<>(expected, HttpStatus.OK));
+        ResponseEntity<UserPO> validated = userClient.validate("jokke", "jokke123");
+        UserPO gotUser = validated.getBody();
+
+        assertNotNull(validated);
+        assertEquals(HttpStatus.OK, validated.getStatusCode());
+        */
+    }
 }

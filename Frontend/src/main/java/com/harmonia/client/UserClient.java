@@ -1,7 +1,6 @@
 package com.harmonia.client;
 
 import com.harmonia.po.UserPO;
-import com.harmonia.po.ValidationPOJO;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -79,17 +78,15 @@ public class UserClient {
     }
 
     public ResponseEntity<UserPO> validate(String username, String passwrd) {
-        ValidationPOJO validateMe = new ValidationPOJO(username, passwrd);
+        UserPO validateMe = new UserPO();
+        validateMe.setUsername(username);
+        validateMe.setPassword(passwrd);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
+        HttpEntity<UserPO> request = new HttpEntity<>(validateMe, headers);
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-        HttpEntity<ValidationPOJO> request = new HttpEntity<ValidationPOJO>(validateMe, headers);
-
-        return restTemplate.exchange(BASE_URL+"/user/login", HttpMethod.POST, request, UserPO.class);
+        return restTemplate.exchange(USERS_LOGIN_URL, HttpMethod.POST, request, UserPO.class);
     }
 
     public UserPO getUserByID(int id) {

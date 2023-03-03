@@ -39,7 +39,7 @@ public class DMClientTest {
     }
 
     @Test
-    public void listUsersTest() throws JsonProcessingException {
+    public void listDirectMessagesTest() throws JsonProcessingException {
 
         String response = "[{\"dmessageId\":1,\"messageText\":\"asdawdsa\",\"timestamp\":\"2023-02-28\",\"recipientId\":2},{\"dmessageId\":2,\"messageText\":\"wtf\",\"timestamp\":\"2023-02-28\",\"recipientId\":3},{\"dmessageId\":3,\"messageText\":\"This is a test message 3 and its been edited\",\"timestamp\":\"2023-02-28\",\"recipientId\":2},{\"dmessageId\":4,\"messageText\":\"Hello, I am a message with an author and recipient test\",\"timestamp\":\"2023-02-28\",\"recipientId\":1},{\"dmessageId\":5,\"messageText\":\"Hello, I am a message with an author and recipient test\",\"timestamp\":\"2023-02-28\",\"recipientId\":1},{\"dmessageId\":6,\"messageText\":\"Hello, I am a message superman\",\"timestamp\":\"2023-02-28\",\"recipientId\":3},{\"dmessageId\":7,\"messageText\":\"Hello, I am a asdniawudasunda\",\"timestamp\":\"2023-02-28\",\"recipientId\":3}]";
         MessagePO[] expectedMessages = DM_POReader.readValue(response);
@@ -53,8 +53,8 @@ public class DMClientTest {
     }
 
     @Test
-    public void editMessageTest() throws JsonProcessingException {
-        /*
+    public void editDirectMessageTest() throws JsonProcessingException {
+/*
         String editedMessage = "[{\"dmessageId\":1,\"messageText\":\"Edited message for testing\"}]";
         MessagePO expectedEditedMessage = DM_POReader.readValue(editedMessage);
         HttpHeaders headers = new HttpHeaders();
@@ -70,6 +70,25 @@ public class DMClientTest {
         assertEquals(expectedEditedMessage, actualEditedMessage.getBody());
         verify(restTemplate, times(1)).exchange(anyString(), eq(HttpMethod.PUT), eq(request),
                 eq(MessagePO.class), eq(urlParameters));
-         */
+*/
+    }
+
+    @Test
+    public void removeDirectMessageTest() throws JsonProcessingException {
+        /* 
+        MessagePO removeMe = new MessagePO();
+        removeMe.setDmessageId(2);
+        removeMe.setMessageText("This is a test message 5");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<MessagePO> request = new HttpEntity<>(removeMe, headers);
+        Map<String, String> urlParameters = new HashMap<>();
+
+
+        ResponseEntity<?> not = restTemplate.exchange("http://localhost:8080/dmessage", HttpMethod.DELETE, request, void.class);
+
+        ResponseEntity<?> response = directMessacgeClient.removeMessage(removeMe);
+        */
     }
 }
