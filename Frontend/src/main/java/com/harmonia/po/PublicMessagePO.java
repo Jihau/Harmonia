@@ -6,6 +6,9 @@ import java.util.*;
 public class PublicMessagePO implements Serializable {
     String messageText;
     Long pmessageId;
+    Long authorId;
+    Long channelId;
+    Date timestamp;
 
     public String getMessageText() {
         return messageText;
@@ -46,8 +49,4 @@ public class PublicMessagePO implements Serializable {
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
-
-    Long authorId;
-    Long channelId;
-    Date timestamp;
 }
