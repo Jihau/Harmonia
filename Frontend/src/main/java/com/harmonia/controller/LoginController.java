@@ -1,17 +1,11 @@
 package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
-import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
-import com.harmonia.po.MessagePO;
-
 import com.harmonia.po.UserPO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -21,8 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.io.IOException;
 
 public class LoginController {
 
@@ -54,15 +46,6 @@ public class LoginController {
         }
     }
 
-    public void initialize() {
-        DirectMessageClient dmclient = new DirectMessageClient();
-
-        MessagePO[] messages = dmclient.getAllMessages();
-        for (MessagePO messagePO : messages) {
-            System.out.println(messagePO);
-        }
-    }
-
     @FXML
     protected void onRegisterLinkClicked() {
         try {
@@ -80,7 +63,7 @@ public class LoginController {
     @FXML
     public void logInRedirect() {
         try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);

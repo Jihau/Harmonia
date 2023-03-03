@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.model.Message;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
@@ -22,6 +23,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -137,18 +139,25 @@ public class ChatController {
     public void initialize() {
         comparator = Comparator.comparingInt(MessagePO::getDmessageId);
 
+        loggedInUser.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
+        loggedInUser.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
+        loggedInUser.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        loggedInUser.setProfileIcon(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
+
         messageClient = new DirectMessageClient();
 
         userClient = new UserClient();
         this.loggedInUser = new UserPO();
-        loggedInUser.setUserId(1);
+
         chatTargetId = 2;
+
         chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
 
         conversationObject = FXCollections.observableArrayList();
         conversationString = FXCollections.observableArrayList();
         
         populateListView();
+    
     }
 
     public ChatController(){
@@ -239,7 +248,7 @@ public class ChatController {
 
 
     @FXML
-    public void onSendBtnClick(){
+    public void onSendBtnClick(ActionEvent event){
         MessagePO newMessage = new MessagePO();
 
         newMessage.setMessageText(sendMessageField.getText());
@@ -251,6 +260,7 @@ public class ChatController {
         ResponseEntity<?> response = this.sendMessage(newMessage);
         System.out.println(response.getStatusCode());
 
+        sendMessageField.setText("");
         populateListView();
         
     }
@@ -290,8 +300,6 @@ public class ChatController {
 
         MessagePO listSelectedMessage = conversationObject.get(index);
 
-        System.out.println(listSelectedMessage.getMessageText());
-        System.out.println(ChatListView.getSelectionModel().getSelectedItem());
         if (listSelectedMessage.getRecipientId()!=loggedInUser.getUserId()) {
             setSelectedMessage(listSelectedMessage); 
             editBox.setVisible(true);
@@ -314,8 +322,6 @@ public class ChatController {
 
         if (editTextField.getText()!="") {
         
-        System.out.println(editTextField.getText());
-
         editSelectedMessage.setMessageText(editTextField.getText());
         editSelectedMessage.setAuthorId(loggedInUser.getUserId());
         editSelectedMessage.setRecipientId(chatTargetId);
@@ -340,9 +346,40 @@ public class ChatController {
         editBox.setVisible(false);
     }
 
+    @FXML
+    public void onRemoveMessageButttonClick() {
+        int index = ChatListView.getSelectionModel().getSelectedIndex();
+
+
+        if (conversationObject.get(index).getRecipientId()!=loggedInUser.getUserId()) {
+            
+            Alert deleteConfirmation = new Alert(AlertType.CONFIRMATION, "Delete message?", ButtonType.YES, ButtonType.NO);
+            deleteConfirmation.setTitle("Delete message");
+            deleteConfirmation.setHeaderText("Are you sure you want to delete this message?");
+            deleteConfirmation.setContentText("Deleting a message is an irreversible action and cannot be undone.");
+            deleteConfirmation.showAndWait();
+            
+            if (deleteConfirmation.getResult() == ButtonType.YES) {
+                System.out.println("Attempting delete");
+                MessagePO deleteMe = conversationObject.get(index);
+                
+                messageClient.removeMessage(deleteMe);
+            }
+
+        } else {
+            Alert notYourMessageAlert = new Alert(AlertType.ERROR);
+            notYourMessageAlert.setTitle("Not your message");
+            notYourMessageAlert.setHeaderText("Can't delete message");
+            notYourMessageAlert.setContentText("You can only delete messages that you've sent!");
+            notYourMessageAlert.showAndWait();
+        }
+        populateListView();
+    }
     public MessagePO getSelectedMessage() {
         return this.selectedMessage;
     }
+
+
 
     public void setSelectedMessage(MessagePO message) {
         this.selectedMessage = message;

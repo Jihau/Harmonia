@@ -17,3 +17,9 @@
 .Label{
     -fx-text-fill: #b0d5ef;
 }
+.successLabel {
+    color: white;
+}
+.failureLabel {
+    color: red;
+}
