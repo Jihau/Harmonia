@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.model.Message;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
@@ -138,19 +139,24 @@ public class ChatController {
     public void initialize() {
         comparator = Comparator.comparingInt(MessagePO::getDmessageId);
 
+        loggedInUser.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
+        loggedInUser.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
+        loggedInUser.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        loggedInUser.setProfileIcon(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
+
         messageClient = new DirectMessageClient();
 
         userClient = new UserClient();
         this.loggedInUser = new UserPO();
-        loggedInUser.setUserId(1);
+
         chatTargetId = 2;
+
         chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
 
         conversationObject = FXCollections.observableArrayList();
         conversationString = FXCollections.observableArrayList();
         
         populateListView();
-
     
     }
 

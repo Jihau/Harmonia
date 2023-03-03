@@ -1,6 +1,7 @@
 package com.harmonia.controller;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
@@ -66,28 +67,16 @@ public class RegistrationController {
                 System.out.println("HTTP done");
 
                 errorLabel.setVisible(true);
-                errorLabel.setText("Registration successful!\nPlease wait a moment");
-
-                System.out.println("redirecting");
-
-                wait(3000);
-                
-
-                FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
-                Stage stage = (Stage) root.getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Harmonia");
-                stage.show();
-                
-                
+                errorLabel.setText("Registration succesful, wait...");
+                System.out.println("waiting 3 and redirecting");
+                redirectToLogin();
 
             } catch (Exception e) {
                 Alert ServerAlert = new Alert(AlertType.ERROR);
                 ServerAlert.setTitle("Server error");
                 ServerAlert.setContentText("Please read stack trace to debug");
                 ServerAlert.showAndWait();
-            }
+            } 
         } else if (emailField.getText()=="" || usernameField.getText()=="" || passwordField.getText()=="" || repeatPasswordField.getText()=="") {
             errorLabel.setVisible(true);
         }
@@ -120,6 +109,18 @@ public class RegistrationController {
         };
         sleeper.setOnSucceeded(event -> continuation.run());
         new Thread(sleeper).start();
+    }
+
+    private void redirectToLogin() throws InterruptedException, IOException {
+        TimeUnit.SECONDS.sleep(3);              
+
+                
+        FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Harmonia");
+        stage.show();
     }
 
 

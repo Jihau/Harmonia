@@ -49,6 +49,12 @@ public class ServerController {
     private ListView<?> PublicMessages;
 
     @FXML
+    private ListView<?> channelList;
+
+    @FXML
+    private ListView<?> memberList;
+
+    @FXML
     private Label ServerName;
 
     @FXML
@@ -100,19 +106,33 @@ public class ServerController {
     ObservableList<String> userStringList;
 
     public void initialize() {
+
         this.userClient = new UserClient();
         this.serverClient = new ServerClient();
         this.publicMessageClient = new PublicMessageClient();
         this.serverMemberClient = new ServerMemberClient();
         this.channelClient = new ChannelClient();
+        
+        loggedInUser = new UserPO();
+        loggedInUser.setUserId(1);
 
-        // selectedServer = stage.getData();
+        selectedChannel = channelClient.listAllChannels()[0]; 
+
 
         selectedServer = new ServerPO();
         selectedServer.setServerId(1);
 
         publicMessagesList = FXCollections.observableArrayList();
         publicStringsList = FXCollections.observableArrayList();
+
+        channelObjectList =  FXCollections.observableArrayList();
+        channelStringList = FXCollections.observableArrayList();
+
+        userObjectList = FXCollections.observableArrayList();
+        userStringList = FXCollections.observableArrayList();
+
+
+        getObjects();
 
         populateMessageList();
         populateUserList();
@@ -122,17 +142,24 @@ public class ServerController {
 
     public void populateChannelList() {
         channelObjectList.clear();
+
         for (ChannelPO channel : channelClient.listAllChannels().clone()) {
             if (channel.getServerId()==selectedServer.getServerId()) {
                 channelObjectList.add(channel);
             }
         }
+
+        for (ChannelPO channel : channelObjectList)  {
+            channelStringList.add("#" + channel.getChannelName());
+        }
+
+        
     }
 
     public void populateUserList() {
+
         userObjectList.clear();
         userStringList.clear();
-
 
         for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long)selectedServer.getServerId())) {
             userObjectList.add(member);
@@ -141,6 +168,7 @@ public class ServerController {
         for (ServerMemberPO member : userObjectList) {
             userStringList.add(member.getNickName());
         }
+        
     }
 
     public void populateMessageList() {
@@ -154,8 +182,6 @@ public class ServerController {
 
         for (PublicMessagePO m: publicMessagesList) {
             String authorName = "Unknown";
-
-            // String authorName = userClient.getUserByID(m.getAuthorId().intValue()).getUsername();
 
             for (ServerMemberPO member : userObjectList) {
                 if (m.getAuthorId() == member.getUserId()) { authorName = member.getUsername(); }
@@ -237,6 +263,17 @@ public class ServerController {
             newMessage.setMessageText(sendMessageField.getText());
 
         }
+    }
+
+    public void getObjects() {
+        channelObjectList.clear();
+        userObjectList.clear();
+        publicMessagesList.clear();
+
+
+        this.channelObjectList.addAll(channelClient.listAllChannels());
+        this.userObjectList.addAll(serverMemberClient.listMembersByServerId((long)selectedServer.getServerId()));
+        this.publicMessagesList.addAll(publicMessageClient.getAllMessages());
     }
 
 }

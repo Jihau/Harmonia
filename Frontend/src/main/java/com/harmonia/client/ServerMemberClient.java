@@ -23,6 +23,7 @@ public class ServerMemberClient {
         HttpEntity<?> request = new HttpEntity<>(headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("memberId", String.valueOf(memberId));
+        
         ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(SERVER_LIST_BY_MEMBER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class, urlParameters);
         return response.getBody();
     }
@@ -34,7 +35,7 @@ public class ServerMemberClient {
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("serverId", String.valueOf(serverId));
 
-        ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(MEMBERS_BY_SERVER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class);
+        ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(MEMBERS_BY_SERVER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class, urlParameters);
         return response.getBody();
     }
 } 
