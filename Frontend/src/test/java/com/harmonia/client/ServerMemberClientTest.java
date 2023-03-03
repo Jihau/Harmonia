@@ -43,7 +43,7 @@ public class ServerMemberClientTest {
 
         Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any()))
                 .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
-        ServerMemberPO[] actualServers =  serverMemberClient.listServersByMemberId();
+        ServerMemberPO[] actualServers =  serverMemberClient.listServersByMemberId(Long.valueOf(1));
         assertNotNull(actualServers);
         assertArrayEquals(expectedServers, actualServers);
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any());

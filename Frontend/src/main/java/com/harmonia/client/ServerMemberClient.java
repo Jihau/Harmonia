@@ -22,6 +22,8 @@ public class ServerMemberClient {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> request = new HttpEntity<>(headers);
         
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(UserId));
         ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(SERVER_LIST_BY_MEMBER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class);
         return response.getBody();
     }

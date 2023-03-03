@@ -18,11 +18,11 @@ public class HarmoniaConstants {
     public static final String CHANNEL_EDIT_URL = BASE_URL + "/channel/{channelId}";
     public static final String SERVER_LIST_BY_NAME_URL = BASE_URL + "/server/name/{serverName}";
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/{memberId}";
-    public static final String MEMBERS_BY_SERVER_ID_URL = BASE_URL + "members/{serverId}";
+    public static final String MEMBERS_BY_SERVER_ID_URL = BASE_URL + "/members/{serverId}";
 
-    public static final String PM_GETALL_URL = BASE_URL;
-    public static final String PM_ADD_URL = BASE_URL;
-    public static final String PM_REMOVE_URL = BASE_URL;
-    public static final String PM_EDIT_URL = BASE_URL + "pmessage/{pMessageId}";
+    public static final String PM_GETALL_URL = BASE_URL + "/pmessage";
+    public static final String PM_ADD_URL = BASE_URL + "/pmessage";
+    public static final String PM_REMOVE_URL = BASE_URL + "/pmessage";
+    public static final String PM_EDIT_URL = BASE_URL + "/pmessage/{pMessageId}";
     
 }

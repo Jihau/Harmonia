@@ -6,6 +6,7 @@ import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
 import com.harmonia.po.UserPO;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -41,7 +42,7 @@ public class RegistrationController {
     Label errorLabel;
     
     @FXML
-    public void onRegisterButtonClick() {
+    public synchronized void onRegisterButtonClick() {
         UserClient userclient = new UserClient();
 
         String email = emailField.getText();
@@ -57,20 +58,20 @@ public class RegistrationController {
         addMe.setUsername(username);
         addMe.setProfileIcon("https://www.eurokolikot.com/image/cache/data/10800/suomi-2022-2-euro-kansallisbaletti-unc-1-200x200.jpg");
 
-        if (emailField.getText()!="" && usernameField.getText()!="" && pword.equals(RepeatPword)) {
+        if (email!="" && username!="" && pword!="" && pword.equals(RepeatPword)) {
             System.out.println("Passwords match");
             try {
                 System.out.println("Attempting HTTP");
                 userclient.addUser(addMe);
                 System.out.println("HTTP done");
 
-                Alert createdAlert = new Alert(AlertType.INFORMATION);
-                createdAlert.setTitle("Account created");
-                createdAlert.setContentText("click to go to login");
-                createdAlert.setHeaderText("Account created");
-                createdAlert.showAndWait();
+                errorLabel.setVisible(true);
+                errorLabel.setText("Registration successful!\nPlease wait a moment");
 
                 System.out.println("redirecting");
+
+                wait(3000);
+                
 
                 FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
                 Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
@@ -78,6 +79,8 @@ public class RegistrationController {
                 stage.setScene(scene);
                 stage.setTitle("Harmonia");
                 stage.show();
+                
+                
 
             } catch (Exception e) {
                 Alert ServerAlert = new Alert(AlertType.ERROR);
@@ -105,5 +108,20 @@ public class RegistrationController {
         stage.setTitle("Harmonia");
         stage.show();
     }
+
+    public static void delay(long millis, Runnable continuation) {
+        Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(millis); }
+                catch (InterruptedException e) { }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(event -> continuation.run());
+        new Thread(sleeper).start();
+    }
+
+
     
 }
