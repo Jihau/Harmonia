@@ -154,6 +154,7 @@ public class ServerController {
                     System.out.println("Null found");
                 } else {
                     System.out.println("Deleting blind");
+                    channelBlind.getChildren().clear();
                     root.getChildren().remove(channelBlind);
                     ChannelPO selected = channelObjectList.get(channelList.getSelectionModel().getSelectedIndex());
                     selectedChannel = selected;
@@ -294,6 +295,7 @@ public class ServerController {
             newMessage.setMessageText(sendMessageField.getText());
 
             publicMessageClient.sendPublicMessage(newMessage);
+            sendMessageField.setText("");
         }
         populateMessageList();
     }

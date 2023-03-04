@@ -23,45 +23,6 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ServerController">
    <children>
-      <AnchorPane layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
-         <children>
-            <Pane fx:id="channelBlind" prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
-               <children>
-                  <ImageView fitHeight="348.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/LoginBg.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="blindLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="253.0" prefHeight="134.0" prefWidth="652.0" text="Choose a channel to start chatting">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006711409395973154">
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.61710524559021" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
-               </children>
-            </Pane>
-         </children>
-      </AnchorPane>
       <GridPane prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="635.0" minWidth="10.0" prefWidth="322.0" />
@@ -186,7 +147,7 @@
                         <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="memberList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                         <Label prefHeight="45.0" prefWidth="334.0" text="Server members" />
                      </children>
                   </GridPane>
@@ -220,6 +181,45 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="channelBlind" layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
+         <children>
+            <Pane prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
+               <children>
+                  <ImageView fitHeight="348.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/LoginBg.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="blindLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="253.0" prefHeight="134.0" prefWidth="652.0" text="Choose a channel to start chatting">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006711409395973154">
+                                 <color>
+                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.61710524559021" blue="0.8815789222717285" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
                </children>
             </Pane>
          </children>
