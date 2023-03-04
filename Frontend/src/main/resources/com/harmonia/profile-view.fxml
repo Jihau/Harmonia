@@ -21,7 +21,7 @@
          </effect>
       </Rectangle>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#122eb9ed" height="78.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
-      <ImageView id="editIconPen" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="23.0" layoutX="798.0" layoutY="323.0" opacity="0.42">
+      <ImageView id="editIconPen" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="23.0" layoutX="787.0" layoutY="323.0" opacity="0.42">
          <image>
             <Image url="@img/pen.png" />
          </image>
@@ -147,10 +147,11 @@
             <Font name="Lato Regular" size="14.0" />
          </font>
       </Label>
-      <TextField id="bioField" layoutX="397.0" layoutY="322.0" opacity="0.82" prefHeight="25.0" prefWidth="386.0" promptText="Write a description.." styleClass="form" stylesheets="@css/form.css">
+      <TextField id="bioField" fx:id="bioTextField" layoutX="397.0" layoutY="325.0" onAction="#editBioTextField" opacity="0.82" prefHeight="25.0" prefWidth="372.0" promptText="Write a description.." styleClass="form" stylesheets="@css/form.css">
          <effect>
             <Reflection fraction="0.09" />
          </effect>
       </TextField>
+      <Button id="editBioBtn" fx:id="editBioBtn" layoutX="786.0" layoutY="322.0" mnemonicParsing="false" onAction="#editBioText" opacity="0.0" prefHeight="25.0" prefWidth="23.0" />
    </children>
 </AnchorPane>

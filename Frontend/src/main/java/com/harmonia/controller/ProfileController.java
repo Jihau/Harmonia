@@ -1,31 +1,27 @@
 package com.harmonia.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class ProfileController {
     @FXML
@@ -34,81 +30,80 @@ public class ProfileController {
     @FXML
     public Label BioLabel;
 
-    private UserPO user = new UserPO();
-    /* placeholder, get from DB on load later */
+    @FXML
+    public Button editBioBtn;
 
+    @FXML
+    public TextField bioTextField;
+
+    UserClient userclient = new UserClient();
     @FXML
     AnchorPane root;
-
+    /* placeholder, get from DB on load later */
     @FXML
     Button ProfileToFriendButton;
-
     @FXML
     Button profileToChannelsButton;
-
     @FXML
     Button profiletohomeButton;
-
     @FXML
     ImageView profileImage;
-
     @FXML
     Label UserIdText;
-
     @FXML
     Label UsernameText;
-
+    private final UserPO friend = new UserPO();
     /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=settings
+     * navigation button for nav menu
+     * letter combination before name indicates in what view the button is from
+     * h=harmonia-view
+     * fm=messages-view
+     * p=profile-view
+     * s=settings
      */
     @FXML
     private Button pFriendsBtn;
 
     /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=settings
+     * navigation button for nav menu
+     * letter combination before name indicates in what view the button is from
+     * h=harmonia-view
+     * fm=messages-view
+     * p=profile-view
+     * s=settings
      */
     @FXML
     private Button pSettingsBtn;
 
     /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=settings
+     * navigation button for nav menu
+     * letter combination before name indicates in what view the button is from
+     * h=harmonia-view
+     * fm=messages-view
+     * p=profile-view
+     * s=settings
      */
     @FXML
     private Button pProfileBtn;
 
     /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=settings
+     * navigation button for nav menu
+     * letter combination before name indicates in what view the button is from
+     * h=harmonia-view
+     * fm=messages-view
+     * p=profile-view
+     * s=settings
      */
     @FXML
     private Button pHomePageBtn;
 
     /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=settings
+     * navigation button for nav menu
+     * letter combination before name indicates in what view the button is from
+     * h=harmonia-view
+     * fm=messages-view
+     * p=profile-view
+     * s=settings
      */
     @FXML
     private Button pCommunityBtn;
@@ -120,18 +115,32 @@ public class ProfileController {
     @FXML
     private Button logoutButton;
 
+    private static Image convertToFxImage(BufferedImage image) {
+        WritableImage wr = null;
+        if (image != null) {
+            wr = new WritableImage(image.getWidth(), image.getHeight());
+            PixelWriter pw = wr.getPixelWriter();
+            for (int x = 0; x < image.getWidth(); x++) {
+                for (int y = 0; y < image.getHeight(); y++) {
+                    pw.setArgb(x, y, image.getRGB(x, y));
+                }
+            }
+        }
+
+        return new ImageView(wr).getImage();
+    }
+
     public void initialize() {
         user = HarmoniaConstants.LOGGED_USERS;
 
         try {
-            Image profImage = new Image(user.getProfileIcon());    
+            Image profImage = new Image(friend.getProfileIcon());
             profileImage.setImage(profImage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        UsernameText.setText(user.getUsername());
-        UserIdText.setText("#" + String.valueOf(user.getUserId()));
+        UsernameText.setText(friend.getUsername());
+        UserIdText.setText("#" + friend.getUserId());
         BioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
         System.out.println(BioText.getText());
     }
@@ -142,7 +151,8 @@ public class ProfileController {
         changeScene("messages-view.fxml");
     }
 
-    @FXML public void onProfileToChannelsButtonClick(ActionEvent click) {
+    @FXML
+    public void onProfileToChannelsButtonClick(ActionEvent click) {
         System.out.println("changing to intro-view");
         changeScene("intro-view.fxml");
     }
@@ -167,21 +177,6 @@ public class ProfileController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static Image convertToFxImage(BufferedImage image) {
-        WritableImage wr = null;
-        if (image != null) {
-            wr = new WritableImage(image.getWidth(), image.getHeight());
-            PixelWriter pw = wr.getPixelWriter();
-            for (int x = 0; x < image.getWidth(); x++) {
-                for (int y = 0; y < image.getHeight(); y++) {
-                    pw.setArgb(x, y, image.getRGB(x, y));
-                }
-            }
-        }
-    
-        return new ImageView(wr).getImage();
     }
 
     @FXML
@@ -253,6 +248,27 @@ public class ProfileController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void editBioTextField(ActionEvent event) {
+
+    }
+
+    public void editBioText() {
+
+        try {
+            UserPO userPO = new UserPO();
+            userPO.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
+            userPO.setBio(bioTextField.getText());
+            System.out.println(userPO.getUserId());
+            HarmoniaConstants.LOGGED_USERS = userclient.editBio(userPO);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alert failedalert = new Alert(Alert.AlertType.ERROR);
+            failedalert.setContentText("Failed to update user");
+            failedalert.show();
+            System.out.println("Failed to update user");
         }
     }
 

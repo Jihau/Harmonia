@@ -40,4 +40,15 @@ public class EditUserClientTest {
         UserPO responseUserPO = userClient.editIcon(request);
         assertEquals(request.getProfileIcon(), responseUserPO.getProfileIcon());
     }
+
+    @Test
+    public void editUserBioTest()  {
+        UserPO request = new UserPO();
+        request.setUserId(1);
+        request.setBio("I like cats");
+        when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), Mockito.<Class<UserPO>>any(), anyMap()))
+                .thenReturn(new ResponseEntity<>((request), HttpStatus.OK));
+        UserPO responseUserPO = userClient.editBio(request);
+        assertEquals(request.getBio(), responseUserPO.getBio());
+    }
 }
