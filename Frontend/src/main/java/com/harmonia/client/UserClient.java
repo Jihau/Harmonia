@@ -58,6 +58,14 @@ public class UserClient {
         return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
     }
 
+    public UserPO editBio(UserPO user) {
+        HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
+        HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("userId", String.valueOf(user.getUserId()));
+        return restTemplate.exchange(USERS_EDIT_URL, HttpMethod.PUT, request, UserPO.class, urlParameters).getBody();
+    }
+
     public UserPO editPassword(UserPO user) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<UserPO> request = new HttpEntity<>(user, headers);
