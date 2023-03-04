@@ -12,7 +12,7 @@ public class PublicMessageService {
     @Autowired
     private PublicMessageRepository publicMessageRepository;
 
-    public PublicMessageService(PublicMessageRepository publicMessageRepository){
+    public PublicMessageService(PublicMessageRepository publicMessageRepository) {
         this.publicMessageRepository = publicMessageRepository;
     }
 
@@ -28,18 +28,18 @@ public class PublicMessageService {
         return publicMessageRepository.findAll();
     }
 
-    public void deletePublicMessage(PublicMessage pm){
-        publicMessageRepository.deleteById(pm.getPmessageId());
-        System.out.println("Message with ID: " + pm.getPmessageId() + " is deleted.");
+    public void deletePublicMessage(Long publicMessageId) {
+        publicMessageRepository.deleteById(publicMessageId);
+        System.out.println("Message with ID: " + publicMessageId + " is deleted.");
     }
 
-    public void editPublicMessage(Long pmessageId, String newText){
+    public void editPublicMessage(Long pmessageId, String newText) {
         Optional<PublicMessage> optionalPublicMessage = publicMessageRepository.findById(pmessageId);
-        if (optionalPublicMessage.isPresent()){
+        if (optionalPublicMessage.isPresent()) {
             PublicMessage publicMessage = optionalPublicMessage.get();
             publicMessage.setMessageText(newText);
             publicMessageRepository.save(publicMessage);
-        }else {
+        } else {
             throw new IllegalArgumentException("Message not found");
         }
     }

@@ -44,8 +44,7 @@ public class ChannelClientTest {
         String response = "[{\"channelId\":1,\"channelName\":\"TestChannel\",\"timestamp\":\"2023-03-01\",\"channelType\":\"Text\",\"serverId\":1,\"publicMessages\":[{\"messageText\":\"Third message\",\"pmessageId\":3,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"},{\"messageText\":\"Hellooooo everyone!!!!!\",\"pmessageId\":1,\"channelId\":1,\"authorId\":1,\"timestamp\":\"2023-03-01\"},{\"messageText\":\"Who the heck are you !!!\",\"pmessageId\":2,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"}]}]";
         ChannelPO[] expectedChannels = channelReader.readValue(response);
 
-        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ChannelPO[]>>any()))
-                .thenReturn(new ResponseEntity<>(expectedChannels, HttpStatus.OK));
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ChannelPO[]>>any())).thenReturn(new ResponseEntity<>(expectedChannels, HttpStatus.OK));
         ChannelPO[] actualChannels = channelClient.listAllChannels();
         assertNotNull(actualChannels);
         assertArrayEquals(expectedChannels, actualChannels);
@@ -64,13 +63,7 @@ public class ChannelClientTest {
         String response = "{\"channelId\":4,\"channelName\":\"Test channel\",\"timestamp\":\"2023-03-02\",\"channelType\":\"Text\",\"serverId\":1,\"publicMessages\":null}";
 
         // Mock the HTTP request
-        Mockito.when(restTemplate.exchange(
-                anyString(),
-                Mockito.any(HttpMethod.class),
-                Mockito.<HttpEntity<ChannelPO>>any(),
-                Mockito.<Class<ChannelPO>>any(),
-                Mockito.<Map<String, ?>>any())
-        ).thenReturn(new ResponseEntity<>(channelReader.readValue(response, ChannelPO.class), HttpStatus.OK));
+        Mockito.when(restTemplate.exchange(anyString(), Mockito.any(HttpMethod.class), Mockito.<HttpEntity<ChannelPO>>any(), Mockito.<Class<ChannelPO>>any(), Mockito.<Map<String, ?>>any())).thenReturn(new ResponseEntity<>(channelReader.readValue(response, ChannelPO.class), HttpStatus.OK));
 
         // Call the method under test
         ChannelPO responseChannelPO = channelClient.addChannel(request);
@@ -80,13 +73,7 @@ public class ChannelClientTest {
 
         // Verify that the HTTP request was made with the expected arguments
         ArgumentCaptor<HttpEntity<ChannelPO>> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
-        Mockito.verify(restTemplate, Mockito.times(1)).exchange(
-                Mockito.eq("http://localhost:8080/channel"),
-                Mockito.eq(HttpMethod.POST),
-                httpEntityCaptor.capture(),
-                Mockito.eq(ChannelPO.class),
-                Mockito.eq(Collections.emptyMap())
-        );
+        Mockito.verify(restTemplate, Mockito.times(1)).exchange(Mockito.eq("http://localhost:8080/channel"), Mockito.eq(HttpMethod.POST), httpEntityCaptor.capture(), Mockito.eq(ChannelPO.class), Mockito.eq(Collections.emptyMap()));
         HttpEntity<ChannelPO> capturedHttpEntity = httpEntityCaptor.getValue();
         ChannelPO capturedRequest = capturedHttpEntity.getBody();
 
@@ -97,28 +84,19 @@ public class ChannelClientTest {
 
     @Test
     public void deleteChannelTest() {
-        lenient().when(restTemplate.exchange(anyString(),
-                Mockito.any(),
-                Mockito.<HttpEntity<Void>>any(),
-                Mockito.<Class<Void>>any(),
-                Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
+        lenient().when(restTemplate.exchange(anyString(), Mockito.any(), Mockito.<HttpEntity<Void>>any(), Mockito.<Class<Void>>any(), Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         ResponseEntity<Void> response = channelClient.removeChannel(1);
-        verify(restTemplate, times(1)).exchange(anyString(),
-                Mockito.any(),
-                Mockito.<HttpEntity<Void>>any(),
-                Mockito.<Class<Void>>any(),
-                Mockito.anyMap());
+        verify(restTemplate, times(1)).exchange(anyString(), Mockito.any(), Mockito.<HttpEntity<Void>>any(), Mockito.<Class<Void>>any(), Mockito.anyMap());
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    public void editChannelTest()  {
+    public void editChannelTest() {
         ChannelPO request = new ChannelPO();
         request.setChannelId(3);
         request.setChannelName("Tested channel");
-        when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), Mockito.<Class<ChannelPO>>any(), anyMap()))
-                .thenReturn(new ResponseEntity<>((request), HttpStatus.OK));
+        when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), Mockito.<Class<ChannelPO>>any(), anyMap())).thenReturn(new ResponseEntity<>((request), HttpStatus.OK));
         ChannelPO responseChannelPO = channelClient.editChannel(request);
         assertEquals(request.getChannelName(), responseChannelPO.getChannelName());
     }
