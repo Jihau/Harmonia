@@ -139,6 +139,7 @@ public class ChatController {
     public void initialize() {
         comparator = Comparator.comparingInt(MessagePO::getDmessageId);
 
+        this.loggedInUser = new UserPO();
         loggedInUser.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
         loggedInUser.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
         loggedInUser.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
@@ -147,7 +148,6 @@ public class ChatController {
         messageClient = new DirectMessageClient();
 
         userClient = new UserClient();
-        this.loggedInUser = new UserPO();
 
         chatTargetId = 2;
 
