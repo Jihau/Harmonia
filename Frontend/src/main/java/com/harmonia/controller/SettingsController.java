@@ -23,20 +23,7 @@ import org.springframework.http.HttpStatus;
 
 public class SettingsController {
 
-    UserClient userClient = new UserClient();
-
     @FXML
-    private ListView<String> serverList;
-
-    private ServerMemberClient serverMemberClient;
-
-    private void populateServerListView() {
-        ServerMemberPO[] servers = serverMemberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
-        for (ServerMemberPO server : servers) {
-            serverList.getItems().add(server.getServerName());
-        }
-    }
-
     private UserPO user;
 
     UserClient userclient = new UserClient();
@@ -44,71 +31,22 @@ public class SettingsController {
     AnchorPane root;
 
     @FXML
-    TextField UsernameField;
-
-    @FXML
     TextField profImgField;
 
     @FXML
     Button submitButton;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
     Button sHomePageBtn;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
     @FXML
     Button sCommunityBtn;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
     @FXML
     Button sFriendsBtn;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
     @FXML
     Button sProfileBtn;
 
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
     @FXML
     Button sSettingsBtn;
 
@@ -118,25 +56,12 @@ public class SettingsController {
     public void initialize() {
 
         /* placeholder, get user from session */
-
         System.out.println("initializing");
-
         this.user = new UserPO();
-
         this.user.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
-        this.user.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
-        /* this.user.setProfileIcon("https://vignette.wikia.nocookie.net/awesomeanimeandmanga/images/3/34/K-on%21-avatar-200x200.jpg/revision/latest?cb=20110517050049"); */
         
         /* placeholder, get user from session */
-
         profImgField.setText(this.user.getProfileIcon());
-
-        /*
-        Listing servers
-         */
-
-        serverMemberClient = new ServerMemberClient();
-        populateServerListView();
     }
 
     public void onSaveButtonClick() {
