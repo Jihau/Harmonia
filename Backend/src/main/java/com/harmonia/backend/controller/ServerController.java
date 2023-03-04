@@ -118,4 +118,10 @@ public class ServerController {
         serverService.editServerName(serverId, server.getServerName(), server.getServerCategory());
         return ResponseEntity.ok("Server name has been edited");
     }
+
+    @GetMapping("serverId/{serverId}")
+    @CrossOrigin
+    public Server findServerByServerId(@PathVariable("serverId") Long serverId ){
+        return serverService.findServerByServerId(serverId);
+    }
 }

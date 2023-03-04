@@ -11,4 +11,6 @@ public interface ServerRepository extends CrudRepository<Server, Long> {
     List<Server> listServersByOwnerId(Long userId);
 
     Iterable<Server> listServersByServerCategory(String serverCategory);
+
+    Server findByServerId(Long serverId);
 }
