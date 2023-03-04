@@ -348,7 +348,7 @@ public class ServerController {
     @FXML
     public void onReturnButtonClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
             Stage stage = (Stage) returnButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);

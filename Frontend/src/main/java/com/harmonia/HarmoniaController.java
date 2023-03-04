@@ -275,7 +275,7 @@ public class HarmoniaController {
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) logoutButton.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
+            stage.setTitle("Your communities");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
