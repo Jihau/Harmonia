@@ -119,6 +119,10 @@ public class ServerController {
 
     ObservableList<ServerMemberPO> userObjectList;
     ObservableList<String> userStringList;
+ 
+    public ServerController(ServerPO server) {
+        this.selectedServer = server;
+    }
 
     public void initialize() {
 
@@ -132,7 +136,9 @@ public class ServerController {
 
         selectedChannel = channelClient.listAllChannels()[0]; 
 
-        receiveData();
+        System.out.println(selectedServer.getServerId());
+        System.out.println(selectedServer.getServerName());
+
         
         PMObjectList = FXCollections.observableArrayList();
         PMStringList = FXCollections.observableArrayList();
@@ -168,16 +174,15 @@ public class ServerController {
             }
         });
 
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.setTitle(selectedServer.getServerName());
-
     }
 
-    public void receiveData() {
+    @FXML
+    public void receiveData(MouseEvent event) {
+        Node node = (Node) event.getSource();
 
-        Stage stage = (Stage) root.getScene().getWindow();
+        Stage stage = (Stage) node.getScene().getWindow();
 
-        ServerPO selectServer = (ServerPO) stage.getUserData();
+        selectedServer = (ServerPO) stage.getUserData();
     }
 
     public void populateChannelList() {
@@ -313,11 +318,14 @@ public class ServerController {
     }
 
     public void getObjects() {
+        System.out.println("Getting objects");
         channelObjectList.clear();
         userObjectList.clear();
         PMObjectList.clear();
 
-        this.channelObjectList.addAll(channelClient.listAllChannels());
+        for (ChannelPO channel : channelClient.listAllChannels()) {
+            if (channel.getServerId()==selectedServer.getServerId()) { channelObjectList.add(channel); }            
+        }
 
         for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long)selectedServer.getServerId())) {
             userObjectList.add(member);
@@ -340,7 +348,7 @@ public class ServerController {
     @FXML
     public void onReturnButtonClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Stage stage = (Stage) returnButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setScene(scene);

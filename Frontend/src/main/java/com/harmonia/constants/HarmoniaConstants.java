@@ -3,7 +3,7 @@ package com.harmonia.constants;
 import com.harmonia.po.UserPO;
 
 public class HarmoniaConstants {
-    public static final String BASE_URL = "http://localhost:8080";
+    public static final String BASE_URL = "http://ec2-44-208-34-11.compute-1.amazonaws.com:8080";
 
     public static final String USERS_DELETE_URL = BASE_URL + "/user/{userId}";
     public static final String USERS_LIST_URL = BASE_URL + "/user";
@@ -27,7 +27,7 @@ public class HarmoniaConstants {
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
     public static final String SERVER_LIST_BY_ID_URL = BASE_URL + "/server/serverId/{serverId}";
 
-    public static final String MEMBERS_BY_SERVER_ID_URL = BASE_URL + "/member/members/{serverId}";
+    public static final String MEMBERS_BY_SERVER_ID_URL = BASE_URL + "/member/serverId/{serverId}";
 
     public static final String PM_GETALL_URL = BASE_URL + "/pmessage";
     public static final String PM_ADD_URL = BASE_URL + "/pmessage";

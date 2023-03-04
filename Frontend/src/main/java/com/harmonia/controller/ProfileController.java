@@ -34,7 +34,7 @@ public class ProfileController {
     @FXML
     public Label BioLabel;
 
-    private UserPO friend = new UserPO();
+    private UserPO user = new UserPO();
     /* placeholder, get from DB on load later */
 
     @FXML
@@ -121,19 +121,17 @@ public class ProfileController {
     private Button logoutButton;
 
     public void initialize() {
-        friend.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
-        friend.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
-        friend.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
-        friend.setProfileIcon(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
+        user = HarmoniaConstants.LOGGED_USERS;
 
         try {
-            Image profImage = new Image(friend.getProfileIcon());    
+            Image profImage = new Image(user.getProfileIcon());    
             profileImage.setImage(profImage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        UsernameText.setText(friend.getUsername());
-        UserIdText.setText("#" + String.valueOf(friend.getUserId()));
+
+        UsernameText.setText(user.getUsername());
+        UserIdText.setText("#" + String.valueOf(user.getUserId()));
         BioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
         System.out.println(BioText.getText());
     }

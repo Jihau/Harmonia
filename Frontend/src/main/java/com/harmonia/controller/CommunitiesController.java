@@ -137,21 +137,27 @@ public class CommunitiesController {
     }
 
     private void sendToServer(MouseEvent event ,ServerPO sendHere) {
+
         ServerPO server = sendHere;
         Node node = (Node) event.getSource();
 
         Stage stage = (Stage) node.getScene().getWindow();
-        stage.close();
 
         try {
-            Parent root = FXMLLoader.load(HarmoniaApplication.class.getResource("server-view.fxml"));
             stage.setUserData(server);
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
+            loader.setController(new ServerController(sendHere));
+
+            Parent root = loader.load();
+            
             Scene scene = new Scene(root);
+            stage.setTitle(sendHere.getServerName());
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @FXML
@@ -182,5 +188,16 @@ public class CommunitiesController {
         }
     }
 
-
+    public void logoutOnButtonClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+            Stage stage = (Stage) mcProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Login to Harmonia");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
