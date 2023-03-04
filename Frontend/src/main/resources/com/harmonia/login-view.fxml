@@ -24,7 +24,7 @@
       </ImageView>
       <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <children>
-            <Label layoutX="62.0" layoutY="14.0" text="HARMONIA" textFill="WHITE">
+            <Label layoutX="62.0" layoutY="43.0" text="HARMONIA" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
@@ -56,7 +56,7 @@
             </Pane>
             <TextField fx:id="usernameField" layoutX="33.0" layoutY="189.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form">
                <effect>
-                  <DropShadow />
+                  <DropShadow height="5.23" radius="2.1225" spread="0.06" width="5.26" />
                </effect>
                <font>
                   <Font name="Lato Regular" size="18.0" />
@@ -64,7 +64,7 @@
             </TextField>
             <PasswordField fx:id="passwordField" layoutX="33.0" layoutY="285.0" maxWidth="283.0" prefHeight="51.0" prefWidth="270.0" styleClass="form" stylesheets="@css/form.css">
                <effect>
-                  <DropShadow />
+                  <DropShadow height="5.23" radius="2.1225" spread="0.06" width="5.26" />
                </effect>
             </PasswordField>
             <Button fx:id="loginButton" layoutX="33.0" layoutY="504.0" onAction="#onLoginButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" text="LOGIN">
@@ -85,7 +85,7 @@
                </font></Hyperlink>
          </children>
          <effect>
-            <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
+            <DropShadow height="20.0" radius="8" spread="1.0" width="20.0">
                <color>
                   <Color red="0.10588235408067703" green="0.364705890417099" blue="0.8627451062202454" />
                </color>

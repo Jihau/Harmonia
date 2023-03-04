@@ -1,5 +1,8 @@
 package com.harmonia;
 
+import com.harmonia.client.ServerMemberClient;
+import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.po.ServerMemberPO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +41,14 @@ public class HarmoniaController {
 
     @FXML
     public Button loginButton;
+    @FXML
+    public TextField searchBar;
+    @FXML
+    public Button searchButton;
+    @FXML
+    public ListView serverList;
+
+
 
     /**
      * The username field for the user.
@@ -128,7 +139,6 @@ public class HarmoniaController {
      */
     @FXML
     private Button hSettingsBtn;
-
 
     @FXML
     protected void onLoginButtonClick() {

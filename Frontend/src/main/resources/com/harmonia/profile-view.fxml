@@ -12,9 +12,10 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ListView?>
 <AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#182a39" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#060b0e" height="335.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
          <effect>
             <DropShadow height="30.0" radius="14.5" width="30.0" />
@@ -28,7 +29,7 @@
                   <Image url="@img/homeIconInactive.png" />
                </image>
             </ImageView>
-            <Label layoutX="49.0" layoutY="61.0" text="Explore" textFill="#9f9f9f">
+            <Label layoutX="49.0" layoutY="61.0" text="Home" textFill="#9f9f9f">
                <font>
                   <Font size="16.0" />
                </font>
@@ -38,7 +39,7 @@
                   <Image url="@img/communitiesIconInactive.png" />
                </image>
             </ImageView>
-            <Label layoutX="50.0" layoutY="104.0" text="My communities" textFill="#9f9f9f">
+            <Label layoutX="50.0" layoutY="104.0" text="Servers" textFill="#9f9f9f">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
@@ -53,7 +54,7 @@
                   <Image url="@img/settingsIconInactive.png" />
                </image>
             </ImageView>
-            <Label layoutX="49.0" layoutY="146.0" prefHeight="23.0" prefWidth="144.0" text="Friends &amp; Messages" textFill="#9f9f9f">
+            <Label layoutX="49.0" layoutY="146.0" prefHeight="23.0" prefWidth="144.0" text="Direct messages" textFill="#9f9f9f">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
