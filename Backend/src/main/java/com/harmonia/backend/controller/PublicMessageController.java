@@ -15,33 +15,33 @@ public class PublicMessageController {
     @Autowired
     private PublicMessageService publicMessageService;
 
-    public PublicMessageController(PublicMessageService pmService){
+    public PublicMessageController(PublicMessageService pmService) {
         this.publicMessageService = pmService;
     }
 
     @GetMapping
     @CrossOrigin
-    public Iterable<PublicMessage> listMessages(@RequestParam(name="pmessageId", required = false) String dmId){
+    public Iterable<PublicMessage> listMessages(@RequestParam(name = "pmessageId", required = false) String dmId) {
         return publicMessageService.listPublicMessages();
     }
 
     @PostMapping
     @CrossOrigin
-    public PublicMessage sendPMessage(@RequestBody PublicMessage publicMessage){
+    public PublicMessage sendPMessage(@RequestBody PublicMessage publicMessage) {
         return publicMessageService.addPublicMessage(publicMessage);
     }
 
-    @DeleteMapping
+    @DeleteMapping("pmessageId/{messageId}")
     @CrossOrigin
-    public ResponseEntity<String> deletePMessage(@RequestBody PublicMessage publicMessage) {
-        System.out.println("C: the message with id : " + publicMessage.getPmessageId() + " is deleted");
-        publicMessageService.deletePublicMessage(publicMessage);
+    public ResponseEntity<String> deletePMessage(@PathVariable("messageId") Long publicMessageId) {
+        System.out.println("C: the message with id : " + publicMessageId + " is deleted");
+        publicMessageService.deletePublicMessage(publicMessageId);
         return new ResponseEntity<>("Message has been deleted", HttpStatus.OK);
     }
 
     @PutMapping("/{messageId}")
     @CrossOrigin
-    public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody PublicMessage publicMessage){
+    public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody PublicMessage publicMessage) {
         publicMessageService.editPublicMessage(messageId, publicMessage.getMessageText());
         return ResponseEntity.ok("Message has been edited");
     }
