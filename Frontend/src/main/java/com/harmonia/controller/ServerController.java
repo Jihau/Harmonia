@@ -122,7 +122,11 @@ public class ServerController {
 
         selectedChannel = channelClient.listAllChannels()[0]; 
 
-        // selectedServer = serverClient.listAllServers()[0];
+
+        // get server from event later 
+        selectedServer = serverClient.listAllServers()[0];
+
+
 
         selectedServer.setServerId(1);
         selectedServer.setServerCategory("Test");
