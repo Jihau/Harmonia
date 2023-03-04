@@ -124,9 +124,7 @@ public class ServerController {
 
 
         // get server from event later 
-        selectedServer = serverClient.listAllServers()[0];
-
-
+        selectedServer = new ServerPO();
 
         selectedServer.setServerId(1);
         selectedServer.setServerCategory("Test");
@@ -281,7 +279,7 @@ public class ServerController {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
         
         if (PMObjectList.get(index).getAuthorId()==loggedInUser.getUserId()) {
-            publicMessageClient.removeMessage(selectedMessage);
+            publicMessageClient.removeMessage(selectedMessage.getPmessageId());
         }
         populateMessageList();
     }
