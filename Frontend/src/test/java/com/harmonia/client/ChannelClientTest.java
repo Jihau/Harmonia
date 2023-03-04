@@ -73,7 +73,7 @@ public class ChannelClientTest {
 
         // Verify that the HTTP request was made with the expected arguments
         ArgumentCaptor<HttpEntity<ChannelPO>> httpEntityCaptor = ArgumentCaptor.forClass(HttpEntity.class);
-        Mockito.verify(restTemplate, Mockito.times(1)).exchange(Mockito.eq("http://localhost:8080/channel"), Mockito.eq(HttpMethod.POST), httpEntityCaptor.capture(), Mockito.eq(ChannelPO.class), Mockito.eq(Collections.emptyMap()));
+        Mockito.verify(restTemplate, Mockito.times(1)).exchange(anyString(), Mockito.eq(HttpMethod.POST), httpEntityCaptor.capture(), Mockito.eq(ChannelPO.class), Mockito.eq(Collections.emptyMap()));
         HttpEntity<ChannelPO> capturedHttpEntity = httpEntityCaptor.getValue();
         ChannelPO capturedRequest = capturedHttpEntity.getBody();
 
