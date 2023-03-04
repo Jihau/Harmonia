@@ -95,4 +95,9 @@ public class ServerService {
     public Iterable<Server> listServersByServerCategory(String serverCategory){
         return serverRepository.listServersByServerCategory("%" + serverCategory +"%");
     }
+
+    public Server findServerByServerId(Long serverId){
+        return serverRepository.findByServerId(serverId);
+    }
+
 }
