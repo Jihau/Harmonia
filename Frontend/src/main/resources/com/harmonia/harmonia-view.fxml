@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -76,7 +76,7 @@
                      </font>
                   </Label>
                   <Button fx:id="hHomePageBtn" layoutX="-6.0" layoutY="61.0" mnemonicParsing="false" onAction="#onhHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="hCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onhFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onhProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onhSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />

@@ -19,6 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -131,16 +132,7 @@ public class ServerController {
 
         selectedChannel = channelClient.listAllChannels()[0]; 
 
-
-        // get server from event later 
-        selectedServer = new ServerPO();
-
-        selectedServer.setServerId(1);
-        selectedServer.setServerCategory("Test");
-        selectedServer.setServerName("Server test1");
-        selectedServer.setOwnerId(1);
-
-        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        receiveData();
         
         PMObjectList = FXCollections.observableArrayList();
         PMStringList = FXCollections.observableArrayList();
@@ -156,6 +148,7 @@ public class ServerController {
 
         populateUserList();
         populateChannelList();
+
 
         channelList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -174,6 +167,17 @@ public class ServerController {
                 }
             }
         });
+
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setTitle(selectedServer.getServerName());
+
+    }
+
+    public void receiveData() {
+
+        Stage stage = (Stage) root.getScene().getWindow();
+
+        ServerPO selectServer = (ServerPO) stage.getUserData();
     }
 
     public void populateChannelList() {
