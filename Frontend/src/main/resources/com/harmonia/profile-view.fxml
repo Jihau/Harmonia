@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
+<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#060b0e" height="335.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
@@ -92,7 +92,7 @@
             <Button fx:id="pSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onpSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="pProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="pHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onpHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="pCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" onAction="#onpServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
             <Label layoutX="91.0" layoutY="688.0" text="Logout" textFill="WHITE">
                <font>

@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.SettingsController">
+<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.SettingsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
@@ -72,7 +72,7 @@
                </font>
             </Label>
             <Button fx:id="sHomePageBtn" layoutX="-6.0" layoutY="61.0" mnemonicParsing="false" onAction="#onsHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="sCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="sCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="sFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="sProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onsProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Button fx:id="sSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />

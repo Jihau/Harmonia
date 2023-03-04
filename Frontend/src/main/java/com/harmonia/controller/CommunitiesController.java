@@ -1,17 +1,38 @@
 package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.ServerClient;
+import com.harmonia.client.ServerMemberClient;
+import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.po.ServerMemberPO;
+import com.harmonia.po.ServerPO;
+
+import javafx.collections.FXCollections;
+import javafx.scene.input.MouseEvent;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class CommunitiesController {
+
+    private ServerMemberClient memberClient;
+    private ServerClient serverClient;
+    private ArrayList<ServerPO> myServers;
+
+    @FXML
+    private ListView<String> serverList;
 
     /**
      navigation button for nav menu
@@ -68,20 +89,115 @@ public class CommunitiesController {
     @FXML
     private Button mcCommunityBtn;
 
-    /*
+    
     @FXML
     protected void onmcHomePageBtnClick(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Parent root = fxmlLoader.load();
             Scene scene = new Scene((root), 1280, 720);
             Stage stage = (Stage) mcHomePageBtn.getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
+            stage.setTitle("Harmonia");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    */
+    
+
+    public void initialize() {
+        this.serverClient = new ServerClient();
+        this.memberClient = new ServerMemberClient();
+        this.myServers = new ArrayList<>();
+
+        populateServerListView();
+
+        serverList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getTarget()==null) {
+                    System.out.println("Null found");
+                } else {
+                    ServerPO selected = myServers.get(serverList.getSelectionModel().getSelectedIndex());
+
+                    sendToServer(event, selected);
+                }
+            }
+        });
+    }
+    private void populateServerListView() {
+
+        ServerMemberPO[] servers = memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        for (ServerMemberPO server : servers) {
+            myServers.add(serverClient.getServerById(server.getServerId()));
+            serverList.getItems().add(server.getServerName());
+        }
+        
+    }
+
+    private void sendToServer(MouseEvent event ,ServerPO sendHere) {
+
+        ServerPO server = sendHere;
+        Node node = (Node) event.getSource();
+
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        try {
+            stage.setUserData(server);
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
+            loader.setController(new ServerController(sendHere));
+
+            Parent root = loader.load();
+            
+            Scene scene = new Scene(root);
+            stage.setTitle(sendHere.getServerName());
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    protected void onmcFriendsBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
+            Stage stage = (Stage) mcFriendsBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Friends & messages");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onmcProfileBtnClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
+            Stage stage = (Stage) mcProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Profile");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void logoutOnButtonClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+            Stage stage = (Stage) mcProfileBtn.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Login to Harmonia");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

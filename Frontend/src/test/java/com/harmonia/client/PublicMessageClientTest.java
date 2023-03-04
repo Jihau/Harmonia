@@ -68,7 +68,7 @@ public class PublicMessageClientTest {
     }
 
     @Test
-    public void deleteChannelTest() {
+    public void removePublicMessageTest() {
         lenient().when(restTemplate.exchange(anyString(), Mockito.any(), Mockito.<HttpEntity<Void>>any(), Mockito.<Class<Void>>any(), Mockito.anyMap())).thenReturn(new ResponseEntity<>(HttpStatus.OK));
         ResponseEntity<Void> response = publicMessageClient.removeMessage(3L);
         verify(restTemplate, times(1)).exchange(anyString(), Mockito.any(), Mockito.<HttpEntity<Void>>any(), Mockito.<Class<Void>>any(), Mockito.anyMap());
@@ -77,12 +77,14 @@ public class PublicMessageClientTest {
     }
 
     @Test
-    public void editChannelTest() {
+    public void editPublicMessageTest() {
+        
         PublicMessagePO request = new PublicMessagePO();
         request.setPmessageId(3L);
         request.setMessageText("Test updating message!");
         when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), Mockito.<Class<PublicMessagePO>>any(), anyMap())).thenReturn(new ResponseEntity<>((request), HttpStatus.OK));
         PublicMessagePO responsePublicMessagePO = publicMessageClient.editPublicMessage(request);
         assertEquals(request.getMessageText(), responsePublicMessagePO.getMessageText());
+         
     }
 }

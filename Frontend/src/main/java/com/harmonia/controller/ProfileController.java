@@ -131,10 +131,7 @@ public class ProfileController {
     }
 
     public void initialize() {
-        friend.setEmail(HarmoniaConstants.LOGGED_USERS.getEmail());
-        friend.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
-        friend.setUserId(HarmoniaConstants.LOGGED_USERS.getUserId());
-        friend.setProfileIcon(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
+        user = HarmoniaConstants.LOGGED_USERS;
 
         try {
             Image profImage = new Image(friend.getProfileIcon());
@@ -222,6 +219,20 @@ public class ProfileController {
             stage.setTitle("Profile");
             stage.show();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onpServerButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Your communities");
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

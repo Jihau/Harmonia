@@ -267,4 +267,18 @@ public class HarmoniaController {
             e.printStackTrace();
         }
     }
+
+    public void onServerButtonClick() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene((root), 1280, 720);
+            Stage stage = (Stage) logoutButton.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Your communities");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

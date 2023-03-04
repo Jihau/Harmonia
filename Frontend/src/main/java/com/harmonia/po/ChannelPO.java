@@ -22,6 +22,6 @@ public class ChannelPO {
 
     @Override
     public String toString() {
-        return this.channelName;
+        return "#" + this.channelName;
     }
 }

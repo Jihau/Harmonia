@@ -21,7 +21,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ServerController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="720.0" prefWidth="1280.0">
         <columnConstraints>
@@ -39,10 +39,11 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="355.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="626.0" minHeight="10.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="355.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="626.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="626.0" minHeight="0.0" prefHeight="24.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="626.0" minHeight="10.0" prefHeight="530.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="636.0" minHeight="10.0" prefHeight="502.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="626.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <GridPane>
@@ -76,6 +77,20 @@
                         </GridPane>
                         <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
                         <Label prefHeight="17.0" prefWidth="125.0" text="Channel List" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" GridPane.rowIndex="1" />
+                        <GridPane prefHeight="82.0" prefWidth="322.0" GridPane.rowIndex="4">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Return" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                              <Label fx:id="loggedUserLabel" alignment="CENTER" prefHeight="84.0" prefWidth="161.0" text="loggedUserLabel" />
+                           </children>
+                        </GridPane>
                      </children>
                   </GridPane>
                </children>
@@ -89,17 +104,18 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane>
+                  <GridPane prefHeight="720.0" prefWidth="650.0" style="-fx-background-color: lightgrey;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="679.0" minHeight="10.0" prefHeight="679.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="679.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="679.0" minHeight="10.0" prefHeight="653.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="PublicMessagesList" prefHeight="200.0" prefWidth="200.0" />
-                        <HBox prefHeight="65.0" prefWidth="652.0" GridPane.rowIndex="1">
+                        <ListView fx:id="PublicMessagesList" prefHeight="674.0" prefWidth="652.0" GridPane.rowIndex="1" />
+                        <HBox prefHeight="60.0" prefWidth="728.0" GridPane.rowIndex="2">
                            <children>
                               <BorderPane prefHeight="66.0" prefWidth="316.0">
                                  <center>
@@ -136,9 +152,10 @@
                               </ButtonBar>
                            </children>
                         </HBox>
+                        <Label text="Channel name" />
                      </children>
                   </GridPane>
-                  <GridPane GridPane.columnIndex="1">
+                  <GridPane prefHeight="720.0" prefWidth="341.0" GridPane.columnIndex="1">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
@@ -147,8 +164,8 @@
                         <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
+                        <Label text="Server members" />
                         <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
-                        <Label prefHeight="45.0" prefWidth="334.0" text="Server members" />
                      </children>
                   </GridPane>
                </children>
@@ -157,7 +174,7 @@
       </GridPane>
       <AnchorPane fx:id="editBoxWrapper" layoutX="504.0" layoutY="577.0" prefHeight="99.0" prefWidth="470.0">
          <children>
-            <Pane fx:id="editBox" blendMode="SRC_ATOP" layoutY="-2.0" prefHeight="103.0" prefWidth="469.0" visible="false">
+            <Pane fx:id="editBox" blendMode="SRC_ATOP" layoutY="-2.0" prefHeight="103.0" prefWidth="469.0" style="-fx-border-color: black;" visible="false">
                <children>
                   <Label layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" text="Edit Message" textAlignment="CENTER" />
                   <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me">
@@ -189,7 +206,7 @@
          <children>
             <Pane prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
                <children>
-                  <ImageView fitHeight="348.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="346.0" fitWidth="652.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/LoginBg.png" />
                      </image>
