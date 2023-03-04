@@ -46,7 +46,7 @@ public class ChannelController {
      * @param channelId the ID of the Channel entity to delete.
      * @return a ResponseEntity with an HTTP status code.
      */
-    @DeleteMapping("/{channelId}")
+    @DeleteMapping("channelId/{channelId}")
     @CrossOrigin
     public ResponseEntity<Void> deleteChannel(@PathVariable Long channelId) {
         channelService.deleteChannel(channelId);
@@ -60,7 +60,7 @@ public class ChannelController {
      * @param channel the updated Channel entity.
      * @return a ResponseEntity with a success message and HTTP status code.
      */
-    @PutMapping("/{channelId}")
+    @PutMapping("/channelId/{channelId}")
     @CrossOrigin
     public ResponseEntity<String> editChannel(@PathVariable Long channelId, @RequestBody Channel channel){
         channelService.editChannel(channelId,channel.getChannelName());
