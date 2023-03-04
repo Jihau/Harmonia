@@ -68,13 +68,13 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label prefHeight="72.0" prefWidth="161.0" text="Category" />
-                                    <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="77.0" prefWidth="172.0" text="Server membercount" GridPane.columnIndex="1" />
+                                    <Label fx:id="serverCategory" prefHeight="72.0" prefWidth="161.0" text="Category" />
+                                    <Label fx:id="serverMemberCount" nodeOrientation="RIGHT_TO_LEFT" prefHeight="77.0" prefWidth="172.0" text="Server membercount" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ListView fx:id="channelList" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
+                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
                         <Label prefHeight="17.0" prefWidth="125.0" text="Channel List" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
@@ -98,12 +98,12 @@
                         <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="PublicMessages" prefHeight="200.0" prefWidth="200.0" />
+                        <ListView fx:id="PublicMessagesList" prefHeight="200.0" prefWidth="200.0" />
                         <HBox prefHeight="65.0" prefWidth="652.0" GridPane.rowIndex="1">
                            <children>
                               <BorderPane prefHeight="66.0" prefWidth="316.0">
                                  <center>
-                                    <TextField fx:id="sendMessageField" alignment="CENTER" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="779.0">
+                                    <TextField fx:id="sendMessageField" onAction="#onSendBtnClick" prefHeight="25.0" prefWidth="779.0" promptText="asdawdsdasdwa">
                                        <cursor>
                                           <Cursor fx:constant="TEXT" />
                                        </cursor>
@@ -147,7 +147,7 @@
                         <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="memberList" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
                         <Label prefHeight="45.0" prefWidth="334.0" text="Server members" />
                      </children>
                   </GridPane>
@@ -185,11 +185,11 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
+      <AnchorPane fx:id="channelBlind" layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
          <children>
-            <Pane fx:id="channelBlind" prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
+            <Pane prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
                <children>
-                  <ImageView fitHeight="634.0" fitWidth="652.0" layoutX="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="348.0" fitWidth="652.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/LoginBg.png" />
                      </image>
