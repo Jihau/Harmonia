@@ -50,7 +50,7 @@ public class ServerController {
      * @param serverCategory the category of the server to filter by
      * @return a list of servers with matching serverCategory
      */
-    @GetMapping("category/{serverCategory}")
+    @GetMapping("serverCategory/{serverCategory}")
     @CrossOrigin
     public Iterable<Server> listServersByServerCategory(@PathVariable("serverCategory") String serverCategory) {
         return serverService.listServersByServerCategory(serverCategory);

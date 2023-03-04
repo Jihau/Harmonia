@@ -3,6 +3,7 @@ package com.harmonia.backend.controller;
 import com.harmonia.backend.domain.User;
 import com.harmonia.backend.po.ChangePasswordRequest;
 import com.harmonia.backend.po.CreateUserRequest;
+import com.harmonia.backend.po.CredentialsPO;
 import com.harmonia.backend.po.UserResponse;
 import com.harmonia.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +39,11 @@ public class UserController {
     /**
      * Get a list of all users or a list of users by username if a username is provided
      *
-     * @param userName (optional) the username to search for
      * @return an iterable list of UserResponse objects
      */
     @GetMapping
     @CrossOrigin
-    public Iterable<UserResponse> listUsers(@RequestParam(name = "username", required = false) String userName) {
-        if (userName != null) {
-            return userService.listUsersByUserName(userName);
-        }
+    public Iterable<UserResponse> listUsers() {
         return userService.listUsers();
     }
 
@@ -93,10 +90,9 @@ public class UserController {
      * @return a ResponseEntity with a UserResponse object if the user is authenticated, or a not found response if not
      */
     @PostMapping("login")
-    public ResponseEntity<UserResponse> loginUser(@RequestBody Map<String, String> credentials) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
-        UserResponse user = userService.findByUsernameAndPassword(username, password);
+    public ResponseEntity<UserResponse> loginUser(@RequestBody CredentialsPO credentials) {
+
+        UserResponse user = userService.findByUsernameAndPassword(credentials.getUsername(), credentials.getPassword());
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
@@ -109,7 +105,7 @@ public class UserController {
      * @param userId the ID of the user to delete
      * @return a ResponseEntity with a status of OK
      */
-    @DeleteMapping("/userId/{userId}")
+    @DeleteMapping("userId/{userId}")
     @CrossOrigin
     public ResponseEntity<String> deleteUser(@PathVariable Long userId) {
         System.out.println("Controller: User with id : " + userId + "is deleted.");
@@ -124,7 +120,7 @@ public class UserController {
      * @param user   the User object containing the updated user data
      * @return a ResponseEntity with a UserResponse object and a status of OK
      */
-    @PutMapping("/userId/{userId}")
+    @PutMapping("userId/{userId}")
     @CrossOrigin
     public ResponseEntity<UserResponse> editUsersByUserId(@PathVariable Long userId, @RequestBody User user) {
         return new ResponseEntity<>(userService.editUser(userId, user), HttpStatus.OK);
@@ -138,7 +134,7 @@ public class UserController {
      * @return a ResponseEntity with a UserResponse and HTTP status OK if the password was changed successfully,
      * or HTTP status NOT_FOUND if the user is not found
      */
-    @PutMapping("/userId/{userId}/password")
+    @PutMapping("userId/{userId}/password")
     public ResponseEntity<UserResponse> changePassword(@PathVariable Long userId, @RequestBody ChangePasswordRequest changePasswordRequest) {
         UserResponse user = userService.changePassword(userId, changePasswordRequest.getPassword());
         if (user == null) {

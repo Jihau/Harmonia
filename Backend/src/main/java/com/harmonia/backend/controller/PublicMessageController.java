@@ -33,12 +33,11 @@ public class PublicMessageController {
     /**
      * Returns a list of all public messages.
      *
-     * @param dmId (optional) the id of the public message to filter by.
      * @return an iterable of PublicMessage objects.
      */
     @GetMapping
     @CrossOrigin
-    public Iterable<PublicMessage> listMessages(@RequestParam(name = "pmessageId", required = false) String dmId) {
+    public Iterable<PublicMessage> listMessages() {
         return publicMessageService.listPublicMessages();
     }
 
@@ -75,7 +74,7 @@ public class PublicMessageController {
      * @param publicMessage the PublicMessage object containing the updated message text.
      * @return a ResponseEntity with a message indicating success or failure of the update.
      */
-    @PutMapping("/messageId/{messageId}")
+    @PutMapping("messageId/{messageId}")
     @CrossOrigin
     public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody PublicMessage publicMessage) {
         publicMessageService.editPublicMessage(messageId, publicMessage.getMessageText());

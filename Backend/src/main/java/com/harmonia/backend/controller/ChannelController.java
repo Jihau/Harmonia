@@ -60,7 +60,7 @@ public class ChannelController {
      * @param channel the updated Channel entity.
      * @return a ResponseEntity with a success message and HTTP status code.
      */
-    @PutMapping("/channelId/{channelId}")
+    @PutMapping("channelId/{channelId}")
     @CrossOrigin
     public ResponseEntity<String> editChannel(@PathVariable Long channelId, @RequestBody Channel channel){
         channelService.editChannel(channelId,channel.getChannelName());
