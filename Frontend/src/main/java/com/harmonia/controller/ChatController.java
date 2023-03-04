@@ -6,6 +6,7 @@ import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
+import com.harmonia.utils.HarmoniaDataLoader;
 import com.harmonia.view.ChatView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,6 +134,7 @@ public class ChatController {
         conversationString = FXCollections.observableArrayList();
 
         populateListView();
+        HarmoniaDataLoader.searchUserByUsername("");
     }
 
     public ResponseEntity<?> sendMessage(MessagePO message) {
