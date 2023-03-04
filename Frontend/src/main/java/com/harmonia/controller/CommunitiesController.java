@@ -1,17 +1,32 @@
 package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.ServerMemberClient;
+import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.po.ServerMemberPO;
+import com.harmonia.po.ServerPO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class CommunitiesController {
+
+    private ServerMemberClient memberClient;
+
+    private ObservableList<ServerPO> myServers;
+
+    @FXML
+    private ListView<String> serverList;
 
     /**
      navigation button for nav menu
@@ -84,4 +99,21 @@ public class CommunitiesController {
         }
     }
     */
+
+    public void initialize() {
+        this.memberClient = new ServerMemberClient();
+        this.myServers = FXCollections.observableArrayList();
+
+        myServers.setAll(memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId()));
+
+        populateServerListView();
+    }
+    private void populateServerListView() {
+
+        ServerMemberPO[] servers = memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+        for (ServerMemberPO server : servers) {
+            serverList.getItems().add(server.getServerName());
+        }
+        
+    }
 }

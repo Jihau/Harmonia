@@ -44,14 +44,14 @@ public class PublicMessageClient {
         return restTemplate.exchange(PM_REMOVE_URL, HttpMethod.DELETE, request, Void.class, urlParameters);
     }
 
-    public PublicMessagePO editPublicMessage(PublicMessagePO editMe) {
+    public ResponseEntity<String> editPublicMessage(PublicMessagePO editMe) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<PublicMessagePO> request = new HttpEntity<>(editMe, headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("pMessageId", String.valueOf(editMe.getPmessageId()));
 
-        return restTemplate.exchange(PM_EDIT_URL, HttpMethod.PUT, request, PublicMessagePO.class, urlParameters).getBody();
+        return restTemplate.exchange(PM_EDIT_URL, HttpMethod.PUT, request, String.class, urlParameters);
     }
 
 }

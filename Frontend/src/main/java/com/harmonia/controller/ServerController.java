@@ -1,5 +1,6 @@
 package com.harmonia.controller;
 
+import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.ChannelClient;
 import com.harmonia.client.PublicMessageClient;
 import com.harmonia.client.ServerClient;
@@ -17,6 +18,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +30,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class ServerController {
 
@@ -64,6 +68,12 @@ public class ServerController {
 
     @FXML
     private Label blindLabel;
+
+    @FXML
+    private Label loggedUserLabel;
+
+    @FXML
+    private Button returnButton;
 
     @FXML
     private Button cancelEditButton;
@@ -105,7 +115,6 @@ public class ServerController {
     ObservableList<String> PMStringList;
 
     ObservableList<ChannelPO> channelObjectList;
-    ObservableList<String> channelStringList;
 
     ObservableList<ServerMemberPO> userObjectList;
     ObservableList<String> userStringList;
@@ -131,11 +140,12 @@ public class ServerController {
         selectedServer.setServerName("Server test1");
         selectedServer.setOwnerId(1);
 
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        
         PMObjectList = FXCollections.observableArrayList();
         PMStringList = FXCollections.observableArrayList();
 
         channelObjectList =  FXCollections.observableArrayList();
-        channelStringList = FXCollections.observableArrayList();
 
         userObjectList = FXCollections.observableArrayList();
         userStringList = FXCollections.observableArrayList();
@@ -159,6 +169,7 @@ public class ServerController {
                     ChannelPO selected = channelObjectList.get(channelList.getSelectionModel().getSelectedIndex());
                     selectedChannel = selected;
                     System.out.println(selected);
+                    channelList.getSelectionModel().clearSelection();
                     populateMessageList();
                 }
             }
@@ -167,14 +178,10 @@ public class ServerController {
 
     public void populateChannelList() {
         channelObjectList.clear();
-        channelStringList.clear();
         for (ChannelPO channel : channelClient.listAllChannels().clone()) {
             if (channel.getServerId()==selectedServer.getServerId()) {
                 channelObjectList.add(channel);
             }
-        }
-        for (ChannelPO channel : channelObjectList)  {
-            channelStringList.add("#" + channel.getChannelName());
         }
         channelList.getItems().addAll(channelObjectList);
     }
@@ -207,9 +214,10 @@ public class ServerController {
                 String authorName = "Unknown";
 
                 for (ServerMemberPO member : userObjectList) {
-                    if (m.getAuthorId() == member.getUserId()) {
+                    if (m.getAuthorId() == member.getMemberId()) {
                             authorName = member.getNickName();
                             System.out.println("Author found");
+                            break;
                         }
                 }
 
@@ -306,7 +314,11 @@ public class ServerController {
         PMObjectList.clear();
 
         this.channelObjectList.addAll(channelClient.listAllChannels());
-        this.userObjectList.addAll(serverMemberClient.listMembersByServerId((long)selectedServer.getServerId()));
+
+        for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long)selectedServer.getServerId())) {
+            userObjectList.add(member);
+        }
+
         this.PMObjectList.addAll(publicMessageClient.getAllMessages());
     }
 
@@ -319,5 +331,19 @@ public class ServerController {
     @FXML
     public void onChannelListClick(ActionEvent event) {
         System.out.println("Channel list clicked");
+    }
+
+    @FXML
+    public void onReturnButtonClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
+            Stage stage = (Stage) returnButton.getScene().getWindow();
+            Scene scene = new Scene(loader.load(), 1280, 720);
+            stage.setScene(scene);
+            stage.setTitle("Harmonia");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }   
     }
 }

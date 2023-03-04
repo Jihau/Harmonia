@@ -25,17 +25,9 @@ public class SettingsController {
 
     UserClient userClient = new UserClient();
 
-    @FXML
-    private ListView<String> serverList;
-
     private ServerMemberClient serverMemberClient;
 
-    private void populateServerListView() {
-        ServerMemberPO[] servers = serverMemberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
-        for (ServerMemberPO server : servers) {
-            serverList.getItems().add(server.getServerName());
-        }
-    }
+    
 
     private UserPO user;
 
@@ -136,7 +128,6 @@ public class SettingsController {
          */
 
         serverMemberClient = new ServerMemberClient();
-        populateServerListView();
     }
 
     public void onSaveButtonClick() {

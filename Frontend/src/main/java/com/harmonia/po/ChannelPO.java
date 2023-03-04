@@ -62,6 +62,6 @@ public class ChannelPO implements Serializable {
 
     @Override
     public String toString() {
-        return this.channelName;
+        return "#" + this.channelName;
     }
 }
