@@ -24,9 +24,9 @@ public class HarmoniaConstants {
     public static final String MEMBERS_BY_SERVER_ID_URL = BASE_URL + "/member/members/{serverId}";
     public static final String PM_GETALL_URL = BASE_URL + "/pmessage";
     public static final String PM_ADD_URL = BASE_URL + "/pmessage";
-    public static final String PM_REMOVE_URL = BASE_URL + "/pmessage";
-    public static final String PM_EDIT_URL = BASE_URL + "/pmessage/{pMessageId}";
-    
+    public static final String PM_REMOVE_URL = BASE_URL + "/pmessage/pmessageId/{pMessageId}";
+    public static final String PM_EDIT_URL = BASE_URL + "/pmessage/pmessageId/{pMessageId}";
+
     public static UserPO LOGGED_USERS = null;
-    
+
 }
