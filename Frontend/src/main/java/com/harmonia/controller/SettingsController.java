@@ -8,6 +8,7 @@ import com.harmonia.client.ServerClient;
 import com.harmonia.client.ServerMemberClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.constants.HarmoniaConstants.*;
 import com.harmonia.po.*;
 
 import javafx.event.ActionEvent;
@@ -57,8 +58,7 @@ public class SettingsController {
 
         /* placeholder, get user from session */
         System.out.println("initializing");
-        this.user = new UserPO();
-        this.user.setUsername(HarmoniaConstants.LOGGED_USERS.getUsername());
+        this.user = HarmoniaConstants.LOGGED_USERS;
         
         /* placeholder, get user from session */
         profImgField.setText(this.user.getProfileIcon());

@@ -28,6 +28,7 @@ import javafx.event.EventHandler;
 public class CommunitiesController {
 
     private ServerMemberClient memberClient;
+    private ServerClient serverClient;
     private ArrayList<ServerPO> myServers;
 
     @FXML
@@ -106,6 +107,7 @@ public class CommunitiesController {
     
 
     public void initialize() {
+        this.serverClient = new ServerClient();
         this.memberClient = new ServerMemberClient();
         this.myServers = new ArrayList<>();
 
@@ -128,6 +130,7 @@ public class CommunitiesController {
 
         ServerMemberPO[] servers = memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
         for (ServerMemberPO server : servers) {
+            myServers.add(serverClient.getServerById(server.getServerId()));
             serverList.getItems().add(server.getServerName());
         }
         
