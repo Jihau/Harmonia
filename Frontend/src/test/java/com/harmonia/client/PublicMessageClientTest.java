@@ -85,6 +85,4 @@ public class PublicMessageClientTest {
         PublicMessagePO responsePublicMessagePO = publicMessageClient.editPublicMessage(request);
         assertEquals(request.getMessageText(), responsePublicMessagePO.getMessageText());
     }
-
-
 }
