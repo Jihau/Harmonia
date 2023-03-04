@@ -12,6 +12,7 @@ module com.harmonia {
     requires spring.web;
     requires java.desktop;
     requires com.fasterxml.jackson.core;
+    requires lombok;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
