@@ -26,14 +26,14 @@ public class SettingsController {
     UserClient userClient = new UserClient();
 
     @FXML
-    private ListView<String> serverListView;
+    private ListView<String> serverList;
 
     private ServerMemberClient serverMemberClient;
 
     private void populateServerListView() {
         ServerMemberPO[] servers = serverMemberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
         for (ServerMemberPO server : servers) {
-            serverListView.getItems().add(server.getServerName());
+            serverList.getItems().add(server.getServerName());
         }
     }
 
@@ -48,12 +48,6 @@ public class SettingsController {
 
     @FXML
     TextField profImgField;
-
-    @FXML
-    PasswordField passwordField;
-
-    @FXML
-    PasswordField oldPasswordField;
 
     @FXML
     Button submitButton;
@@ -135,7 +129,6 @@ public class SettingsController {
         
         /* placeholder, get user from session */
 
-        UsernameField.setText(this.user.getUsername());
         profImgField.setText(this.user.getProfileIcon());
 
         /*
