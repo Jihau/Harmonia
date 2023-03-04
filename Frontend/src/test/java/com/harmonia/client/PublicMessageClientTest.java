@@ -41,17 +41,16 @@ public class PublicMessageClientTest {
 
     @Test
     public void listPublicMessagesTest() throws JsonProcessingException {
-        String response = "[{\"messageText\":\"hello hello hello!!!! is anyone hereeeee Wahahahaha(edited)\",\"pmessageId\":1,\"channelId\":1,\"authorId\":1,\"timestamp\":\"2023-03-01\"},{\"messageText\":\"Who the heck are you !!!\",\"pmessageId\":2,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"},{\"messageText\":\"Third message\",\"pmessageId\":3,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"}]";
+        String response = "[{\"messageText\":\"hello hello hello!!!! is anyone hereeeee Wahahahaha(edited)\",\"pmessageId\":1,\"channelId\":1,\"authorId\":1,\"timestamp\":\"2023-03-01\"}," +
+                "{\"messageText\":\"Who the heck are you !!!\",\"pmessageId\":2,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"}," +
+                "{\"messageText\":\"Third message\",\"pmessageId\":3,\"channelId\":1,\"authorId\":2,\"timestamp\":\"2023-03-01\"}]";
         PublicMessagePO[] expectedPublicMessages = listPublicMessageReader.readValue(response);
-
-        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<PublicMessagePO[]>>any())).thenReturn(new ResponseEntity<>(expectedPublicMessages, HttpStatus.OK));
+        when(restTemplate.exchange(anyString(), any(), any(), (Class) any()))
+                .thenReturn(new ResponseEntity<>(expectedPublicMessages, HttpStatus.OK));
         PublicMessagePO[] actualPublicMessages = publicMessageClient.getAllMessages();
-        System.out.println(actualPublicMessages);
-        System.out.println(expectedPublicMessages);
+        verify(restTemplate, times(1)).exchange(anyString(), any(), any(), (Class) any());
         assertNotNull(actualPublicMessages);
         assertArrayEquals(expectedPublicMessages, actualPublicMessages);
-        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<PublicMessagePO[]>>any());
-
     }
 
     @Test
@@ -62,7 +61,7 @@ public class PublicMessageClientTest {
         request.setChannelId(1L);
 
         String responseFromEndpoint = "{\"messageText\":\"" + request.getMessageText() + "\",\"pmessageId\":5,\"channelId\":1,\"authorId\":1,\"timestamp\":\"2023-03-04\"}";
-        when(restTemplate.exchange(Mockito.<String>any(), Mockito.any(), Mockito.<HttpEntity<PublicMessagePO>>any(), Mockito.<Class<PublicMessagePO>>any()))
+        lenient().when(restTemplate.exchange(Mockito.<String>any(), Mockito.any(), Mockito.<HttpEntity<PublicMessagePO>>any(), Mockito.<Class<PublicMessagePO>>any()))
                 .thenReturn(new ResponseEntity<>((PublicMessagePO) publicMessageReader.readValue(responseFromEndpoint), HttpStatus.OK));
         PublicMessagePO responsePublicMessagePO = publicMessageClient.sendPublicMessage(request);
         assertEquals(request.getMessageText(), responsePublicMessagePO.getMessageText());
