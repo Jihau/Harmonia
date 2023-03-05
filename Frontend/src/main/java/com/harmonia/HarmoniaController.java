@@ -111,6 +111,7 @@ public class HarmoniaController extends MainViewController {
                 ServerMemberPO serverMemberPO = new ServerMemberPO();
                 serverMemberPO.setMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
                 serverMemberPO.setServerId(selectedServer.getServerId());
+                serverMemberPO.setNickName(HarmoniaConstants.LOGGED_USERS.getUsername());
 
                 // Call addServerMember() with the new ServerMemberPO object
                 ResponseEntity<ServerMemberPO> response = serverMemberClient.addServerMember(serverMemberPO);
