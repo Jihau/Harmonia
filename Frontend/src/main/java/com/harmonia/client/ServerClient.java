@@ -80,5 +80,18 @@ public class ServerClient {
         ResponseEntity<ServerPO> response = restTemplate.exchange(SERVER_LIST_BY_ID_URL, HttpMethod.GET, request, ServerPO.class, urlParameters);
         return response.getBody();
     }
+
+    /**
+     * Returns the server with the specified ID.
+     *
+     * @return the {@code ServerPO} object representing the server with the
+     * specified category.
+     */
+    public ServerPO[] listServersByCategory(String serverCategory) {
+        HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
+        HttpEntity<?> request = new HttpEntity<>(headers);
+        ResponseEntity<ServerPO[]> response = restTemplate.exchange(SERVER_LIST_BY_CATEGORY_URL.replace("{serverCategory}", serverCategory), HttpMethod.GET, request, ServerPO[].class);
+        return response.getBody();
+    }
 }
 

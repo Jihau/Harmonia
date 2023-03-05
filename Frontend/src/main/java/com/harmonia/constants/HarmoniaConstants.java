@@ -95,9 +95,17 @@ public class HarmoniaConstants {
     public static final String SERVER_LIST_BY_NAME_URL = BASE_URL + "/server/name/{serverName}";
 
     /**
+     * The URL for getting a list of servers by server category.
+     */
+    public static final String SERVER_LIST_BY_CATEGORY_URL = BASE_URL + "/server/serverCategory/{serverCategory}";
+
+    /**
      * The URL for getting a list of servers by member ID.
      */
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
+
+
+    public static final String ADD_MEMBER_TO_SERVER_URL = BASE_URL + "/member";
 
     /**
      * The URL for getting a server by its ID.

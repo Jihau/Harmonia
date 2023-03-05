@@ -12,8 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.harmonia.constants.HarmoniaConstants.MEMBERS_BY_SERVER_ID_URL;
-import static com.harmonia.constants.HarmoniaConstants.SERVER_LIST_BY_MEMBER_ID_URL;
+import static com.harmonia.constants.HarmoniaConstants.*;
 
 /**
  * The ServerMemberClient class is responsible for handling HTTP requests related to server members.
@@ -62,5 +61,17 @@ public class ServerMemberClient {
         urlParameters.put("serverId", String.valueOf(serverId));
         ResponseEntity<ServerMemberPO[]> response = restTemplate.exchange(MEMBERS_BY_SERVER_ID_URL, HttpMethod.GET, request, ServerMemberPO[].class, urlParameters);
         return response.getBody();
+    }
+
+    /**
+     * Adds a new member to a server.
+     *
+     * @param serverMemberPO the ServerMemberPO object containing the member and server ids.
+     * @return a ResponseEntity with the newly added ServerMember object, or a HttpStatus.BAD_REQUEST if the addition failed.
+     */
+    public ResponseEntity<ServerMemberPO> addServerMember(ServerMemberPO serverMemberPO) {
+        HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
+        HttpEntity<ServerMemberPO> request = new HttpEntity<>(serverMemberPO, headers);
+        return restTemplate.exchange(ADD_MEMBER_TO_SERVER_URL, HttpMethod.POST, request, ServerMemberPO.class);
     }
 } 
