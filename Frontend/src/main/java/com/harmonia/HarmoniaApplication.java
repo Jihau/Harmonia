@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * Class representing the running class of the Harmonia application.
  *
- * @author OTP1 Group 3: Johanna Toivanen, Mohammed Al-Jewari, Sampo Savolainen, Jesper Ojala
+ * @author Harmonia Team
  * @version 1.0
  * @since 1.0
  */
@@ -36,6 +36,5 @@ public class HarmoniaApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
     }
 }

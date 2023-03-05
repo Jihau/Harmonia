@@ -18,5 +18,6 @@ module com.harmonia {
     opens com.harmonia.po;
     
     opens com.harmonia.controller to javafx.fxml;
+    opens com.harmonia.view to javafx.fxml;
     exports com.harmonia;
 }

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * REST controller for managing Channel entities.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 @RestController
 @RequestMapping("channel")

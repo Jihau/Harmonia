@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * This class represents a REST controller for handling server members.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 @RestController
 @RequestMapping("member")

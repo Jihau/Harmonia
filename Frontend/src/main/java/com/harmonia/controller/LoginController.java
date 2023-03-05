@@ -24,20 +24,19 @@ public class LoginController {
 
     @FXML
     TextField usernameField;
-    
     @FXML
     PasswordField passwordField;
-
     @FXML
     Hyperlink registerLink;
-
     @FXML
     Button loginButton;
-
     @FXML
     Label errorLabel;
-
     @FXML
+
+    /**
+     * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
+     */
     public void onLoginButtonClick() {
     
     if (Objects.equals(usernameField.getText(), "") || Objects.equals(passwordField.getText(), "")) {errorLabel.setText("Please fill both fields!"); errorLabel.setVisible(true); return;}

@@ -52,7 +52,6 @@ public class ProfileController {
     Label UserIdText;
     @FXML
     Label UsernameText;
-    private UserPO user = new UserPO();
     /**
      * navigation button for nav menu
      * letter combination before name indicates in what view the button is from
@@ -131,7 +130,7 @@ public class ProfileController {
     }
 
     public void initialize() {
-        user = HarmoniaConstants.LOGGED_USERS;
+        UserPO user = HarmoniaConstants.LOGGED_USERS;
 
         try {
             Image profImage = new Image(user.getProfileIcon());

@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,14 +17,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0e1821;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="720.0" prefWidth="1280.0">
+      <GridPane prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #0e1821;">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="635.0" minWidth="10.0" prefWidth="322.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="967.0" minWidth="10.0" prefWidth="958.0" />
@@ -32,7 +30,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0">
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e1821;">
                <children>
                   <GridPane fx:id="LeftSidebar" prefHeight="720.0" prefWidth="322.0">
                     <columnConstraints>
@@ -55,7 +53,7 @@
                             <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="86.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Label fx:id="ServerName" nodeOrientation="LEFT_TO_RIGHT" prefHeight="71.0" prefWidth="303.0" text="Server name" GridPane.halignment="RIGHT">
+                              <Label fx:id="ServerName" nodeOrientation="LEFT_TO_RIGHT" prefHeight="42.0" prefWidth="220.0" style="-fx-font-weight: bold;" text="Server name" textFill="WHITE" GridPane.halignment="RIGHT">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -69,15 +67,22 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Label fx:id="serverCategory" prefHeight="72.0" prefWidth="161.0" text="Category" />
-                                    <Label fx:id="serverMemberCount" nodeOrientation="RIGHT_TO_LEFT" prefHeight="77.0" prefWidth="172.0" text="Server membercount" GridPane.columnIndex="1" />
+                                    <Label fx:id="serverCategory" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="159.0" text="Category" textAlignment="CENTER" textFill="WHITE" />
+                                    <Label fx:id="serverMemberCount" alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="73.0" prefWidth="159.0" text="Server membercount" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" />
                                  </children>
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" GridPane.rowIndex="3" />
-                        <Label prefHeight="17.0" prefWidth="125.0" text="Channel List" GridPane.rowIndex="2" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: pink;" GridPane.rowIndex="1" />
+                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="26.0" prefWidth="126.0" text="Channel List" textFill="WHITE" GridPane.rowIndex="2" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e1821;" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="41.0" fitWidth="75.0" layoutX="275.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/chatBubble.png" />
+                                 </image>
+                              </ImageView>
+                           </children></Pane>
                         <GridPane prefHeight="82.0" prefWidth="322.0" GridPane.rowIndex="4">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -87,15 +92,18 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" text="Return" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                              <Label fx:id="loggedUserLabel" alignment="CENTER" prefHeight="84.0" prefWidth="161.0" text="loggedUserLabel" />
+                              <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnButtonClick" style="-fx-background-color: #1b5ddc;" text="Return" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <effect>
+                                    <DropShadow />
+                                 </effect></Button>
+                              <Label fx:id="loggedUserLabel" alignment="CENTER" prefHeight="72.0" prefWidth="144.0" style="-fx-font-weight: bold;" text="loggedUserLabel" textFill="WHITE" />
                            </children>
                         </GridPane>
                      </children>
                   </GridPane>
                </children>
             </Pane>
-            <GridPane GridPane.columnIndex="1">
+            <GridPane style="-fx-background-color: #0e1821;" GridPane.columnIndex="1">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="669.0" minWidth="10.0" prefWidth="669.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="474.0" minWidth="10.0" prefWidth="322.0" />
@@ -160,12 +168,12 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="43.47167926854877" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="677.4340070525545" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label text="Server members" />
-                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="18.0" prefWidth="126.0" style="-fx-font-weight: bold;" text="Server members" textFill="WHITE" />
+                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" opacity="0.97" prefHeight="677.0" prefWidth="328.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -204,39 +212,18 @@
       </AnchorPane>
       <AnchorPane fx:id="channelBlind" layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
          <children>
-            <Pane prefHeight="720.0" prefWidth="652.0" style="-fx-background-color: white;">
+            <Pane layoutX="-7.0" layoutY="-8.0" prefHeight="728.0" prefWidth="661.0" style="-fx-background-color: #0e1821; -fx-border-color: white;">
                <children>
-                  <ImageView fitHeight="346.0" fitWidth="652.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                  <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="62.0" prefHeight="30.0" prefWidth="652.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="115.0" fitWidth="86.0" layoutX="552.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@img/LoginBg.png" />
+                        <Image url="@img/stones.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="blindLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="4.0" layoutY="253.0" prefHeight="134.0" prefWidth="652.0" text="Choose a channel to start chatting">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop>
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="0.006711409395973154">
-                                 <color>
-                                    <Color red="0.016325535252690315" green="0.44895222783088684" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                              <Stop offset="1.0">
-                                 <color>
-                                    <Color red="0.61710524559021" blue="0.8815789222717285" />
-                                 </color>
-                              </Stop>
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
                </children>
             </Pane>
          </children>

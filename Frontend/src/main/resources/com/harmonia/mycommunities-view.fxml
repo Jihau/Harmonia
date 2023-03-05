@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.CommunitiesController">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.CommunitiesController">
    <children>
       <GridPane layoutX="-5.0" prefHeight="720.0" prefWidth="1280.0">
          <columnConstraints>
@@ -82,15 +82,15 @@
                         <Font name="Lato Regular" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="mcFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onmcFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onmcProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" onAction="#onmcProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onmcHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="sFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" onAction="#onfmProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="logoutButton" layoutX="6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="197.0" text="Button" />
                </children>
             </AnchorPane>
-            <ListView fx:id="serverList" prefHeight="772.0" prefWidth="1153.0" GridPane.columnIndex="1" />
+            <ListView fx:id="serverList" prefHeight="720.0" prefWidth="518.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
