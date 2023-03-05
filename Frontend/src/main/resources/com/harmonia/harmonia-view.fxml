@@ -17,7 +17,7 @@
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
+            <AnchorPane maxHeight="720.0" maxWidth="220.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -82,7 +82,7 @@
                   <Button fx:id="hProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onhProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="hSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onhSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                  <Label layoutX="90.0" layoutY="688.0" text="Logout" textFill="WHITE">
+                  <Label layoutX="91.0" layoutY="688.0" text="Logout" textFill="WHITE">
                      <font>
                         <Font name="Lato Regular" size="16.0" />
                      </font>
@@ -95,8 +95,7 @@
                   <Button fx:id="logoutButton" layoutX="-6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="210.0" text="Button" />
                </children>
             </AnchorPane>
-         <AnchorPane prefHeight="720.0" prefWidth="1083.0">
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="728.0" layoutX="-7.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1094.0" />
+         <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #141e2c;">
             <TextField fx:id="searchBar" layoutX="294.0" layoutY="34.0" opacity="0.78" prefHeight="25.0" prefWidth="392.0" promptText="Search communities by category.." styleClass="form" stylesheets="@css/form.css">
                <effect>
                   <Reflection fraction="0.2" topOpacity="0.27" />
