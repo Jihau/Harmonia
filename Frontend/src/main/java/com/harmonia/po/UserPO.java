@@ -11,6 +11,16 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+/**
+ * @author Harmonia team
+ * 
+ * This class represents a user entity in the application.
+ * It contains information such as userId, username, email, password, profileIcon, bio, and timestamp.
+ * The class is annotated with Lombok annotations: @Getter, @Setter, @NoArgsConstructor, @AllArgsConstructor,
+ * which generate boilerplate code for getter, setter, no-args constructor, and all-args constructor.
+ * The class has a field of type Date: timestamp, which represents the time when the user was created.
+ * The class overrides the toString() method to return the username.
+ **/
 public class UserPO {
     int userId;
     String username;
