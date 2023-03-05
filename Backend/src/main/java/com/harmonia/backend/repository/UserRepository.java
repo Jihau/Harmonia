@@ -9,6 +9,9 @@ import java.util.Optional;
 /**
  * Repository interface for managing User entities.
  * Provides basic CRUD operations and some custom methods.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 public interface UserRepository extends CrudRepository<User, Long> {
     /**

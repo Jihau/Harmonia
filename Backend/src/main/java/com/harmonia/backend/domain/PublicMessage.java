@@ -12,7 +12,12 @@ import org.hibernate.annotations.GenerationTime;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
-
+/**
+ * PublicMessage entity represents a public message sent in a channel.
+ *
+ * @author Harmonia team
+ * @version 1.0
+ */
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,37 +25,57 @@ import java.sql.Date;
 @Entity
 @Table(name = "public_message", schema = "harmoniadb")
 public class PublicMessage {
-    @Basic
-    @NotNull
-    @Column(name = "Message_text",nullable = false)
-    private String messageText;
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @Column(name = "PmessageId")
-    private Long pmessageId;
+    /**
+     * The channel in which the message was sent.
+     */
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("ChannelId")
     @JoinColumn(name = "ChannelId", foreignKey = @ForeignKey(name = "Pmessages_byChannel_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     Channel channel;
-
+    /**
+     * The user who sent the message.
+     */
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @MapsId("UserId")
     @JoinColumn(name = "AuthorId", foreignKey = @ForeignKey(name = "Author_ofPMessage_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User Author;
-
-    @Column(name = "ChannelId",nullable = false)
+    /**
+     * The text content of the message.
+     */
+    @Basic
+    @NotNull
+    @Column(name = "Message_text", nullable = false)
+    private String messageText;
+    /**
+     * The ID of the public message.
+     */
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "PmessageId")
+    private Long pmessageId;
+    /**
+     * The ID of the channel in which the message was sent.
+     */
+    @Column(name = "ChannelId", nullable = false)
     private Long channelId;
+
+    /**
+     * The ID of the user who sent the message.
+     */
     @Basic
-    @Column(name = "AuthorId",nullable = false)
+    @Column(name = "AuthorId", nullable = false)
     private Long authorId;
+
+    /**
+     * The time and date of when the message was sent.
+     */
     @Basic
-    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",nullable = false)
+    @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @NotNull
     @Generated(GenerationTime.INSERT)
     private Date timestamp;
-
 
 
 }

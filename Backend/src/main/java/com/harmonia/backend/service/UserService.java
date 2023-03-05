@@ -16,15 +16,28 @@ import java.util.stream.StreamSupport;
 
 /**
  * Service class for managing users.
+ *
+ * @author Harmonia Team
+ * @version 1.0
  */
 @Service
 public class UserService {
+
+    /**
+     * The repository for user-related database operations
+     */
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * The encoder for password hashing and checking
+     */
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    /**
+     * Constructor for UserService class
+     */
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -83,7 +96,7 @@ public class UserService {
 
             return new UserResponse(userRepository.save(UserMapper.createUserFromCreateUserRequest(user)));
 
-        }else {
+        } else {
             throw new RuntimeException("All fields must be filled");
         }
 
@@ -128,6 +141,7 @@ public class UserService {
 
     /**
      * Retrieves a User from the UserRepository by its ID and returns a UserResponse containing the retrieved User.
+     *
      * @param userId The ID of the User to retrieve.
      * @return A UserResponse containing the retrieved User.
      * @throws RuntimeException if the User cannot be found in the UserRepository.
@@ -142,6 +156,7 @@ public class UserService {
 
     /**
      * Deletes a User from the UserRepository by its ID.
+     *
      * @param userId The ID of the User to delete.
      */
     public void deleteUser(Long userId) {
@@ -151,14 +166,15 @@ public class UserService {
 
     /**
      * Edits a User in the UserRepository with the provided User data and returns a UserResponse containing the edited User.
+     *
      * @param userId The ID of the User to edit.
-     * @param user The User object containing the updated User data.
+     * @param user   The User object containing the updated User data.
      * @return A UserResponse containing the edited User.
      */
     public UserResponse editUser(Long userId, User user) {
         Optional<User> existingUser = userRepository.findById(userId);
         if (existingUser.isPresent()) {
-            if(user.getProfileIcon() != null) {
+            if (user.getProfileIcon() != null) {
                 existingUser.get().setProfileIcon(user.getProfileIcon());
             }
             existingUser.get().setBio(user.getBio());
@@ -170,7 +186,8 @@ public class UserService {
 
     /**
      * Changes the password of a User in the UserRepository and returns a UserResponse containing the updated User.
-     * @param userId The ID of the User to change the password of.
+     *
+     * @param userId      The ID of the User to change the password of.
      * @param newPassword The new password for the User.
      * @return A UserResponse containing the updated User with the new password.
      */
