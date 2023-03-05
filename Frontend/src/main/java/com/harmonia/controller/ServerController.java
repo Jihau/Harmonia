@@ -122,10 +122,16 @@ public class ServerController extends MainViewController {
     ObservableList<ServerMemberPO> userObjectList;
     ObservableList<String> userStringList;
  
+    /**
+     * constructor that assigns the selected server variable
+     * @param server
+     */
     public ServerController(ServerPO server) {
         this.selectedServer = server;
     }
-
+/**
+ * initialize all the required variables and populate lists.
+ */
     public void initialize() {
 
         this.userClient = new UserClient();
@@ -146,14 +152,11 @@ public class ServerController extends MainViewController {
         userObjectList = FXCollections.observableArrayList();
         userStringList = FXCollections.observableArrayList();
 
-
         getObjects();
 
         setServerInfo();
         populateUserList();
         populateChannelList();
-
-
         channelList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -174,15 +177,9 @@ public class ServerController extends MainViewController {
 
     }
 
-    @FXML
-    public void receiveData(MouseEvent event) {
-        Node node = (Node) event.getSource();
-
-        Stage stage = (Stage) node.getScene().getWindow();
-
-        selectedServer = (ServerPO) stage.getUserData();
-    }
-
+    /**
+     * Populates the channel list with 
+     */
     public void populateChannelList() {
         channelObjectList.clear();
         for (ChannelPO channel : channelClient.listAllChannels().clone()) {
@@ -193,8 +190,10 @@ public class ServerController extends MainViewController {
         channelList.getItems().addAll(channelObjectList);
     }
 
+    /**
+     * Populates the userlist with users that have joined the selected server.
+     */
     public void populateUserList() {
-
         userObjectList.clear();
         userStringList.clear();
 
@@ -208,6 +207,9 @@ public class ServerController extends MainViewController {
         memberList.setItems(userStringList);
     }
 
+    /**
+     * Populates the publicMessageObject- and String list with public messages matching the selected channel. 
+     */
     public void populateMessageList() {
         PMObjectList.clear();
         PMStringList.clear();
@@ -237,8 +239,10 @@ public class ServerController extends MainViewController {
             PublicMessagesList.setItems(PMStringList);
         
     }
-
-
+/**
+ * Closes the editbox.
+ * @param event
+ */
     @FXML
     void onCancelButtonClick(ActionEvent event) {
         editTextField.setStyle("");
@@ -246,6 +250,10 @@ public class ServerController extends MainViewController {
         editBox.setVisible(false);
     }
 
+    /**
+     * sends an edit request if the editTextField is not empty. 
+     * If not it highlights the textField and prompts the user to type a message. 
+     */
     @FXML
     void onConfirmEditButtonCLick(ActionEvent event) {
         if (editTextField.getText()!="") {
@@ -264,6 +272,11 @@ public class ServerController extends MainViewController {
             populateMessageList();
         }
 
+        /**
+         * Opens the editbox if the selectedMessage's authorId matches the logged in user.
+         * otherwise open an error alert
+         * @param event
+         */
     @FXML
     void onEditButtonClick(ActionEvent event) {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
@@ -282,15 +295,27 @@ public class ServerController extends MainViewController {
         }
     }
 
+    /**
+     * Sets the selectedMessage variable to match the one the user clicked on.
+     * @param listSelectedMessage
+     */
     private void setSelectedMessage(PublicMessagePO listSelectedMessage) {
         this.selectedMessage = listSelectedMessage;
     }
 
+    /**
+     * Is called when the user clicks the refresh button. calls the populateMessageList function.
+     * @param event
+     */
     @FXML
     void onRefreshButtonClick(ActionEvent event) {
         populateMessageList();
     }
 
+    /**
+     * Checks if the message's authorId matches the user and removes the message is it does.
+     * @param event
+     */
     @FXML
     void onRemoveMessageButttonClick(ActionEvent event) {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
@@ -301,6 +326,10 @@ public class ServerController extends MainViewController {
         populateMessageList();
     }
 
+    /**
+     * Attemps to send a public message.
+     * @param event
+     */
     @FXML
     void onSendBtnClick(ActionEvent event) {
         String message = sendMessageField.getText();
@@ -315,6 +344,10 @@ public class ServerController extends MainViewController {
         }
         populateMessageList();
     }
+
+    /**
+     * Gets the objects for all the required observableLists (Channel, user, public messages)
+     */
 
     public void getObjects() {
         System.out.println("Getting objects");
@@ -333,17 +366,20 @@ public class ServerController extends MainViewController {
         this.PMObjectList.addAll(publicMessageClient.getAllMessages());
     }
 
+    /**
+     * Sets the information in the server-card.
+     */
     public void setServerInfo() {
         ServerName.setText(selectedServer.getServerName());
         serverCategory.setText(selectedServer.getServerCategory());
         serverMemberCount.setText(String.valueOf(userObjectList.size()));
     }
 
-    @FXML
-    public void onChannelListClick(ActionEvent event) {
-        System.out.println("Channel list clicked");
-    }
-
+    /**
+     * Returns the user to the main view.
+     * @param event 
+     * @throws IOException
+     */
     @FXML
     public void onReturnButtonClick(ActionEvent event) throws IOException {
         HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) returnButton.getScene().getWindow());
