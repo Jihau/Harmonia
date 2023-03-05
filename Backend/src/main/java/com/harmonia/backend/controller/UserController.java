@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 /**
- * Rest controller for handling user-related HTTP requests
+ * Rest controller for handling user-related HTTP requests.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 
 @RestController

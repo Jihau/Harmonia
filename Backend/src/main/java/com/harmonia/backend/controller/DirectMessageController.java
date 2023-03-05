@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 /**
  * This class is a REST controller for DirectMessage API endpoints.
  * It handles GET requests for listing direct messages and filtering them by recipient and author ID.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 
 @RestController

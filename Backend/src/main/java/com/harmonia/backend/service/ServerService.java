@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 /**
  * Service class for managing servers.
+ *
+ * @author Harmonia Team
+ * @version 1.0
  */
 @Service
 public class ServerService {

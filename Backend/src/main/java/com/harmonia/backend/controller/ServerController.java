@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 /**
  * The ServerController class handles HTTP requests related to server management.
  * This class maps incoming requests to the corresponding ServerService methods.
+ *
+ * @author Harmonia team
+ * @version 1.0
  */
 @RestController
 @RequestMapping("server")

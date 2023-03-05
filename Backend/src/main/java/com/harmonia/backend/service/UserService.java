@@ -16,6 +16,9 @@ import java.util.stream.StreamSupport;
 
 /**
  * Service class for managing users.
+ *
+ * @author Harmonia Team
+ * @version 1.0
  */
 @Service
 public class UserService {
