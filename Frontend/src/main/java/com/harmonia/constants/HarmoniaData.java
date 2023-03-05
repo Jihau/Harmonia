@@ -24,6 +24,14 @@ public class HarmoniaData {
      * The DIRECT_MESSAGES_LIST List contains a list of direct messages for each recipient.
      */
     public static ObservableList<MessagePO> DIRECT_MESSAGES_LIST = FXCollections.observableArrayList();
+
+    /**
+     * The SELECTED_RECIPIENT field stores the currently selected recipient for direct messaging.
+     */
     public static UserPO SELECTED_RECIPIENT = null;
+
+    /**
+     * The SELECTED_DIRECT_MESSAGE field stores the currently selected direct message.
+     */
     public static MessagePO SELECTED_DIRECT_MESSAGE = null;
 }
