@@ -37,16 +37,16 @@ public class HarmoniaController extends MainViewController {
     public Button logoutButton;
 
     @FXML
-    private Button hHomePageBtn;
+    private Button fmHomePageBtn;
 
     @FXML
-    private Button hFriendsBtn;
+    private Button sFriendsBtn;
 
     @FXML
-    private Button hProfileBtn;
+    private Button fmProfileBtn;
 
     @FXML
-    private Button hSettingsBtn;
+    private Button fmSettingsBtn;
 
     @FXML
     public TextField searchBar;
