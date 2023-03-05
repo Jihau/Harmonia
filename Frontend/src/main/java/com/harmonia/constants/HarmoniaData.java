@@ -1,12 +1,8 @@
 package com.harmonia.constants;
 
-import com.harmonia.po.MessagePO;
+import com.harmonia.po.UserPO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The HarmoniaData class contains constants and data used throughout the Harmonia application.
@@ -21,10 +17,11 @@ public class HarmoniaData {
     /**
      * The USERS_LIST ObservableList contains all users in the system.
      */
-    public static ObservableList USERS_LIST = FXCollections.observableArrayList();
+    public static ObservableList<Object> USERS_LIST = FXCollections.observableArrayList();
 
     /**
-     * The directMessagesByRecipientId Map contains a list of direct messages for each recipient.
+     * The DIRECT_MESSAGES_LIST List contains a list of direct messages for each recipient.
      */
-    public static Map<Integer, List<MessagePO>> directMessagesByRecipientId = new LinkedHashMap<>();
+    public static ObservableList<Object> DIRECT_MESSAGES_LIST = FXCollections.observableArrayList();
+    public static UserPO SELECTED_RECIPIENT = null;
 }
