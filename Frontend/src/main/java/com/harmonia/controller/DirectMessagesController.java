@@ -81,8 +81,6 @@ public class DirectMessagesController extends MainViewController {
 
         populateListView();
         HarmoniaDataLoader.searchUserByUsername("");
-
-        
     }
 
     /**
