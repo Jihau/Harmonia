@@ -1,10 +1,13 @@
 package com.harmonia.utils;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.po.UserPO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -39,5 +42,22 @@ public class HarmoniaUtils {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void showErrorMessage(String title, String headerText, String contentText) {
+        Alert notYourMessageAlert = new Alert(Alert.AlertType.ERROR);
+        notYourMessageAlert.setTitle(title);
+        notYourMessageAlert.setHeaderText(headerText);
+        notYourMessageAlert.setContentText(contentText);
+        notYourMessageAlert.showAndWait();
+    }
+
+    public static boolean showConfirmationMessage(String confirmationTitle, String title, String headerText, String contentText) {
+        Alert confirmationMessage = new Alert(Alert.AlertType.CONFIRMATION, HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE, ButtonType.YES, ButtonType.NO);
+        confirmationMessage.setTitle(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE);
+        confirmationMessage.setHeaderText(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER);
+        confirmationMessage.setContentText(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY);
+        confirmationMessage.showAndWait();
+        return confirmationMessage.getResult() == ButtonType.YES;
     }
 }

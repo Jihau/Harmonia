@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -13,6 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import com.harmonia.view.UsersListView?>
+<?import com.harmonia.view.MessagesListView?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.DirectMessagesController">
    <children>
       <Pane fx:id="editBox" layoutX="700.0" layoutY="578.0" prefHeight="63.0" prefWidth="401.0" style="-fx-border-color: black; -fx-background-color: lightGrey;" visible="false">
@@ -114,7 +114,7 @@
       </AnchorPane>
       <AnchorPane layoutX="200.0" prefHeight="720.0" prefWidth="900.0" style="-fx-background-color: #141e2c;">
          <children>
-            <ListView fx:id="ChatListView" layoutY="40.0" prefHeight="626.0" prefWidth="900.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
+            <MessagesListView fx:id="ChatListView" layoutY="40.0" prefHeight="626.0" prefWidth="900.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
             <TextField fx:id="sendMessageField" layoutX="8.0" layoutY="674.0" onAction="#onSendBtnClick" prefHeight="40.0" prefWidth="830.0" styleClass="form" stylesheets="@css/form.css" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="846.0" layoutY="674.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0" />
             <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="856.0" layoutY="682.0" pickOnBounds="true" preserveRatio="true">
