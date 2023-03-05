@@ -7,6 +7,9 @@
 > - Suggests user communities based on user choices and interests.
 > - User registration and login required.
 
+## Entity Relationship Diagram
+![alt text](https://i.imgur.com/yhZTR35.png)
+
 ## Technologies
 > - Maven
 > - Spring Boot (for the backend)
