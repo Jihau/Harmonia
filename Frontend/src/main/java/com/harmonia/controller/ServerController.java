@@ -135,12 +135,8 @@ public class ServerController extends MainViewController {
         this.channelClient = new ChannelClient();
         
         loggedInUser = HarmoniaConstants.LOGGED_USERS;
-
-        selectedChannel = channelClient.listAllChannels()[0]; 
-
-        System.out.println(selectedServer.getServerId());
-        System.out.println(selectedServer.getServerName());
-
+        selectedChannel = channelClient.listAllChannels()[0];
+        loggedUserLabel.setText(HarmoniaConstants.LOGGED_USERS.getUsername());
         
         PMObjectList = FXCollections.observableArrayList();
         PMStringList = FXCollections.observableArrayList();

@@ -84,7 +84,7 @@ public class DirectMessagesController extends MainViewController {
     }
 
     /**
-     * Sends a message to the recipient specified in the message object and returns the response from the message client.
+     * Sends a message to the recipient specified in the MessagePO object and returns the response from the message client.
      *
      * @param message the message to be sent
      * @return the response from the message client
@@ -93,7 +93,9 @@ public class DirectMessagesController extends MainViewController {
         return messageClient.addMessage(message);
     }
 
-
+    /**
+     * adds messages between the user and the recipient to the messagelist and sets inserts them into the ListView. 
+     */
     protected void populateListView() {
         conversationObject.clear();
         for (MessagePO m : Objects.requireNonNull(messageClient.getMessagesByRecipientID(loggedInUser.getUserId()).getBody())) {
@@ -120,7 +122,10 @@ public class DirectMessagesController extends MainViewController {
         populateListView();
     }
 
-
+    /**
+     * Gets the text from the message TextField tries to send it via the @link DirectMessageClient.
+     * @param event
+     */
     @FXML
     public void onSendBtnClick(ActionEvent event) {
         MessagePO newMessage = new MessagePO();
@@ -138,7 +143,9 @@ public class DirectMessagesController extends MainViewController {
         populateListView();
 
     }
-
+    /**
+     * Builds a list of Strings with a for-loop through the messageList and either adds a sender part to the message based on the message's recipientId
+     */
     protected void convertList() {
         conversationString.clear();
         for (MessagePO m : conversationObject) {
@@ -151,6 +158,10 @@ public class DirectMessagesController extends MainViewController {
         }
     }
 
+    /**
+     * assigns the selected message by getting the index from listview and getting the matching index from the DirectMessagePO list.
+     * If the Message recipient ID is different from the logged user ID open the edit box. Otherwise show a "not your message"-alert. 
+     */
     @FXML
     public void onEditButtonClick() {
         int index = ChatListView.getSelectionModel().getSelectedIndex();
@@ -169,13 +180,14 @@ public class DirectMessagesController extends MainViewController {
         }
     }
 
+    /**
+     * if the message TextField is not blank, send an edit request to the backend with the edited messageText. Otherwise highlight the textbox and add a prompt. 
+     * Afterwards update the list of messages. 
+     */
     @FXML
     public void onConfirmEditButtonCLick() {
 
         MessagePO editSelectedMessage = getSelectedMessage();
-
-        System.out.println("AuthorId: " + editSelectedMessage.getAuthorId());
-        System.out.println("MessageId: " + editSelectedMessage.getDmessageId());
 
         if (!Objects.equals(editTextField.getText(), "")) {
 
@@ -196,6 +208,9 @@ public class DirectMessagesController extends MainViewController {
         populateListView();
     }
 
+    /**
+     * close the editbox
+     */
     @FXML
     public void onCancelButtonClick() {
         editTextField.setStyle("");
@@ -203,6 +218,9 @@ public class DirectMessagesController extends MainViewController {
         editBox.setVisible(false);
     }
 
+    /**
+     * get selected messsage from 
+     */
     @FXML
     public void onRemoveMessageButttonClick() {
         int index = ChatListView.getSelectionModel().getSelectedIndex();

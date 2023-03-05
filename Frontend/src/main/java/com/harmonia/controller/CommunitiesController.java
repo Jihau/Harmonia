@@ -64,7 +64,7 @@ public class CommunitiesController extends MainViewController {
      * Handles the event when the servers button is clicked, which loads the view of the server that user selected.
      *
      * @param event    the event that triggered this method
-     * @param sendHere sets user to the server
+     * @param sendHere sets the server variable in @link ServerController
      */
     private void sendToServer(MouseEvent event, ServerPO sendHere) {
 
@@ -73,7 +73,6 @@ public class CommunitiesController extends MainViewController {
         Stage stage = (Stage) node.getScene().getWindow();
 
         try {
-            stage.setUserData(sendHere);
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("server-view.fxml"));
             loader.setController(new ServerController(sendHere));
             Parent root = loader.load();
