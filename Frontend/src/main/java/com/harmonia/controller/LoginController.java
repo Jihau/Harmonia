@@ -7,39 +7,68 @@ import com.harmonia.po.UserPO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Objects;
 
+/**
+ * Controller class for the login view. Handles user authentication and navigation to other views.
+ *
+ * @author Harmonia team
+ * @version 1.0
+ */
 public class LoginController {
 
+    /**
+     * Represents a client for interacting with the user service.
+     */
     UserClient userClient = new UserClient();
 
+    /**
+     * Represents a text field for entering a username.
+     */
     @FXML
     TextField usernameField;
+    /**
+     * Represents a password field for entering a password.
+     */
     @FXML
     PasswordField passwordField;
+
+    /**
+     * Represents a hyperlink for registering a new account.
+     */
     @FXML
     Hyperlink registerLink;
+
+    /**
+     * Represents a button for submitting a login request.
+     */
     @FXML
     Button loginButton;
+
+    /**
+     * Represents a label for displaying error messages.
+     */
     @FXML
     Label errorLabel;
-    @FXML
+
 
     /**
      * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
+     * If successful, redirects the user to the Harmonia view.
      */
+    @FXML
     public void onLoginButtonClick() {
-    
-    if (Objects.equals(usernameField.getText(), "") || Objects.equals(passwordField.getText(), "")) {errorLabel.setText("Please fill both fields!"); errorLabel.setVisible(true); return;}
+
+        if (Objects.equals(usernameField.getText(), "") || Objects.equals(passwordField.getText(), "")) {
+            errorLabel.setText("Please fill both fields!");
+            errorLabel.setVisible(true);
+            return;
+        }
         errorLabel.setText("Login failed");
         errorLabel.setVisible(true);
         if (login(usernameField.getText(), passwordField.getText())) {
@@ -47,6 +76,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Handles the event when the register link is clicked. Redirects the user to the registration view.
+     */
     @FXML
     protected void onRegisterLinkClicked() {
         try {
@@ -61,6 +93,9 @@ public class LoginController {
         }
     }
 
+    /**
+     * Redirects the user to the Harmonia view after a successful login.
+     */
     @FXML
     public void logInRedirect() {
         try {
@@ -72,9 +107,14 @@ public class LoginController {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
-        }   
+        }
     }
 
+    /**
+     * Authenticates the user with the provided username and password.
+     * If successful, sets the logged in user to the user retrieved from the server.
+     * Returns true if the authentication was successful, false otherwise.
+     */
     public boolean login(String username, String password) {
         ResponseEntity<UserPO> user = userClient.validate(username, password);
         if (user.getStatusCode().equals(HttpStatus.OK)) {
