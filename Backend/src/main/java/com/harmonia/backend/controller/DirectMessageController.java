@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
  * @author Harmonia team
  * @version 1.0
  */
-
 @RestController
 @RequestMapping("dmessage")
 public class DirectMessageController {
