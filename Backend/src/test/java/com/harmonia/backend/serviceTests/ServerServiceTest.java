@@ -14,6 +14,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+/**
+ * This class contains JUnit tests for the {@link ServerService} class.
+ * @author Harmonia Team
+ */
 public class ServerServiceTest {
     @Mock
     private ServerRepository serverRepository;
@@ -21,7 +25,9 @@ public class ServerServiceTest {
     @InjectMocks
     private ServerService serverService;
 
-
+    /**
+     * This method tests the functionality of the addServer method of the {@link ServerService} class.
+     */
     @Test
     public void testAddServer() {
         Server server = new Server();
@@ -33,6 +39,9 @@ public class ServerServiceTest {
         assertEquals(server, savedServer);
     }
 
+    /**
+     * This method tests the functionality of the listServers method of the {@link ServerService} class.
+     */
     @Test
     public void testListServers() {
         List<Server> servers = new ArrayList<>();
@@ -52,6 +61,9 @@ public class ServerServiceTest {
         assertEquals(2, ((List<Server>) returnedServers).size());
     }
 
+    /**
+     * This method tests the functionality of the deleteServer method of the {@link ServerService} class.
+     */
     @Test
     public void testDeleteServer() {
         Long serverId = 1L;
@@ -59,6 +71,9 @@ public class ServerServiceTest {
         verify(serverRepository, times(1)).deleteById(serverId);
     }
 
+    /**
+     * This method tests the functionality of the editServerName method of the {@link ServerService} class.
+     */
     @Test
     public void testEditServerName() {
         Long serverId = 1L;

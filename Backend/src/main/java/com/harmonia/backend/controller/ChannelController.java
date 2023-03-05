@@ -8,14 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+@RestController
+@RequestMapping("channel")
 /**
  * REST controller for managing Channel entities.
  *
  * @author Harmonia team
  * @version 1.0
  */
-@RestController
-@RequestMapping("channel")
 public class ChannelController {
     @Autowired
     private ChannelService channelService;

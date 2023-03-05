@@ -17,6 +17,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+/**
+ * Unit tests for the UserService class.
+ * @author Harmonia Team
+ */
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
     @InjectMocks
@@ -25,6 +29,10 @@ class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    /**
+     * Test method for createUser.
+     * Verifies that a user can be created successfully and that the created user has the correct properties.
+     */
     @Test
     void testCreateUser() {
         CreateUserRequest user = new CreateUserRequest();
