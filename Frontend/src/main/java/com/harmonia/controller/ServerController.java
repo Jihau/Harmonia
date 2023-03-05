@@ -376,6 +376,14 @@ public class ServerController extends MainViewController {
     }
 
     /**
+     * Called when the user clicks the channel list. 
+     */
+    @FXML
+    public void onChannelListClick() {
+        populateMessageList();
+    }
+
+    /**
      * Returns the user to the main view.
      * @param event 
      * @throws IOException

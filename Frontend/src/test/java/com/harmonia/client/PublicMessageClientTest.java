@@ -83,8 +83,8 @@ public class PublicMessageClientTest {
         request.setPmessageId(3L);
         request.setMessageText("Test updating message!");
         when(restTemplate.exchange(anyString(), any(HttpMethod.class), any(HttpEntity.class), Mockito.<Class<PublicMessagePO>>any(), anyMap())).thenReturn(new ResponseEntity<>((request), HttpStatus.OK));
-        PublicMessagePO responsePublicMessagePO = publicMessageClient.editPublicMessage(request);
-        assertEquals(request.getMessageText(), responsePublicMessagePO.getMessageText());
+        String responsePublicMessagePO = publicMessageClient.editPublicMessage(request).getBody();
+        assertEquals("Message has been edited", responsePublicMessagePO);
          
     }
 }
