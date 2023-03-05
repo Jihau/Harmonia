@@ -23,14 +23,14 @@
       </ImageView>
       <AnchorPane layoutX="53.0" layoutY="60.0" prefHeight="586.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <effect>
-            <DropShadow height="20.0" radius="9.5" spread="1.0" width="20.0">
+            <DropShadow height="17.0" radius="8.75" spread="1.0" width="20.0">
                <color>
                   <Color red="0.10588235408067703" green="0.364705890417099" blue="0.8627451062202454" />
                </color>
             </DropShadow>
          </effect>
          <children>
-            <Label layoutX="33.0" layoutY="14.0" text="REGISTRATION" textFill="WHITE">
+            <Label layoutX="27.0" layoutY="14.0" text="REGISTRATION" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
@@ -106,7 +106,7 @@
             </Button>
             <Hyperlink fx:id="returnLink" layoutX="28.0" layoutY="476.0" onAction="#returnLinkOnClick" prefHeight="34.0" prefWidth="251.0" styleClass="Label" text="I already have an account">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Lato Regular" size="14.0" />
                </font>
             </Hyperlink>
          </children>

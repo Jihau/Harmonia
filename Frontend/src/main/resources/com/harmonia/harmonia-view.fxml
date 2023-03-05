@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.HarmoniaController">
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0">
          <children>
@@ -95,7 +95,7 @@
                </children>
             </AnchorPane>
          <AnchorPane prefHeight="720.0" prefWidth="1083.0">
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="728.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1087.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="728.0" layoutX="-7.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1094.0" />
             <TextField fx:id="searchBar" layoutX="277.0" layoutY="32.0" opacity="0.78" prefHeight="43.0" prefWidth="446.0" promptText="Search for users and servers.." styleClass="form" stylesheets="@css/form.css">
                <effect>
                   <Reflection fraction="0.2" topOpacity="0.27" />

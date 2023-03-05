@@ -3,13 +3,13 @@
     -fx-text-fill: white;
 }
 
-.list-cell:even { /* <=== changed to even */
+.list-cell:even {
     -fx-background-color: #141e2c;
     -fx-text-fill: white;
     -fx-font-family: Lato;
     -fx-font-size: 16;
 }
-.list-cell:odd { /* <=== changed to odd */
+.list-cell:odd {
     -fx-background-color: #141e2c;
     -fx-text-fill: white;
     -fx-font-family: Lato;
