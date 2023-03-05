@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -113,7 +114,7 @@
                      <Image url="@img/searchIcon.png" />
                   </image>
                </ImageView>
-            <Button fx:id="searchButton" onAction="#handleSearchButtonAction" layoutX="705.0" layoutY="36.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" styleClass="LogButton" stylesheets="@css/form.css" text="Search" textFill="#fffffffb">
+            <Button fx:id="searchButton" layoutX="705.0" layoutY="36.0" mnemonicParsing="false" onAction="#handleSearchButtonAction" opacity="0.0" prefHeight="35.0" prefWidth="35.0" styleClass="LogButton" stylesheets="@css/form.css" text="Search" textFill="#fffffffb">
                <effect>
                   <Reflection fraction="0.15" topOpacity="0.13" />
                </effect>
@@ -121,12 +122,27 @@
                      <Font name="Lato Regular" size="16.0" />
                   </font>
             </Button>
-               <ListView fx:id="serverListView" onMouseClicked="#handleServerListClick" layoutX="237.0" layoutY="121.0" prefHeight="523.0" prefWidth="539.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
+               <ListView fx:id="serverListView" layoutX="237.0" layoutY="121.0" onMouseClicked="#handleServerListClick" prefHeight="523.0" prefWidth="539.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
                <ImageView fitHeight="134.0" fitWidth="85.0" layoutX="971.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@img/harmoniaIcon.png" />
                   </image>
                </ImageView>
+               <Pane fx:id="serverJoinPopup" layoutX="269.0" layoutY="664.0" prefHeight="35.0" prefWidth="476.0" style="-fx-background-color: #32CD32;" visible="false">
+                  <children>
+                     <Label layoutX="14.0" layoutY="6.0" prefHeight="23.0" prefWidth="243.0" text="Successfully joined the server">
+                        <font>
+                           <Font name="Lato Regular" size="18.0" />
+                        </font>
+                     </Label>
+                     <ImageView fitHeight="150.0" fitWidth="23.0" layoutX="451.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@img/cancelIconBlack.png" />
+                        </image>
+                     </ImageView>
+                     <Button layoutX="451.0" layoutY="5.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Button" />
+                  </children>
+               </Pane>
          </AnchorPane>
          </children>
       </HBox>
