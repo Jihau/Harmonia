@@ -18,6 +18,7 @@ import static com.harmonia.constants.HarmoniaConstants.*;
  * A client for interacting with channels in the Harmonia system.
  *
  * @author Harmonia Team
+ * @version 1.0
  */
 public class ChannelClient {
 
