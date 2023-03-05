@@ -22,9 +22,9 @@
             <Image url="@img/LoginBg.png" />
          </image>
       </ImageView>
-      <AnchorPane id="menuBg" layoutX="53.0" layoutY="76.0" prefHeight="569.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
+      <AnchorPane id="menuBg" layoutX="53.0" layoutY="60.0" prefHeight="586.0" prefWidth="335.0" styleClass="menuBg" stylesheets="@css/form.css">
          <children>
-            <Label layoutX="62.0" layoutY="43.0" text="HARMONIA" textFill="WHITE">
+            <Label layoutX="56.0" layoutY="14.0" text="HARMONIA" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
@@ -67,7 +67,7 @@
                   <DropShadow height="5.23" radius="2.1225" spread="0.06" width="5.26" />
                </effect>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="33.0" layoutY="504.0" onAction="#onLoginButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" text="LOGIN">
+            <Button fx:id="loginButton" layoutX="31.0" layoutY="511.0" onAction="#onLoginButtonClick" prefHeight="51.0" prefWidth="270.0" styleClass="LogButton" text="LOGIN">
                <font>
                   <Font name="Lato Regular" size="24.0" />
                </font></Button>
@@ -79,13 +79,13 @@
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font></Label>
-            <Hyperlink fx:id="registerLink" layoutX="33.0" layoutY="474.0" onAction="#onRegisterLinkClicked" styleClass="Label" text="No account yet? Register here">
+            <Hyperlink fx:id="registerLink" layoutX="28.0" layoutY="476.0" onAction="#onRegisterLinkClicked" styleClass="Label" text="No account yet? Register here">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font></Hyperlink>
          </children>
          <effect>
-            <DropShadow height="20.0" radius="8" spread="1.0" width="20.0">
+            <DropShadow height="17.0" radius="8.75" spread="1.0" width="20.0">
                <color>
                   <Color red="0.10588235408067703" green="0.364705890417099" blue="0.8627451062202454" />
                </color>

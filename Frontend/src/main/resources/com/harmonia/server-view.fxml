@@ -73,7 +73,7 @@
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.rowIndex="3" />
+                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" styleClass="serverListStyle" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" prefHeight="26.0" prefWidth="126.0" text="Channel List" textFill="WHITE" GridPane.rowIndex="2" />
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e1821;" GridPane.rowIndex="1">
                            <children>
@@ -112,7 +112,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane prefHeight="720.0" prefWidth="650.0" style="-fx-background-color: lightgrey;">
+                  <GridPane prefHeight="720.0" prefWidth="650.0" style="-fx-background-color: #0e1821;">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                      </columnConstraints>
@@ -122,7 +122,7 @@
                         <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <ListView fx:id="PublicMessagesList" prefHeight="674.0" prefWidth="652.0" GridPane.rowIndex="1" />
+                        <ListView fx:id="PublicMessagesList" prefHeight="674.0" prefWidth="652.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.rowIndex="1" />
                         <HBox prefHeight="60.0" prefWidth="728.0" GridPane.rowIndex="2">
                            <children>
                               <BorderPane prefHeight="66.0" prefWidth="316.0">
@@ -173,7 +173,7 @@
                      </rowConstraints>
                      <children>
                         <Label alignment="CENTER" prefHeight="18.0" prefWidth="126.0" style="-fx-font-weight: bold;" text="Server members" textFill="WHITE" />
-                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" opacity="0.97" prefHeight="677.0" prefWidth="328.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.rowIndex="1" />
+                        <ListView fx:id="memberList" focusTraversable="false" mouseTransparent="true" opacity="0.97" prefHeight="677.0" prefWidth="328.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>

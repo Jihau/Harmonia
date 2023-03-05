@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
+<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.ProfileController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#060b0e" height="335.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" width="700.0">
@@ -21,13 +21,10 @@
          </effect>
       </Rectangle>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#122eb9ed" height="78.0" layoutX="370.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="700.0" />
-      <ImageView id="editIconPen" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="23.0" layoutX="787.0" layoutY="323.0" opacity="0.42">
+      <ImageView id="editIconPen" accessibleRole="BUTTON" fitHeight="23.0" fitWidth="23.0" layoutX="399.0" layoutY="326.0" opacity="0.59">
          <image>
-            <Image url="@img/pen.png" />
+            <Image url="@img/editIcon.png" />
          </image>
-         <effect>
-            <Reflection fraction="0.37" />
-         </effect>
       </ImageView>
       <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
          <children>
@@ -88,18 +85,18 @@
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="pFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onpFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onpSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onpHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="pCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" onAction="#onpServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="sFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="fmSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="fmProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="fmHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+            <Button fx:id="fmCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Label layoutX="91.0" layoutY="688.0" text="Logout" textFill="WHITE">
+            <Label layoutX="90.0" layoutY="688.0" text="Logout" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="59.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="58.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/logoutIcon.png" />
                </image>
@@ -147,11 +144,14 @@
             <Font name="Lato Regular" size="14.0" />
          </font>
       </Label>
-      <TextField id="bioField" fx:id="bioTextField" layoutX="397.0" layoutY="325.0" onAction="#editBioTextField" opacity="0.82" prefHeight="25.0" prefWidth="372.0" promptText="Write a description.." styleClass="form" stylesheets="@css/form.css">
+      <TextField id="bioField" fx:id="bioTextField" layoutX="422.0" layoutY="324.0" onAction="#editBioTextField" opacity="0.82" prefHeight="25.0" prefWidth="609.0" promptText="Write a description.." styleClass="form" stylesheets="@css/form.css">
          <effect>
             <Reflection fraction="0.09" />
          </effect>
+         <font>
+            <Font name="Lato Regular" size="14.0" />
+         </font>
       </TextField>
-      <Button id="editBioBtn" fx:id="editBioBtn" layoutX="786.0" layoutY="322.0" mnemonicParsing="false" onAction="#editBioText" opacity="0.0" prefHeight="25.0" prefWidth="23.0" />
+      <Button id="editBioBtn" fx:id="editBioBtn" layoutX="399.0" layoutY="325.0" mnemonicParsing="false" onAction="#editBioText" opacity="0.0" prefHeight="25.0" prefWidth="23.0" />
    </children>
 </AnchorPane>
