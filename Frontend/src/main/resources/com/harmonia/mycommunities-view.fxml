@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.CommunitiesController">
+<AnchorPane maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.CommunitiesController">
    <children>
       <GridPane layoutX="-5.0" prefHeight="720.0" prefWidth="1280.0">
          <columnConstraints>
@@ -90,7 +90,7 @@
                   <Button fx:id="logoutButton" layoutX="6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="197.0" text="Button" />
                </children>
             </AnchorPane>
-            <ListView fx:id="serverList" prefHeight="772.0" prefWidth="1153.0" GridPane.columnIndex="1" />
+            <ListView fx:id="serverList" prefHeight="720.0" prefWidth="518.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
