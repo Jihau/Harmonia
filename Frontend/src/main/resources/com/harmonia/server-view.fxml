@@ -73,7 +73,7 @@
                               </GridPane>
                            </children>
                         </GridPane>
-                        <ListView fx:id="channelList" onMouseClicked="#onChannelListClick" prefHeight="621.0" prefWidth="322.0" styleClass="serverListStyle" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.rowIndex="3" />
+                        <ListView fx:id="channelList" prefHeight="621.0" prefWidth="322.0" styleClass="serverListStyle" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.rowIndex="3" />
                         <Label alignment="CENTER" prefHeight="26.0" prefWidth="126.0" text="Channel List" textFill="WHITE" GridPane.rowIndex="2" />
                         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0e1821;" GridPane.rowIndex="1">
                            <children>

@@ -75,12 +75,12 @@ public class PublicMessageClient {
      * @param editMe The {@link PublicMessagePO} object representing the message to be edited.
      * @return The {@link PublicMessagePO} object representing the edited message.
      */
-    public PublicMessagePO editPublicMessage(PublicMessagePO editMe) {
+    public ResponseEntity<String> editPublicMessage(PublicMessagePO editMe) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<PublicMessagePO> request = new HttpEntity<>(editMe, headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("pMessageId", String.valueOf(editMe.getPmessageId()));
 
-        return restTemplate.exchange(PM_EDIT_URL, HttpMethod.PUT, request, PublicMessagePO.class, urlParameters).getBody();
+        return restTemplate.exchange(PM_EDIT_URL, HttpMethod.PUT, request, String.class, urlParameters);
     }
 }
