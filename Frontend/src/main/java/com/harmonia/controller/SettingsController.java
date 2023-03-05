@@ -12,6 +12,7 @@ import com.harmonia.constants.HarmoniaConstants.*;
 import com.harmonia.po.*;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 
-public class SettingsController {
+public class SettingsController extends MainViewController {
 
     @FXML
     private UserPO user;
@@ -36,23 +37,6 @@ public class SettingsController {
 
     @FXML
     Button submitButton;
-
-    Button sHomePageBtn;
-
-    @FXML
-    Button sCommunityBtn;
-
-    @FXML
-    Button sFriendsBtn;
-
-    @FXML
-    Button sProfileBtn;
-
-    @FXML
-    Button sSettingsBtn;
-
-    @FXML
-    Button logoutButton;
 
     public void initialize() {
 
@@ -86,17 +70,8 @@ public class SettingsController {
     }
 
     @FXML
-    public void onReturnButtonClick() throws IOException {
-            returnToMain();
-    }
-
-    private void returnToMain() throws IOException {
-        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) root.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Harmonia");
-            stage.show();
+    public void onReturnButtonClick(ActionEvent event) throws IOException {
+            super.onfmHomePageBtnClick(event);
     }
 
     private void successAlert() {
@@ -105,88 +80,5 @@ public class SettingsController {
         UpdatedAlert.setContentText("Your user details were succesfully updated.");
         UpdatedAlert.setTitle("Success");
         UpdatedAlert.showAndWait();
-    }
-
-    @FXML
-    protected void onsHomePageBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) sHomePageBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void onsCommunityBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
-            Stage stage = (Stage) sCommunityBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void onsFriendsBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
-            Stage stage = (Stage) sFriendsBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    protected void onsProfileBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
-            Stage stage = (Stage) sProfileBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void onServerButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Your communities");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void logoutOnButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

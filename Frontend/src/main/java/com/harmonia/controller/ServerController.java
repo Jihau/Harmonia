@@ -1,26 +1,26 @@
 package com.harmonia.controller;
 
-import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.ChannelClient;
 import com.harmonia.client.PublicMessageClient;
 import com.harmonia.client.ServerClient;
 import com.harmonia.client.ServerMemberClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.constants.HarmoniaMessagesConstants;
+import com.harmonia.constants.HarmoniaViewsConstants;
 import com.harmonia.po.ChannelPO;
 import com.harmonia.po.PublicMessagePO;
 import com.harmonia.po.ServerMemberPO;
 import com.harmonia.po.ServerPO;
 import com.harmonia.po.UserPO;
 
+import com.harmonia.utils.HarmoniaUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +33,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ServerController {
+import java.io.IOException;
+
+public class ServerController extends MainViewController {
 
     private ServerPO selectedServer;
     private UserPO loggedInUser;
@@ -346,16 +348,7 @@ public class ServerController {
     }
 
     @FXML
-    public void onReturnButtonClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Stage stage = (Stage) returnButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Harmonia");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }   
+    public void onReturnButtonClick(ActionEvent event) throws IOException {
+        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) returnButton.getScene().getWindow());
     }
 }
