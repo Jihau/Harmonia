@@ -9,8 +9,9 @@ public class HarmoniaDataLoader {
 
     public static void searchUserByUsername(String userName) {
         UserPO[] users = userClient.listUsers();
+        HarmoniaData.USERS_LIST.clear();
         for (int i = 0; i < users.length; i++) {
-            HarmoniaData.USERS_LIST.add(users[i].getUsername());
+            HarmoniaData.USERS_LIST.add(users[i]);
         }
     }
 }

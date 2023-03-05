@@ -82,11 +82,11 @@
                         <Font name="Lato Regular" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="mcFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onmcFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onmcProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" onAction="#onmcProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onmcHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="mcCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="sFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" onAction="#onfmProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Button fx:id="logoutButton" layoutX="6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="197.0" text="Button" />
                </children>
             </AnchorPane>

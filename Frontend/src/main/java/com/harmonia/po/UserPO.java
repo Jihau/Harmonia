@@ -19,4 +19,9 @@ public class UserPO {
     String profileIcon;
     String bio;
     Date timestamp;
+
+    @Override
+    public String toString() {
+        return username;
+    }
 }

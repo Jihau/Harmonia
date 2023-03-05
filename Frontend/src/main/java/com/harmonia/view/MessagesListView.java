@@ -6,9 +6,9 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
-public class UsersListView extends ListView {
-    public UsersListView() {
-        super(HarmoniaData.USERS_LIST);
+public class MessagesListView extends ListView {
+    public MessagesListView() {
+        super(HarmoniaData.DIRECT_MESSAGES_LIST);
         this.setOnMouseClicked((EventHandler<Event>) event -> {
             HarmoniaData.SELECTED_RECIPIENT = (UserPO) this.getSelectionModel().getSelectedItem();
         });

@@ -28,7 +28,7 @@ public class HarmoniaApplication extends Application {
      */
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Harmonia");
         stage.getIcons().add(new Image(Objects.requireNonNull(HarmoniaApplication.class.getResourceAsStream("/com/harmonia/img/harmoniaIcon.png"))));

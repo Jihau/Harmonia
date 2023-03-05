@@ -33,7 +33,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ServerController {
+import java.io.IOException;
+
+public class ServerController extends MainViewController {
 
     private ServerPO selectedServer;
     private UserPO loggedInUser;
@@ -346,16 +348,7 @@ public class ServerController {
     }
 
     @FXML
-    public void onReturnButtonClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Stage stage = (Stage) returnButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Harmonia");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }   
+    public void onReturnButtonClick(ActionEvent event) throws IOException {
+        super.onfmHomePageBtnClick(event);
     }
 }

@@ -1,6 +1,7 @@
 package com.harmonia.constants;
 
 import com.harmonia.po.UserPO;
+import com.harmonia.utils.HarmoniaUtils;
 
 /**
  * This class contains all the constants used in the Harmonia application.
@@ -132,5 +133,5 @@ public class HarmoniaConstants {
     /**
      * The currently logged in user.
      */
-    public static UserPO LOGGED_USERS = null;
+    public static UserPO LOGGED_USERS = HarmoniaUtils.simulateUser();
 }

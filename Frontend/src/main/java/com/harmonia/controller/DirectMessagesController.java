@@ -1,32 +1,34 @@
 package com.harmonia.controller;
 
-import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 import com.harmonia.utils.HarmoniaDataLoader;
-import com.harmonia.view.ChatView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import org.springframework.http.ResponseEntity;
 
-import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-public class ChatController {
+/**
+ * The DirectMessagesController class is responsible for controlling the user's interactions
+ * with the chat view in the Harmonia application. It communicates with the DirectMessageClient
+ * and UserClient classes to send and receive messages and user information. This class also
+ * handles events triggered by various buttons in the chat view,
+ *
+ * @author Harmonia Team
+ * @version 1.0
+ */
+public class DirectMessagesController extends MainViewController {
 
     Comparator<MessagePO> comparator;
     @FXML
@@ -37,69 +39,11 @@ public class ChatController {
     Button cancelEditButton;
     ObservableList<MessagePO> conversationObject;
     ObservableList<String> conversationString;
-    private ChatView view;
     private List<MessagePO> messages;
     private UserPO loggedInUser;
     private int chatTargetId;
     private String chatTargetName;
     private MessagePO selectedMessage;
-    /**
-     * navigation button for nav menu
-     * letter combination before name indicates in what view the button is from
-     * h=harmonia-view
-     * fm=messages-view
-     * p=profile-view
-     * s=usersettings-view
-     * mc=mycommunities-view
-     */
-    @FXML
-    private Button fmFriendsBtn;
-    /**
-     * navigation button for nav menu
-     * letter combination before name indicates in what view the button is from
-     * h=harmonia-view
-     * fm=messages-view
-     * p=profile-view
-     * s=usersettings-view
-     * mc=mycommunities-view
-     */
-    @FXML
-    private Button fmSettingsBtn;
-    /**
-     * navigation button for nav menu
-     * letter combination before name indicates in what view the button is from
-     * h=harmonia-view
-     * fm=messages-view
-     * p=profile-view
-     * s=usersettings-view
-     * mc=mycommunities-view
-     */
-    @FXML
-    private Button fmProfileBtn;
-    /**
-     * navigation button for nav menu
-     * letter combination before name indicates in what view the button is from
-     * h=harmonia-view
-     * fm=messages-view
-     * p=profile-view
-     * s=usersettings-view
-     * mc=mycommunities-view
-     */
-    @FXML
-    private Button fmHomePageBtn;
-    /**
-     * navigation button for nav menu
-     * letter combination before name indicates in what view the button is from
-     * h=harmonia-view
-     * fm=messages-view
-     * p=profile-view
-     * s=usersettings-view
-     * mc=mycommunities-view
-     */
-    @FXML
-    private Button fmCommunityBtn;
-    @FXML
-    private Button logoutButton;
     @FXML
     private TextField sendMessageField;
     @FXML
@@ -113,23 +57,25 @@ public class ChatController {
     private DirectMessageClient messageClient;
     private UserClient userClient;
 
-    public ChatController() {
+    public DirectMessagesController() {
 
     }
 
+    /**
+     * Initializes the ChatController by setting up various variables and objects.
+     * Specifically, this method sets up the comparator used to sort messages, initializes
+     * the currently logged-in user, creates a new DirectMessageClient and UserClient object,
+     * sets the chat target ID and name, creates two observable lists for holding the conversation,
+     * calls populateListView() to populate the list view with messages, and calls searchUserByUsername()
+     * to populate the user search bar.
+     */
     public void initialize() {
         comparator = Comparator.comparingInt(MessagePO::getDmessageId);
-
         loggedInUser = HarmoniaConstants.LOGGED_USERS;
-
         messageClient = new DirectMessageClient();
-
         userClient = new UserClient();
-
         chatTargetId = 2;
-
         chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
-
         conversationObject = FXCollections.observableArrayList();
         conversationString = FXCollections.observableArrayList();
 
@@ -137,74 +83,28 @@ public class ChatController {
         HarmoniaDataLoader.searchUserByUsername("");
     }
 
+    /**
+     * Sends a message to the recipient specified in the message object and returns the response from the message client.
+     *
+     * @param message the message to be sent
+     * @return the response from the message client
+     */
     public ResponseEntity<?> sendMessage(MessagePO message) {
-        System.out.println(message);
         return messageClient.addMessage(message);
     }
 
 
-    @FXML
-    protected void onfmHomePageBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) fmHomePageBtn.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    protected void onfmProfileBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) fmProfileBtn.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    protected void onfmSettingsBtnClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) fmSettingsBtn.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     protected void populateListView() {
-
         conversationObject.clear();
-
         for (MessagePO m : Objects.requireNonNull(messageClient.getMessagesByRecipientID(loggedInUser.getUserId()).getBody())) {
             if (m.getAuthorId() == chatTargetId)
                 conversationObject.add(m);
         }
-
         for (MessagePO m : Objects.requireNonNull(messageClient.getMessagesByAuthorId(loggedInUser.getUserId()).getBody())) {
             if (m.getRecipientId() == chatTargetId) {
                 conversationObject.add(m);
             }
         }
-
-
         conversationObject.sort(comparator);
         convertList();
         if (conversationString.size() > 0) {
@@ -251,24 +151,6 @@ public class ChatController {
         }
     }
 
-    public void logoutOnButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void drawListView() {
-        ChatListView.setItems(conversationString);
-    }
-
     @FXML
     public void onEditButtonClick() {
         int index = ChatListView.getSelectionModel().getSelectedIndex();
@@ -295,7 +177,7 @@ public class ChatController {
         System.out.println("AuthorId: " + editSelectedMessage.getAuthorId());
         System.out.println("MessageId: " + editSelectedMessage.getDmessageId());
 
-        if (editTextField.getText() != "") {
+        if (!Objects.equals(editTextField.getText(), "")) {
 
             editSelectedMessage.setMessageText(editTextField.getText());
             editSelectedMessage.setAuthorId(loggedInUser.getUserId());
@@ -354,19 +236,6 @@ public class ChatController {
         return this.selectedMessage;
     }
 
-    public void onServerButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Your communities");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void setSelectedMessage(MessagePO message) {
         this.selectedMessage = message;
