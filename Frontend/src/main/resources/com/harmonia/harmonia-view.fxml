@@ -77,11 +77,11 @@
                         <Font name="Lato Regular" size="16.0" />
                      </font>
                   </Label>
-                  <Button fx:id="hHomePageBtn" layoutX="-6.0" layoutY="61.0" mnemonicParsing="false" onAction="#onhHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onhFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onhProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="hSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onhSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmHomePageBtn" layoutX="-6.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="sFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onfmProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
+                  <Button fx:id="fmSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
                   <Label layoutX="91.0" layoutY="688.0" text="Logout" textFill="WHITE">
                      <font>

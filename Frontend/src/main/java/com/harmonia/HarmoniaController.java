@@ -3,6 +3,7 @@ package com.harmonia;
 import com.harmonia.client.ServerClient;
 import com.harmonia.client.ServerMemberClient;
 import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.controller.MainViewController;
 import com.harmonia.po.ServerMemberPO;
 import com.harmonia.po.ServerPO;
 import com.harmonia.utils.HarmoniaUtils;
@@ -13,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,23 +28,25 @@ import java.io.IOException;
  * @version 1.0
  */
 
-public class HarmoniaController {
+public class HarmoniaController extends MainViewController {
 
+    @FXML
+    private Pane serverJoinPopup;
 
     @FXML
     public Button logoutButton;
 
     @FXML
-    private Button hHomePageBtn;
+    private Button fmHomePageBtn;
 
     @FXML
-    private Button hFriendsBtn;
+    private Button sFriendsBtn;
 
     @FXML
-    private Button hProfileBtn;
+    private Button fmProfileBtn;
 
     @FXML
-    private Button hSettingsBtn;
+    private Button fmSettingsBtn;
 
     @FXML
     public TextField searchBar;
@@ -50,6 +54,8 @@ public class HarmoniaController {
     public Button searchButton;
     @FXML
     public ListView<Object> serverListView;
+
+    
 
     private ServerClient serverClient = new ServerClient();
     private ServerMemberClient serverMemberClient = new ServerMemberClient();
@@ -88,130 +94,40 @@ public class HarmoniaController {
         // Get the selected server from the serverListView
         Object selectedItem = serverListView.getSelectionModel().getSelectedItem();
 
+
+
         if (selectedItem instanceof ServerPO) {
             ServerPO selectedServer = (ServerPO) selectedItem;
 
-            // Create a new ServerMemberPO object with the current member's ID and the selected server's ID
-            ServerMemberPO serverMemberPO = new ServerMemberPO();
-            serverMemberPO.setMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
-            serverMemberPO.setServerId(selectedServer.getServerId());
+            Boolean notJoined = true;
 
-            // Call addServerMember() with the new ServerMemberPO object
-            ResponseEntity<ServerMemberPO> response = serverMemberClient.addServerMember(serverMemberPO);
 
-            // Check the status code of the response
-            if (response.getStatusCode() == HttpStatus.OK) {
-                // Display a success message
-                System.out.println("User added to server");
-            } else {
-                // Display an error message
-                System.out.println("Failed to add user to server");
+            for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long)selectedServer.getServerId())) {
+                if (member.getMemberId() == HarmoniaConstants.LOGGED_USERS.getUserId()) { notJoined = false; }
             }
-        }
-    }
 
-    /**
-     * This method is called when the home page button is clicked. It loads the harmonia-view.fxml file and sets it as the new scene for the window.
-     */
-    @FXML
-    protected void onhHomePageBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) hHomePageBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Explore");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+            // Create a new ServerMemberPO object with the current member's ID and the selected server's ID
+            if (notJoined) {
+                ServerMemberPO serverMemberPO = new ServerMemberPO();
+                serverMemberPO.setMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+                serverMemberPO.setServerId(selectedServer.getServerId());
+                serverMemberPO.setNickName(HarmoniaConstants.LOGGED_USERS.getUsername());
 
-    /**
-     * This method is called when the Direct Message button is clicked. It loads the messages-view.fxml file and sets it as the new scene for the window.
-     */
-    @FXML
-    protected void onhFriendsBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
-            Stage stage = (Stage) hFriendsBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Friends & messages");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+                // Call addServerMember() with the new ServerMemberPO object
+                ResponseEntity<ServerMemberPO> response = serverMemberClient.addServerMember(serverMemberPO);
 
-    /**
-     * This method is called when the profile button is clicked. It loads the profile-view.fxml file and sets it as the new scene for the window.
-     */
-    @FXML
-    protected void onhProfileBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
-            Stage stage = (Stage) hProfileBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * This method is called when the Settings button is clicked. It loads the settings-view.fxml file and sets it as the new scene for the window.
-     */
-    @FXML
-    protected void onhSettingsBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
-            Stage stage = (Stage) hSettingsBtn.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Profile");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * Handles the action when the logout button is clicked. Loads the login
-     * UI / login view again.
-     */
-
-    public void logoutOnButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * This method is called when the Servers button is clicked. It loads the mycommunities-view.fxml file and sets it as the new scene for the window.
-     */
-    public void onServerButtonClick() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) logoutButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Your communities");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+                // Check the status code of the response
+                if (response.getStatusCode() == HttpStatus.OK) {
+                    // Display a success message
+                    System.out.println("User added to server");
+                } else {
+                    // Display an error message
+                    System.out.println("Failed to add user to server");
+                }
+                serverJoinPopup.setVisible(true);
+            } else {
+                System.out.println("You already are on this server!");
+            }
         }
     }
 }
