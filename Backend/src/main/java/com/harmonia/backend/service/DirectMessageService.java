@@ -10,6 +10,7 @@ import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -123,5 +124,9 @@ public class DirectMessageService {
         }else {
             throw new IllegalArgumentException("Message not found");
         }
+    }
+
+    public List<DmessageResponse> listConversation(Long authorId, Long recipientId) {
+        return directMessageRepository.listConversation(authorId, recipientId).stream().map(DmessageResponse::new).collect(Collectors.toList());
     }
 }

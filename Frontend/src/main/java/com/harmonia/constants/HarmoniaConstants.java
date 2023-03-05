@@ -1,6 +1,7 @@
 package com.harmonia.constants;
 
 import com.harmonia.po.UserPO;
+import com.harmonia.utils.HarmoniaUtils;
 
 /**
  * This class contains all the constants used in the Harmonia application.
@@ -58,6 +59,11 @@ public class HarmoniaConstants {
      * The URL for getting all direct messages sent by a specific author.
      */
     public static final String DM_GET_A_ID = BASE_URL + "/dmessage/authorId/{authorId}";
+
+    /**
+     * The URL for getting all direct messages between two users.
+     */
+    public static final String DM_GET_CONVERSATION = BASE_URL + "/dmessage/authorId/{authorId}/recipientId/{recipientId}";
 
     /**
      * The URL for getting all direct messages sent to a specific recipient.

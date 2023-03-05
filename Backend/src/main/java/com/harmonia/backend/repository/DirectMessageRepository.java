@@ -30,4 +30,7 @@ public interface DirectMessageRepository extends CrudRepository<DirectMessage, L
      * @return a list of DirectMessage objects that match the given author ID
      */
     List<DirectMessage> listDMsByAuthorId(Long authorId);
+
+    List<DirectMessage> listConversation(Long authorId, Long recipientId);
+
 }

@@ -1,7 +1,9 @@
 package com.harmonia;
 
 import com.harmonia.constants.HarmoniaViewsConstants;
+import com.harmonia.utils.HarmoniaTaskRefresher;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -37,5 +39,7 @@ public class HarmoniaApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        Platform.runLater(new HarmoniaTaskRefresher());
+
     }
 }

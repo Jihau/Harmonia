@@ -28,7 +28,8 @@ import java.sql.Date;
         // Retrieve a list of Direct Messages by the recipient's User ID
         @NamedQuery(name = "DirectMessage.listDMsByRecipientId", query = "FROM DirectMessage dm where dm.recipient.id = :recipientId"),
         // Retrieve a list of Direct Messages by the author's User ID
-        @NamedQuery(name = "DirectMessage.listDMsByAuthorId", query = "FROM DirectMessage dm where dm.author.id = :authorId")})
+        @NamedQuery(name = "DirectMessage.listDMsByAuthorId", query = "FROM DirectMessage dm where dm.author.id = :authorId"),
+        @NamedQuery(name = "DirectMessage.listConversation", query = "FROM DirectMessage dm where (dm.author.id = :authorId AND dm.recipient.id = :recipientId) OR (dm.author.id = :recipientId AND dm.recipient.id = :authorId) ORDER BY dm.dmessageId")})
 @Table(name = "direct_message", schema = "harmoniadb")
 public class DirectMessage {
 
