@@ -135,12 +135,8 @@ public class ServerController extends MainViewController {
         this.channelClient = new ChannelClient();
         
         loggedInUser = HarmoniaConstants.LOGGED_USERS;
-
-        selectedChannel = channelClient.listAllChannels()[0]; 
-
-        System.out.println(selectedServer.getServerId());
-        System.out.println(selectedServer.getServerName());
-
+        selectedChannel = channelClient.listAllChannels()[0];
+        loggedUserLabel.setText(HarmoniaConstants.LOGGED_USERS.getUsername());
         
         PMObjectList = FXCollections.observableArrayList();
         PMStringList = FXCollections.observableArrayList();
@@ -152,8 +148,8 @@ public class ServerController extends MainViewController {
 
 
         getObjects();
-        setServerInfo();
 
+        setServerInfo();
         populateUserList();
         populateChannelList();
 
@@ -215,6 +211,7 @@ public class ServerController extends MainViewController {
     public void populateMessageList() {
         PMObjectList.clear();
         PMStringList.clear();
+
         PublicMessagePO[] messageArray = publicMessageClient.getAllMessages();
         
         for (PublicMessagePO message : messageArray) {
@@ -299,7 +296,7 @@ public class ServerController extends MainViewController {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
         
         if (PMObjectList.get(index).getAuthorId()==loggedInUser.getUserId()) {
-            publicMessageClient.removeMessage(selectedMessage.getPmessageId());
+            publicMessageClient.removeMessage(PMObjectList.get(index).getPmessageId());
         }
         populateMessageList();
     }
