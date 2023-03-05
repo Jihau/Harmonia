@@ -18,4 +18,9 @@ public class ServerPO {
     String serverCategory;
     Set<ChannelPO> channel;
     Set<ServerMemberPO> members;
+
+    @Override
+    public String toString() {
+        return serverName;
+    }
 }

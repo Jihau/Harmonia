@@ -65,4 +65,18 @@ public class ServerClientTest {
         assertArrayEquals(expectedServers, actualServers);
         verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any());
     }
+
+    @Test
+    public void listServersByCategoryTest() throws JsonProcessingException {
+
+        String response = "[{\"channel\":[],\"members\":[],\"serverId\":2,\"serverName\":\"Another cool server\",\"serverCategory\":\"Stickers\",\"ownerId\":1}]";
+        ServerPO[] expectedServers = serverReader.readValue(response);
+
+        Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any()))
+                .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
+        ServerPO[] actualServers =  serverClient.listServersByCategory("Stickers");
+        assertNotNull(actualServers);
+        assertArrayEquals(expectedServers, actualServers);
+        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerPO[]>>any());
+    }
 }

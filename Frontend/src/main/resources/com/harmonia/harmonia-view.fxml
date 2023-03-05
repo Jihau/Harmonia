@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.image.Image?>
@@ -96,7 +97,7 @@
             </AnchorPane>
          <AnchorPane prefHeight="720.0" prefWidth="1083.0">
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="728.0" layoutX="-7.0" layoutY="-8.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1094.0" />
-            <TextField fx:id="searchBar" layoutX="277.0" layoutY="32.0" opacity="0.78" prefHeight="43.0" prefWidth="446.0" promptText="Search for users and servers.." styleClass="form" stylesheets="@css/form.css">
+            <TextField fx:id="searchBar" layoutX="294.0" layoutY="34.0" opacity="0.78" prefHeight="25.0" prefWidth="392.0" promptText="Search communities by category.." styleClass="form" stylesheets="@css/form.css">
                <effect>
                   <Reflection fraction="0.2" topOpacity="0.27" />
                </effect>
@@ -107,13 +108,13 @@
                      <Insets />
                   </opaqueInsets>
             </TextField>
-               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" layoutX="735.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="35.0" />
-               <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="741.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="35.0" layoutX="705.0" layoutY="35.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="35.0" />
+               <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="711.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@img/searchIcon.png" />
                   </image>
                </ImageView>
-            <Button fx:id="searchButton" layoutX="736.0" layoutY="37.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" styleClass="LogButton" stylesheets="@css/form.css" text="Search" textFill="#fffffffb">
+            <Button fx:id="searchButton" onAction="#handleSearchButtonAction" layoutX="705.0" layoutY="36.0" mnemonicParsing="false" opacity="0.0" prefHeight="35.0" prefWidth="35.0" styleClass="LogButton" stylesheets="@css/form.css" text="Search" textFill="#fffffffb">
                <effect>
                   <Reflection fraction="0.15" topOpacity="0.13" />
                </effect>
@@ -121,6 +122,12 @@
                      <Font name="Lato Regular" size="16.0" />
                   </font>
             </Button>
+               <ListView fx:id="serverListView" onMouseClicked="#handleServerListClick" layoutX="237.0" layoutY="121.0" prefHeight="523.0" prefWidth="539.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
+               <ImageView fitHeight="134.0" fitWidth="85.0" layoutX="971.0" layoutY="608.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@img/harmoniaIcon.png" />
+                  </image>
+               </ImageView>
          </AnchorPane>
          </children>
       </HBox>

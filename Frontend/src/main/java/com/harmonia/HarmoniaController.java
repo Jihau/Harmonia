@@ -1,179 +1,118 @@
 package com.harmonia;
 
+import com.harmonia.client.ServerClient;
 import com.harmonia.client.ServerMemberClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.ServerMemberPO;
+import com.harmonia.po.ServerPO;
+import com.harmonia.utils.HarmoniaUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 import java.io.IOException;
 
 /**
- * Class representing the main controller of the Harmonia application.
+ * Class representing the main controller of the Harmonia's main view
  *
- * @author OTP1 Group 3: Johanna Toivanen, Mohammed Al-Jewari, Sampo Savolainen, Jesper Ojala
+ * @author Harmonia Team
  * @version 1.0
- * @since 1.0
  */
 
 public class HarmoniaController {
-    /**
-     * The email field for the user in registration view.
-     */
-    @FXML
-    public TextField emailField;
 
-    /**
-     * The repeat password field for the user in registration view.
-     */
-    @FXML
-    public PasswordField repeatPasswordField;
 
-    /**
-     * The logout button.
-     */
     @FXML
     public Button logoutButton;
 
     @FXML
-    public Button loginButton;
+    private Button hHomePageBtn;
+
+    @FXML
+    private Button hFriendsBtn;
+
+    @FXML
+    private Button hProfileBtn;
+
+    @FXML
+    private Button hSettingsBtn;
+
     @FXML
     public TextField searchBar;
     @FXML
     public Button searchButton;
     @FXML
-    public ListView serverList;
+    public ListView<Object> serverListView;
 
-
-
-    /**
-     * The username field for the user.
-     */
-    @FXML
-    private TextField usernameField;
+    private ServerClient serverClient = new ServerClient();
+    private ServerMemberClient serverMemberClient = new ServerMemberClient();
 
     /**
-     * The password field for the user.
+     * This method handles the user clicking the search button by retrieving the search text from the searchBar
+      *and calling the listServersByCategory() method from the ServerClient class with the search text as the server
+     * category. It then adds the server objects returned from the serverClient to the serverListView.
+     * @param event The event object that triggered this method.
      */
     @FXML
-    private PasswordField passwordField;
+    private void handleSearchButtonAction(ActionEvent event) {
+        // Get the text entered in the searchBar
+        String searchText = searchBar.getText();
 
-    /**
-     * The welcome text label.
-     */
-    @FXML
-    private Label welcomeText;
+        // Call listServersByCategory() with the search text as the server category
+        ServerPO[] servers = serverClient.listServersByCategory(searchText);
 
-    /**
-     * The register link in registration view.
-     */
-    @FXML
-    private Hyperlink registerLink;
+        // Clear the existing items in the serverListView
+        serverListView.getItems().clear();
 
-    /**
-     * The close button.
-     */
-    @FXML
-    private Button closeButton;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
-    private Button hHomePageBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
-    private Button hCommunityBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
-    private Button hFriendsBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
-    private Button hProfileBtn;
-
-    /**
-     navigation button for nav menu
-     letter combination before name indicates in what view the button is from
-     h=harmonia-view
-     fm=messages-view
-     p=profile-view
-     s=usersettings-view
-     mc=mycommunities-view
-     */
-    @FXML
-    private Button hSettingsBtn;
-
-    @FXML
-    protected void onLoginButtonClick() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Harmonia");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
-     * Handles the action when the login button is clicked. Loads the registration
-     * UI / registration view.
-     */
-    @FXML
-    protected void onRegisterLinkClicked() {
-        try {
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("registration-view.fxml"));
-            Stage stage = (Stage) registerLink.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Register to Harmonia");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        // Add the server objects to the ListView
+        for (ServerPO server : servers) {
+            serverListView.getItems().add(server);
         }
     }
+
+    /**
+     * This method is called when a server is clicked in the server list view. It adds the current user as a member of the selected server.
+     *
+     * @param event The MouseEvent object generated when a server is clicked in the server list view.
+     */
+    @FXML
+    private void handleServerListClick(MouseEvent event) {
+        System.out.println("handleServerListClick called");
+        // Get the selected server from the serverListView
+        Object selectedItem = serverListView.getSelectionModel().getSelectedItem();
+
+        if (selectedItem instanceof ServerPO) {
+            ServerPO selectedServer = (ServerPO) selectedItem;
+
+            // Create a new ServerMemberPO object with the current member's ID and the selected server's ID
+            ServerMemberPO serverMemberPO = new ServerMemberPO();
+            serverMemberPO.setMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+            serverMemberPO.setServerId(selectedServer.getServerId());
+
+            // Call addServerMember() with the new ServerMemberPO object
+            ResponseEntity<ServerMemberPO> response = serverMemberClient.addServerMember(serverMemberPO);
+
+            // Check the status code of the response
+            if (response.getStatusCode() == HttpStatus.OK) {
+                // Display a success message
+                System.out.println("User added to server");
+            } else {
+                // Display an error message
+                System.out.println("Failed to add user to server");
+            }
+        }
+    }
+
+    /**
+     * This method is called when the home page button is clicked. It loads the harmonia-view.fxml file and sets it as the new scene for the window.
+     */
     @FXML
     protected void onhHomePageBtnClick() {
         try {
@@ -188,6 +127,9 @@ public class HarmoniaController {
         }
     }
 
+    /**
+     * This method is called when the Direct Message button is clicked. It loads the messages-view.fxml file and sets it as the new scene for the window.
+     */
     @FXML
     protected void onhFriendsBtnClick() {
         try {
@@ -202,6 +144,9 @@ public class HarmoniaController {
         }
     }
 
+    /**
+     * This method is called when the profile button is clicked. It loads the profile-view.fxml file and sets it as the new scene for the window.
+     */
     @FXML
     protected void onhProfileBtnClick() {
         try {
@@ -216,6 +161,9 @@ public class HarmoniaController {
         }
     }
 
+    /**
+     * This method is called when the Settings button is clicked. It loads the settings-view.fxml file and sets it as the new scene for the window.
+     */
     @FXML
     protected void onhSettingsBtnClick() {
         try {
@@ -230,24 +178,6 @@ public class HarmoniaController {
         }
     }
 
-    /**
-     * Handles the action when the login button is clicked. Loads the login
-     * UI / login view.
-     */
-    @FXML
-    protected void onCloseButtonClick(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("login-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene((root), 1280, 720);
-            Stage stage = (Stage) closeButton.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sign in to Harmonia");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
      * Handles the action when the logout button is clicked. Loads the login
@@ -268,6 +198,9 @@ public class HarmoniaController {
         }
     }
 
+    /**
+     * This method is called when the Servers button is clicked. It loads the mycommunities-view.fxml file and sets it as the new scene for the window.
+     */
     public void onServerButtonClick() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
