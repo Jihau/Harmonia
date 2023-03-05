@@ -150,8 +150,8 @@ public class ServerController {
 
 
         getObjects();
-        setServerInfo();
 
+        setServerInfo();
         populateUserList();
         populateChannelList();
 
@@ -213,6 +213,7 @@ public class ServerController {
     public void populateMessageList() {
         PMObjectList.clear();
         PMStringList.clear();
+
         PublicMessagePO[] messageArray = publicMessageClient.getAllMessages();
         
         for (PublicMessagePO message : messageArray) {
@@ -297,7 +298,7 @@ public class ServerController {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
         
         if (PMObjectList.get(index).getAuthorId()==loggedInUser.getUserId()) {
-            publicMessageClient.removeMessage(selectedMessage.getPmessageId());
+            publicMessageClient.removeMessage(PMObjectList.get(index).getPmessageId());
         }
         populateMessageList();
     }

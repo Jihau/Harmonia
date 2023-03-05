@@ -52,7 +52,7 @@ public class ProfileController {
     Label UserIdText;
     @FXML
     Label UsernameText;
-    private final UserPO friend = new UserPO();
+    private UserPO user = new UserPO();
     /**
      * navigation button for nav menu
      * letter combination before name indicates in what view the button is from
@@ -134,13 +134,13 @@ public class ProfileController {
         user = HarmoniaConstants.LOGGED_USERS;
 
         try {
-            Image profImage = new Image(friend.getProfileIcon());
+            Image profImage = new Image(user.getProfileIcon());
             profileImage.setImage(profImage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        UsernameText.setText(friend.getUsername());
-        UserIdText.setText("#" + friend.getUserId());
+        UsernameText.setText(user.getUsername());
+        UserIdText.setText("#" + user.getUserId());
         BioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
         System.out.println(BioText.getText());
     }
