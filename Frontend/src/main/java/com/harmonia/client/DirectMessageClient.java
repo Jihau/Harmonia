@@ -1,5 +1,6 @@
 package com.harmonia.client;
 
+import com.harmonia.po.DMessagePO;
 import com.harmonia.po.MessagePO;
 import com.harmonia.utils.HarmoniaUtils;
 import org.springframework.http.HttpEntity;
@@ -80,9 +81,9 @@ public class DirectMessageClient {
      * @param removeMe a MessagePO object representing the message to be removed
      * @return a ResponseEntity indicating success or failure of the operation
      */
-    public ResponseEntity<?> removeMessage(MessagePO removeMe) {
+    public ResponseEntity<?> removeMessage(DMessagePO removeMe) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
-        HttpEntity<MessagePO> request = new HttpEntity<>(removeMe, headers);
+        HttpEntity<DMessagePO> request = new HttpEntity<>(removeMe, headers);
         Map<String, String> urlParameters = new HashMap<>();
         return restTemplate.exchange(DM_ADD_URL, HttpMethod.DELETE, request, String.class, urlParameters);
     }
@@ -93,9 +94,9 @@ public class DirectMessageClient {
      * @param message a MessagePO object representing the message to be edited
      * @return a ResponseEntity indicating success or failure of the operation
      */
-    public ResponseEntity<?> editMessage(MessagePO message) {
+    public ResponseEntity<?> editMessage(DMessagePO message) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
-        HttpEntity<MessagePO> request = new HttpEntity<>(message, headers);
+        HttpEntity<DMessagePO> request = new HttpEntity<>(message, headers);
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("DmessageId", String.valueOf(message.getDmessageId()));
         return restTemplate.exchange(DM_EDIT_URL, HttpMethod.PUT, request, String.class, urlParameters);
@@ -113,5 +114,21 @@ public class DirectMessageClient {
         Map<String, String> urlParameters = new HashMap<>();
         urlParameters.put("authorId", String.valueOf(authorId));
         return restTemplate.exchange(DM_GET_A_ID, HttpMethod.GET, request, MessagePO[].class, urlParameters);
+    }
+
+    /**
+     * Returns all messages sent by a given user.
+     *
+     * @param authorId the ID of the author user
+     * @param recipientId the ID of the recipient user
+     * @return a ResponseEntity containing an array of
+     */
+    public ResponseEntity<DMessagePO[]> listConversation(long authorId, long recipientId) {
+        HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
+        HttpEntity<Void> request = new HttpEntity<>(headers);
+        Map<String, String> urlParameters = new HashMap<>();
+        urlParameters.put("authorId", String.valueOf(authorId));
+        urlParameters.put("recipientId", String.valueOf(recipientId));
+        return restTemplate.exchange(DM_GET_CONVERSATION, HttpMethod.GET, request, DMessagePO[].class, urlParameters);
     }
 }

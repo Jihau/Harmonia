@@ -4,11 +4,11 @@ import com.harmonia.client.DirectMessageClient;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaData;
+import com.harmonia.po.DMessagePO;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Objects;
 
 
@@ -44,21 +44,20 @@ public class HarmoniaDataLoader {
     /**
      * Loads messages of a conversation between the logged-in User and the recipient.
      */
-    public static void loadDirectMessagesByUserId() {
-        int authorId = HarmoniaConstants.LOGGED_USERS.getUserId();
-        int recipientId = HarmoniaData.SELECTED_RECIPIENT.getUserId();
-        Comparator<MessagePO> comparator = Comparator.comparingInt(MessagePO::getDmessageId);
-        HarmoniaData.DIRECT_MESSAGES_LIST.clear();
-        for (MessagePO m : Objects.requireNonNull(directMessageClient.getMessagesByRecipientID(recipientId).getBody())) {
-            if (m.getAuthorId() == recipientId) HarmoniaData.DIRECT_MESSAGES_LIST.add(m);
-        }
-        for (MessagePO m : Objects.requireNonNull(directMessageClient.getMessagesByAuthorId(authorId).getBody())) {
-            if (m.getRecipientId() == recipientId) {
-                HarmoniaData.DIRECT_MESSAGES_LIST.add(m);
+    public static void loadDirectMessagesByUserId(boolean async) {
+        if (HarmoniaConstants.LOGGED_USERS != null && HarmoniaData.SELECTED_RECIPIENT != null) {
+            int authorId = HarmoniaConstants.LOGGED_USERS.getUserId();
+            int recipientId = HarmoniaData.SELECTED_RECIPIENT.getUserId();
+            DMessagePO[] directMessagePO = directMessageClient.listConversation(authorId, recipientId).getBody();
+            if (directMessagePO != null && directMessagePO.length != HarmoniaData.MESSAGES_FROM_RECIPIENT) {
+                HarmoniaData.DIRECT_MESSAGES_LIST.clear();
+                for (DMessagePO m : Objects.requireNonNull(directMessagePO)) {
+                    HarmoniaData.DIRECT_MESSAGES_LIST.add(m);
+                }
+                HarmoniaData.SELECTED_DIRECT_MESSAGE = null;
+                HarmoniaData.MESSAGES_FROM_RECIPIENT = directMessagePO.length;
             }
         }
-        HarmoniaData.DIRECT_MESSAGES_LIST.sort(comparator);
-        HarmoniaData.SELECTED_DIRECT_MESSAGE = null;
     }
 
     /**
@@ -100,7 +99,8 @@ public class HarmoniaDataLoader {
         }
         if (directMessageClient.removeMessage(HarmoniaData.SELECTED_DIRECT_MESSAGE).getStatusCode().is2xxSuccessful()) {
             HarmoniaData.SELECTED_DIRECT_MESSAGE = null;
-            HarmoniaDataLoader.loadDirectMessagesByUserId();
+            HarmoniaDataLoader.loadDirectMessagesByUserId(false);
+            HarmoniaData.MESSAGES_FROM_RECIPIENT = -1;
             return true;
         }
         return false;

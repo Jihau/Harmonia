@@ -1,23 +1,17 @@
 package com.harmonia.controller;
 
-import com.harmonia.client.DirectMessageClient;
-import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
-import com.harmonia.po.MessagePO;
-import com.harmonia.po.UserPO;
+import com.harmonia.constants.HarmoniaData;
+import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.utils.HarmoniaDataLoader;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.harmonia.utils.HarmoniaUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import org.springframework.http.ResponseEntity;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * The DirectMessagesController class is responsible for controlling the user's interactions
@@ -29,21 +23,12 @@ import java.util.Objects;
  * @version 1.0
  */
 public class DirectMessagesController extends MainViewController {
-
-    Comparator<MessagePO> comparator;
     @FXML
     Pane editBox;
     @FXML
     Button confirmEditButton;
     @FXML
     Button cancelEditButton;
-    ObservableList<MessagePO> conversationObject;
-    ObservableList<String> conversationString;
-    private List<MessagePO> messages;
-    private UserPO loggedInUser;
-    private int chatTargetId;
-    private String chatTargetName;
-    private MessagePO selectedMessage;
     @FXML
     private TextField sendMessageField;
     @FXML
@@ -52,10 +37,6 @@ public class DirectMessagesController extends MainViewController {
     private Button editButton;
     @FXML
     private TextField editTextField;
-    @FXML
-    private ListView<String> ChatListView;
-    private DirectMessageClient messageClient;
-    private UserClient userClient;
 
     public DirectMessagesController() {
 
@@ -70,56 +51,12 @@ public class DirectMessagesController extends MainViewController {
      * to populate the user search bar.
      */
     public void initialize() {
-        comparator = Comparator.comparingInt(MessagePO::getDmessageId);
-        loggedInUser = HarmoniaConstants.LOGGED_USERS;
-        messageClient = new DirectMessageClient();
-        userClient = new UserClient();
-        chatTargetId = 2;
-        chatTargetName = userClient.getUserByID(chatTargetId).getUsername();
-        conversationObject = FXCollections.observableArrayList();
-        conversationString = FXCollections.observableArrayList();
-
-        populateListView();
         HarmoniaDataLoader.searchUserByUsername("");
-    }
-
-    /**
-     * Sends a message to the recipient specified in the MessagePO object and returns the response from the message client.
-     *
-     * @param message the message to be sent
-     * @return the response from the message client
-     */
-    public ResponseEntity<?> sendMessage(MessagePO message) {
-        return messageClient.addMessage(message);
-    }
-
-    /**
-     * adds messages between the user and the recipient to the messagelist and sets inserts them into the ListView. 
-     */
-    protected void populateListView() {
-        conversationObject.clear();
-        for (MessagePO m : Objects.requireNonNull(messageClient.getMessagesByRecipientID(loggedInUser.getUserId()).getBody())) {
-            if (m.getAuthorId() == chatTargetId)
-                conversationObject.add(m);
-        }
-        for (MessagePO m : Objects.requireNonNull(messageClient.getMessagesByAuthorId(loggedInUser.getUserId()).getBody())) {
-            if (m.getRecipientId() == chatTargetId) {
-                conversationObject.add(m);
-            }
-        }
-        conversationObject.sort(comparator);
-        convertList();
-        if (conversationString.size() > 0) {
-            ChatListView.setItems(conversationString);
-            ChatListView.scrollTo(ChatListView.getItems().size());
-        } else {
-            conversationString.add("No messages, send a message to start a conversation");
-        }
     }
 
     @FXML
     public void onRefreshButtonClick() {
-        populateListView();
+        HarmoniaDataLoader.loadDirectMessagesByUserId(false);
     }
 
     /**
@@ -128,48 +65,27 @@ public class DirectMessagesController extends MainViewController {
      */
     @FXML
     public void onSendBtnClick(ActionEvent event) {
-        MessagePO newMessage = new MessagePO();
-
-        newMessage.setMessageText(sendMessageField.getText());
-        newMessage.setAuthorId(loggedInUser.getUserId());
-        newMessage.setRecipientId(chatTargetId);
-
-        conversationString.add("Pending... " + newMessage.getMessageText());
-
-        ResponseEntity<?> response = this.sendMessage(newMessage);
-        System.out.println(response.getStatusCode());
-
-        sendMessageField.setText("");
-        populateListView();
-
-    }
-    /**
-     * Builds a list of Strings with a for-loop through the messageList and either adds a sender part to the message based on the message's recipientId
-     */
-    protected void convertList() {
-        conversationString.clear();
-        for (MessagePO m : conversationObject) {
-            if (m.getRecipientId() != loggedInUser.getUserId()) {
-                conversationString.add("you: " + m.prettyString());
-            } else {
-                conversationString.add(chatTargetName + ": " + m.prettyString());
-            }
-
+        if (HarmoniaDataLoader.sendDirectMessage(sendMessageField.getText())) {
+            sendMessageField.setText(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
+            HarmoniaDataLoader.loadDirectMessagesByUserId(false);
+        } else {
+            sendMessageField.setText(HarmoniaMessagesConstants.ERROR_SENDING_MESSAGE);
         }
     }
 
     /**
      * assigns the selected message by getting the index from listview and getting the matching index from the DirectMessagePO list.
-     * If the Message recipient ID is different from the logged user ID open the edit box. Otherwise show a "not your message"-alert. 
+     * If the Message recipient ID is different from the logged user ID open the edit box. Otherwise show a "not your message"-alert.
      */
     @FXML
     public void onEditButtonClick() {
-        int index = ChatListView.getSelectionModel().getSelectedIndex();
-
-        MessagePO listSelectedMessage = conversationObject.get(index);
-
-        if (listSelectedMessage.getRecipientId() != loggedInUser.getUserId()) {
-            setSelectedMessage(listSelectedMessage);
+        if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
+            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            return;
+        }
+        if (HarmoniaData.SELECTED_DIRECT_MESSAGE.getRecipientId() != HarmoniaConstants.LOGGED_USERS.getUserId()) {
             editBox.setVisible(true);
         } else {
             Alert notYourMessageAlert = new Alert(AlertType.ERROR);
@@ -181,31 +97,26 @@ public class DirectMessagesController extends MainViewController {
     }
 
     /**
-     * if the message TextField is not blank, send an edit request to the backend with the edited messageText. Otherwise highlight the textbox and add a prompt. 
-     * Afterwards update the list of messages. 
+     * if the message TextField is not blank, send an edit request to the backend with the edited messageText. Otherwise highlight the textbox and add a prompt.
+     * Afterwards update the list of messages.
      */
     @FXML
     public void onConfirmEditButtonCLick() {
-
-        MessagePO editSelectedMessage = getSelectedMessage();
-
-        if (!Objects.equals(editTextField.getText(), "")) {
-
-            editSelectedMessage.setMessageText(editTextField.getText());
-            editSelectedMessage.setAuthorId(loggedInUser.getUserId());
-            editSelectedMessage.setRecipientId(chatTargetId);
-
-            messageClient.editMessage(editSelectedMessage);
-
-            editTextField.setStyle("");
+        if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
+            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            return;
+        }
+        if (HarmoniaDataLoader.editDirectMessage(editTextField.getText())) {
+            editTextField.setStyle(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
             editBox.setVisible(false);
-            editTextField.setText("");
-
+            editTextField.setText(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
+            HarmoniaDataLoader.loadDirectMessagesByUserId(false);
         } else {
-            editTextField.setPromptText("Please fill me before submitting!");
+            editTextField.setPromptText(HarmoniaMessagesConstants.ERROR_EMPTY_MESSAGE);
             editTextField.setStyle("-fx-text-box-border: #B22222;");
         }
-        populateListView();
     }
 
     /**
@@ -219,44 +130,33 @@ public class DirectMessagesController extends MainViewController {
     }
 
     /**
-     * get selected messsage from 
+     * get selected message from
      */
     @FXML
     public void onRemoveMessageButttonClick() {
-        int index = ChatListView.getSelectionModel().getSelectedIndex();
-
-        if (conversationObject.get(index).getRecipientId() != loggedInUser.getUserId()) {
-
-            Alert deleteConfirmation = new Alert(AlertType.CONFIRMATION, "Delete message?", ButtonType.YES, ButtonType.NO);
-            deleteConfirmation.setTitle("Delete message");
-            deleteConfirmation.setHeaderText("Are you sure you want to delete this message?");
-            deleteConfirmation.setContentText("Deleting a message is an irreversible action and cannot be undone.");
-            deleteConfirmation.showAndWait();
-
-            if (deleteConfirmation.getResult() == ButtonType.YES) {
-                System.out.println("Attempting delete");
-                MessagePO deleteMe = conversationObject.get(index);
-
-                messageClient.removeMessage(deleteMe);
+        if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
+            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            return;
+        }
+        if (HarmoniaData.SELECTED_DIRECT_MESSAGE.getRecipientId() != HarmoniaConstants.LOGGED_USERS.getUserId()) {
+            if (HarmoniaUtils.showConfirmationMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY
+            )) {
+                if (!HarmoniaDataLoader.deleteDirectMessage()) {
+                    HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_TITLE,
+                            HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_HEADER_TEXT,
+                            HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_BODY_TEXT);
+                }
             }
 
         } else {
-            Alert notYourMessageAlert = new Alert(AlertType.ERROR);
-            notYourMessageAlert.setTitle("Not your message");
-            notYourMessageAlert.setHeaderText("Can't delete message");
-            notYourMessageAlert.setContentText("You can only delete messages that you've sent!");
-            notYourMessageAlert.showAndWait();
+            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_TITLE,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_HEADER_TEXT,
+                    HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
         }
-        populateListView();
     }
-
-    public MessagePO getSelectedMessage() {
-        return this.selectedMessage;
-    }
-
-
-    public void setSelectedMessage(MessagePO message) {
-        this.selectedMessage = message;
-    }
-
 }

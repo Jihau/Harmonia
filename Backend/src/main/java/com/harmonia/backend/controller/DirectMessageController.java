@@ -118,4 +118,10 @@ public class DirectMessageController {
         directMessageService.editDirectMessage(messageId, directMessage.getMessageText());
         return ResponseEntity.ok("Message has been edited");
     }
+
+    @GetMapping("authorId/{authorId}/recipientId/{recipientId}")
+    @CrossOrigin
+    public Iterable<DmessageResponse> listDMsByRecipientId(@PathVariable("authorId") Long authorId, @PathVariable("recipientId") Long recipientId) {
+        return directMessageService.listConversation(authorId, recipientId);
+    }
 }
