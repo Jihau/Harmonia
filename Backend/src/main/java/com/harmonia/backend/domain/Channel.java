@@ -11,17 +11,19 @@ import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Set;
 
+
+@Getter
+@Setter
+@Entity
+@Table(name = "channel", schema = "harmoniadb")
 /**
  * Channel entity representing a communication channel within a server.
  *
  * @author Harmonia team
  * @version 1.0
  */
-@Getter
-@Setter
-@Entity
-@Table(name = "channel", schema = "harmoniadb")
 public class Channel {
+
     /**
      * The unique identifier for the channel.
      */

@@ -1,0 +1,9 @@
+com.harmonia.backend
+com.harmonia.backend.config
+com.harmonia.backend.controller
+com.harmonia.backend.domain
+com.harmonia.backend.mappers
+com.harmonia.backend.po
+com.harmonia.backend.repository
+com.harmonia.backend.service
+com.harmonia.backend.serviceTests

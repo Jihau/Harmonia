@@ -6,6 +6,7 @@ import com.harmonia.backend.po.DMessageRequest;
 
 /**
  * A mapper class for creating DirectMessage objects from DMessageRequest and User objects.
+ * @author Harmonia Team
  */
 public class DirectMessagesMapper {
 
