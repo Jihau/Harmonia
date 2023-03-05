@@ -31,7 +31,7 @@ import java.io.IOException;
 public class HarmoniaController extends MainViewController {
 
     @FXML
-    private Pane ServerJoinPopup;
+    private Pane serverJoinPopup;
 
     @FXML
     public Button logoutButton;
@@ -123,6 +123,7 @@ public class HarmoniaController extends MainViewController {
                     // Display an error message
                     System.out.println("Failed to add user to server");
                 }
+                serverJoinPopup.setVisible(true);
             } else {
                 System.out.println("You already are on this server!");
             }
