@@ -164,7 +164,7 @@
             <content>
                 <Pane fx:id="listUsersPanel">
                     <children>
-                        <UsersListView fx:id="listUsersListView" layoutX="-6.0" layoutY="-7.0" prefHeight="607.0" prefWidth="163.0" />
+                        <UsersListView fx:id="listUsersListView" layoutX="-6.0" layoutY="-7.0" prefHeight="607.0" prefWidth="163.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
                     </children>
                 </Pane>
             </content>
