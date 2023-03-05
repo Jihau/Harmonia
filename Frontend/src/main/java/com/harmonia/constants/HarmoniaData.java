@@ -1,5 +1,6 @@
 package com.harmonia.constants;
 
+import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ public class HarmoniaData {
     /**
      * The DIRECT_MESSAGES_LIST List contains a list of direct messages for each recipient.
      */
-    public static ObservableList<Object> DIRECT_MESSAGES_LIST = FXCollections.observableArrayList();
+    public static ObservableList<MessagePO> DIRECT_MESSAGES_LIST = FXCollections.observableArrayList();
     public static UserPO SELECTED_RECIPIENT = null;
+    public static MessagePO SELECTED_DIRECT_MESSAGE = null;
 }
