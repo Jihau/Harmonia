@@ -40,6 +40,10 @@ public class HarmoniaApplication extends Application {
         stage.setResizable(false);
         stage.show();
         Platform.runLater(new HarmoniaTaskRefresher());
+    }
 
+    @Override
+    public void stop(){
+        Runtime.getRuntime().exit(1);
     }
 }
