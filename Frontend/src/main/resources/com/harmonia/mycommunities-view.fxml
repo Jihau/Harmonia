@@ -90,7 +90,7 @@
                   <Button fx:id="logoutButton" layoutX="6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="197.0" text="Button" />
                </children>
             </AnchorPane>
-            <ListView fx:id="serverList" prefHeight="720.0" prefWidth="518.0" styleClass="serverListStyle" stylesheets="@css/listView.css" GridPane.columnIndex="1" />
+            <ListView fx:id="serverList" prefHeight="720.0" prefWidth="518.0" styleClass="serverListStyle" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>
