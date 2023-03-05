@@ -82,7 +82,7 @@ public class ServerClient {
     }
 
     /**
-     * Returns the server with the specified ID.
+     * Returns an array of servers that match the specified Category.
      *
      * @return the {@code ServerPO} object representing the server with the
      * specified category.
