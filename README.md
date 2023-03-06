@@ -23,11 +23,17 @@
 ![alt text](https://i.imgur.com/yhZTR35.png)
 
 ## Technologies
+> - Java
 > - Maven
-> - Spring Boot (for the backend)
+> - Spring Boot
+> - MySQL-connector
 > - JavaFX (for the frontend)
-> - Azure (for the network)
+> - BEncrypt
+> - Lombok (annotations)
 > - JUnit Jupiter (for testing)
+> - Mockito (testing)
+> - AWS EC2 instance (for running backend)
+> - AWS RDS (database)
 
 ## Installation
 > Currently, there is no installation process for Harmonia. Just download .exe or .jar file from above.
