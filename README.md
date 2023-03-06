@@ -8,7 +8,8 @@
 > - User registration and login required.
 
 ## How to use
-> - Download the application from [here](https://users.metropolia.fi/~sampoos/Harmonia.exe)
+> - Download the application exe from [here](https://users.metropolia.fi/~sampoos/Harmonia.exe)
+> - or a JAR package from [here](https://users.metropolia.fi/~sampoos/Harmonia1.0.jar)
 > - Register for an account by providing your email address and creating a secure password.
 > - Log in to your account using your email and password.
 > - Once logged in, you will see suggestions for user communities based on your interests and choices.
