@@ -1,12 +1,12 @@
 package com.harmonia.utils;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-
 public class HarmoniaTaskRefresher implements Runnable {
     private volatile Thread clockThread = null;
+
+    public HarmoniaTaskRefresher() {
+        start();
+    }
+
     public void start() {
         if (clockThread == null) {
             clockThread = new Thread(this, "Clock");
@@ -14,17 +14,15 @@ public class HarmoniaTaskRefresher implements Runnable {
         }
     }
 
-    public HarmoniaTaskRefresher() {
-        start();
-    }
-
     public void run() {
         Thread myThread = Thread.currentThread();
         while (clockThread == myThread) {
             HarmoniaDataLoader.loadDirectMessagesByUserId(true);
             try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e){ }
+                Thread.sleep(3500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
