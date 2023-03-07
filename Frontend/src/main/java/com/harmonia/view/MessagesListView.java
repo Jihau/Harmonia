@@ -6,11 +6,11 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
-public class MessagesListView extends ListView {
+public class MessagesListView extends ListView<DMessagePO> {
     public MessagesListView() {
         super(HarmoniaData.DIRECT_MESSAGES_LIST);
         this.setOnMouseClicked((EventHandler<Event>) event -> {
-            HarmoniaData.SELECTED_DIRECT_MESSAGE = (DMessagePO) this.getSelectionModel().getSelectedItem();
+            HarmoniaData.SELECTED_DIRECT_MESSAGE = this.getSelectionModel().getSelectedItem();
         });
     }
 }

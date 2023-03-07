@@ -8,6 +8,7 @@ import com.harmonia.po.DMessagePO;
 import com.harmonia.po.MessagePO;
 import com.harmonia.po.UserPO;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Objects;
 
@@ -51,9 +52,7 @@ public class HarmoniaDataLoader {
             DMessagePO[] directMessagePO = directMessageClient.listConversation(authorId, recipientId).getBody();
             if (directMessagePO != null && directMessagePO.length != HarmoniaData.MESSAGES_FROM_RECIPIENT) {
                 HarmoniaData.DIRECT_MESSAGES_LIST.clear();
-                for (DMessagePO m : Objects.requireNonNull(directMessagePO)) {
-                    HarmoniaData.DIRECT_MESSAGES_LIST.add(m);
-                }
+                HarmoniaData.DIRECT_MESSAGES_LIST.addAll(Arrays.asList(Objects.requireNonNull(directMessagePO)));
                 HarmoniaData.SELECTED_DIRECT_MESSAGE = null;
                 HarmoniaData.MESSAGES_FROM_RECIPIENT = directMessagePO.length;
             }
