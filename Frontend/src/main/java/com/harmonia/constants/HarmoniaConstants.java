@@ -13,7 +13,7 @@ public class HarmoniaConstants {
     /**
      * The base URL of the Harmonia server.
      */
-    public static final String BASE_URL = "http://harmonia.ink";
+    public static final String BASE_URL = "http://13.51.150.175";
     /**
      * The URL for deleting a user.
      */
