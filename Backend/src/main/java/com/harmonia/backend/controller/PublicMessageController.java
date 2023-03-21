@@ -2,6 +2,7 @@ package com.harmonia.backend.controller;
 
 
 import com.harmonia.backend.domain.PublicMessage;
+import com.harmonia.backend.po.PmessageResponse;
 import com.harmonia.backend.service.PublicMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -79,8 +80,7 @@ public class PublicMessageController {
      */
     @PutMapping("messageId/{messageId}")
     @CrossOrigin
-    public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody PublicMessage publicMessage) {
-        publicMessageService.editPublicMessage(messageId, publicMessage.getMessageText());
-        return ResponseEntity.ok("Message has been edited");
+    public ResponseEntity<PmessageResponse> editMessage(@PathVariable Long messageId, @RequestBody PublicMessage publicMessage) {
+        return ResponseEntity.ok(publicMessageService.editPublicMessage(messageId, publicMessage.getMessageText()));
     }
 }
