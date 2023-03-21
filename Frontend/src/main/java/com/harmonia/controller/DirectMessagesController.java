@@ -1,10 +1,15 @@
 package com.harmonia.controller;
 
+import javax.swing.text.html.ListView;
+
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaData;
 import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.utils.HarmoniaDataLoader;
 import com.harmonia.utils.HarmoniaUtils;
+import com.harmonia.view.MessagesListView;
+import com.harmonia.view.UsersListView;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -37,6 +42,8 @@ public class DirectMessagesController extends MainViewController {
     private Button editButton;
     @FXML
     private TextField editTextField;
+    @FXML
+    private MessagesListView ChatListView;
 
     public DirectMessagesController() {
 
@@ -52,11 +59,13 @@ public class DirectMessagesController extends MainViewController {
      */
     public void initialize() {
         HarmoniaDataLoader.searchUserByUsername("");
+        
     }
 
     @FXML
     public void onRefreshButtonClick() {
         HarmoniaDataLoader.loadDirectMessagesByUserId(false);
+        scrollToBottom();
     }
 
     /**
@@ -158,5 +167,9 @@ public class DirectMessagesController extends MainViewController {
                     HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_HEADER_TEXT,
                     HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
         }
+    }
+    @FXML
+    private void scrollToBottom() {
+        ChatListView.scrollTo(HarmoniaData.DIRECT_MESSAGES_LIST.size());
     }
 }
