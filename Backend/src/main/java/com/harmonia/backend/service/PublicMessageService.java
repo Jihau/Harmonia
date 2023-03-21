@@ -1,6 +1,7 @@
 package com.harmonia.backend.service;
 
 import com.harmonia.backend.domain.PublicMessage;
+import com.harmonia.backend.po.PmessageResponse;
 import com.harmonia.backend.repository.PublicMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,7 @@ public class PublicMessageService {
 
     /**
      * Lists all the public messages in the database
+     *
      * @return all the public messages in the database
      */
     public Iterable<PublicMessage> listPublicMessages() {
@@ -56,6 +58,7 @@ public class PublicMessageService {
 
     /**
      * Deletes a public message from the database by id
+     *
      * @param publicMessageId the id of the public message to be deleted
      */
     public void deletePublicMessage(Long publicMessageId) {
@@ -65,15 +68,16 @@ public class PublicMessageService {
 
     /**
      * Edits the text of a public message in the database by id
+     *
      * @param pmessageId the id of the public message to be edited
-     * @param newText the new text for the public message
+     * @param newText    the new text for the public message
      */
-    public void editPublicMessage(Long pmessageId, String newText) {
+    public PmessageResponse editPublicMessage(Long pmessageId, String newText) {
         Optional<PublicMessage> optionalPublicMessage = publicMessageRepository.findById(pmessageId);
         if (optionalPublicMessage.isPresent()) {
             PublicMessage publicMessage = optionalPublicMessage.get();
             publicMessage.setMessageText(newText);
-            publicMessageRepository.save(publicMessage);
+            return new PmessageResponse(publicMessageRepository.save(publicMessage));
         } else {
             throw new IllegalArgumentException("Message not found");
         }

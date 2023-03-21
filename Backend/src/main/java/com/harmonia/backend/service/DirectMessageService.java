@@ -41,12 +41,13 @@ public class DirectMessageService {
      *
      * @param directMessageRepository the crud repository for direct messages
      */
-    public DirectMessageService(DirectMessageRepository directMessageRepository){
+    public DirectMessageService(DirectMessageRepository directMessageRepository) {
         this.directMessageRepository = directMessageRepository;
     }
 
     /**
      * Adds a direct message to the database.
+     *
      * @param dmessageRequest the request object containing the message details
      * @return the created DirectMessage object
      * @throws Exception if the message is blank or the author/recipient are missing
@@ -75,53 +76,57 @@ public class DirectMessageService {
 
     /**
      * Returns all direct messages in the database.
+     *
      * @return an Iterable containing all direct messages
      */
     public Iterable<DmessageResponse> listMessages() {
-        return StreamSupport.stream(directMessageRepository.findAll().spliterator(), false)
-                .map(DmessageResponse::new).collect(Collectors.toList());
+        return StreamSupport.stream(directMessageRepository.findAll().spliterator(), false).map(DmessageResponse::new).collect(Collectors.toList());
     }
 
     /**
      * Returns all direct messages in the database with the specified recipient ID.
+     *
      * @param recipientId the recipient ID to filter by
      * @return an Iterable containing all direct messages with the specified recipient ID
      */
-    public Iterable<DmessageResponse> listDmessagesByRecipientId(Long recipientId){
+    public Iterable<DmessageResponse> listDmessagesByRecipientId(Long recipientId) {
         return directMessageRepository.listDMsByRecipientId(recipientId).stream().map(DmessageResponse::new).collect(Collectors.toList());
     }
 
     /**
      * Returns all direct messages in the database with the specified author ID.
+     *
      * @param authorId the author ID to filter by
      * @return an Iterable containing all direct messages with the specified author ID
      */
-    public Iterable<DmessageResponse> listDmessagesByAuthorId(Long authorId){
+    public Iterable<DmessageResponse> listDmessagesByAuthorId(Long authorId) {
         return directMessageRepository.listDMsByAuthorId(authorId).stream().map(DmessageResponse::new).collect(Collectors.toList());
     }
 
     /**
      * Deletes the specified direct message from the database.
+     *
      * @param dm the direct message to delete
      */
-    public void deleteDirectMessage(DirectMessage dm){
+    public void deleteDirectMessage(DirectMessage dm) {
         directMessageRepository.deleteById(dm.getDmessageId());
         System.out.println("Message with ID: " + dm.getDmessageId() + " is deleted.");
     }
 
     /**
      * Updates the text of the specified direct message.
+     *
      * @param directMessageId the ID of the direct message to update
-     * @param newText the new text for the direct message
+     * @param newText         the new text for the direct message
      * @throws IllegalArgumentException if the specified direct message is not found
      */
-    public void editDirectMessage(Long directMessageId, String newText){
+    public DmessageResponse editDirectMessage(Long directMessageId, String newText) {
         Optional<DirectMessage> optionalDirectMessage = directMessageRepository.findById(directMessageId);
-        if (optionalDirectMessage.isPresent()){
+        if (optionalDirectMessage.isPresent()) {
             DirectMessage directMessage = optionalDirectMessage.get();
             directMessage.setMessageText(newText);
-            directMessageRepository.save(directMessage);
-        }else {
+            return new DmessageResponse(directMessageRepository.save(directMessage));
+        } else {
             throw new IllegalArgumentException("Message not found");
         }
     }
