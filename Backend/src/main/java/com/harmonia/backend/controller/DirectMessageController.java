@@ -114,9 +114,8 @@ public class DirectMessageController {
      */
     @PutMapping("messageId/{messageId}")
     @CrossOrigin
-    public ResponseEntity<String> editMessage(@PathVariable Long messageId, @RequestBody DirectMessage directMessage) {
-        directMessageService.editDirectMessage(messageId, directMessage.getMessageText());
-        return ResponseEntity.ok("Message has been edited");
+    public ResponseEntity<DmessageResponse> editMessage(@PathVariable Long messageId, @RequestBody DirectMessage directMessage) {
+        return ResponseEntity.ok(directMessageService.editDirectMessage(messageId, directMessage.getMessageText()));
     }
 
     @GetMapping("authorId/{authorId}/recipientId/{recipientId}")
