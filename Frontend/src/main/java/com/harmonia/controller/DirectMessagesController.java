@@ -77,6 +77,7 @@ public class DirectMessagesController extends MainViewController {
         if (HarmoniaDataLoader.sendDirectMessage(sendMessageField.getText())) {
             sendMessageField.setText(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
             HarmoniaDataLoader.loadDirectMessagesByUserId(false);
+            scrollToBottom();
         } else {
             sendMessageField.setText(HarmoniaMessagesConstants.ERROR_SENDING_MESSAGE);
         }
