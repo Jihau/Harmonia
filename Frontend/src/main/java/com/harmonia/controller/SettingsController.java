@@ -32,11 +32,13 @@ public class SettingsController extends MainViewController {
     @FXML
     AnchorPane root;
 
+    @FXML
+    Pane successLable;
+
     /**
      * Label shown when changing 
      */
-    @FXML
-    Pane SuccessLable;
+    
 
     /**
      * The text field for the user to input their profile picture URL.
@@ -80,7 +82,7 @@ public class SettingsController extends MainViewController {
             userPO.setProfileIcon(profImgField.getText());
             HarmoniaConstants.LOGGED_USERS = userclient.editIcon(userPO);
             profImgField.setText(HarmoniaConstants.LOGGED_USERS.getProfileIcon());
-            SuccessLable.setVisible(true);
+            successLable.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
             Alert failedalert = new Alert(AlertType.ERROR);
@@ -91,6 +93,6 @@ public class SettingsController extends MainViewController {
     }
 
     public void onSuccessLabelClick() {
-        SuccessLable.setVisible(false);
+        successLable.setVisible(false);
     }
 }

@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.SettingsController">
+<AnchorPane fx:id="root" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.SettingsController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141e2c" height="720.0" stroke="BLACK" strokeType="INSIDE" width="1280.0" />
       <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
@@ -122,7 +122,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#212937" height="3.0" layoutX="216.0" layoutY="262.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1039.0" />
       <AnchorPane fx:id="changeSuccessLabelWrapper" layoutX="216.0" layoutY="633.0" prefHeight="40.0" prefWidth="640.0" style="-fx-background-radius: 10px;">
          <children>
-            <Pane fx:id="successLable" onDragDetected="#onSuccessLabelClick" prefHeight="43.0" prefWidth="640.0" style="-fx-background-color: #55f04a; -fx-background-radius: 1em;">
+            <Pane fx:id="successLable" onMouseClicked="#onSuccessLabelClick" prefHeight="43.0" prefWidth="640.0" style="-fx-background-color: #55f04a; -fx-background-radius: 1em; visibility: false;">
                <children>
                   <Label alignment="TOP_LEFT" layoutX="-2.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="51.0" prefWidth="640.0" text="Profile icon succesfully changed" textFill="WHITE">
                      <font>
