@@ -13,6 +13,8 @@ import javafx.stage.WindowEvent;
 import java.io.IOException;
 import java.util.Objects;
 
+import static com.harmonia.utils.HarmoniaUtils.generateBackEndKey;
+
 /**
  * Class representing the running class of the Harmonia application.
  *
@@ -23,6 +25,7 @@ import java.util.Objects;
 
 public class HarmoniaApplication extends Application {
     public static void main(String[] args) {
+        generateBackEndKey();
         launch();
     }
 

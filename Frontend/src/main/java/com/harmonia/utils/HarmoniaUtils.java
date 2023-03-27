@@ -1,6 +1,8 @@
 package com.harmonia.utils;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.constants.HarmoniaData;
 import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.po.UserPO;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import java.io.IOException;
 import java.util.Date;
@@ -31,6 +34,7 @@ public class HarmoniaUtils {
     public static HttpHeaders generateRequestHeaders() {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set(HarmoniaConstants.API_KEY_HEADER_NAME, HarmoniaData.KEY_FOR_HARMONIA_BACK_END);
         return headers;
     }
 
@@ -94,5 +98,9 @@ public class HarmoniaUtils {
         confirmationMessage.setContentText(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY);
         confirmationMessage.showAndWait();
         return confirmationMessage.getResult() == ButtonType.YES;
+    }
+
+    public static void generateBackEndKey() {
+        HarmoniaData.KEY_FOR_HARMONIA_BACK_END = BCrypt.hashpw(HarmoniaConstants.KEYWORD_GENERATE_KEY, BCrypt.gensalt());
     }
 }
