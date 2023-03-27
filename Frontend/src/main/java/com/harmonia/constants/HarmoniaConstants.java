@@ -1,7 +1,6 @@
 package com.harmonia.constants;
 
 import com.harmonia.po.UserPO;
-import com.harmonia.utils.HarmoniaUtils;
 
 /**
  * This class contains all the constants used in the Harmonia application.
@@ -146,4 +145,13 @@ public class HarmoniaConstants {
      * The currently logged in user.
      */
     public static UserPO LOGGED_USERS = null;
+    /**
+     * Keyword to generate key.
+     */
+    public static String KEYWORD_GENERATE_KEY = "ha6BrHz1/LYT5f8NX+WM5pmMHH8PLzF+fC12vavd/XE=";
+
+    /**
+     * Header value of key.
+     */
+    public static final String API_KEY_HEADER_NAME = "Harmonia-api-key";
 }

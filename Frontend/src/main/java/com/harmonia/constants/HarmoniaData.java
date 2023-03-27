@@ -34,4 +34,8 @@ public class HarmoniaData {
      */
     public static DMessagePO SELECTED_DIRECT_MESSAGE = null;
     public static int MESSAGES_FROM_RECIPIENT = 0;
+    /**
+     * Harmonia API Key.
+     */
+    public static String KEY_FOR_HARMONIA_BACK_END = "";
 }
