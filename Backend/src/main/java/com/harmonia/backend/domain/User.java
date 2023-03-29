@@ -10,6 +10,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import java.sql.Date;
+import java.util.Set;
 
 /**
  * This class represents a user entity in the application. It contains the basic information about a user, such as their
@@ -79,4 +80,10 @@ public class User {
     @Column(name = "Created_at", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", nullable = false)
     @Generated(GenerationTime.INSERT)
     Date timestamp;
+
+    /**
+     * Friends of the user
+     */
+    @OneToMany(targetEntity = Friend.class, mappedBy = "user", fetch = FetchType.EAGER)
+    Set<Friend> friends;
 }
