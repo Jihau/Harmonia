@@ -125,7 +125,7 @@
          <children>
             <Pane fx:id="successLable" onMouseClicked="#onSuccessLabelClick" prefHeight="43.0" prefWidth="640.0" style="-fx-background-color: #55f04a; -fx-background-radius: 1em; visibility: false;">
                <children>
-                  <Label alignment="TOP_LEFT" layoutX="-2.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="51.0" prefWidth="640.0" text="Profile icon succesfully changed" textFill="WHITE">
+                  <Label fx:id="successLabelText" alignment="TOP_LEFT" layoutX="-2.0" layoutY="1.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="51.0" prefWidth="640.0" text="Profile icon succesfully changed" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

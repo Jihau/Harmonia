@@ -98,4 +98,11 @@ public class HarmoniaMessagesConstants {
      * Message body shown when confirming if a user wants to remove a direct message.
      */
     public String DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY =  HarmoniaConstants.texts.getString("dmDeleteConfirmationBodyText");
+
+    /**
+     * Message shown when failed to update user
+     */
+    public String PROFILE_EDIT_FAILED_MESSAGE_BODY = HarmoniaConstants.texts.getString("profileEditFailedText");
+
+    public String SETTINGS_EDIT_SUCCESS_LABEL_TEXT = HarmoniaConstants.texts.getString("settingsLabelSuccessText");
 }
