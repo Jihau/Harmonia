@@ -45,7 +45,7 @@ public class SettingsController extends MainViewController {
      * Label shown when changing 
      */
     @FXML
-    ChoiceBox<Locale> LocaleDropdown;
+    ChoiceBox<String> LocaleDropdown;
 
     /**
      * The text field for the user to input their profile picture URL.
@@ -71,13 +71,25 @@ public class SettingsController extends MainViewController {
     public void initialize() {
 
         ObservableList<Locale> languages = FXCollections.observableArrayList();
-        languages.add(new Locale("English"));
-        languages.add(new Locale("Finnish"));
+        languages.add(new Locale("English", "United Kingdom", "En"));
+        languages.add(new Locale("Finnish", "Finland", "Fi"));
 
-        LocaleDropdown.setItems(languages);
+        ObservableList<String> languageTexts = FXCollections.observableArrayList();
+
+        for (Locale locale : languages) {
+            languageTexts.add(locale.getLanguage());
+        }
+
+        LocaleDropdown.setItems(languageTexts);
+
+        if (HarmoniaConstants.selectedLocale != null) {
+            int selectedIndex = languages.indexOf(HarmoniaConstants.selectedLocale);
+            LocaleDropdown.getSelectionModel().select(selectedIndex);
+        }
 
         LocaleDropdown.setOnAction(event -> {
-            Locale selected = LocaleDropdown.getSelectionModel().getSelectedItem();
+            Locale selected = languages.get(LocaleDropdown.getSelectionModel().getSelectedIndex());
+            HarmoniaConstants.setLanguage(selected);
             System.out.println(selected);
         });
 

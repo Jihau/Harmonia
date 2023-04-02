@@ -15,15 +15,12 @@ public class HarmoniaConstants {
 
     public static ResourceBundle texts = null;
     
-    public static Locale selectedLocale = new Locale("English");
+    public static Locale selectedLocale = null;
     
-
     public static void setLanguage(Locale locale) {
         selectedLocale = locale;
-    }
-
-    public void setLocale(Locale locale) {
-        texts = ResourceBundle.getBundle(selectedLocale.getLanguage());
+        texts = ResourceBundle.getBundle("properties/language"+selectedLocale.getVariant());
+        System.out.println(texts.getString("homeText"));
     }
 
     /**

@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -99,6 +100,7 @@ public class LoginController {
     @FXML
     public void logInRedirect() {
         try {
+            HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
