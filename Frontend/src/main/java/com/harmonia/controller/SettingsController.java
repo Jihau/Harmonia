@@ -1,12 +1,18 @@
 package com.harmonia.controller;
 
+import java.util.Locale;
+
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -38,7 +44,8 @@ public class SettingsController extends MainViewController {
     /**
      * Label shown when changing 
      */
-    
+    @FXML
+    ChoiceBox<Locale> LocaleDropdown;
 
     /**
      * The text field for the user to input their profile picture URL.
@@ -63,11 +70,20 @@ public class SettingsController extends MainViewController {
      */
     public void initialize() {
 
-        /* placeholder, get user from session */
+        ObservableList<Locale> languages = FXCollections.observableArrayList();
+        languages.add(new Locale("English"));
+        languages.add(new Locale("Finnish"));
+
+        LocaleDropdown.setItems(languages);
+
+        LocaleDropdown.setOnAction(event -> {
+            Locale selected = LocaleDropdown.getSelectionModel().getSelectedItem();
+            System.out.println(selected);
+        });
+
         System.out.println("initializing");
         this.user = HarmoniaConstants.LOGGED_USERS;
 
-        /* placeholder, get user from session */
         profImgField.setText(this.user.getProfileIcon());
     }
 

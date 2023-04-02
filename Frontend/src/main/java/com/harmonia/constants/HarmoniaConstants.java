@@ -1,5 +1,8 @@
 package com.harmonia.constants;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import com.harmonia.po.UserPO;
 
 /**
@@ -9,6 +12,20 @@ import com.harmonia.po.UserPO;
  * @version 1.0
  */
 public class HarmoniaConstants {
+
+    public static ResourceBundle texts = null;
+    
+    public static Locale selectedLocale = new Locale("English");
+    
+
+    public static void setLanguage(Locale locale) {
+        selectedLocale = locale;
+    }
+
+    public void setLocale(Locale locale) {
+        texts = ResourceBundle.getBundle(selectedLocale.getLanguage());
+    }
+
     /**
      * The base URL of the Harmonia server.
      */
