@@ -78,6 +78,8 @@ public class SettingsController extends MainViewController {
     public void initialize() {
 
         settingsText.setText(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE);
+        changePfpText.setText(HarmoniaConstants.textconstants.changePfpText);
+
 
         ObservableList<Locale> languages = FXCollections.observableArrayList();
         languages.add(new Locale("English", "United Kingdom", "En"));

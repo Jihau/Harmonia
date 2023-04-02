@@ -18,6 +18,7 @@ public class HarmoniaConstants {
     public static Locale selectedLocale = null;
 
     public static HarmoniaMessagesConstants messages;
+    public static TextConstants textconstants;
     
     public static void setLanguage(Locale locale) {
         selectedLocale = locale;
@@ -27,6 +28,7 @@ public class HarmoniaConstants {
     }
 
     private static void setMessages() {
+        HarmoniaConstants.textconstants = new TextConstants();
         HarmoniaConstants.messages = new HarmoniaMessagesConstants();
     }
 
