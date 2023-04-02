@@ -33,7 +33,8 @@ public class HarmoniaApplication extends Application {
      * Runs the app *
      */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws Exception {
+        try{
         FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource(HarmoniaViewsConstants.LOGIN_VIEW));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         stage.setTitle("Harmonia");
@@ -43,6 +44,9 @@ public class HarmoniaApplication extends Application {
         stage.setResizable(false);
         stage.show();
         Platform.runLater(new HarmoniaTaskRefresher());
+        } catch (Throwable t){
+            t.printStackTrace();
+        }
     }
 
     @Override

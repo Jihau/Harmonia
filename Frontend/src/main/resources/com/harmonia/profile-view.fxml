@@ -136,7 +136,7 @@
             <Font name="Lato Regular" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="BioText" layoutX="612.0" layoutY="183.0" prefHeight="80.0" prefWidth="346.0" text="bio" textFill="#7a7a7a">
+      <Label fx:id="bioText" layoutX="612.0" layoutY="183.0" prefHeight="80.0" prefWidth="346.0" text="bio" textFill="#7a7a7a">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>

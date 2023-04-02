@@ -54,11 +54,16 @@ public class HarmoniaController extends MainViewController {
     public Button searchButton;
     @FXML
     public ListView<Object> serverListView;
-
-    
+    @FXML
+    public Label serverJoinPopupLabel;
 
     private ServerClient serverClient = new ServerClient();
     private ServerMemberClient serverMemberClient = new ServerMemberClient();
+
+    public void initialize(){
+        searchBar.setPromptText(HarmoniaConstants.textconstants.searchCommunitiesHintText);
+        serverJoinPopupLabel.setText(HarmoniaConstants.textconstants.serverJoinPopupText);
+    }
 
     /**
      * This method handles the user clicking the search button by retrieving the search text from the searchBar
@@ -82,6 +87,9 @@ public class HarmoniaController extends MainViewController {
             serverListView.getItems().add(server);
         }
     }
+
+
+
 
     /**
      * This method is called when a server is clicked in the server list view. It adds the current user as a member of the selected server.

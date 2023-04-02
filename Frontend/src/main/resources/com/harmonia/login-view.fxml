@@ -75,11 +75,11 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Label layoutX="41.0" layoutY="164.0" styleClass="Label" text="Username:">
+            <Label fx:id="usernameLabel" layoutX="41.0" layoutY="164.0" styleClass="Label" text="Username:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font></Label>
-            <Label layoutX="43.0" layoutY="260.0" styleClass="Label" text="Password:">
+            <Label fx:id="passwordLabel" layoutX="43.0" layoutY="260.0" styleClass="Label" text="Password:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font></Label>

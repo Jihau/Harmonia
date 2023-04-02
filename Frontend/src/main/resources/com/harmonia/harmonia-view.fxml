@@ -130,8 +130,7 @@
                </ImageView>
                <Pane fx:id="serverJoinPopup" layoutX="269.0" layoutY="664.0" prefHeight="35.0" prefWidth="476.0" style="-fx-background-color: #32CD32;" visible="false">
                   <children>
-                     <Label layoutX="14.0" layoutY="6.0" prefHeight="23.0" prefWidth="243.0" text="Successfully joined the server">
-                        <font>
+                        <Label fx:id="serverJoinPopupLabel" layoutX="14.0" layoutY="6.0" prefHeight="23.0" prefWidth="243.0" text="Successfully joined the server">                        <font>
                            <Font name="Lato Regular" size="18.0" />
                         </font>
                      </Label>

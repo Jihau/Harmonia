@@ -30,7 +30,7 @@
             </DropShadow>
          </effect>
          <children>
-            <Label layoutX="27.0" layoutY="14.0" text="REGISTRATION" textFill="WHITE">
+            <Label fx:id="registrationLabel" layoutX="27.0" layoutY="14.0" text="REGISTRATION" textFill="WHITE">
                <font>
                   <Font name="Lato Regular" size="40.0" />
                </font>
@@ -44,7 +44,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="48.0" layoutY="105.0" style="-fx-text-fill: #acdef3;" text="Email:">
+            <Label fx:id="emailLabel" layoutX="48.0" layoutY="105.0" style="-fx-text-fill: #acdef3;" text="Email:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font>
@@ -57,7 +57,7 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label layoutX="45.0" layoutY="201.0" style="-fx-text-fill: #acdef3;" text="Username:">
+            <Label fx:id="usernameLabel" layoutX="45.0" layoutY="201.0" style="-fx-text-fill: #acdef3;" text="Username:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
                   <Font size="18.0" />
                </font>
             </TextField>
-            <Label layoutX="47.0" layoutY="296.0" style="-fx-text-fill: #acdef3;" text="Password:">
+            <Label fx:id="passwordLabel" layoutX="47.0" layoutY="296.0" style="-fx-text-fill: #acdef3;" text="Password:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font>
@@ -83,7 +83,7 @@
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Label layoutX="45.0" layoutY="394.0" style="-fx-text-fill: #acdef3;" text="Repeat Password:">
+            <Label fx:id="repeatPasswordLabel" layoutX="45.0" layoutY="394.0" style="-fx-text-fill: #acdef3;" text="Repeat Password:">
                <font>
                   <Font name="Lato Regular" size="14.0" />
                </font>

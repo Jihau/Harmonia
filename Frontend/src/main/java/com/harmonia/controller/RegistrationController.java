@@ -2,6 +2,7 @@ package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -56,13 +57,44 @@ public class RegistrationController {
     PasswordField repeatPasswordField;
 
     @FXML
-    Button RegisterButton;
+    Button registerButton;
 
     /**
      * The label to display any errors during registration.
      */
     @FXML
     Label errorLabel;
+
+    @FXML
+    Label usernameLabel;
+
+    @FXML
+    Label passwordLabel;
+
+    @FXML
+    Label repeatPasswordLabel;
+
+    @FXML
+    Label emailLabel;
+    @FXML
+    Hyperlink returnLink;
+
+    @FXML
+    Label registrationLabel;
+
+    public void initialize(){
+
+        usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
+        usernameField.setPromptText(HarmoniaConstants.textconstants.usernameLabelText);
+        passwordLabel.setText(HarmoniaConstants.textconstants.passwordLabelText);
+        repeatPasswordLabel.setText(HarmoniaConstants.textconstants.repeatPasswordLabelText);
+        emailLabel.setText(HarmoniaConstants.textconstants.emailLabelText);
+        returnLink.setText(HarmoniaConstants.textconstants.alreadyHaveAccountLinkText);
+        registrationLabel.setText(HarmoniaConstants.textconstants.registrationText);
+        registerButton.setText(HarmoniaConstants.textconstants.registerText);
+
+    }
+
 
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {

@@ -57,6 +57,22 @@ public class LoginController {
     @FXML
     Label errorLabel;
 
+    @FXML
+    Label usernameLabel;
+
+    @FXML
+    Label passwordLabel;
+
+
+    public void initialize() {
+        if (HarmoniaConstants.selectedLocale == null){
+            HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
+        }
+        usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
+        passwordLabel.setText(HarmoniaConstants.textconstants.passwordLabelText);
+        registerLink.setText(HarmoniaConstants.textconstants.registerLinkText);
+        loginButton.setText(HarmoniaConstants.textconstants.loginText);
+    }
 
     /**
      * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
@@ -66,7 +82,7 @@ public class LoginController {
     public void onLoginButtonClick() {
 
         if (Objects.equals(usernameField.getText(), "") || Objects.equals(passwordField.getText(), "")) {
-            errorLabel.setText("Please fill both fields!");
+            errorLabel.setText(HarmoniaConstants.textconstants.loginErrorLabelText);
             errorLabel.setVisible(true);
             return;
         }
