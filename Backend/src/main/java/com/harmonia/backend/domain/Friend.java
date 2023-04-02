@@ -1,5 +1,6 @@
 package com.harmonia.backend.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Friend {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("UserId")
+    @JsonIgnore
     @JoinColumn(name = "UserId", foreignKey = @ForeignKey(name = "User_friend_user_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User user;
 
@@ -26,6 +28,7 @@ public class Friend {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("UserId")
+    @JsonIgnore
     @JoinColumn(name = "FriendId", foreignKey = @ForeignKey(name = "User_friend_friend_fk", value = ConstraintMode.CONSTRAINT), nullable = false)
     User friend;
 
