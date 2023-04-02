@@ -16,11 +16,18 @@ public class HarmoniaConstants {
     public static ResourceBundle texts = null;
     
     public static Locale selectedLocale = null;
+
+    public static HarmoniaMessagesConstants messages;
     
     public static void setLanguage(Locale locale) {
         selectedLocale = locale;
         texts = ResourceBundle.getBundle("properties/language"+selectedLocale.getVariant());
+        setMessages();
         System.out.println(texts.getString("homeText"));
+    }
+
+    private static void setMessages() {
+        HarmoniaConstants.messages = new HarmoniaMessagesConstants();
     }
 
     /**

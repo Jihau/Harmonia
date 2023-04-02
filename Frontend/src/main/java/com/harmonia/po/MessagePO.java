@@ -1,5 +1,6 @@
 package com.harmonia.po;
 
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaMessagesConstants;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -71,7 +72,7 @@ public class MessagePO implements Comparable<MessagePO> {
      */
     public String getMessageWithAuthorLabelText(int authorId, String recipientName) {
         if (authorId == this.authorId) {
-            return HarmoniaMessagesConstants.LABEL_DIRECT_MESSAGES_AUTHOR + this.prettyString();
+            return HarmoniaConstants.messages.LABEL_DIRECT_MESSAGES_AUTHOR + this.prettyString();
         } else {
             return recipientName + ": " + this.prettyString();
         }

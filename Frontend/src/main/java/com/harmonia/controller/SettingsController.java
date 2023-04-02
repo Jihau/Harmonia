@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -59,6 +60,12 @@ public class SettingsController extends MainViewController {
     @FXML
     Button submitButton;
 
+    @FXML
+    Label changePfpText;
+
+    @FXML
+    Label settingsText;
+
     /**
      * The user object representing the currently logged-in user.
      */
@@ -69,6 +76,8 @@ public class SettingsController extends MainViewController {
      * Initializes the view by setting the profile image text field to the user's current profile image.
      */
     public void initialize() {
+
+        settingsText.setText(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE);
 
         ObservableList<Locale> languages = FXCollections.observableArrayList();
         languages.add(new Locale("English", "United Kingdom", "En"));

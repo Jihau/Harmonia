@@ -3,7 +3,6 @@ package com.harmonia.utils;
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaData;
-import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.po.UserPO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -92,10 +91,10 @@ public class HarmoniaUtils {
      * @return true if the user clicks "Yes" in the confirmation box, false otherwise
      */
     public static boolean showConfirmationMessage(String confirmationTitle, String title, String headerText, String contentText) {
-        Alert confirmationMessage = new Alert(Alert.AlertType.CONFIRMATION, HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE, ButtonType.YES, ButtonType.NO);
-        confirmationMessage.setTitle(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE);
-        confirmationMessage.setHeaderText(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER);
-        confirmationMessage.setContentText(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY);
+        Alert confirmationMessage = new Alert(Alert.AlertType.CONFIRMATION, HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE, ButtonType.YES, ButtonType.NO);
+        confirmationMessage.setTitle(HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE);
+        confirmationMessage.setHeaderText(HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER);
+        confirmationMessage.setContentText(HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY);
         confirmationMessage.showAndWait();
         return confirmationMessage.getResult() == ButtonType.YES;
     }

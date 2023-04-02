@@ -390,6 +390,6 @@ public class ServerController extends MainViewController {
      */
     @FXML
     public void onReturnButtonClick(ActionEvent event) throws IOException {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) returnButton.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) returnButton.getScene().getWindow());
     }
 }
