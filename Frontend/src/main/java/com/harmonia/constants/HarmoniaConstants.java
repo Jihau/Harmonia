@@ -141,6 +141,24 @@ public class HarmoniaConstants {
      */
     public static final String PM_EDIT_URL = BASE_URL + "/pmessage/messageId/{pMessageId}";
 
+
+    /**
+     * The URL for adding a friend.
+     */
+    public static final String FRIEND_ADD_URL = BASE_URL + "/friends/userId/{userId}";
+
+    /**
+     * The URL for getting a friend list by user ID.
+     */
+    public static final String FRIEND_LIST_BY_USERID_URL = BASE_URL + "/friends/userId/{userId}";
+
+    /**
+     * The URL for removing a friend by ID.
+     */
+    public static final String FRIEND_REMOVE_URL = BASE_URL + "/friends/remove/userId/{userId}";
+
+
+
     /**
      * The currently logged in user.
      */
