@@ -34,13 +34,13 @@ public class ProfileController extends MainViewController {
      * The label to display the user's bio text.
      */
     @FXML
-    public Label BioText;
+    public Label bioText;
 
     /**
      * The label to display the "Bio" text.
      */
     @FXML
-    public Label BioLabel;
+    public Label bioLabel;
 
     /**
      * The button to edit the user's bio.
@@ -75,13 +75,13 @@ public class ProfileController extends MainViewController {
      * The label to display the user's user ID.
      */
     @FXML
-    Label UserIdText;
+    Label userIdText;
 
     /**
      * The label to display the user's username.
      */
     @FXML
-    Label UsernameText;
+    Label usernameText;
 
 
     private static Image convertToFxImage(BufferedImage image) {
@@ -105,16 +105,19 @@ public class ProfileController extends MainViewController {
     public void initialize() {
         UserPO user = HarmoniaConstants.LOGGED_USERS;
 
+        bioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
+        bioTextField.setText(HarmoniaConstants.textconstants.descriptionHintText);
+        bioLabel.setText(HarmoniaConstants.textconstants.aboutMeText); 
+
         try {
             Image profImage = new Image(user.getProfileIcon());
             profileImage.setImage(profImage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        UsernameText.setText(user.getUsername());
-        UserIdText.setText("#" + user.getUserId());
-        BioText.setText(HarmoniaConstants.LOGGED_USERS.getBio());
-        System.out.println(BioText.getText());
+        usernameText.setText(user.getUsername());
+        userIdText.setText("#" + user.getUserId());
+        System.out.println(bioText.getText());
     }
 
     @FXML
@@ -155,9 +158,8 @@ public class ProfileController extends MainViewController {
         } catch (Exception e) {
             e.printStackTrace();
             Alert failedalert = new Alert(Alert.AlertType.ERROR);
-            failedalert.setContentText("Failed to update user");
+            failedalert.setContentText(HarmoniaConstants.messages.PROFILE_EDIT_FAILED_MESSAGE_BODY);
             failedalert.show();
-            System.out.println("Failed to update user");
         }
     }
 

@@ -1,6 +1,6 @@
 package com.harmonia.controller;
 
-import com.harmonia.constants.HarmoniaMessagesConstants;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaViewsConstants;
 import com.harmonia.utils.HarmoniaUtils;
 import javafx.event.ActionEvent;
@@ -30,7 +30,7 @@ public class MainViewController {
      */
     @FXML
     protected void onfmHomePageBtnClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) fmHomePageBtn.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_HOME_MESSAGE, HarmoniaViewsConstants.HOME_VIEW, (Stage) fmHomePageBtn.getScene().getWindow());
     }
 
     /**
@@ -40,7 +40,7 @@ public class MainViewController {
      */
     @FXML
     protected void onfmProfileBtnClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_MY_PROFILE_MESSAGE, HarmoniaViewsConstants.PROFILE_VIEW, (Stage) fmProfileBtn.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_MY_PROFILE_MESSAGE, HarmoniaViewsConstants.PROFILE_VIEW, (Stage) fmProfileBtn.getScene().getWindow());
     }
 
     /**
@@ -50,7 +50,7 @@ public class MainViewController {
      */
     @FXML
     protected void onfmSettingsBtnClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_MY_SETTINGS_MESSAGE, HarmoniaViewsConstants.USER_SETTINGS_VIEW, (Stage) fmSettingsBtn.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE, HarmoniaViewsConstants.USER_SETTINGS_VIEW, (Stage) fmSettingsBtn.getScene().getWindow());
     }
 
     /**
@@ -60,7 +60,7 @@ public class MainViewController {
      */
     @FXML
     public void onServerButtonClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_MY_SERVERS_MESSAGE, HarmoniaViewsConstants.USER_SERVERS_VIEW, (Stage) fmCommunityBtn.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_MY_SERVERS_MESSAGE, HarmoniaViewsConstants.USER_SERVERS_VIEW, (Stage) fmCommunityBtn.getScene().getWindow());
     }
 
     /**
@@ -70,7 +70,7 @@ public class MainViewController {
      */
     @FXML
     public void logoutOnButtonClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_SIGN_IN_MESSAGE, HarmoniaViewsConstants.LOGIN_VIEW, (Stage) logoutButton.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_SIGN_IN_MESSAGE, HarmoniaViewsConstants.LOGIN_VIEW, (Stage) logoutButton.getScene().getWindow());
     }
 
     /**
@@ -80,6 +80,6 @@ public class MainViewController {
      */
     @FXML
     protected void onsFriendsBtnClick(ActionEvent event) {
-        HarmoniaUtils.loadJavaFxView(HarmoniaMessagesConstants.WINDOW_TITLE_DIRECT_MESSAGES_MESSAGE, HarmoniaViewsConstants.DIRECT_MESSAGES_VIEW, (Stage) sFriendsBtn.getScene().getWindow());
+        HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_DIRECT_MESSAGES_MESSAGE, HarmoniaViewsConstants.DIRECT_MESSAGES_VIEW, (Stage) sFriendsBtn.getScene().getWindow());
     }
 }

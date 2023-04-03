@@ -1,12 +1,19 @@
 package com.harmonia.controller;
 
+import java.util.Locale;
+
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -38,7 +45,8 @@ public class SettingsController extends MainViewController {
     /**
      * Label shown when changing 
      */
-    
+    @FXML
+    ChoiceBox<String> LocaleDropdown;
 
     /**
      * The text field for the user to input their profile picture URL.
@@ -52,6 +60,15 @@ public class SettingsController extends MainViewController {
     @FXML
     Button submitButton;
 
+    @FXML
+    Label changePfpText;
+
+    @FXML
+    Label settingsText;
+
+    @FXML 
+    Label successLabelText;
+
     /**
      * The user object representing the currently logged-in user.
      */
@@ -63,11 +80,38 @@ public class SettingsController extends MainViewController {
      */
     public void initialize() {
 
-        /* placeholder, get user from session */
+        settingsText.setText(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE);
+        changePfpText.setText(HarmoniaConstants.textconstants.changePfpText);
+        submitButton.setText(HarmoniaConstants.textconstants.saveText);
+
+        successLabelText.setText(HarmoniaConstants.messages.SETTINGS_EDIT_SUCCESS_LABEL_TEXT);
+
+        ObservableList<Locale> languages = FXCollections.observableArrayList();
+        languages.add(new Locale("English", "United Kingdom", "En"));
+        languages.add(new Locale("Finnish", "Finland", "Fi"));
+
+        ObservableList<String> languageTexts = FXCollections.observableArrayList();
+
+        for (Locale locale : languages) {
+            languageTexts.add(locale.getLanguage());
+        }
+
+        LocaleDropdown.setItems(languageTexts);
+
+        if (HarmoniaConstants.selectedLocale != null) {
+            int selectedIndex = languages.indexOf(HarmoniaConstants.selectedLocale);
+            LocaleDropdown.getSelectionModel().select(selectedIndex);
+        }
+
+        LocaleDropdown.setOnAction(event -> {
+            Locale selected = languages.get(LocaleDropdown.getSelectionModel().getSelectedIndex());
+            HarmoniaConstants.setLanguage(selected);
+            System.out.println(selected);
+        });
+
         System.out.println("initializing");
         this.user = HarmoniaConstants.LOGGED_USERS;
 
-        /* placeholder, get user from session */
         profImgField.setText(this.user.getProfileIcon());
     }
 
@@ -86,9 +130,9 @@ public class SettingsController extends MainViewController {
         } catch (Exception e) {
             e.printStackTrace();
             Alert failedalert = new Alert(AlertType.ERROR);
-            failedalert.setContentText("Failed to update user");
+            failedalert.setContentText(HarmoniaConstants.messages.PROFILE_EDIT_FAILED_MESSAGE_BODY);
             failedalert.show();
-            System.out.println("Failed to update user");
+            System.out.println(HarmoniaConstants.messages.PROFILE_EDIT_FAILED_MESSAGE_BODY);
         }
     }
 

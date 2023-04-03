@@ -4,7 +4,6 @@ import javax.swing.text.html.ListView;
 
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaData;
-import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.utils.HarmoniaDataLoader;
 import com.harmonia.utils.HarmoniaUtils;
 import com.harmonia.view.MessagesListView;
@@ -15,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -44,6 +44,8 @@ public class DirectMessagesController extends MainViewController {
     private TextField editTextField;
     @FXML
     private MessagesListView ChatListView;
+    @FXML
+    private Label userListLabel;
 
     public DirectMessagesController() {
 
@@ -59,7 +61,8 @@ public class DirectMessagesController extends MainViewController {
      */
     public void initialize() {
         HarmoniaDataLoader.searchUserByUsername("");
-        
+        userListLabel.setText(HarmoniaConstants.textconstants.usersText);
+
     }
 
     @FXML
@@ -75,11 +78,11 @@ public class DirectMessagesController extends MainViewController {
     @FXML
     public void onSendBtnClick(ActionEvent event) {
         if (HarmoniaDataLoader.sendDirectMessage(sendMessageField.getText())) {
-            sendMessageField.setText(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
+            sendMessageField.setText(HarmoniaConstants.messages.LABEL_EMPTY_STRING);
             HarmoniaDataLoader.loadDirectMessagesByUserId(false);
             scrollToBottom();
         } else {
-            sendMessageField.setText(HarmoniaMessagesConstants.ERROR_SENDING_MESSAGE);
+            sendMessageField.setText(HarmoniaConstants.messages.ERROR_SENDING_MESSAGE);
         }
     }
 
@@ -90,18 +93,18 @@ public class DirectMessagesController extends MainViewController {
     @FXML
     public void onEditButtonClick() {
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
-            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
             return;
         }
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE.getRecipientId() != HarmoniaConstants.LOGGED_USERS.getUserId()) {
             editBox.setVisible(true);
         } else {
             Alert notYourMessageAlert = new Alert(AlertType.ERROR);
-            notYourMessageAlert.setTitle("Not your message");
-            notYourMessageAlert.setHeaderText("Not your message!");
-            notYourMessageAlert.setContentText("You cannot edit messages from other people!");
+            notYourMessageAlert.setTitle(HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_TITLE);
+            notYourMessageAlert.setHeaderText(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER);
+            notYourMessageAlert.setContentText(HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
             notYourMessageAlert.showAndWait();
         }
     }
@@ -113,18 +116,18 @@ public class DirectMessagesController extends MainViewController {
     @FXML
     public void onConfirmEditButtonCLick() {
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
-            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
             return;
         }
         if (HarmoniaDataLoader.editDirectMessage(editTextField.getText())) {
-            editTextField.setStyle(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
+            editTextField.setStyle(HarmoniaConstants.messages.LABEL_EMPTY_STRING);
             editBox.setVisible(false);
-            editTextField.setText(HarmoniaMessagesConstants.LABEL_EMPTY_STRING);
+            editTextField.setText(HarmoniaConstants.messages.LABEL_EMPTY_STRING);
             HarmoniaDataLoader.loadDirectMessagesByUserId(false);
         } else {
-            editTextField.setPromptText(HarmoniaMessagesConstants.ERROR_EMPTY_MESSAGE);
+            editTextField.setPromptText(HarmoniaConstants.messages.ERROR_EMPTY_MESSAGE);
             editTextField.setStyle("-fx-text-box-border: #B22222;");
         }
     }
@@ -145,28 +148,28 @@ public class DirectMessagesController extends MainViewController {
     @FXML
     public void onRemoveMessageButttonClick() {
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
-            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
+            HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_BODY);
             return;
         }
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE.getRecipientId() != HarmoniaConstants.LOGGED_USERS.getUserId()) {
-            if (HarmoniaUtils.showConfirmationMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY
+            if (HarmoniaUtils.showConfirmationMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_MESSAGE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_TITLE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_HEADER,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_DELETE_CONFIRMATION_BODY
             )) {
                 if (!HarmoniaDataLoader.deleteDirectMessage()) {
-                    HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_TITLE,
-                            HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_HEADER_TEXT,
-                            HarmoniaMessagesConstants.DIRECT_MESSAGES_CANNOT_DELETE_BODY_TEXT);
+                    HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_CANNOT_DELETE_TITLE,
+                            HarmoniaConstants.messages.DIRECT_MESSAGES_CANNOT_DELETE_HEADER_TEXT,
+                            HarmoniaConstants.messages.DIRECT_MESSAGES_CANNOT_DELETE_BODY_TEXT);
                 }
             }
 
         } else {
-            HarmoniaUtils.showErrorMessage(HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_TITLE,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_HEADER_TEXT,
-                    HarmoniaMessagesConstants.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
+            HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_TITLE,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_HEADER_TEXT,
+                    HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
         }
     }
     @FXML
