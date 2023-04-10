@@ -1,6 +1,7 @@
 package com.harmonia.backend.config;
 
 import com.harmonia.backend.constants.HarmoniaConstants;
+import com.harmonia.backend.utils.HarmoniaUtils;
 import com.harmonia.backend.utils.KeyValidator;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,10 +19,15 @@ public class APIKeyValidatorFilter implements Filter {
     @Value("${harmonia.constants.protectEndpoints}")
     private boolean protectEndpoints;
 
+    @Value("${harmonia.constants.exposed.endpoints}")
+    private String exposedEndpoints;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        if (protectEndpoints) {
-            HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletRequest req = (HttpServletRequest) request;
+        if (!protectEndpoints || shouldNotFilter(req)) {
+            chain.doFilter(request, response);
+        } else {
             String key = req.getHeader(HarmoniaConstants.API_KEY_HEADER_NAME);
             if (key == null) {
                 ((HttpServletResponse) response).setStatus(401);
@@ -33,7 +39,14 @@ public class APIKeyValidatorFilter implements Filter {
                 response.getOutputStream().write("API Key is invalid".getBytes());
                 return;
             }
+            chain.doFilter(request, response);
         }
-        chain.doFilter(request, response);
     }
+
+    private boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        String[] exposedResources = exposedEndpoints.split(",");
+        return HarmoniaUtils.arrayMatchesString(exposedResources, path);
+    }
+
 }

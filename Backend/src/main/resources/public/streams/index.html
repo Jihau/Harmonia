@@ -1,0 +1,51 @@
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    <script type="text/javascript">
+        let stompClient = null;
+        let socket = new SockJS('/ws');
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            stompClient.subscribe('/all/messages', function (result) {
+                show(JSON.parse(result.body));
+            });
+        });
+
+        function sendMessage() {
+            let text = document.getElementById('text').value;
+            let authorId = document.getElementById('authorId').value;
+            let channelId = document.getElementById('channelId').value;
+            stompClient.send("/app/application", {},
+                JSON.stringify({
+                    'from': authorId,
+                    'text': text,
+                    'to': channelId
+                }));
+        }
+
+        function show(message) {
+            let response = document.getElementById('messages');
+            let p = document.createElement('p');
+            p.innerHTML = "<b>AuthorId " + message.from + " in ChannelId " + message.to + " says: </b>" + message.text;
+            response.appendChild(p);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h1>Harmonia Channel Messages Stream Test</h1>
+    <div><b>Warning: </b> The messages you send here are going to be saved to the database according to the Channel and Author you input!</div>
+    </br>
+    <div><b>ChannelId:</b> <input type="text" id="channelId" placeholder="ChannelId" value="1"/></div>
+    <div><b>AuthorId:</b> <input type="text" id="authorId" placeholder="AuthorId" value="1"/></div>
+    <div><b>Message:</b> <input type="text" id="text" placeholder="Text" value="Hello World!"/></div>
+    <div>
+        <button id="sendMessage" onclick="sendMessage();">Send</button>
+    </div>
+    <br/>
+    <br/>
+    <div id="messages"></div>
+</div>
+</body>
+</html>
