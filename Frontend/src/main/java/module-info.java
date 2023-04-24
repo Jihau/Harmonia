@@ -14,6 +14,7 @@ module com.harmonia {
     requires com.fasterxml.jackson.core;
     requires lombok;
     requires spring.security.crypto;
+    requires java.sdk;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
