@@ -139,7 +139,7 @@
                            <Image url="@img/cancelIconBlack.png" />
                         </image>
                      </ImageView>
-                     <Button layoutX="451.0" layoutY="5.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Button" />
+                     <Button fx:id="popupCloseButton" onAction="#onJoinLabelClick" layoutX="451.0" layoutY="5.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Button" />
                   </children>
                </Pane>
          </AnchorPane>
