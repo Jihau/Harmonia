@@ -27,7 +27,7 @@ public class HarmoniaConstants {
         System.out.println(texts.getString("homeText"));
     }
 
-    private static void setMessages() {
+    public static void setMessages() {
         HarmoniaConstants.textconstants = new TextConstants();
         HarmoniaConstants.messages = new HarmoniaMessagesConstants();
     }

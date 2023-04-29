@@ -25,4 +25,7 @@ public class TextConstants {
     public String returnText = HarmoniaConstants.texts.getString("returnText");
     public String serverMembersText = HarmoniaConstants.texts.getString("serverMembersText");
     public String usersText = HarmoniaConstants.texts.getString("usersText");
+    public String loginErrorLabelText;
+    public String serverJoinPopupText;
+    public String registerErrorLabelText;
 }

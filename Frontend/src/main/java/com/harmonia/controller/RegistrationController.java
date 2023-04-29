@@ -2,6 +2,7 @@ package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -56,7 +58,7 @@ public class RegistrationController {
     PasswordField repeatPasswordField;
 
     @FXML
-    Button RegisterButton;
+    Button registerButton;
 
     /**
      * The label to display any errors during registration.
@@ -64,6 +66,32 @@ public class RegistrationController {
     @FXML
     Label errorLabel;
 
+    @FXML
+    Label usernameLabel;
+
+    @FXML
+    Label passwordLabel;
+
+    @FXML
+    Label repeatPasswordLabel;
+
+    @FXML
+    Label emailLabel;
+    @FXML
+    Hyperlink returnLink;
+
+    @FXML
+    Label registrationLabel;
+
+    public void initialize(){
+        usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
+        passwordLabel.setText(HarmoniaConstants.textconstants.passwordLabelText);
+        repeatPasswordLabel.setText(HarmoniaConstants.textconstants.repeatPasswordLabelText);
+        emailLabel.setText(HarmoniaConstants.textconstants.emailLabelText);
+        returnLink.setText(HarmoniaConstants.textconstants.alreadyHaveAccountLinkText);
+        registrationLabel.setText(HarmoniaConstants.textconstants.registrationText);
+        registerButton.setText(HarmoniaConstants.textconstants.registerText);
+    }
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {
             @Override
@@ -109,7 +137,7 @@ public class RegistrationController {
                 System.out.println("HTTP done");
 
                 errorLabel.setVisible(true);
-                errorLabel.setText("Registration succesful, wait...");
+                errorLabel.setText(HarmoniaConstants.textconstants.registerErrorLabelText);
                 System.out.println("waiting 3 and redirecting");
                 redirectToLogin();
 
