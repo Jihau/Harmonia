@@ -1,12 +1,15 @@
 package com.harmonia.backend.controller;
 
 import com.harmonia.backend.domain.Friend;
+import com.harmonia.backend.po.FriendRequest;
+import com.harmonia.backend.po.FriendResponse;
 import com.harmonia.backend.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/friends")
@@ -21,15 +24,18 @@ public class FriendController {
         return ResponseEntity.ok(friends);
     }
 
-    @PostMapping("/userId/{userId}/add/{friendId}")
-    public ResponseEntity<Void> addFriend(@PathVariable Long userId, @PathVariable Long friendId) {
-        friendService.addFriend(userId, friendId);
-        return ResponseEntity.ok().build();
+    @PostMapping("/userId/{userId}")
+    public ResponseEntity<String> addFriend(@PathVariable Long userId, @RequestBody FriendRequest friend) {
+        if (Objects.equals(userId, friend.getFriendId())) {
+            return ResponseEntity.ok("Cannot add yourself as friend!");
+        }
+        friendService.addFriend(userId, friend.getFriendId());
+        return ResponseEntity.ok("User with id " + friend.getFriendId() + " added as friend.");
     }
 
-    @PostMapping("/userId/{userId}/remove/{friendId}")
-    public ResponseEntity<Void> removeFriend(@PathVariable Long userId, @PathVariable Long friendId) {
-        friendService.removeFriend(userId, friendId);
-        return ResponseEntity.ok().build();
+    @PostMapping("/remove/userId/{userId}")
+    public ResponseEntity<String> removeFriend(@PathVariable Long userId, @RequestBody FriendRequest friend) {
+        friendService.removeFriend(userId, friend.getFriendId());
+        return ResponseEntity.ok("Friend with ID " + friend.getFriendId() + " removed!");
     }
 }

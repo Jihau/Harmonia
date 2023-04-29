@@ -84,14 +84,19 @@ public class RegistrationController {
     Label registrationLabel;
 
     public void initialize(){
+
         usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
+        usernameField.setPromptText(HarmoniaConstants.textconstants.usernameLabelText);
         passwordLabel.setText(HarmoniaConstants.textconstants.passwordLabelText);
         repeatPasswordLabel.setText(HarmoniaConstants.textconstants.repeatPasswordLabelText);
         emailLabel.setText(HarmoniaConstants.textconstants.emailLabelText);
         returnLink.setText(HarmoniaConstants.textconstants.alreadyHaveAccountLinkText);
         registrationLabel.setText(HarmoniaConstants.textconstants.registrationText);
         registerButton.setText(HarmoniaConstants.textconstants.registerText);
+
     }
+
+
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {
             @Override

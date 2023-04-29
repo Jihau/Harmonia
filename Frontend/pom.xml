@@ -157,6 +157,11 @@
             <artifactId>spring-security-core</artifactId>
             <version>${spring-security.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.contentful.java</groupId>
+            <artifactId>java-sdk</artifactId>
+            <version>10.5.14</version>
+        </dependency>
     </dependencies>
 
     <build>

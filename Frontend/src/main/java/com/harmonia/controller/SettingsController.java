@@ -67,6 +67,9 @@ public class SettingsController extends MainViewController {
     @FXML
     Label settingsText;
 
+    @FXML 
+    Label successLabelText;
+
     /**
      * The user object representing the currently logged-in user.
      */
@@ -80,11 +83,14 @@ public class SettingsController extends MainViewController {
 
         settingsText.setText(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE);
         changePfpText.setText(HarmoniaConstants.textconstants.changePfpText);
+        submitButton.setText(HarmoniaConstants.textconstants.saveText);
 
+        successLabelText.setText(HarmoniaConstants.messages.SETTINGS_EDIT_SUCCESS_LABEL_TEXT);
 
         ObservableList<Locale> languages = FXCollections.observableArrayList();
         languages.add(new Locale("English", "United Kingdom", "En"));
         languages.add(new Locale("Finnish", "Finland", "Fi"));
+        languages.add(new Locale("Arabic", "Iraq", "Ar"));
 
         ObservableList<String> languageTexts = FXCollections.observableArrayList();
 
@@ -127,9 +133,9 @@ public class SettingsController extends MainViewController {
         } catch (Exception e) {
             e.printStackTrace();
             Alert failedalert = new Alert(AlertType.ERROR);
-            failedalert.setContentText("Failed to update user");
+            failedalert.setContentText(HarmoniaConstants.messages.PROFILE_EDIT_FAILED_MESSAGE_BODY);
             failedalert.show();
-            System.out.println("Failed to update user");
+            System.out.println(HarmoniaConstants.messages.PROFILE_EDIT_FAILED_MESSAGE_BODY);
         }
     }
 

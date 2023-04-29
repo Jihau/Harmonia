@@ -14,15 +14,15 @@ import com.harmonia.po.UserPO;
 public class HarmoniaConstants {
 
     public static ResourceBundle texts = null;
-    
+
     public static Locale selectedLocale = null;
 
     public static HarmoniaMessagesConstants messages;
     public static TextConstants textconstants;
-    
+
     public static void setLanguage(Locale locale) {
         selectedLocale = locale;
-        texts = ResourceBundle.getBundle("properties/language"+selectedLocale.getVariant());
+        texts = ResourceBundle.getBundle("properties/language" + selectedLocale.getVariant());
         setMessages();
         System.out.println(texts.getString("homeText"));
     }
@@ -84,7 +84,8 @@ public class HarmoniaConstants {
     /**
      * The URL for getting all direct messages between two users.
      */
-    public static final String DM_GET_CONVERSATION = BASE_URL + "/dmessage/authorId/{authorId}/recipientId/{recipientId}";
+    public static final String DM_GET_CONVERSATION = BASE_URL
+            + "/dmessage/authorId/{authorId}/recipientId/{recipientId}";
 
     /**
      * The URL for getting all direct messages sent to a specific recipient.
@@ -131,7 +132,6 @@ public class HarmoniaConstants {
      */
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
 
-
     public static final String ADD_MEMBER_TO_SERVER_URL = BASE_URL + "/member";
 
     /**
@@ -163,6 +163,21 @@ public class HarmoniaConstants {
      * The URL for editing a public message by ID.
      */
     public static final String PM_EDIT_URL = BASE_URL + "/pmessage/messageId/{pMessageId}";
+
+    /**
+     * The URL for adding a friend.
+     */
+    public static final String FRIEND_ADD_URL = BASE_URL + "/friends/userId/{userId}";
+
+    /**
+     * The URL for getting a friend list by user ID.
+     */
+    public static final String FRIEND_LIST_BY_USERID_URL = BASE_URL + "/friends/userId/{userId}";
+
+    /**
+     * The URL for removing a friend by ID.
+     */
+    public static final String FRIEND_REMOVE_URL = BASE_URL + "/friends/remove/userId/{userId}";
 
     /**
      * The currently logged in user.

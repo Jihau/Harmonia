@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -43,6 +44,8 @@ public class DirectMessagesController extends MainViewController {
     private TextField editTextField;
     @FXML
     private MessagesListView ChatListView;
+    @FXML
+    private Label userListLabel;
 
     public DirectMessagesController() {
 
@@ -58,7 +61,8 @@ public class DirectMessagesController extends MainViewController {
      */
     public void initialize() {
         HarmoniaDataLoader.searchUserByUsername("");
-        
+        userListLabel.setText(HarmoniaConstants.textconstants.usersText);
+
     }
 
     @FXML
@@ -98,9 +102,9 @@ public class DirectMessagesController extends MainViewController {
             editBox.setVisible(true);
         } else {
             Alert notYourMessageAlert = new Alert(AlertType.ERROR);
-            notYourMessageAlert.setTitle("Not your message");
-            notYourMessageAlert.setHeaderText("Not your message!");
-            notYourMessageAlert.setContentText("You cannot edit messages from other people!");
+            notYourMessageAlert.setTitle(HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_TITLE);
+            notYourMessageAlert.setHeaderText(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER);
+            notYourMessageAlert.setContentText(HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
             notYourMessageAlert.showAndWait();
         }
     }
