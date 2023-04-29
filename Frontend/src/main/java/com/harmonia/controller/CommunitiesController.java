@@ -27,9 +27,9 @@ public class CommunitiesController extends MainViewController {
     @FXML
     private ListView<String> serverList;
 
-
     /**
-     * Initializes the CommunitiesController by setting up the necessary variables and loading any existing servers.
+     * Initializes the CommunitiesController by setting up the necessary variables
+     * and loading any existing servers.
      */
     public void initialize() {
         this.serverClient = new ServerClient();
@@ -50,18 +50,25 @@ public class CommunitiesController extends MainViewController {
     }
 
     /**
-     * Lists the servers that user belongs to on the existing ListView called serverList
+     * Lists the servers that user belongs to on the existing ListView called
+     * serverList
      */
     private void populateServerListView() {
-        ServerMemberPO[] servers = memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
-        for (ServerMemberPO server : servers) {
-            myServers.add(serverClient.getServerById(server.getServerId()));
-            serverList.getItems().add(server.getServerName());
+        try {
+            ServerMemberPO[] servers = memberClient.listServersByMemberId(HarmoniaConstants.LOGGED_USERS.getUserId());
+            for (ServerMemberPO server : servers) {
+                myServers.add(serverClient.getServerById(server.getServerId()));
+                serverList.getItems().add(server.getServerName());
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to populate server list");
+            e.printStackTrace();
         }
     }
 
     /**
-     * Handles the event when the servers button is clicked, which loads the view of the server that user selected.
+     * Handles the event when the servers button is clicked, which loads the view of
+     * the server that user selected.
      *
      * @param event    the event that triggered this method
      * @param sendHere sets the server variable in @link ServerController

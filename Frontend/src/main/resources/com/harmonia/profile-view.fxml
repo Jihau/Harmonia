@@ -26,84 +26,6 @@
             <Image url="@img/editIcon.png" />
          </image>
       </ImageView>
-      <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
-         <children>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/homeIconInactive.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="49.0" layoutY="61.0" text="Home" textFill="#9f9f9f">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/communitiesIconInactive.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="50.0" layoutY="104.0" text="Servers" textFill="#9f9f9f">
-               <font>
-                  <Font name="Lato Regular" size="16.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/messagesInactive.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/settingsIconInactive.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="49.0" layoutY="146.0" prefHeight="23.0" prefWidth="144.0" text="Direct messages" textFill="#9f9f9f">
-               <font>
-                  <Font name="Lato Regular" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="49.0" layoutY="225.0" prefHeight="23.0" prefWidth="144.0" text="Settings" textFill="#9f9f9f">
-               <font>
-                  <Font name="Lato Regular" size="16.0" />
-               </font>
-            </Label>
-            <Label layoutX="45.0" layoutY="14.0" text="HARMONIA" textFill="WHITE">
-               <font>
-                  <Font name="Lato Regular" size="20.0" />
-               </font>
-            </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="25.0" layoutX="194.0" layoutY="186.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="4.0" layoutX="15.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="171.0" />
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/profileIconActive.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="49.0" layoutY="186.0" prefHeight="23.0" prefWidth="144.0" text="Profile" textFill="WHITE">
-               <font>
-                  <Font name="Lato Regular" size="16.0" />
-               </font>
-            </Label>
-            <Button fx:id="sFriendsBtn" layoutX="-5.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="fmSettingsBtn" layoutX="-5.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="fmProfileBtn" layoutX="-5.0" layoutY="186.0" mnemonicParsing="false" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="fmHomePageBtn" layoutX="-5.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Button fx:id="fmCommunityBtn" layoutX="-3.0" layoutY="102.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-            <Label layoutX="90.0" layoutY="688.0" text="Logout" textFill="WHITE">
-               <font>
-                  <Font name="Lato Regular" size="16.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="58.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/logoutIcon.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="logoutButton" layoutX="-5.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="210.0" text="Button" />
-         </children>
-      </AnchorPane>
       <ImageView fx:id="profileImage" fitHeight="200.0" fitWidth="200.0" layoutX="399.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/profTemplate.jpg" />
@@ -153,5 +75,6 @@
          </font>
       </TextField>
       <Button id="editBioBtn" fx:id="editBioBtn" layoutX="399.0" layoutY="325.0" mnemonicParsing="false" onAction="#editBioText" opacity="0.0" prefHeight="25.0" prefWidth="23.0" />
+      <fx:include source="nav.fxml" />
    </children>
 </AnchorPane>

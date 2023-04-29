@@ -63,6 +63,10 @@ public class LoginController {
     @FXML
     Label passwordLabel;
 
+    /**
+     * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
+     * If successful, redirects the user to the Harmonia view.
+     */
 
     public void initialize() {
         if (HarmoniaConstants.selectedLocale == null){
@@ -74,10 +78,6 @@ public class LoginController {
         loginButton.setText(HarmoniaConstants.textconstants.loginText);
     }
 
-    /**
-     * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
-     * If successful, redirects the user to the Harmonia view.
-     */
     @FXML
     public void onLoginButtonClick() {
 
@@ -86,7 +86,7 @@ public class LoginController {
             errorLabel.setVisible(true);
             return;
         }
-        errorLabel.setText("Login failed");
+        errorLabel.setText(HarmoniaConstants.textconstants.loginErrorLabelText);
         errorLabel.setVisible(true);
         if (login(usernameField.getText(), passwordField.getText())) {
             logInRedirect();
@@ -116,7 +116,6 @@ public class LoginController {
     @FXML
     public void logInRedirect() {
         try {
-            HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
             FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
             Stage stage = (Stage) loginButton.getScene().getWindow();
             Scene scene = new Scene(loader.load(), 1280, 720);
@@ -142,4 +141,5 @@ public class LoginController {
         HarmoniaConstants.LOGGED_USERS = null;
         return false;
     }
+
 }

@@ -14,8 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.times;
@@ -43,9 +42,14 @@ public class ServerMemberClientTest {
 
         Mockito.when(restTemplate.exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any(), Mockito.anyMap()))
                 .thenReturn(new ResponseEntity<>(expectedServers, HttpStatus.OK));
-        ServerMemberPO[] actualServers =  serverMemberClient.listServersByMemberId(5);
-        assertNotNull(actualServers);
-        assertArrayEquals(expectedServers, actualServers);
-        verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any(), Mockito.anyMap());
+        try {
+            ServerMemberPO[] actualServers = serverMemberClient.listServersByMemberId(5);
+            assertNotNull(actualServers);
+            assertArrayEquals(expectedServers, actualServers);
+            verify(restTemplate, times(1)).exchange(anyString(), any(), Mockito.any(), Mockito.<Class<ServerMemberPO[]>>any(), Mockito.anyMap());
+        } catch (Exception e) {
+            System.out.println();
+            assertEquals(1, 0);
+        }
     }
 }

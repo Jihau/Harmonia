@@ -18,84 +18,7 @@
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <AnchorPane maxHeight="720.0" maxWidth="220.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/homeIconActive.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="49.0" layoutY="61.0" text="Home" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/communitiesIconInactive.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="50.0" layoutY="104.0" text="Servers" textFill="#9f9f9f">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="146.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/messagesInactive.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/settingsIconInactive.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="49.0" layoutY="146.0" prefHeight="23.0" prefWidth="144.0" text="Direct messages" textFill="#9f9f9f">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="45.0" layoutY="14.0" text="HARMONIA" textFill="WHITE">
-                     <font>
-                        <Font name="Lato Regular" size="20.0" />
-                     </font>
-                  </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="25.0" layoutX="195.0" layoutY="61.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="4.0" layoutX="15.0" layoutY="259.0" stroke="BLACK" strokeType="INSIDE" width="171.0" />
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="13.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/profileIconInactive.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="49.0" layoutY="225.0" prefHeight="23.0" prefWidth="144.0" text="Settings" textFill="#9f9f9f">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="49.0" layoutY="186.0" prefHeight="23.0" prefWidth="144.0" text="Profile" textFill="#9f9f9f">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="fmHomePageBtn" layoutX="-6.0" layoutY="61.0" mnemonicParsing="false" onAction="#onfmHomePageBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="fmCommunityBtn" layoutX="-6.0" layoutY="101.0" mnemonicParsing="false" onAction="#onServerButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="sFriendsBtn" layoutX="-6.0" layoutY="145.0" mnemonicParsing="false" onAction="#onsFriendsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="fmProfileBtn" layoutX="-6.0" layoutY="185.0" mnemonicParsing="false" onAction="#onfmProfileBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Button fx:id="fmSettingsBtn" layoutX="-6.0" layoutY="224.0" mnemonicParsing="false" onAction="#onfmSettingsBtnClick" opacity="0.0" prefHeight="25.0" prefWidth="210.0" text="Button" />
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b5ddc" height="43.0" layoutX="-1.0" layoutY="677.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="201.0" />
-                  <Label layoutX="91.0" layoutY="688.0" text="Logout" textFill="WHITE">
-                     <font>
-                        <Font name="Lato Regular" size="16.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" layoutX="58.0" layoutY="687.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/logoutIcon.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="logoutButton" layoutX="-6.0" layoutY="677.0" onAction="#logoutOnButtonClick" opacity="0.0" prefHeight="43.0" prefWidth="210.0" text="Button" />
-               </children>
-            </AnchorPane>
+            <fx:include source="nav.fxml" />
          <AnchorPane prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #141e2c;">
             <TextField fx:id="searchBar" layoutX="294.0" layoutY="34.0" opacity="0.78" prefHeight="25.0" prefWidth="392.0" promptText="Search communities by category.." styleClass="form" stylesheets="@css/form.css">
                <effect>
@@ -130,7 +53,8 @@
                </ImageView>
                <Pane fx:id="serverJoinPopup" layoutX="269.0" layoutY="664.0" prefHeight="35.0" prefWidth="476.0" style="-fx-background-color: #32CD32;" visible="false">
                   <children>
-                        <Label fx:id="serverJoinPopupLabel" layoutX="14.0" layoutY="6.0" prefHeight="23.0" prefWidth="243.0" text="Successfully joined the server">                        <font>
+                     <Label fx:id="serverJoinPopupLabel" layoutX="14.0" layoutY="6.0" prefHeight="23.0" prefWidth="243.0">
+                        <font>
                            <Font name="Lato Regular" size="18.0" />
                         </font>
                      </Label>

@@ -27,7 +27,7 @@ public class HarmoniaConstants {
         System.out.println(texts.getString("homeText"));
     }
 
-    private static void setMessages() {
+    public static void setMessages() {
         HarmoniaConstants.textconstants = new TextConstants();
         HarmoniaConstants.messages = new HarmoniaMessagesConstants();
     }
@@ -35,8 +35,8 @@ public class HarmoniaConstants {
     /**
      * The base URL of the Harmonia server.
      */
-    public static final String BASE_URL = "http://13.51.150.175";
-    // public static final String BASE_URL = "http://localhost:80";
+    // public static final String BASE_URL = "http://13.51.150.175";
+    public static final String BASE_URL = "http://localhost:80";
 
     /**
      * The URL for deleting a user.

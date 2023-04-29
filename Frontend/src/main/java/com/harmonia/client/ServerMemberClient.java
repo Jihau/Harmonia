@@ -40,7 +40,7 @@ public class ServerMemberClient {
      * @param memberId the ID of the member whose servers should be retrieved
      * @return an array of ServerMemberPO objects representing the servers that the member is a part of
      */
-    public ServerMemberPO[] listServersByMemberId(int memberId) {
+    public ServerMemberPO[] listServersByMemberId(int memberId) throws Exception {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<?> request = new HttpEntity<>(headers);
         Map<String, String> urlParameters = new HashMap<>();
