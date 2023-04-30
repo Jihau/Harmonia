@@ -112,4 +112,12 @@ public class HarmoniaUtils {
     public static String getLabelForIdentifier(String identifier, String defaultText) {
         return HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier) == null ? defaultText : HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier).toString();
     }
+
+    public static void loadContentfulLabels() {
+        if (HarmoniaConstants.selectedLocale == null) {
+            loadLocalizedResources(System.getProperty("user.language"));
+        } else {
+            loadLocalizedResources(HarmoniaConstants.selectedLocale.getVariant());
+        }
+    }
 }

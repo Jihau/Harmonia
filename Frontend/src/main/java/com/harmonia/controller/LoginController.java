@@ -81,8 +81,8 @@ public class LoginController {
         registerLink.setText(HarmoniaConstants.textconstants.registerLinkText);
         loginButton.setText(HarmoniaConstants.textconstants.loginText);
         // Setting Contenful Labels
-        usernameLabel.setText(HarmoniaUtils.getLabelForIdentifier("Username", usernameLabel.getText()));
-        passwordLabel.setText(HarmoniaUtils.getLabelForIdentifier("Password", passwordLabel.getText()));
+        usernameLabel.setText(HarmoniaUtils.getLabelForIdentifier("username", usernameLabel.getText()));
+        passwordLabel.setText(HarmoniaUtils.getLabelForIdentifier("password", passwordLabel.getText()));
     }
 
     @FXML

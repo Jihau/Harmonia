@@ -4,6 +4,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.harmonia.po.UserPO;
+import com.harmonia.utils.HarmoniaUtils;
 
 /**
  * This class contains all the constants used in the Harmonia application.
@@ -24,6 +25,7 @@ public class HarmoniaConstants {
         selectedLocale = locale;
         texts = ResourceBundle.getBundle("properties/language" + selectedLocale.getVariant());
         setMessages();
+        HarmoniaUtils.loadContentfulLabels();
     }
 
     public static void setMessages() {
