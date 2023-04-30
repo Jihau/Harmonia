@@ -18,6 +18,8 @@ public class HarmoniaConstants {
      * The base URL of the Harmonia server.
      */
     public static final String BASE_URL = "http://13.51.150.175";
+    // public static final String BASE_URL = "http://localhost:80";
+
     /**
      * The URL for deleting a user.
      */
@@ -42,7 +44,6 @@ public class HarmoniaConstants {
      * The URL for adding a new direct message.
      */
     public static final String DM_ADD_URL = BASE_URL + "/dmessage";
-    // public static final String BASE_URL = "http://localhost:80";
     /**
      * The URL for getting all direct messages.
      */

@@ -114,7 +114,7 @@ public class DirectMessagesController extends MainViewController {
      * Afterwards update the list of messages.
      */
     @FXML
-    public void onConfirmEditButtonCLick() {
+    public void onConfirmEditButtonClick() {
         if (HarmoniaData.SELECTED_DIRECT_MESSAGE == null) {
             HarmoniaUtils.showErrorMessage(HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_TITLE,
                     HarmoniaConstants.messages.DIRECT_MESSAGES_ERROR_NOT_SELECTED_HEADER,

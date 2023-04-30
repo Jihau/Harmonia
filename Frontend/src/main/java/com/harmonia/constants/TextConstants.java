@@ -37,4 +37,8 @@ public class TextConstants {
     public String serverNameText = HarmoniaConstants.texts.getString("serverNameText");
     public String serverCategoryLabelText = HarmoniaConstants.texts.getString("serverCategoryLabelText");
     public String nameTooShortErrorText = HarmoniaConstants.texts.getString("serverNameTooShortMessage");
+    public String sendButtonLabel = HarmoniaConstants.texts.getString("sendButtonLabel");
+    public String refreshButtonLabel = HarmoniaConstants.texts.getString("refreshButtonLabel");
+    public String removeButtonLabel = HarmoniaConstants.texts.getString("removeButtonLabel");
+    public String myServersTitle = HarmoniaConstants.texts.getString("myServersTitle");
 }
