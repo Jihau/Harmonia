@@ -21,11 +21,17 @@ public class TextConstants {
     public String descriptionHintText = HarmoniaConstants.texts.getString("descriptionHintText");
     public String changePfpText = HarmoniaConstants.texts.getString("changePfpText");
     public String saveText = HarmoniaConstants.texts.getString("saveText");
-    public String channleListText = HarmoniaConstants.texts.getString("channelListText");
+    public String channelListText = HarmoniaConstants.texts.getString("channelListText");
     public String returnText = HarmoniaConstants.texts.getString("returnText");
     public String serverMembersText = HarmoniaConstants.texts.getString("serverMembersText");
     public String usersText = HarmoniaConstants.texts.getString("usersText");
     public String loginErrorLabelText = HarmoniaConstants.texts.getString("loginErrorLabel");
     public String registerErrorLabelText = HarmoniaConstants.texts.getString("registerErrorLabel");
     public String serverJoinPopupText = HarmoniaConstants.texts.getString("serverJoinPopupLabel");
+    public String editTextFieldPrompt = HarmoniaConstants.texts.getString("editTextFieldPrompt");
+    public String editBoxLabelText = HarmoniaConstants.texts.getString("editTextFieldLabel");
+    public String editBoxPrompt = HarmoniaConstants.texts.getString("editTextFieldPrompt");
+    public String editButtonLabel = HarmoniaConstants.texts.getString("editButtonLabel");
+    public String cancelButtonLabel = HarmoniaConstants.texts.getString("cancelButtonLabel");
+    public String channelNameLabel = HarmoniaConstants.texts.getString("channelNameLabel");
 }

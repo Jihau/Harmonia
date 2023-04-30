@@ -138,4 +138,8 @@ public class HarmoniaController extends MainViewController {
             }
         }
     }
-}
+
+    public void onJoinLabelClick() {
+        serverJoinPopup.setVisible(false);
+    }
+} 
