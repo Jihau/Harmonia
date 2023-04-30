@@ -1,6 +1,9 @@
 package com.harmonia.controller;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.constants.HarmoniaViewsConstants;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -10,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import com.harmonia.po.NavPO;
+import com.harmonia.utils.HarmoniaUtils;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,23 +35,23 @@ public class NavController extends MainViewController {
     Image profileImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/profileIconActive.png"));
     Image settingsImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/settingsIconActive.png"));
 
-    NavPO home = new NavPO(0, "Home", homeImg);
-    NavPO servers = new NavPO(1, "Servers", serversImg);
-    NavPO dm = new NavPO(2, "Direct Messages", dmImg);
-    NavPO profile = new NavPO(3, "Profile", profileImg);
-    NavPO settings = new NavPO(4, "Settings", settingsImg);
+    NavPO home = new NavPO(0, HarmoniaConstants.textconstants.homeText, homeImg);
+    NavPO servers = new NavPO(1, HarmoniaConstants.textconstants.serversText, serversImg);
+    NavPO dm = new NavPO(2, HarmoniaConstants.textconstants.dmText, dmImg);
+    NavPO profile = new NavPO(3, HarmoniaConstants.textconstants.profileText, profileImg);
+    NavPO settings = new NavPO(4, HarmoniaConstants.textconstants.settingsText, settingsImg);
 
     public NavController() throws IOException {
     }
 
-    public void populateNavbar(){
+    public void populateNavbar() {
         navPOObservableList = FXCollections.observableArrayList();
         navPOObservableList.addAll(
-                home.getNavName(), servers.getNavName(), dm.getNavName(), profile.getNavName(), settings.getNavName()
-        );
+                home.getNavName(), servers.getNavName(), dm.getNavName(), profile.getNavName(), settings.getNavName());
         navMenuListView.setItems(navPOObservableList);
         navMenuListView.setCellFactory(param -> new ListCell<String>() {
             private final ImageView imageView = new ImageView();
+
             @Override
             public void updateItem(String name, boolean empty) {
                 super.updateItem(name, empty);
@@ -58,23 +63,19 @@ public class NavController extends MainViewController {
                         imageView.setFitHeight(23.0);
                         imageView.setFitWidth(23.0);
                         imageView.setImage(home.getImage());
-                    }
-                    else if (name.equals(servers.getNavName())) {
+                    } else if (name.equals(servers.getNavName())) {
                         imageView.setFitHeight(23.0);
                         imageView.setFitWidth(23.0);
                         imageView.setImage(servers.getImage());
-                    }
-                    else if (name.equals(dm.getNavName())) {
+                    } else if (name.equals(dm.getNavName())) {
                         imageView.setFitHeight(23.0);
                         imageView.setFitWidth(23.0);
                         imageView.setImage(dm.getImage());
-                    }
-                    else if (name.equals(profile.getNavName())){
+                    } else if (name.equals(profile.getNavName())) {
                         imageView.setFitHeight(23.0);
                         imageView.setFitWidth(23.0);
                         imageView.setImage(profile.getImage());
-                    }
-                    else if (name.equals(settings.getNavName())) {
+                    } else if (name.equals(settings.getNavName())) {
                         imageView.setFitHeight(23.0);
                         imageView.setFitWidth(23.0);
                         imageView.setImage(settings.getImage());
@@ -86,86 +87,75 @@ public class NavController extends MainViewController {
         });
     }
 
-    public void navActions(){
+    public void navActions() {
         navMenuListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if(navMenuListView.getSelectionModel().getSelectedIndex() == 0){
+                if (navMenuListView.getSelectionModel().getSelectedIndex() == 0) {
                     System.out.println("Home clicked");
                     try {
-                        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-                        Stage stage = (Stage) navMenuListView.getScene().getWindow();
-                        Scene scene = new Scene(loader.load(), 1280, 720);
-                        stage.setScene(scene);
-                        stage.setTitle("Register to Harmonia");
-                        stage.show();
+                        HarmoniaUtils.loadJavaFxView(
+                                HarmoniaConstants.textconstants.homeText, HarmoniaViewsConstants.HOME_VIEW,
+                                (Stage) navMenuListView.getScene().getWindow());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                else if(navMenuListView.getSelectionModel().getSelectedIndex() == 1){
+                else if (navMenuListView.getSelectionModel().getSelectedIndex() == 1) {
                     System.out.println("Servers clicked");
                     try {
-                        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("mycommunities-view.fxml"));
-                        Stage stage = (Stage) navMenuListView.getScene().getWindow();
-                        Scene scene = new Scene(loader.load(), 1280, 720);
-                        stage.setScene(scene);
-                        stage.setTitle("Harmonia");
-                        stage.show();
+                        HarmoniaUtils.loadJavaFxView(
+                                HarmoniaConstants.textconstants.myServersTitle,
+                                HarmoniaViewsConstants.USER_SERVERS_VIEW,
+                                (Stage) navMenuListView.getScene().getWindow());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                else if(navMenuListView.getSelectionModel().getSelectedIndex() == 2){
+                else if (navMenuListView.getSelectionModel().getSelectedIndex() == 2) {
                     System.out.println("DMs clicked");
                     try {
-                        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("messages-view.fxml"));
-                        Stage stage = (Stage) navMenuListView.getScene().getWindow();
-                        Scene scene = new Scene(loader.load(), 1280, 720);
-                        stage.setScene(scene);
-                        stage.setTitle("Register to Harmonia");
-                        stage.show();
+                        HarmoniaUtils.loadJavaFxView(
+                                HarmoniaConstants.textconstants.dmText,
+                                HarmoniaViewsConstants.DIRECT_MESSAGES_VIEW,
+                                (Stage) navMenuListView.getScene().getWindow());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                else if(navMenuListView.getSelectionModel().getSelectedIndex() == 3){
+                else if (navMenuListView.getSelectionModel().getSelectedIndex() == 3) {
                     System.out.println("Profile clicked");
                     try {
-                        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("profile-view.fxml"));
-                        Stage stage = (Stage) navMenuListView.getScene().getWindow();
-                        Scene scene = new Scene(loader.load(), 1280, 720);
-                        stage.setScene(scene);
-                        stage.setTitle("Register to Harmonia");
-                        stage.show();
+                        HarmoniaUtils.loadJavaFxView(
+                                HarmoniaConstants.textconstants.profileText,
+                                HarmoniaViewsConstants.PROFILE_VIEW,
+                                (Stage) navMenuListView.getScene().getWindow());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-                else if(navMenuListView.getSelectionModel().getSelectedIndex() == 4){
+                } else if (navMenuListView.getSelectionModel().getSelectedIndex() == 4) {
                     System.out.println("Settings clicked");
                     try {
-                        FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("usersettings-view.fxml"));
-                        Stage stage = (Stage) navMenuListView.getScene().getWindow();
-                        Scene scene = new Scene(loader.load(), 1280, 720);
-                        stage.setScene(scene);
-                        stage.setTitle("Register to Harmonia");
-                        stage.show();
+                        HarmoniaUtils.loadJavaFxView(
+                                HarmoniaConstants.textconstants.settingsText,
+                                HarmoniaViewsConstants.USER_SETTINGS_VIEW,
+                                (Stage) navMenuListView.getScene().getWindow());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
 
-                else if(navMenuListView.getSelectionModel().getSelectedIndex() == 5){
+                else if (navMenuListView.getSelectionModel().getSelectedIndex() == 5) {
                     System.out.println("Selected index: 5");
 
                 }
             }
         });
     }
+
     public void initialize() {
         populateNavbar();
         navActions();

@@ -165,7 +165,7 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <Button fx:id="removeMessageButton" mnemonicParsing="false" onAction="#onRemoveMessageButttonClick" text="Remove">
+                                    <Button fx:id="removeMessageButton" mnemonicParsing="false" onAction="#onRemoveMessageButtonClick" text="Remove">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
@@ -204,7 +204,7 @@
             <Pane fx:id="editBox" blendMode="SRC_ATOP" layoutY="1.0" prefHeight="73.0" prefWidth="401.0" style="-fx-border-color: black; -fx-background-color: #bdbfbe;" visible="false">
                <children>
                   <Label fx:id="editBoxLabel" layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" text="Edit Message" textAlignment="CENTER" />
-                  <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me">
+                  <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" onAction="#onConfirmEditButtonClick" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>
@@ -215,7 +215,7 @@
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonCLick" text="Edit">
+                  <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonClick" text="Edit">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -229,7 +229,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addChannelBox" layoutX="324.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="601.0">
+      <AnchorPane fx:id="addChannelBox" layoutX="324.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="601.0" visible="false">
          <children>
             <GridPane fx:id="addChannelGrid" layoutX="1.0" prefHeight="92.0" prefWidth="601.0" style="-fx-background-color: grey;">
               <columnConstraints>

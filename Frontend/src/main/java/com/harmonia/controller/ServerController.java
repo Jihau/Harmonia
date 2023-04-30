@@ -178,6 +178,11 @@ public class ServerController extends MainViewController {
         cancelEditButton.setText(HarmoniaConstants.textconstants.cancelButtonLabel);
         channelNameFieldLabel.setText(HarmoniaConstants.textconstants.channelNameLabel);
 
+        sendBtn.setText(HarmoniaConstants.textconstants.sendButtonLabel);
+        refreshButton.setText(HarmoniaConstants.textconstants.refreshButtonLabel);
+        removeMessageButton.setText(HarmoniaConstants.textconstants.removeButtonLabel);
+        editMessageButton.setText(HarmoniaConstants.textconstants.editButtonLabel);
+
         this.userClient = new UserClient();
         this.serverClient = new ServerClient();
         this.publicMessageClient = new PublicMessageClient();
@@ -312,7 +317,7 @@ public class ServerController extends MainViewController {
      * If not it highlights the textField and prompts the user to type a message.
      */
     @FXML
-    void onConfirmEditButtonCLick(ActionEvent event) {
+    void onConfirmEditButtonClick(ActionEvent event) {
         if (editTextField.getText() != "") {
             PublicMessagePO editedMessage = this.selectedMessage;
             editedMessage.setMessageText(editTextField.getText());
@@ -381,7 +386,7 @@ public class ServerController extends MainViewController {
      * @param event
      */
     @FXML
-    void onRemoveMessageButttonClick(ActionEvent event) {
+    void onRemoveMessageButtonClick(ActionEvent event) {
         int index = PublicMessagesList.getSelectionModel().getSelectedIndex();
 
         if (PMObjectList.get(index).getAuthorId() == loggedInUser.getUserId()) {
@@ -456,15 +461,19 @@ public class ServerController extends MainViewController {
      */
     public void addNewChannel() {
         if (channelNameField.getText().length() > 0) {
+
             ChannelPO newChannel = new ChannelPO();
             newChannel.setChannelName(channelNameField.getText());
             newChannel.setServerId(selectedServer.getServerId());
             newChannel.setChannelType("Text");
+
             channelClient.addChannel(newChannel);
             addChannelBox.setVisible(false);
+
             populateChannelList();
         }
     }
+
     /**
      * close the add channel window
      */
