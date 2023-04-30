@@ -1,23 +1,20 @@
 package com.harmonia.controller;
 
-import java.util.Locale;
-
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
+import com.harmonia.constants.HarmoniaViewsConstants;
 import com.harmonia.po.UserPO;
-
+import com.harmonia.utils.HarmoniaUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.util.Locale;
 
 
 /**
@@ -44,7 +41,7 @@ public class SettingsController extends MainViewController {
     Pane successLable;
 
     /**
-     * Label shown when changing 
+     * Label shown when changing
      */
     @FXML
     ChoiceBox<String> LocaleDropdown;
@@ -67,7 +64,7 @@ public class SettingsController extends MainViewController {
     @FXML
     Label settingsText;
 
-    @FXML 
+    @FXML
     Label successLabelText;
 
     /**
@@ -109,7 +106,10 @@ public class SettingsController extends MainViewController {
             Locale selected = languages.get(LocaleDropdown.getSelectionModel().getSelectedIndex());
             HarmoniaConstants.setLanguage(selected);
             System.out.println(selected);
+            //Refresh the page
+            HarmoniaUtils.loadJavaFxView(HarmoniaConstants.messages.WINDOW_TITLE_MY_SETTINGS_MESSAGE, HarmoniaViewsConstants.USER_SETTINGS_VIEW, (Stage) LocaleDropdown.getScene().getWindow());
         });
+
 
         System.out.println("initializing");
         this.user = HarmoniaConstants.LOGGED_USERS;

@@ -15,4 +15,12 @@ public class ContentfulClientTest {
         assertEquals(HarmoniaUtils.getLabelForIdentifier("password", "password"), "Salasana", "You need to create the contentful field password for fi!");
     }
 
+    @Test
+    void getLabelsArabic() {
+        ContentfulClient.loadLabels("ar");
+        assertEquals(HarmoniaUtils.getLabelForIdentifier("test", "test"), "test");
+        assertEquals(HarmoniaUtils.getLabelForIdentifier("username", "username"), "اسم المستخدم:", "You need to create the contentful field username for ar!");
+        assertEquals(HarmoniaUtils.getLabelForIdentifier("password", "password"), "كلمة السر:", "You need to create the contentful field password for ar!");
+    }
+
 }
