@@ -229,7 +229,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="addChannelBox" layoutX="324.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="601.0" visible="false">
+      <AnchorPane fx:id="addChannelBox" layoutX="324.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="601.0">
          <children>
             <GridPane fx:id="addChannelGrid" layoutX="1.0" prefHeight="92.0" prefWidth="601.0" style="-fx-background-color: grey;">
               <columnConstraints>
@@ -241,7 +241,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="channelNameField" prefHeight="35.0" prefWidth="308.0" GridPane.rowIndex="1">
+                  <TextField fx:id="channelNameField" onAction="#addNewChannel" prefHeight="35.0" prefWidth="308.0" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
