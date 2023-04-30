@@ -40,7 +40,7 @@
             </Button>
             <ImageView fx:id="CloseWindowButton" fitHeight="55.0" fitWidth="29.0" onMouseClicked="#closeAddChannelDialog" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
-                  <Image url="@../../../../resources/com/harmonia/img/cancelIcon.png" />
+                  <Image url="@img/cancelIcon.png" />
                </image>
                <GridPane.margin>
                   <Insets right="5.0" top="5.0" />
