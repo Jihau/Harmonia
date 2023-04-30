@@ -1,5 +1,6 @@
 package com.harmonia;
 
+import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaViewsConstants;
 import com.harmonia.utils.HarmoniaTaskRefresher;
 import javafx.application.Application;
@@ -12,8 +13,7 @@ import javafx.stage.WindowEvent;
 
 import java.util.Objects;
 
-import static com.harmonia.utils.HarmoniaUtils.generateBackEndKey;
-import static com.harmonia.utils.HarmoniaUtils.loadLocalizedResources;
+import static com.harmonia.utils.HarmoniaUtils.*;
 
 /**
  * Class representing the running class of the Harmonia application.
@@ -26,7 +26,7 @@ import static com.harmonia.utils.HarmoniaUtils.loadLocalizedResources;
 public class HarmoniaApplication extends Application {
     public static void main(String[] args) {
         generateBackEndKey();
-        loadLocalizedResources(System.getProperty("user.language"));
+        loadContentfulLabels();
         launch();
     }
 

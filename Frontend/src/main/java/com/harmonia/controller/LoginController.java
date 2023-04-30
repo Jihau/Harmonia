@@ -5,7 +5,6 @@ import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
 import com.harmonia.utils.HarmoniaUtils;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -66,6 +65,9 @@ public class LoginController {
     @FXML
     Label passwordLabel;
 
+    @FXML
+    Label appTitle;
+
     /**
      * Handles the event when the login button is clicked. Checks that both fields
      * are filled and the information matches.
@@ -74,15 +76,19 @@ public class LoginController {
 
     public void initialize() {
         if (HarmoniaConstants.selectedLocale == null) {
-            HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
+            HarmoniaConstants.setLanguage(Locale.getDefault());
         }
         usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
         passwordLabel.setText(HarmoniaConstants.textconstants.passwordLabelText);
         registerLink.setText(HarmoniaConstants.textconstants.registerLinkText);
         loginButton.setText(HarmoniaConstants.textconstants.loginText);
         // Setting Contenful Labels
-        usernameLabel.setText(HarmoniaUtils.getLabelForIdentifier("Username", usernameLabel.getText()));
-        passwordLabel.setText(HarmoniaUtils.getLabelForIdentifier("Password", passwordLabel.getText()));
+        usernameLabel.setText(HarmoniaUtils.getLabelForIdentifier("username", usernameLabel.getText()));
+        passwordLabel.setText(HarmoniaUtils.getLabelForIdentifier("password", passwordLabel.getText()));
+
+        appTitle.setText(HarmoniaUtils.getLabelForIdentifier("harmonia", appTitle.getText()));
+
+
     }
 
     @FXML
