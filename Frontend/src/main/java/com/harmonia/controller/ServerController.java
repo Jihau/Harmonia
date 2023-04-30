@@ -223,7 +223,9 @@ public class ServerController extends MainViewController {
 
         if (loggedInUser.getUserId() == selectedServer.getOwnerId()) {
             addChannelButton.setVisible(true);
+            closeAddChannelDialog();
         }
+        closeAddChannelDialog();
 
     }
 

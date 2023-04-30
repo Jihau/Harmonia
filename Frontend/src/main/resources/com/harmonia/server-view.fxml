@@ -108,7 +108,7 @@
                                  <children>
                                     <ImageView fx:id="addChannelButton" fitHeight="23.0" fitWidth="54.0" layoutX="118.0" layoutY="1.0" onMouseClicked="#openChannelMaker" pickOnBounds="true" preserveRatio="true" visible="false">
                                        <image>
-                                          <Image url="@img/userSmile.png" />
+                                          <Image url="@img/plusIcon.png" />
                                        </image>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
