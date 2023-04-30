@@ -1,8 +1,10 @@
 package com.harmonia.utils;
 
 import com.harmonia.HarmoniaApplication;
+import com.harmonia.client.ContentfulClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaData;
+import com.harmonia.constants.HarmoniaMessagesConstants;
 import com.harmonia.po.UserPO;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -101,5 +103,13 @@ public class HarmoniaUtils {
 
     public static void generateBackEndKey() {
         HarmoniaData.KEY_FOR_HARMONIA_BACK_END = BCrypt.hashpw(HarmoniaConstants.KEYWORD_GENERATE_KEY, BCrypt.gensalt());
+    }
+
+    public static void loadLocalizedResources(String language) {
+        ContentfulClient.loadLabels(language);
+    }
+
+    public static String getLabelForIdentifier(String identifier, String defaultText) {
+        return HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier) == null ? defaultText : HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier).toString();
     }
 }
