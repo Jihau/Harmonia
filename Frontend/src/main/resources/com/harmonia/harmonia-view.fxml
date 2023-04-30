@@ -82,7 +82,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                </Pane>
-               <AnchorPane fx:id="newServerDialogAnchor" layoutX="220.0" layoutY="121.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="573.0" style="-fx-background-color: #bab8b8; -fx-background-radius: 2px;" visible="false">
+               <AnchorPane fx:id="newServerDialogAnchor" layoutX="220.0" layoutY="121.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="573.0" styleClass="menuBg" stylesheets="@css/form.css" visible="false">
                   <children>
                      <GridPane prefHeight="150.0" prefWidth="573.0">
                         <columnConstraints>
@@ -104,7 +104,7 @@
                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                               </rowConstraints>
                               <children>
-                                 <Label fx:id="serverNameLabel" prefHeight="66.0" prefWidth="297.0" text="Server Name">
+                                 <Label fx:id="serverNameLabel" prefHeight="66.0" prefWidth="297.0" styleClass="Label" text="Server Name">
                                     <padding>
                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </padding>
@@ -112,7 +112,7 @@
                                        <Font size="16.0" />
                                     </font>
                                  </Label>
-                                 <Label fx:id="serverCategoryLabel" prefHeight="74.0" prefWidth="349.0" text="Server Category" GridPane.columnIndex="1">
+                                 <Label fx:id="serverCategoryLabel" prefHeight="74.0" prefWidth="349.0" styleClass="Label" text="Server Category" GridPane.columnIndex="1">
                                     <padding>
                                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                     </padding>
@@ -129,19 +129,19 @@
                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
                                     <children>
-                                       <Button fx:id="okButton" mnemonicParsing="false" onAction="#onOkButtonClick" text="OK" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                                       <Button fx:id="okButton" mnemonicParsing="false" onAction="#onOkButtonClick" styleClass="LogButton" text="OK" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                                           <cursor>
                                              <Cursor fx:constant="HAND" />
                                           </cursor>
                                        </Button>
-                                       <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButtonClick" styleClass="LogButton" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                           <cursor>
                                              <Cursor fx:constant="HAND" />
                                           </cursor>
                                        </Button>
                                     </children>
                                  </GridPane>
-                                 <TextField fx:id="serverNameField" onAction="#onOkButtonClick" onKeyTyped="#clearErrorMessage" onMouseClicked="#clearErrorMessage" prefHeight="102.0" prefWidth="253.0" GridPane.rowIndex="1">
+                                 <TextField fx:id="serverNameField" onAction="#onOkButtonClick" onKeyTyped="#clearErrorMessage" onMouseClicked="#clearErrorMessage" prefHeight="102.0" prefWidth="253.0" styleClass="form" GridPane.rowIndex="1">
                                     <GridPane.margin>
                                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                                     </GridPane.margin>
@@ -149,7 +149,7 @@
                                        <Cursor fx:constant="TEXT" />
                                     </cursor>
                                  </TextField>
-                                 <TextField fx:id="serverCategoryField" onAction="#onOkButtonClick" onKeyTyped="#clearErrorMessage" onMouseClicked="#clearErrorMessage" prefHeight="68.0" prefWidth="245.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <TextField fx:id="serverCategoryField" onAction="#onOkButtonClick" onKeyTyped="#clearErrorMessage" onMouseClicked="#clearErrorMessage" prefHeight="68.0" prefWidth="245.0" styleClass="form" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <GridPane.margin>
                                        <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
                                     </GridPane.margin>
@@ -159,7 +159,7 @@
                                  </TextField>
                               </children>
                            </GridPane>
-                           <Label fx:id="errorMessageLabel" alignment="CENTER" prefHeight="61.0" prefWidth="586.0" textFill="#f20000" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <Label fx:id="errorMessageLabel" alignment="CENTER" prefHeight="61.0" prefWidth="586.0" styleClass="failureLabel" textFill="#f20000" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                               <font>
                                  <Font size="16.0" />
                               </font>
