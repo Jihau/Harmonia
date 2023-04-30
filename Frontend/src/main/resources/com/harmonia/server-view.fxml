@@ -199,12 +199,12 @@
             </GridPane>
          </children>
       </GridPane>
-      <AnchorPane fx:id="editBoxWrapper" layoutX="573.0" layoutY="605.0" prefHeight="74.0" prefWidth="365.0">
+      <AnchorPane fx:id="editBoxWrapper" layoutX="579.0" layoutY="587.0" prefHeight="92.0" prefWidth="401.0">
          <children>
             <Pane fx:id="editBox" blendMode="SRC_ATOP" layoutY="1.0" prefHeight="73.0" prefWidth="401.0" style="-fx-background-color: #0e2e6e;" stylesheets="@css/form.css" visible="false">
                <children>
                   <Label fx:id="editBoxLabel" layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" styleClass="Label" text="Edit Message" textAlignment="CENTER" />
-                  <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me" styleClass="form">
+                  <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" onAction="#onConfirmEditButtonClick" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me" styleClass="form">
                      <opaqueInsets>
                         <Insets left="5.0" />
                      </opaqueInsets>
@@ -215,7 +215,7 @@
                         <Font size="13.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonCLick" styleClass="LogButton" text="Edit">
+                  <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonClick" styleClass="LogButton" text="Edit">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -234,6 +234,24 @@
          <padding>
             <Insets top="20.0" />
          </padding>
+      </AnchorPane>
+      <AnchorPane fx:id="channelBlind" layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0">
+         <children>
+            <Pane layoutX="-7.0" layoutY="-8.0" prefHeight="728.0" prefWidth="661.0" style="-fx-background-color: #0e1821; -fx-border-color: white;">
+               <children>
+                  <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="62.0" prefHeight="30.0" prefWidth="652.0" text="Description" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="115.0" fitWidth="86.0" layoutX="552.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/stones.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
       </AnchorPane>
       <AnchorPane fx:id="addChannelBox" layoutX="324.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="601.0" styleClass="menuBg" stylesheets="@css/form.css" visible="false">
          <children>
@@ -281,24 +299,6 @@
                   </ImageView>
                </children>
             </GridPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="channelBlind" layoutX="323.0" layoutY="1.0" prefHeight="720.0" prefWidth="652.0" visible="false">
-         <children>
-            <Pane layoutX="-7.0" layoutY="-8.0" prefHeight="728.0" prefWidth="661.0" style="-fx-background-color: #0e1821; -fx-border-color: white;">
-               <children>
-                  <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="62.0" prefHeight="30.0" prefWidth="652.0" text="Description" textFill="WHITE">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="115.0" fitWidth="86.0" layoutX="552.0" layoutY="620.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/stones.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
          </children>
       </AnchorPane>
    </children>

@@ -169,7 +169,7 @@ public class HarmoniaController extends MainViewController {
     }
 
     /**
-     * This methods makes the joined server label invisible.
+     * This method makes the joined server label invisible.
      */
     public void onJoinLabelClick() {
         serverJoinPopup.setVisible(false);
@@ -231,8 +231,8 @@ public class HarmoniaController extends MainViewController {
     }
 
     /**
-     * Makes Attempts to join the user into the server matching the given server ID
-     * @param int desired server ID
+     * Makes an attempt to join the user into the server matching the given server ID
+     * @param serverId desired server ID
      */
     public void joinServer(int serverId) throws Exception {
         ServerMemberPO serverMemberPO = new ServerMemberPO();
