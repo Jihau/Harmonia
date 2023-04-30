@@ -41,4 +41,10 @@ public class HarmoniaViewsConstants {
      * The DIRECT_MESSAGES_VIEW constant represents the name of the FXML view for direct messaging.
      */
     public static final String DIRECT_MESSAGES_VIEW = "messages-view.fxml";
+    /**
+     * The NAVBAR constant represents the name of the FXML fiel containing the Navbar.
+     */
+    public static final String NAVBAR = "navOld.fxml";
+
+    public static final String NAVMENULISTVIEWCELL = "navMenuListViewCell.fxml";
 }

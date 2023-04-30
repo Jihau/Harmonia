@@ -23,7 +23,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TextField fx:id="ChannelNameField" prefHeight="35.0" prefWidth="308.0" GridPane.rowIndex="1">
+            <TextField fx:id="ChannelNameField" onAction="#addNewChannel" prefHeight="35.0" prefWidth="308.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -33,14 +33,14 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="OkButton" mnemonicParsing="false" onAction="#closeAddChannelDialog" text="OK" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <Button fx:id="OkButton" mnemonicParsing="false" onAction="#addNewChannel" text="OK" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="5.0" />
                </GridPane.margin>
             </Button>
             <ImageView fx:id="CloseWindowButton" fitHeight="55.0" fitWidth="29.0" onMouseClicked="#closeAddChannelDialog" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <image>
-                  <Image url="@../../../../resources/com/harmonia/img/cancelIcon.png" />
+                  <Image url="@img/cancelIcon.png" />
                </image>
                <GridPane.margin>
                   <Insets right="5.0" top="5.0" />

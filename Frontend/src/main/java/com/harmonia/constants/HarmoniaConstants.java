@@ -27,7 +27,7 @@ public class HarmoniaConstants {
         System.out.println(texts.getString("homeText"));
     }
 
-    private static void setMessages() {
+    public static void setMessages() {
         HarmoniaConstants.textconstants = new TextConstants();
         HarmoniaConstants.messages = new HarmoniaMessagesConstants();
     }
@@ -134,6 +134,14 @@ public class HarmoniaConstants {
      */
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
 
+    /**
+     * The URL for creating a new server
+     */
+    public static final String SERVER_ADD_NEW_SERVER_URL = BASE_URL + "/server";
+
+    /**
+     * URL for a user joining a server
+     */
     public static final String ADD_MEMBER_TO_SERVER_URL = BASE_URL + "/member";
 
     /**

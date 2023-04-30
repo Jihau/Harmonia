@@ -4,6 +4,8 @@ import com.harmonia.HarmoniaApplication;
 import com.harmonia.client.UserClient;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.po.UserPO;
+import com.harmonia.utils.HarmoniaUtils;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +18,8 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * Controller class for the login view. Handles user authentication and navigation to other views.
+ * Controller class for the login view. Handles user authentication and
+ * navigation to other views.
  *
  * @author Harmonia team
  * @version 1.0
@@ -63,9 +66,14 @@ public class LoginController {
     @FXML
     Label passwordLabel;
 
+    /**
+     * Handles the event when the login button is clicked. Checks that both fields
+     * are filled and the information matches.
+     * If successful, redirects the user to the Harmonia view.
+     */
 
     public void initialize() {
-        if (HarmoniaConstants.selectedLocale == null){
+        if (HarmoniaConstants.selectedLocale == null) {
             HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
         }
         usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
@@ -74,10 +82,6 @@ public class LoginController {
         loginButton.setText(HarmoniaConstants.textconstants.loginText);
     }
 
-    /**
-     * Handles the event when the login button is clicked. Checks that both fields are filled and the information matches.
-     * If successful, redirects the user to the Harmonia view.
-     */
     @FXML
     public void onLoginButtonClick() {
 
@@ -86,7 +90,7 @@ public class LoginController {
             errorLabel.setVisible(true);
             return;
         }
-        errorLabel.setText("Login failed");
+        errorLabel.setText(HarmoniaConstants.textconstants.loginErrorLabelText);
         errorLabel.setVisible(true);
         if (login(usernameField.getText(), passwordField.getText())) {
             logInRedirect();
@@ -94,7 +98,8 @@ public class LoginController {
     }
 
     /**
-     * Handles the event when the register link is clicked. Redirects the user to the registration view.
+     * Handles the event when the register link is clicked. Redirects the user to
+     * the registration view.
      */
     @FXML
     protected void onRegisterLinkClicked() {
@@ -116,14 +121,9 @@ public class LoginController {
     @FXML
     public void logInRedirect() {
         try {
-            HarmoniaConstants.setLanguage(new Locale("English", "United Kingdom", "En"));
-            FXMLLoader loader = new FXMLLoader(HarmoniaApplication.class.getResource("harmonia-view.fxml"));
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setScene(scene);
-            stage.setTitle("Harmonia");
-            stage.show();
+            HarmoniaUtils.loadJavaFxView("Harmonia", "harmonia-view.fxml", (Stage) loginButton.getScene().getWindow());
         } catch (Exception e) {
+            System.out.println("Redirect failed");
             e.printStackTrace();
         }
     }

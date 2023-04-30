@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -141,7 +142,7 @@ public class RegistrationController {
                 System.out.println("HTTP done");
 
                 errorLabel.setVisible(true);
-                errorLabel.setText("Registration succesful, wait...");
+                errorLabel.setText(HarmoniaConstants.textconstants.registerErrorLabelText);
                 System.out.println("waiting 3 and redirecting");
                 redirectToLogin();
 

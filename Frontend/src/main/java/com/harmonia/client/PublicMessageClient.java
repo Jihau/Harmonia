@@ -37,7 +37,7 @@ public class PublicMessageClient {
      */
     public PublicMessagePO[] getAllMessages() {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
-        HttpEntity<Void> request = new HttpEntity<>(headers);
+        HttpEntity<?> request = new HttpEntity<>(headers);
         ResponseEntity<PublicMessagePO[]> response = restTemplate.exchange(PM_GETALL_URL, HttpMethod.GET, request, PublicMessagePO[].class);
         return response.getBody();
     }
