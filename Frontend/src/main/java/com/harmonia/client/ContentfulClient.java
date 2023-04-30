@@ -6,13 +6,17 @@ import com.contentful.java.cda.CDAEntry;
 import com.contentful.java.cda.LocalizedResource;
 import com.harmonia.constants.HarmoniaMessagesConstants;
 
+import java.util.Locale;
+
 public class ContentfulClient {
 
 
     public static void loadLabels(String lang) {
         // Add more locales
-        if (!lang.equals("fi")) {
+        if (!lang.equalsIgnoreCase("fi")) {
             lang = "en-US";
+        } else {
+            lang = lang.toLowerCase();
         }
         CDAClient client = CDAClient.builder()
                 .setSpace("e1rl81rzkl0m")
