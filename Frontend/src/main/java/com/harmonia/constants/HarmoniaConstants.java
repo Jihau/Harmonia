@@ -24,7 +24,6 @@ public class HarmoniaConstants {
         selectedLocale = locale;
         texts = ResourceBundle.getBundle("properties/language" + selectedLocale.getVariant());
         setMessages();
-        System.out.println(texts.getString("homeText"));
     }
 
     public static void setMessages() {

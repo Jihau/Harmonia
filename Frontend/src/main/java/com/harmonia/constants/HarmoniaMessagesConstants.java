@@ -1,8 +1,10 @@
 package com.harmonia.constants;
 
+import com.contentful.java.cda.LocalizedResource;
+
 public class HarmoniaMessagesConstants {
 
-
+    public static LocalizedResource CONTENTFUL_RESOURCE;
     /**
      * Title for the login view
      */

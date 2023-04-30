@@ -10,10 +10,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.io.IOException;
 import java.util.Objects;
 
 import static com.harmonia.utils.HarmoniaUtils.generateBackEndKey;
+import static com.harmonia.utils.HarmoniaUtils.loadLocalizedResources;
 
 /**
  * Class representing the running class of the Harmonia application.
@@ -26,6 +26,7 @@ import static com.harmonia.utils.HarmoniaUtils.generateBackEndKey;
 public class HarmoniaApplication extends Application {
     public static void main(String[] args) {
         generateBackEndKey();
+        loadLocalizedResources(System.getProperty("user.language"));
         launch();
     }
 

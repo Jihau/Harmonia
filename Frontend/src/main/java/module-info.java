@@ -15,6 +15,7 @@ module com.harmonia {
     requires lombok;
     requires spring.security.crypto;
     requires java.sdk;
+    requires java.sql;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
