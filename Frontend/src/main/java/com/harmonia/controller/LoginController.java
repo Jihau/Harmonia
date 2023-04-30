@@ -142,5 +142,4 @@ public class LoginController {
         HarmoniaConstants.LOGGED_USERS = null;
         return false;
     }
-
 }
