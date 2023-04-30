@@ -35,8 +35,8 @@ public class HarmoniaConstants {
     /**
      * The base URL of the Harmonia server.
      */
-    // public static final String BASE_URL = "http://13.51.150.175";
-    public static final String BASE_URL = "http://localhost:80";
+    public static final String BASE_URL = "http://13.51.150.175";
+    // public static final String BASE_URL = "http://localhost:80";
 
     /**
      * The URL for deleting a user.
@@ -134,6 +134,14 @@ public class HarmoniaConstants {
      */
     public static final String SERVER_LIST_BY_MEMBER_ID_URL = BASE_URL + "/member/memberId/{memberId}";
 
+    /**
+     * The URL for creating a new server
+     */
+    public static final String SERVER_ADD_NEW_SERVER_URL = BASE_URL + "/server";
+
+    /**
+     * URL for a user joining a server
+     */
     public static final String ADD_MEMBER_TO_SERVER_URL = BASE_URL + "/member";
 
     /**

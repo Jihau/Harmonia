@@ -34,4 +34,7 @@ public class TextConstants {
     public String editButtonLabel = HarmoniaConstants.texts.getString("editButtonLabel");
     public String cancelButtonLabel = HarmoniaConstants.texts.getString("cancelButtonLabel");
     public String channelNameLabel = HarmoniaConstants.texts.getString("channelNameLabel");
+    public String serverNameText = HarmoniaConstants.texts.getString("serverNameText");
+    public String serverCategoryLabelText = HarmoniaConstants.texts.getString("serverCategoryLabelText");
+    public String nameTooShortErrorText = HarmoniaConstants.texts.getString("serverNameTooShortMessage");
 }

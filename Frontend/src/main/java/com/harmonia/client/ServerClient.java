@@ -38,6 +38,13 @@ public class ServerClient {
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
+    public ServerPO createServer(ServerPO newServer) {
+        HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
+        HttpEntity<?> request = new HttpEntity<>(newServer, headers);
+        ResponseEntity<ServerPO> response = restTemplate.exchange(SERVER_ADD_NEW_SERVER_URL, HttpMethod.POST, request, ServerPO.class);
+        return response.getBody();
+    }
+
     /**
      * Returns an array of all servers in the system.
      *
