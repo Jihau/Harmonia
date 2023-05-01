@@ -94,12 +94,10 @@ public class SettingsController extends MainViewController {
         languages.add(new Locale("Hindi", "India", "Hi"));
         languages.add(new Locale("Italian", "Italy", "It"));
         languages.add(new Locale("Japanese", "Japan", "Ja"));
-        languages.add(new Locale("Korean", "South Korea", "Ko"));
-        languages.add(new Locale("Portuguese", "Brazil", "Pt"));
         languages.add(new Locale("Russian", "Russia", "Ru"));
         languages.add(new Locale("Spanish", "Spain", "Es"));
         languages.add(new Locale("Swedish", "Sweden", "Sv"));
-        languages.add(new Locale("Turkish", "Turkey", "Tr"));
+        languages.add(new Locale("Persian", "Iran", "Fa"));
 
         ObservableList<String> languageTexts = FXCollections.observableArrayList();
 

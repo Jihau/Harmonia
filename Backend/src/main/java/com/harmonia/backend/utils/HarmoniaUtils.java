@@ -1,7 +1,22 @@
 package com.harmonia.backend.utils;
 
+/**
+ * A class to represent a HarmoniaUtils.
+ * This class contains utility methods for the Harmonia application.
+ *
+ * @version 1.0
+ *
+ * @Author Harmonia Team.
+ */
 public class HarmoniaUtils {
 
+    /**
+     * Returns true if the given array contains the given value.
+     *
+     * @param array the array to check
+     * @param value the value to check for
+     * @return true if the given array contains the given value
+     */
     public static boolean arrayMatchesString(String[] array, String value) {
         for (String arrayRecord : array) {
             if (matchPattern(arrayRecord, value)) {
@@ -10,6 +25,14 @@ public class HarmoniaUtils {
         }
         return false;
     }
+
+    /**
+     * Returns true if the given pattern matches the given string.
+     *
+     * @param pattern the pattern to check
+     * @param str the string to check
+     * @return true if the given pattern matches the given string
+     */
 
     public static boolean matchPattern(String pattern, String str) {
 
