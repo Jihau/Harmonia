@@ -25,7 +25,8 @@ public class ContentfulClient {
         languageProperties.put("es", new String[]{"elrjuwcd4gaw", "ElvBfQvu7VkEsd8hBM-HjmBK12YC0VS0woJHyFxcSSg"});
         languageProperties.put("fr", new String[]{"34d6vcvt9fx2", "QqBPFxz_kV68jyoQbhYu0HicqB6wZlFV9ffh4gQ77i8"});
         // Add more locales
-        if (lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("ar")|| lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("fr")) {
+        if (lang.equalsIgnoreCase("fi") || lang.equalsIgnoreCase("ar")|| lang.equalsIgnoreCase("es") || lang.equalsIgnoreCase("fr")
+        || lang.equalsIgnoreCase("Zh-CN")) {
             lang = lang.toLowerCase();
         } else {
             lang = "en-US";
