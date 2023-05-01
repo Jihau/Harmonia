@@ -22,5 +22,6 @@ module com.harmonia {
     
     opens com.harmonia.controller to javafx.fxml;
     opens com.harmonia.view to javafx.fxml;
+    opens com.harmonia.client;
     exports com.harmonia;
 }
