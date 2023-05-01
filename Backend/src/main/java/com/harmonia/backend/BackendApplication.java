@@ -1,7 +1,10 @@
 package com.harmonia.backend;
 
+import com.harmonia.backend.websockets.StompWebSocketClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  * The main entry point of the Harmonia backend application.
@@ -14,6 +17,14 @@ public class BackendApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
-
+        new Thread(() -> {
+            try {
+                StompWebSocketClient.startWebSocket();
+            } catch (ExecutionException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
     }
 }
