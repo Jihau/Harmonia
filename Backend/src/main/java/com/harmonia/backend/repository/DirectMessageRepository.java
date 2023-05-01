@@ -3,6 +3,7 @@ package com.harmonia.backend.repository;
 import com.harmonia.backend.domain.DirectMessage;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +32,21 @@ public interface DirectMessageRepository extends CrudRepository<DirectMessage, L
      */
     List<DirectMessage> listDMsByAuthorId(Long authorId);
 
+    /**
+     * Returns a list of all DirectMessages with the specified author ID and recipient ID.
+     * @param authorId the ID of the author to filter by
+     * @param recipientId the ID of the recipient to filter by
+     * @return a list of DirectMessage objects that match the given author ID and recipient ID
+     */
     List<DirectMessage> listConversation(Long authorId, Long recipientId);
+
+    /**
+     * Returns a list of all DirectMessages with the specified author ID and recipient ID and timestamp.
+     * @param authorId the ID of the author to filter by
+     * @param recipientId the ID of the recipient to filter by
+     * @param timestamp the timestamp to filter by
+     * @return a list of DirectMessage objects that match the given author ID and recipient ID and timestamp
+     */
+    List<DirectMessage> listConversationBasedOnTimestamp(Long authorId, Long recipientId, Date timestamp);
 
 }

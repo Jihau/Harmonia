@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
- * A class representing a response to a direct message request.
+ * A class to represent a direct message response.
  *
  * @author Harmonia Team
  * @version 1.0
@@ -34,7 +34,7 @@ public class DmessageResponse implements Serializable {
     /**
      * The timestamp of when the direct message was sent.
      */
-    Date timestamp;
+    Timestamp timestamp;
 
     /**
      * The ID of the recipient of the direct message.
@@ -49,7 +49,7 @@ public class DmessageResponse implements Serializable {
     /**
      * Constructs a DmessageResponse object from a DirectMessage object.
      *
-     * @param dm the DirectMessage object
+     * @param dm the DirectMessage object to construct a DmessageResponse object from
      */
     public DmessageResponse(DirectMessage dm) {
         this.dmessageId = dm.getDmessageId();

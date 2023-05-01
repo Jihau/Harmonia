@@ -10,6 +10,7 @@ import com.harmonia.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -131,7 +132,27 @@ public class DirectMessageService {
         }
     }
 
+    /**
+     * Returns all direct messages in the database with the specified author ID.
+     *
+     * @param authorId    the author ID to filter by
+     * @param recipientId the recipient ID to filter by
+     * @return an Iterable containing all direct messages with the specified author ID and recipient ID
+     */
+
     public List<DmessageResponse> listConversation(Long authorId, Long recipientId) {
         return directMessageRepository.listConversation(authorId, recipientId).stream().map(DmessageResponse::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns all direct messages in the database with the specified author ID.
+     *
+     * @param authorId    the author ID to filter by
+     * @param recipientId the recipient ID to filter by
+     * @param timestamp   the timestamp to filter by
+     * @return an Iterable containing all direct messages with the specified author ID and the specified recipien ID and  based on timestamp
+     */
+    public List<DmessageResponse> listConversationByTimestamp(Long authorId, Long recipientId, Timestamp timestamp) {
+        return directMessageRepository.listConversationBasedOnTimestamp(authorId, recipientId, timestamp).stream().map(DmessageResponse::new).collect(Collectors.toList());
     }
 }

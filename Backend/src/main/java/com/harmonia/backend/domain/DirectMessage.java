@@ -11,7 +11,7 @@ import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * DirectMessage entity represents a direct message sent between two users.
@@ -29,7 +29,10 @@ import java.sql.Date;
         @NamedQuery(name = "DirectMessage.listDMsByRecipientId", query = "FROM DirectMessage dm where dm.recipient.id = :recipientId"),
         // Retrieve a list of Direct Messages by the author's User ID
         @NamedQuery(name = "DirectMessage.listDMsByAuthorId", query = "FROM DirectMessage dm where dm.author.id = :authorId"),
-        @NamedQuery(name = "DirectMessage.listConversation", query = "FROM DirectMessage dm where (dm.author.id = :authorId AND dm.recipient.id = :recipientId) OR (dm.author.id = :recipientId AND dm.recipient.id = :authorId) ORDER BY dm.dmessageId")})
+        @NamedQuery(name = "DirectMessage.listConversation", query = "FROM DirectMessage dm where (dm.author.id = :authorId AND dm.recipient.id = :recipientId) OR (dm.author.id = :recipientId AND dm.recipient.id = :authorId) ORDER BY dm.dmessageId"),
+        //Retrieve a list of direct messages between two users from a given timestamp
+        @NamedQuery(name = "DirectMessage.listConversationBasedOnTimestamp", query = "FROM DirectMessage dm where ((dm.author.id = :authorId AND dm.recipient.id = :recipientId) OR (dm.author.id = :recipientId AND dm.recipient.id = :authorId)) AND dm.timestamp > :timestamp ORDER BY dm.dmessageId")
+})
 @Table(name = "direct_message", schema = "harmoniadb")
 public class DirectMessage {
 
@@ -73,7 +76,7 @@ public class DirectMessage {
     @Column(name = "Timestamp", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @NotNull
     @Generated(GenerationTime.INSERT)
-    private Date timestamp;
+    private Timestamp timestamp;
 
     /**
      * The ID of the user who sent the message.
