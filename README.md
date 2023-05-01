@@ -2,6 +2,11 @@
 > Harmonia is a communication application designed to provide users with a more private and simple user interface than other popular communication apps. The application features inbuilt plugins to replace bots used in other communication apps. Harmonia suggests user communities based on their choices, such as genres like gaming, favorite games, or users with similar interests.
 
 ## Features
+
+> - Direct Messaging: Users can send direct messages to others in real-time.
+> - Servers and Channels: Users can create servers and channels for group communication and collaboration.
+> - Personalized Profiles: Users can personalize their profile information to reflect their interests, hobbies, and preferences.
+> - Language Settings: Users can change the language of the app from their settings.
 > - More privacy and simpler UI than other communication apps.
 > - Inbuilt plugins to replace bots.
 > - Suggests user communities based on user choices and interests.
@@ -28,6 +33,7 @@
 > - Spring Boot
 > - MySQL-connector
 > - JavaFX (for the frontend)
+> - Contentful (database localization)
 > - BEncrypt
 > - Lombok (annotations)
 > - JUnit Jupiter (for testing)
@@ -37,6 +43,9 @@
 
 ## Installation
 > Currently, there is no installation process for Harmonia. Just download .exe or .jar file from above.
+
+## Localization
+> Harmonia is available in English, Arabic, and Finnish languages. We are also using Contentful for localization for some labels.
 
 ## Credits
 > Developed by Metropolia students TVT21-O Group 3.
