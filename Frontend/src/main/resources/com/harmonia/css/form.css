@@ -23,3 +23,17 @@
 .failureLabel {
     color: red;
 }
+
+.choice-box .context-menu {
+    -fx-background-color: #141e2c;
+    -fx-text-fill: white;
+}
+.choice-box .menu-item:focused {
+    -fx-background-color: rgba(42, 73, 70, 0.36);
+}
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: #ffffff;
+}
