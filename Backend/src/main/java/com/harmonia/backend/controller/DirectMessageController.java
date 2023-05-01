@@ -1,9 +1,11 @@
 package com.harmonia.backend.controller;
 
+import com.harmonia.backend.constants.HarmoniaConstants;
 import com.harmonia.backend.domain.DirectMessage;
 import com.harmonia.backend.po.DMessageRequest;
 import com.harmonia.backend.po.DmessageResponse;
 import com.harmonia.backend.service.DirectMessageService;
+import com.harmonia.backend.websockets.RefreshMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,7 +84,9 @@ public class DirectMessageController {
     @PostMapping
     public ResponseEntity<DirectMessage> sendDMessage(@RequestBody DMessageRequest directMessageRequest) {
         try {
-            return new ResponseEntity<>(directMessageService.addDirectMessage(directMessageRequest), HttpStatus.OK);
+            ResponseEntity responseEntity = new ResponseEntity<>(directMessageService.addDirectMessage(directMessageRequest), HttpStatus.OK);
+            HarmoniaConstants.STOMP_SESSION.send("/app/chat", new RefreshMessage("DirectMessageController","sendDMessage"));
+            return responseEntity;
         } catch (Exception exception) {
             exception.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -101,7 +105,7 @@ public class DirectMessageController {
 
         System.out.println("C: the message with id : " + directMessage.getDmessageId() + " is deleted");
         directMessageService.deleteDirectMessage(directMessage);
-
+        HarmoniaConstants.STOMP_SESSION.send("/app/chat", new RefreshMessage("DirectMessageController","deleteDMessage"));
         return new ResponseEntity<>("Message has been deleted", HttpStatus.OK);
     }
 
@@ -115,7 +119,9 @@ public class DirectMessageController {
     @PutMapping("messageId/{messageId}")
     @CrossOrigin
     public ResponseEntity<DmessageResponse> editMessage(@PathVariable Long messageId, @RequestBody DirectMessage directMessage) {
-        return ResponseEntity.ok(directMessageService.editDirectMessage(messageId, directMessage.getMessageText()));
+        ResponseEntity responseEntity = ResponseEntity.ok(directMessageService.editDirectMessage(messageId, directMessage.getMessageText()));
+        HarmoniaConstants.STOMP_SESSION.send("/app/chat", new RefreshMessage("DirectMessageController","editMessage"));
+        return responseEntity;
     }
 
     /**
