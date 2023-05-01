@@ -1,5 +1,8 @@
 package com.harmonia.backend.utils;
 
+import com.harmonia.backend.constants.HarmoniaConstants;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+
 /**
  * A class to represent a HarmoniaUtils.
  * This class contains utility methods for the Harmonia application.
@@ -8,6 +11,7 @@ package com.harmonia.backend.utils;
  *
  * @Author Harmonia Team.
  */
+
 public class HarmoniaUtils {
 
     /**
@@ -53,5 +57,9 @@ public class HarmoniaUtils {
         if (pattern.length() > 0 && pattern.charAt(0) == '*')
             return matchPattern(pattern.substring(1), str) || matchPattern(pattern, str.substring(1));
         return false;
+    }
+
+    public static String generateBackEndKey() {
+        return HarmoniaConstants.KEY_FOR_HARMONIA_BACK_END = BCrypt.hashpw(HarmoniaConstants.KEYWORD_GENERATE_KEY, BCrypt.gensalt());
     }
 }
