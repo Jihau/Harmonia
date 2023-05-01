@@ -118,9 +118,30 @@ public class DirectMessageController {
         return ResponseEntity.ok(directMessageService.editDirectMessage(messageId, directMessage.getMessageText()));
     }
 
+    /**
+     * Handles GET requests to list all direct messages that have the given author ID and recipient ID.
+     *
+     * @param authorId    the ID of the author to filter by
+     * @param recipientId the ID of the recipient to filter by
+     * @return an iterable collection of DmessageResponse objects representing the direct messages that match the filter
+     */
     @GetMapping("authorId/{authorId}/recipientId/{recipientId}")
     @CrossOrigin
     public Iterable<DmessageResponse> listDMsByRecipientId(@PathVariable("authorId") Long authorId, @PathVariable("recipientId") Long recipientId) {
         return directMessageService.listConversation(authorId, recipientId);
+    }
+
+    /**
+     * Handles GET requests to list all direct messages that have the given author ID and recipient ID and timestamp.
+     *
+     * @param authorId    the ID of the author to filter by
+     * @param recipientId the ID of the recipient to filter by
+     * @param lastDm      the last direct message sent
+     * @return an iterable collection of DmessageResponse objects representing the direct messages that match the filter
+     */
+    @GetMapping("/timestamp/authorId/{authorId}/recipientId/{recipientId}")
+    @CrossOrigin
+    public Iterable<DmessageResponse> listDMsByTimestamp(@PathVariable("authorId") Long authorId, @PathVariable("recipientId") Long recipientId, @RequestBody DirectMessage lastDm) {
+        return directMessageService.listConversationByTimestamp(authorId, recipientId, lastDm.getTimestamp());
     }
 }
