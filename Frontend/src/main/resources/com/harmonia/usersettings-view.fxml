@@ -60,7 +60,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <ChoiceBox fx:id="LocaleDropdown" layoutX="231.0" layoutY="254.0" prefHeight="25.0" prefWidth="208.0" styleClass="form" stylesheets="@css/form.css" />
+      <ChoiceBox fx:id="LocaleDropdown" layoutX="231.0" layoutY="254.0" prefHeight="25.0" prefWidth="208.0" styleClass="form" stylesheets="@css/form.css"   />
       <fx:include source="nav.fxml" />
    </children>
 </AnchorPane>
