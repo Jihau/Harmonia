@@ -162,7 +162,7 @@ public class HarmoniaConstants {
 
 
         String langVariant = locale.getVariant();
-        if (langVariant.equalsIgnoreCase("fi") || langVariant.equalsIgnoreCase("ar")) {
+        if (langVariant.equalsIgnoreCase("fi") || langVariant.equalsIgnoreCase("ar") || langVariant.equalsIgnoreCase("es") || langVariant.equalsIgnoreCase("fr")) {
             langVariant = langVariant.toLowerCase();
             selectedLocale = locale;
         } else {
