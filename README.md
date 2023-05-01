@@ -45,7 +45,7 @@
 > Currently, there is no installation process for Harmonia. Just download .exe or .jar file from above.
 
 ## Localization
-> Harmonia is available in English, Arabic, and Finnish languages. We are also using Contentful for localization for some labels.
+> Harmonia is available in multiple languages. We are also using Contentful for localization for some labels.
 
 ## Credits
 > Developed by Metropolia students TVT21-O Group 3.
