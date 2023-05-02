@@ -172,8 +172,8 @@ public class HarmoniaConstants {
             langVariant = langVariant.toLowerCase();
             selectedLocale = locale;
         } else {
-            langVariant = "En";
-            selectedLocale = new Locale("English", "United Kingdom", "En");
+            langVariant = "EN";
+            selectedLocale = new Locale("English", "United Kingdom", "EN");
         }
         texts = ResourceBundle.getBundle("properties/language" + langVariant);
         setMessages();
