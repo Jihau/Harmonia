@@ -239,7 +239,7 @@
          <children>
             <Pane layoutX="-7.0" layoutY="-8.0" prefHeight="728.0" prefWidth="661.0" style="-fx-background-color: #0e1821; -fx-border-color: white;">
                <children>
-                  <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="62.0" prefHeight="30.0" prefWidth="652.0" text="Description" textFill="WHITE">
+                  <Label fx:id="descriptionLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="62.0" prefHeight="30.0" prefWidth="652.0" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
