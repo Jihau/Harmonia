@@ -6,19 +6,33 @@
     -fx-text-fill: white;
     -fx-font-family: Lato;
     -fx-font-size: 16;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
 }
 .list-cell:odd {
     -fx-background-color: #0e1821;
     -fx-text-fill: white;
     -fx-font-family: Lato;
     -fx-font-size: 16;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
 }
 .list-cell:filled:hover {
     -fx-text-fill: grey;
 }
+
 .list-view {
     -fx-background-insets: 0, 0;
     -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+}
+
+.list-view:focused {
+    -fx-background-insets: 0, 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
 }
 
 .scroll-bar:horizontal .track,
