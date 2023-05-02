@@ -85,10 +85,7 @@ public class LoginController {
         // Setting Contenful Labels
         usernameLabel.setText(HarmoniaUtils.getLabelForIdentifier("username", usernameLabel.getText()));
         passwordLabel.setText(HarmoniaUtils.getLabelForIdentifier("password", passwordLabel.getText()));
-
         appTitle.setText(HarmoniaUtils.getLabelForIdentifier("harmonia", appTitle.getText()));
-
-
     }
 
     @FXML
