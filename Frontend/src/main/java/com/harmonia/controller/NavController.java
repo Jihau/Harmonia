@@ -1,6 +1,5 @@
 package com.harmonia.controller;
 
-import com.harmonia.HarmoniaApplication;
 import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaViewsConstants;
 
@@ -8,8 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import com.harmonia.po.NavPO;
@@ -20,29 +17,69 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.io.IOException;
+
+/**
+ * Controller class for the navigation bar. Handles user inputs to navigate
+ * between different views.
+ * @author Harmonia team
+ * @version 1.0
+ */
 
 public class NavController extends MainViewController {
     @FXML
     private ListView<String> navMenuListView;
     ObservableList<String> navPOObservableList;
 
+    /**
+     * Represents the home icon
+     */
     Image homeImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/homeIconActive.png"));
+    /**
+     * Represents the servers icon
+     */
     Image serversImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/communitiesIconActive.png"));
+    /**
+     * Represents the directMessages icon
+     */
     Image dmImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/messagesActive.png"));
+    /**
+     * Represents the profile icon
+     */
     Image profileImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/profileIconActive.png"));
+    /**
+     * Represents the settings icon
+     */
     Image settingsImg = new Image(getClass().getResourceAsStream("/com/harmonia/img/settingsIconActive.png"));
 
+    /**
+     * Represents the home object on navbar
+     */
     NavPO home = new NavPO(0, HarmoniaConstants.textconstants.homeText, homeImg);
+    /**
+     * Represents the servers object on navbar
+     */
     NavPO servers = new NavPO(1, HarmoniaConstants.textconstants.serversText, serversImg);
+    /**
+     * Represents the directMessages object on navbar
+     */
     NavPO dm = new NavPO(2, HarmoniaConstants.textconstants.dmText, dmImg);
+    /**
+     * Represents the profile object on navbar
+     */
     NavPO profile = new NavPO(3, HarmoniaConstants.textconstants.profileText, profileImg);
+    /**
+     * Represents the settings object on navbar
+     */
     NavPO settings = new NavPO(4, HarmoniaConstants.textconstants.settingsText, settingsImg);
 
     public NavController() throws IOException {
     }
+
+    /**
+     * Populates the listview with custom cells using cellFactory based on the variables declared above.
+     * Resizes the icons to correct size
+     */
 
     public void populateNavbar() {
         navPOObservableList = FXCollections.observableArrayList();
@@ -86,6 +123,11 @@ public class NavController extends MainViewController {
             }
         });
     }
+
+    /**
+     * Handles the event when a user clicks on an option on the navigation bar,
+     * if successful, redirects user to the selected view
+     */
 
     public void navActions() {
         navMenuListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -156,6 +198,9 @@ public class NavController extends MainViewController {
         });
     }
 
+    /**
+     * Calls the populateNavbar() method and navActions() method when the view is loaded
+     */
     public void initialize() {
         populateNavbar();
         navActions();
