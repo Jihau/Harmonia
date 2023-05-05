@@ -70,11 +70,11 @@
                      <Button fx:id="popupCloseButton" layoutX="451.0" layoutY="5.0" mnemonicParsing="false" onAction="#onJoinLabelClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Button" />
                   </children>
                </Pane>
-               <Pane fx:id="newServerButton" layoutX="237.0" layoutY="34.0" onMouseClicked="#onNewServerButtonClick" prefHeight="35.0" prefWidth="35.0" style="-fx-background-radius: 2px;" styleClass="LogButton" stylesheets="@css/form.css">
+               <Pane fx:id="newServerButton" layoutX="237.0" layoutY="34.0" onMouseClicked="#onNewServerButtonClick" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 2px;"  stylesheets="@css/form.css">
                   <children>
-                     <ImageView fx:id="newServerButtonImage" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" rotate="45.0">
+                     <ImageView fx:id="newServerButtonImage" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                           <Image url="@img/cancelIcon.png" />
+                           <Image url="@img/plusIcon.png" />
                         </image>
                      </ImageView>
                   </children>

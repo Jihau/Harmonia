@@ -16,91 +16,118 @@
 <?import com.harmonia.view.UsersListView?>
 <?import com.harmonia.view.MessagesListView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.harmonia.controller.DirectMessagesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0"
+            prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.harmonia.controller.DirectMessagesController">
     <children>
-        <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0" prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
+        <AnchorPane maxHeight="720.0" maxWidth="200.0" minHeight="720.0" minWidth="200.0" prefHeight="720.0"
+                    prefWidth="200.0" styleClass="background" stylesheets="@css/navMenu.css">
             <children>
-                <fx:include source="nav.fxml" />
+                <fx:include source="nav.fxml"/>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="200.0" prefHeight="720.0" prefWidth="900.0" style="-fx-background-color: #141e2c;">
             <children>
-                <MessagesListView fx:id="ChatListView" layoutY="40.0" prefHeight="626.0" prefWidth="900.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
-                <TextField fx:id="sendMessageField" layoutX="8.0" layoutY="674.0" onAction="#onSendBtnClick" prefHeight="40.0" prefWidth="830.0" styleClass="form" stylesheets="@css/form.css" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="846.0" layoutY="674.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0" />
-                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="856.0" layoutY="682.0" pickOnBounds="true" preserveRatio="true">
+                <MessagesListView fx:id="ChatListView" layoutY="40.0" prefHeight="626.0" prefWidth="900.0"
+                                  style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css"/>
+                <TextField fx:id="sendMessageField" layoutX="8.0" layoutY="674.0" onAction="#onSendBtnClick"
+                           prefHeight="40.0" prefWidth="830.0" styleClass="form" stylesheets="@css/form.css"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="846.0"
+                           layoutY="674.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0"/>
+                <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="856.0" layoutY="682.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@img/sendIcon.png" />
+                        <Image url="@img/sendIcon.png"/>
                     </image>
                 </ImageView>
-                <Button fx:id="sendBtn" layoutX="846.0" layoutY="670.0" mnemonicParsing="false" onAction="#onSendBtnClick" opacity="0.0" prefHeight="43.0" prefWidth="43.0" text="Send">
+                <Button fx:id="sendBtn" layoutX="846.0" layoutY="670.0" mnemonicParsing="false"
+                        onAction="#onSendBtnClick" opacity="0.0" prefHeight="43.0" prefWidth="43.0" text="Send">
                     <font>
-                        <Font name="Lato Regular" size="12.0" />
+                        <Font name="Lato Regular" size="12.0"/>
                     </font>
                 </Button>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#090d13" height="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
-                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="856.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#090d13" height="40.0" stroke="BLACK"
+                           strokeType="INSIDE" strokeWidth="0.0" width="900.0"/>
+                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="856.0" layoutY="8.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@img/updateIcon.png" />
+                        <Image url="@img/updateIcon.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="814.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="814.0" layoutY="9.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@img/editIcon.png" />
+                        <Image url="@img/editIcon.png"/>
                     </image>
                 </ImageView>
-                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="768.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="150.0" fitWidth="24.0" layoutX="768.0" layoutY="9.0" pickOnBounds="true"
+                           preserveRatio="true">
                     <image>
-                        <Image url="@img/removeIcon.png" />
+                        <Image url="@img/removeIcon.png"/>
                     </image>
                 </ImageView>
-                <Button fx:id="refreshButton" layoutX="856.0" layoutY="8.0" mnemonicParsing="false" onAction="#onRefreshButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Refresh" />
-                <Button fx:id="editMessageButton" layoutX="814.0" layoutY="8.0" minWidth="11.0" mnemonicParsing="false" onAction="#onEditButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Edit">
+                <Button fx:id="refreshButton" layoutX="856.0" layoutY="8.0" mnemonicParsing="false"
+                        onAction="#onRefreshButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0"
+                        text="Refresh"/>
+                <Button fx:id="editMessageButton" layoutX="814.0" layoutY="8.0" minWidth="11.0" mnemonicParsing="false"
+                        onAction="#onEditButtonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Edit">
                     <opaqueInsets>
-                        <Insets />
+                        <Insets/>
                     </opaqueInsets>
                 </Button>
-                <Button fx:id="removeMessageButton" layoutX="768.0" layoutY="9.0" mnemonicParsing="false" onAction="#onRemoveMessageButttonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0" text="Remove" />
-              <Pane fx:id="editBox" layoutX="481.0" layoutY="603.0" prefHeight="63.0" prefWidth="401.0" style="-fx-border-color: black; -fx-background-color: #0e2e6e;" stylesheets="@css/form.css" visible="false">
-                  <children>
-                      <Label layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" styleClass="Label" text="Edit Message" textAlignment="CENTER" />
-                      <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0" onAction="#onConfirmEditButtonClick" prefHeight="27.0" prefWidth="250.0" promptText="Edit Me" styleClass="form">
-                          <opaqueInsets>
-                              <Insets left="5.0" />
-                          </opaqueInsets>
-                          <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                          </padding>
-                          <font>
-                              <Font size="13.0" />
-                          </font>
-                      </TextField>
-                      <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false" onAction="#onConfirmEditButtonClick" styleClass="LogButton" text="Edit">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                      <Button fx:id="cancelEditButton" layoutX="335.0" layoutY="25.0" mnemonicParsing="false" onAction="#onCancelButtonClick" styleClass="LogButton" text="Cancel">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  </children>
-              </Pane>
-            </children>
-        </AnchorPane>
-        <Rectangle arcWidth="5.0" fill="#0e1821" height="721.0" layoutX="1100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="181.0" />
-        <Label fx:id="userListLabel" layoutX="1161.0" layoutY="14.0" text="Users" textFill="WHITE">
-            <font>
-                <Font name="Lato Regular" size="18.0" />
-            </font>
-        </Label>
-        <ScrollPane fx:id="listUsersScrollPanel" layoutX="1110.0" layoutY="89.0" prefHeight="613.0" prefWidth="163.0" AnchorPane.leftAnchor="1110.0">
-            <content>
-                <Pane fx:id="listUsersPanel">
+                <Button fx:id="removeMessageButton" layoutX="768.0" layoutY="9.0" mnemonicParsing="false"
+                        onAction="#onRemoveMessageButttonClick" opacity="0.0" prefHeight="25.0" prefWidth="24.0"
+                        text="Remove"/>
+                <Pane fx:id="editBox" layoutX="481.0" layoutY="603.0" prefHeight="63.0" prefWidth="401.0"
+                      style="-fx-border-color: black; -fx-background-color: #0e2e6e;" stylesheets="@css/form.css"
+                      visible="false">
                     <children>
-                        <UsersListView fx:id="listUsersListView" layoutX="-6.0" layoutY="-7.0" prefHeight="607.0" prefWidth="163.0" style="-fx-background-color: #141e2c;" stylesheets="@css/chat.css" />
+                        <Label layoutX="14.0" layoutY="4.0" prefHeight="20.0" prefWidth="86.0" styleClass="Label"
+                               text="Edit Message" textAlignment="CENTER"/>
+                        <TextField fx:id="editTextField" layoutX="14.0" layoutY="24.0"
+                                   onAction="#onConfirmEditButtonClick" prefHeight="27.0" prefWidth="250.0"
+                                   promptText="Edit Me" styleClass="form">
+                            <opaqueInsets>
+                                <Insets left="5.0"/>
+                            </opaqueInsets>
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </padding>
+                            <font>
+                                <Font size="13.0"/>
+                            </font>
+                        </TextField>
+                        <Button fx:id="confirmEditButton" layoutX="297.0" layoutY="25.0" mnemonicParsing="false"
+                                onAction="#onConfirmEditButtonClick" styleClass="LogButton" text="Edit">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
+                        <Button fx:id="cancelEditButton" layoutX="335.0" layoutY="25.0" mnemonicParsing="false"
+                                onAction="#onCancelButtonClick" styleClass="LogButton" text="Cancel">
+                            <cursor>
+                                <Cursor fx:constant="HAND"/>
+                            </cursor>
+                        </Button>
                     </children>
                 </Pane>
-            </content>
+            </children>
+        </AnchorPane>
+        <Rectangle arcWidth="5.0" fill="#0e1821" height="721.0" layoutX="1100.0" stroke="BLACK" strokeType="INSIDE"
+                   strokeWidth="0.0" width="181.0" style="-fx-background-color: #141e2c;"/>
+        <Label fx:id="userListLabel" layoutX="1161.0" layoutY="14.0" text="Users" textFill="WHITE"
+               stylesheets="@css/chat.css">
+            <font>
+                <Font name="Lato Regular" size="18.0"/>
+            </font>
+        </Label>
+        <ScrollPane fx:id="listUsersScrollPanel" layoutX="1110.0" layoutY="89.0" prefHeight="613.0" prefWidth="163.0"
+                    AnchorPane.leftAnchor="1110.0" stylesheets="@css/chat.css">
+            <Pane fx:id="listUsersPanel" stylesheets="@css/chat.css">
+                <UsersListView fx:id="listUsersListView" layoutX="-6.0" layoutY="-7.0" prefHeight="607.0"
+                               prefWidth="163.0" style="-fx-background-color: #141e2c;"
+                               stylesheets="@css/chat.css"/>
+            </Pane>
         </ScrollPane>
     </children>
 </AnchorPane>

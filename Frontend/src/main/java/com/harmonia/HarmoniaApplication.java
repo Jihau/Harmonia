@@ -1,10 +1,8 @@
 package com.harmonia;
 
-import com.harmonia.constants.HarmoniaConstants;
 import com.harmonia.constants.HarmoniaViewsConstants;
-import com.harmonia.utils.HarmoniaTaskRefresher;
+import com.harmonia.websockets.StompWebSocketClient;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -27,6 +25,7 @@ public class HarmoniaApplication extends Application {
     public static void main(String[] args) {
         generateBackEndKey();
         loadContentfulLabels();
+        new Thread(() -> StompWebSocketClient.startWebSocket()).start();
         launch();
     }
 
@@ -34,7 +33,7 @@ public class HarmoniaApplication extends Application {
      * Runs the app *
      */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         try{
         FXMLLoader fxmlLoader = new FXMLLoader(HarmoniaApplication.class.getResource(HarmoniaViewsConstants.LOGIN_VIEW));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
@@ -44,7 +43,6 @@ public class HarmoniaApplication extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        Platform.runLater(new HarmoniaTaskRefresher());
         } catch (Throwable t){
             t.printStackTrace();
         }

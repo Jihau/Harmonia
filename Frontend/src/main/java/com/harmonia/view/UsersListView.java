@@ -14,6 +14,8 @@ public class UsersListView extends ListView {
             HarmoniaData.SELECTED_RECIPIENT = (UserPO) this.getSelectionModel().getSelectedItem();
             HarmoniaData.MESSAGES_FROM_RECIPIENT = -1;
             HarmoniaDataLoader.loadDirectMessagesByUserId(false);
+            // get style for the list view
+            this.getStyleClass().add("list-view");
         });
     }
 }

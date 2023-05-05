@@ -16,11 +16,14 @@ module com.harmonia {
     requires spring.security.crypto;
     requires java.sdk;
     requires java.sql;
+    requires spring.messaging;
+    requires spring.websocket;
 
     opens com.harmonia to javafx.fxml;
     opens com.harmonia.po;
     
     opens com.harmonia.controller to javafx.fxml;
     opens com.harmonia.view to javafx.fxml;
+    opens com.harmonia.client;
     exports com.harmonia;
 }

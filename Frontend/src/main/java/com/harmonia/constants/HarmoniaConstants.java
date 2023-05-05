@@ -18,7 +18,10 @@ public class HarmoniaConstants {
      * The base URL of the Harmonia server.
      */
     public static final String BASE_URL = "http://13.51.150.175";
-    // public static final String BASE_URL = "http://localhost:80";
+    //public static final String BASE_URL = "http://localhost:80";
+
+    public static final String SOCKETS_URL = "ws://13.51.150.175/chat";
+    //public static final String SOCKETS_URL = "ws://localhost/chat";
 
     /**
      * The URL for deleting a user.
@@ -150,7 +153,7 @@ public class HarmoniaConstants {
     public static HarmoniaMessagesConstants messages;
     public static TextConstants textconstants;
     /**
-     * The currently logged in user.
+     * The currently logged-in user.
      */
     public static UserPO LOGGED_USERS = null;
     /**
@@ -162,7 +165,10 @@ public class HarmoniaConstants {
 
 
         String langVariant = locale.getVariant();
-        if (langVariant.equalsIgnoreCase("fi") || langVariant.equalsIgnoreCase("ar")) {
+        if (langVariant.equalsIgnoreCase("fi") || langVariant.equalsIgnoreCase("ar") || langVariant.equalsIgnoreCase("es") || langVariant.equalsIgnoreCase("fr")
+        || langVariant.equalsIgnoreCase("zh") || langVariant.equalsIgnoreCase("de") || langVariant.equalsIgnoreCase("Fa")
+        || langVariant.equalsIgnoreCase("ja") || langVariant.equalsIgnoreCase("it") || langVariant.equalsIgnoreCase("hi")
+        || langVariant.equalsIgnoreCase("ru") || langVariant.equalsIgnoreCase("sv")) {
             langVariant = langVariant.toLowerCase();
             selectedLocale = locale;
         } else {
