@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
  * This class starts the Spring Boot application and initializes the Spring application context.
  *
  * @author Harmonia Team
+ * @version 2.0
  */
 @SpringBootApplication
 public class BackendApplication {

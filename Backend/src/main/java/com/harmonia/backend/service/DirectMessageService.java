@@ -27,14 +27,20 @@ import static io.micrometer.common.util.StringUtils.isBlank;
 @Service
 public class DirectMessageService {
 
-    // This annotation is used to automatically inject an instance of DirectMessageRepository
-    // when this service is created, allowing us to use its methods to interact with the database.
+    /**
+     * Autowired DirectMessageRepository for accessing direct message data from the database.
+     *  This annotation is used to automatically inject an instance of DirectMessageRepository
+     *  when this service is created, allowing us to use its methods to retrieve direct message information.
+     */
+
     @Autowired
     private DirectMessageRepository directMessageRepository;
-
-    // This annotation is used to automatically inject an instance of UserRepository
-    // when this service is created, allowing us to use its methods to retrieve user information.
-    @Autowired
+    /**
+     * Autowired UserRepository for accessing user data from the database.
+     * This annotation is used to automatically inject an instance of UserRepository
+     * when this repository is created, allowing us to use its methods to retrieve user information.
+     */
+     @Autowired
     private UserRepository userRepository;
 
     /**

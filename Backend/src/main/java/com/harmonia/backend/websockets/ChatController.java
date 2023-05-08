@@ -8,8 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
  * This class Represents a controller for the chat.
- * Author: Team Harmonia
- * Version: 2.0
+ * @author  Team Harmonia
+ * @version  2.0
  */
 @Controller
 public class ChatController {

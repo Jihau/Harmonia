@@ -9,8 +9,8 @@ import java.util.Map;
 
 /**
  * This class Represents a session handler for the web socket.
- * @Author: Team Harmonia
- * @Version: 2.0
+ * @version 2.0
+ * @author Team Harmonia
  */
 public class StompClientSessionHandler extends StompSessionHandlerAdapter {
 

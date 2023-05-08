@@ -16,8 +16,8 @@ import static com.harmonia.backend.constants.HarmoniaConstants.SOCKETS_URL;
 
 /**
  * This class Represents a client for interacting with the web socket.
- * @Author: Harmonia Team
- * @Version: 2.0
+ * @version 2.0
+ * @author  Harmonia Team
  */
 public class StompWebSocketClient {
 
