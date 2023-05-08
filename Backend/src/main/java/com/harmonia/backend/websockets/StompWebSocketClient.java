@@ -14,8 +14,18 @@ import java.util.concurrent.ExecutionException;
 
 import static com.harmonia.backend.constants.HarmoniaConstants.SOCKETS_URL;
 
+/**
+ * This class Represents a client for interacting with the web socket.
+ * @Author: Harmonia Team
+ * @Version: 2.0
+ */
 public class StompWebSocketClient {
 
+    /**
+     * Starts the web socket.
+     * @throws ExecutionException if the execution fails.
+     * @throws InterruptedException if the execution is interrupted.
+     */
     public static void startWebSocket() throws ExecutionException, InterruptedException {
         WebSocketClient client = new StandardWebSocketClient();
         WebSocketStompClient stompClient = new WebSocketStompClient(client);

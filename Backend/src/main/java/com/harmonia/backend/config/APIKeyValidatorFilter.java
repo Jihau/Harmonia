@@ -12,6 +12,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
 
+/**
+ * This class is a filter that validates API keys.
+ * Author: Team Harmonia
+ * Version: 2.0
+ */
 @Configuration
 public class APIKeyValidatorFilter implements Filter {
     @Autowired
@@ -22,6 +27,15 @@ public class APIKeyValidatorFilter implements Filter {
     @Value("${harmonia.constants.exposed.endpoints}")
     private String exposedEndpoints;
 
+    /**
+     * This method filters the requests.
+     *
+     * @param request  The request.
+     * @param response The response.
+     * @param chain    The filter chain.
+     * @throws IOException      If an input or output exception occurs.
+     * @throws ServletException If a servlet exception occurs.
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
@@ -43,6 +57,13 @@ public class APIKeyValidatorFilter implements Filter {
         }
     }
 
+    /**
+     * This method checks if the request should not be filtered.
+     *
+     * @param request The request.
+     * @return True if the request should not be filtered, false otherwise.
+     * @throws ServletException If a servlet exception occurs.
+     */
     private boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String path = request.getRequestURI();
         String[] exposedResources = exposedEndpoints.split(",");
