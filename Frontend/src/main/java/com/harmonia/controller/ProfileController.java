@@ -119,6 +119,10 @@ public class ProfileController extends MainViewController {
         System.out.println(bioText.getText());
     }
 
+    /**
+     * Changes scene to the scene matching the given string.
+     * @param fxmlFile
+     */
     @FXML
     private void changeScene(String fxmlFile) {
         try {

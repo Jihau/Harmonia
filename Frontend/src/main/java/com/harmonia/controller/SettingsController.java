@@ -74,7 +74,8 @@ public class SettingsController extends MainViewController {
     private UserPO user;
 
     /**
-     * Initializes the view by setting the profile image text field to the user's current profile image.
+     * Initializes the view by setting the profile image text field to the user's current profile image
+     * and populates the language selection dropdown.
      */
     public void initialize() {
 
@@ -124,7 +125,6 @@ public class SettingsController extends MainViewController {
         System.out.println("initializing");
         this.user = HarmoniaConstants.LOGGED_USERS;
 
-        /* placeholder, get user from session */
         profImgField.setText(this.user.getProfileIcon());
     }
 
@@ -149,6 +149,9 @@ public class SettingsController extends MainViewController {
         }
     }
 
+    /**
+     * hides the success label.
+     */
     public void onSuccessLabelClick() {
         successLable.setVisible(false);
     }

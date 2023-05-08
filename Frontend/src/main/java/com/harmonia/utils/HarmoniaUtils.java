@@ -105,14 +105,27 @@ public class HarmoniaUtils {
         HarmoniaData.KEY_FOR_HARMONIA_BACK_END = BCrypt.hashpw(HarmoniaConstants.KEYWORD_GENERATE_KEY, BCrypt.gensalt());
     }
 
+    /**
+     * Gets localized resources from contentful API for the given language.
+     * @param language desired language for resources.
+     */
     public static void loadLocalizedResources(String language) {
         ContentfulClient.loadLabels(language);
     }
 
+    /**
+     * Gets a matching string for the indentifier.
+     * @param identifier key to look for.
+     * @param defaultText default if lookup is unsuccessful.
+     * @return String for a label
+     */
     public static String getLabelForIdentifier(String identifier, String defaultText) {
         return HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier) == null ? defaultText : HarmoniaMessagesConstants.CONTENTFUL_RESOURCE.getField(identifier).toString();
     }
 
+    /**
+     * Loads contentful resources for the selected locale. uses system locale if application locale isn't set.
+     */
     public static void loadContentfulLabels() {
         if (HarmoniaConstants.selectedLocale == null) {
             loadLocalizedResources(System.getProperty("user.language"));

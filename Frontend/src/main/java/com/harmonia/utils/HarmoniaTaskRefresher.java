@@ -3,10 +3,15 @@ package com.harmonia.utils;
 public class HarmoniaTaskRefresher implements Runnable {
     private volatile Thread clockThread = null;
 
+    /**
+     * Starts the refresher
+     */
     public HarmoniaTaskRefresher() {
         start();
     }
-
+    /**
+     * start the thread
+     */
     public void start() {
         if (clockThread == null) {
             clockThread = new Thread(this, "Clock");
@@ -14,6 +19,9 @@ public class HarmoniaTaskRefresher implements Runnable {
         }
     }
 
+    /**
+     * attempt to load direct messages every 3500 milliseconds
+     */
     public void run() {
         Thread myThread = Thread.currentThread();
         while (clockThread == myThread) {

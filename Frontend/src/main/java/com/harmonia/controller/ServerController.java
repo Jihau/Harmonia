@@ -155,7 +155,7 @@ public class ServerController extends MainViewController {
     ObservableList<String> userStringList;
 
     /**
-     * constructor that assigns the selected server variable
+     * constructor that assigns the selected server variable.
      * 
      * @param server
      */
@@ -207,7 +207,7 @@ public class ServerController extends MainViewController {
         populateUserList();
         populateChannelList();
 
-        // add listener for channel list
+        // add listener for channel list.
         channelList.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -235,7 +235,7 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Populates the channel list with
+     * Populates the channel list with chennel objects that match the current server.
      */
     public void populateChannelList() {
 
@@ -382,7 +382,7 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Checks if the message's authorId matches the user and removes the message is
+     * Checks if the message's authorId matches the user and attempts to remove the message using the PM client if
      * it does.
      * 
      * @param event
@@ -459,7 +459,7 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * add new channel
+     * Attempts to add a new channel for the server.
      */
     public void addNewChannel() {
         if (channelNameField.getText().length() > 0) {

@@ -93,6 +93,9 @@ public class HarmoniaController extends MainViewController {
     private ServerMemberClient serverMemberClient = new ServerMemberClient();
     private ChannelClient channelClient = new ChannelClient();
 
+    /**
+     * sets labels for the main view
+     */
     public void initialize() {
         searchBar.setPromptText(HarmoniaConstants.textconstants.searchCommunitiesHintText);
         serverJoinPopupLabel.setText(HarmoniaConstants.textconstants.serverJoinPopupText);
@@ -254,6 +257,9 @@ public class HarmoniaController extends MainViewController {
         serverJoinPopup.setVisible(true);
     }
 
+    /**
+     * sets the error label to be an empty string.
+     */
     public void clearErrorMessage() {
         errorMessageLabel.setText("");
     }
