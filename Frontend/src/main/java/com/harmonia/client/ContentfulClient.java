@@ -9,14 +9,18 @@ import com.harmonia.constants.HarmoniaMessagesConstants;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** This class is used to load the labels from Contentful.
- *  * @author Harmonia Team
- *  * @version 1.2
- *  */
+/**
+ * This class is used to load the labels from Contentful.
+ * It uses the Contentful Java SDK to make HTTP requests and receive HTTP responses.
+ * @author Harmonia Team
+ * @version 1.0
+ */
 
 public class ContentfulClient {
 
-/** Method to load the labels from Contentful.*/
+/** Method to load the labels from Contentful.
+ * @param lang language to load the labels
+ */
     public static void loadLabels(String lang) {
         Map<String, String[]> languageProperties = new LinkedHashMap<>();
         languageProperties.put("en-US", new String[]{"a152txh9sqmm", "vegBUFffokA5M4QdrryQ9HRUIJm4EtEE-vymsDAVz7Y"});

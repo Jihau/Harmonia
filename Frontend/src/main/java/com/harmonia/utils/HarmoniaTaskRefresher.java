@@ -1,5 +1,10 @@
 package com.harmonia.utils;
 
+/**
+ * Class representing the refresher for the direct messages.
+ * @author Team Harmonia
+ * @version 2.0
+ */
 public class HarmoniaTaskRefresher implements Runnable {
     private volatile Thread clockThread = null;
 

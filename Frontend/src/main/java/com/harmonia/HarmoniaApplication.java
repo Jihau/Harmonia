@@ -17,7 +17,7 @@ import static com.harmonia.utils.HarmoniaUtils.*;
  * Class representing the running class of the Harmonia application.
  *
  * @author Harmonia Team
- * @version 1.0
+ * @version 2.0
  * @since 1.0
  */
 

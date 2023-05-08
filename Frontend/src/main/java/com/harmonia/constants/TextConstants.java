@@ -1,5 +1,12 @@
 package com.harmonia.constants;
 
+/**
+ * The TextConstants class contains all the text constants used in the Harmonia application.
+ * This class is intended to be used as a data holder and should not be instantiated.
+ *
+ * @author Harmonia team
+ * @version 1.0
+ */
 public class TextConstants {
     public String homeText = HarmoniaConstants.texts.getString("homeText");
     public String serversText = HarmoniaConstants.texts.getString("serversText");

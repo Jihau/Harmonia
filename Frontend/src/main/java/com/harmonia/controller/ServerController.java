@@ -34,6 +34,18 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/** Controller class for the Server view.
+ * Allows users to view and interact with the server they are currently in.
+ * Extends MainViewController to enable return to home page functionality.
+ * Contains methods to handle user interaction with the view.
+ * Contains methods to handle API calls to the Server API.
+ * Contains methods to handle API calls to the ServerMember API.
+ * Contains methods to handle API calls to the PublicMessage API.
+ * Contains methods to handle API calls to the Channel API.
+ * @author Harmonia Team
+ * @version 1.0
+ */
+
 public class ServerController extends MainViewController {
 
     private ServerPO selectedServer;
@@ -206,9 +218,11 @@ public class ServerController extends MainViewController {
         setServerInfo();
         populateUserList();
         populateChannelList();
-
-        // add listener for channel list.
         channelList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            /**
+             * Handles the event of clicking on a channel.
+             */
             @Override
             public void handle(MouseEvent event) {
                 if (channelList.getSelectionModel().getSelectedIndex() >= 0) {
@@ -235,7 +249,7 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Populates the channel list with chennel objects that match the current server.
+     * Populates the channel list with channel objects that match the current server.
      */
     public void populateChannelList() {
 
@@ -303,9 +317,8 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Closes the editbox.
-     * 
-     * @param event
+     * Closes the editor.
+     * @param event the event of clicking the close button.
      */
     @FXML
     void onCancelButtonClick(ActionEvent event) {
@@ -317,6 +330,7 @@ public class ServerController extends MainViewController {
     /**
      * sends an edit request if the editTextField is not empty.
      * If not it highlights the textField and prompts the user to type a message.
+     * @param event the event of clicking the confirm button.
      */
     @FXML
     void onConfirmEditButtonClick(ActionEvent event) {
@@ -337,11 +351,11 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Opens the editbox if the selectedMessage's authorId matches the logged in
+     * Opens the editor if the selectedMessage's authorId matches the logged in
      * user.
      * otherwise open an error alert
-     * 
-     * @param event
+     * @param event the event of clicking the edit button.
+     *
      */
     @FXML
     void onEditButtonClick(ActionEvent event) {
@@ -363,8 +377,7 @@ public class ServerController extends MainViewController {
 
     /**
      * Sets the selectedMessage variable to match the one the user clicked on.
-     * 
-     * @param listSelectedMessage
+     * @param listSelectedMessage the message the user clicked on.
      */
     private void setSelectedMessage(PublicMessagePO listSelectedMessage) {
         this.selectedMessage = listSelectedMessage;
@@ -373,8 +386,7 @@ public class ServerController extends MainViewController {
     /**
      * Is called when the user clicks the refresh button. calls the
      * populateMessageList function.
-     * 
-     * @param event
+     * @param event the event of clicking the refresh button.
      */
     @FXML
     void onRefreshButtonClick(ActionEvent event) {
@@ -384,8 +396,6 @@ public class ServerController extends MainViewController {
     /**
      * Checks if the message's authorId matches the user and attempts to remove the message using the PM client if
      * it does.
-     * 
-     * @param event
      */
     @FXML
     void onRemoveMessageButtonClick(ActionEvent event) {
@@ -398,9 +408,7 @@ public class ServerController extends MainViewController {
     }
 
     /**
-     * Attemps to send a public message.
-     * 
-     * @param event
+     * Attempts to send a public message.
      */
     @FXML
     void onSendBtnClick(ActionEvent event) {
@@ -433,7 +441,6 @@ public class ServerController extends MainViewController {
                 channelObjectList.add(channel);
             }
         }
-
         for (ServerMemberPO member : serverMemberClient.listMembersByServerId((long) selectedServer.getServerId())) {
             userObjectList.add(member);
         }
@@ -493,9 +500,8 @@ public class ServerController extends MainViewController {
 
     /**
      * Returns the user to the main view.
-     * 
-     * @param event
-     * @throws IOException
+     * @param event the event of clicking the return button.
+     * @throws IOException if the view cannot be loaded.
      */
     @FXML
     public void onReturnButtonClick(ActionEvent event) throws IOException {

@@ -6,9 +6,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * This class is used to validate API keys.
- *
+ * @author Harmonia Team
  * @version 1.0
- * @Author: Harmonia Team
  */
 @Component
 public class KeyValidator {

@@ -17,6 +17,7 @@ import java.util.Set;
  * The class overrides the toString() method to return the serverName.
  *
  * @author Harmonia team
+ * @version 2.0
  */
 @Getter
 @Setter

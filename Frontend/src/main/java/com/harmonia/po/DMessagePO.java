@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /** This class represents a direct message.
- * Author: Team Harmonia
- * Version: 2.0
+ * @author Team Harmonia
+ * @version 2.0
  */
 @Getter
 @Setter

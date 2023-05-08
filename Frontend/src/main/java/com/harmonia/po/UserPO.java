@@ -17,6 +17,7 @@ import java.util.Date;
  * The class overrides the toString() method to return the username.
  *
  * @author Harmonia team
+ * @version 2.0
  **/
 @Getter
 @Setter

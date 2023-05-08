@@ -76,7 +76,7 @@ public class DirectMessagesController extends MainViewController {
 
     /**
      * Gets the text from the message TextField tries to send it via the @link DirectMessageClient.
-     * @param event
+     * @param event the event that triggered the method call
      */
     @FXML
     public void onSendBtnClick(ActionEvent event) {
@@ -114,7 +114,7 @@ public class DirectMessagesController extends MainViewController {
 
     /**
      * if the message TextField is not blank, send an edit request to the backend with the edited messageText. Otherwise highlight the textbox and add a prompt.
-     * Afterwards update the list of messages.
+     * Afterward update the list of messages.
      */
     @FXML
     public void onConfirmEditButtonClick() {
@@ -136,7 +136,7 @@ public class DirectMessagesController extends MainViewController {
     }
 
     /**
-     * close the editbox
+     * close the editor
      */
     @FXML
     public void onCancelButtonClick() {

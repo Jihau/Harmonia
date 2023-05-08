@@ -20,7 +20,7 @@ import static com.harmonia.constants.HarmoniaConstants.*;
  * and remove a message.
  *
  * @author Harmonia Team
- * @version 1.0
+ * @version 2.0
  */
 public class PublicMessageClient {
     protected RestTemplate restTemplate;

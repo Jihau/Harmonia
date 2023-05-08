@@ -23,7 +23,7 @@ import java.util.Date;
  * A utility class containing static methods that can be used across the application.
  *
  * @author Harmonia team
- * @version 1.0
+ * @version 2.0
  */
 public class HarmoniaUtils {
 

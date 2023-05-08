@@ -29,7 +29,7 @@ import java.io.IOException;
  * Class representing the main controller of the Harmonia's main view
  *
  * @author Harmonia Team
- * @version 1.0
+ * @version 2.0
  */
 
 public class HarmoniaController extends MainViewController {

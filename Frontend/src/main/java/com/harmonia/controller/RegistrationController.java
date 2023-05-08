@@ -101,8 +101,8 @@ public class RegistrationController {
 
     /**
      * Delays for a given amount of milliseconds, then proceeds with the given runnable operation.
-     * @param millis
-     * @param continuation
+     * @param millis represents the number of milliseconds to delay
+     * @param continuation represents the operation to be performed after the delay
      */
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {

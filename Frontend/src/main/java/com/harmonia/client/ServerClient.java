@@ -19,7 +19,7 @@ import static com.harmonia.constants.HarmoniaConstants.*;
  * It uses the RestTemplate class from the Spring Framework to make HTTP requests and receive HTTP responses.
  *
  * @author Harmonia Team
- * @version 1.0
+ * @version 2.0
  */
 public class ServerClient {
 

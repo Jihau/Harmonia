@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
  *
  * @version 2.0
  *
- * @Author Harmonia Team.
+ * @author Harmonia Team.
  */
 
 public class HarmoniaUtils {
