@@ -25,7 +25,7 @@
 > - That's it! With Harmonia, you can enjoy a more private and simplified communication experience while connecting with like-minded individuals in communities that interest you.
 
 ## Entity Relationship Diagram
-![alt text](https://i.imgur.com/yhZTR35.png)
+![alt text](https://media.discordapp.net/attachments/1061968472529190954/1105127503527424090/harmonianewtable.png?width=672&height=607)
 
 ## Technologies
 > - Java
@@ -49,3 +49,7 @@
 
 ## Credits
 > Developed by Metropolia students TVT21-O Group 3.
+
+## Documentation
+> http://www.harmonia.ink
+> http://www.harmonia.ink/frontend/index.html
