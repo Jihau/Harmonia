@@ -51,5 +51,5 @@
 > Developed by Metropolia students TVT21-O Group 3.
 
 ## Documentation
-> http://www.harmonia.ink
-> http://www.harmonia.ink/frontend/index.html
+> - http://www.harmonia.ink
+> - http://www.harmonia.ink/frontend/index.html
