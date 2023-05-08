@@ -1,3 +1,4 @@
+module:com.harmonia
 com.harmonia
 com.harmonia.client
 com.harmonia.constants
@@ -5,3 +6,4 @@ com.harmonia.controller
 com.harmonia.po
 com.harmonia.utils
 com.harmonia.view
+com.harmonia.websockets
