@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
  * A class to represent a HarmoniaUtils.
  * This class contains utility methods for the Harmonia application.
  *
- * @version 1.0
+ * @version 2.0
  *
  * @Author Harmonia Team.
  */
@@ -59,6 +59,10 @@ public class HarmoniaUtils {
         return false;
     }
 
+    /**
+     * Generates a key for the back end.
+     * @return the generated key.
+     */
     public static String generateBackEndKey() {
         return HarmoniaConstants.KEY_FOR_HARMONIA_BACK_END = BCrypt.hashpw(HarmoniaConstants.KEYWORD_GENERATE_KEY, BCrypt.gensalt());
     }

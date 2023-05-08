@@ -2,6 +2,11 @@ package com.harmonia.backend.constants;
 
 import org.springframework.messaging.simp.stomp.StompSession;
 
+/**
+ * A class containing constants used throughout the application.
+ * Author: team Harmonia
+ * Version: 2.0
+ */
 public class HarmoniaConstants {
     public static final String API_KEY_HEADER_NAME = "Harmonia-api-key";
     public static StompSession STOMP_SESSION = null;

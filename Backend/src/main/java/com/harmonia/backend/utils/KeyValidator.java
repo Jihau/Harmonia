@@ -27,6 +27,12 @@ public class KeyValidator {
         this.protectEndpoints = protectEndpoints;
     }
 
+    /**
+     * Validates the given API key.
+     *
+     * @param apiKey the API key to validate
+     * @return true if the given API key is valid
+     */
     public boolean validateAPIKey(String apiKey) {
         return !protectEndpoints || passwordEncoder.matches(keywordForApiKey, apiKey);
     }
