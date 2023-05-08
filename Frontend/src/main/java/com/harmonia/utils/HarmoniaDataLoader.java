@@ -15,7 +15,6 @@ import java.util.Objects;
 
 /**
  * This class contains methods to load user data, load direct messages between users, and interact with direct messages.
- *
  * @author Harmonia team
  * @version 1.0
  */

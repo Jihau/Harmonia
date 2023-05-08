@@ -2,6 +2,12 @@ package com.harmonia.constants;
 
 import com.contentful.java.cda.LocalizedResource;
 
+/**
+ * This class contains all the constants used in the Harmonia application.
+ *
+ * @author Harmonia Team
+ * @version 1.0
+ */
 public class HarmoniaMessagesConstants {
 
     public static LocalizedResource CONTENTFUL_RESOURCE;

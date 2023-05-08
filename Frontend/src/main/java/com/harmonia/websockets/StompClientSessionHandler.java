@@ -10,8 +10,8 @@ import java.lang.reflect.Type;
 import java.util.Map;
 
 /** This class is used to handle the stomp session.
- * Author: Team Harmonia
- * Version: 2.0
+ * @author Team Harmonia
+ * @version 2.0
  */
 public class StompClientSessionHandler extends StompSessionHandlerAdapter {
 

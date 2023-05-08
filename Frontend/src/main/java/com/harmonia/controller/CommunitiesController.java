@@ -17,7 +17,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * The CommunitiesController class manages the user's communities page
+ * by handling user inputs, validating them, and sending them to the server
+ * through the ServerClient class.
+ * Extends MainViewController to enable return to home page functionality.
+ *
+ * @author Harmonia team
+ * @version 1.0
+ */
 public class CommunitiesController extends MainViewController {
 
     private ServerMemberClient memberClient;

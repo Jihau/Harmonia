@@ -14,6 +14,12 @@ import java.util.Map;
 
 import static com.harmonia.constants.HarmoniaConstants.*;
 
+/** This class provides a client to interact with the friend API of the Harmonia application.
+ * The client provides methods to retrieve all friends, add a new friend, and remove a friend.
+ *
+ * @author Harmonia Team
+ * @version 2.0
+ */
 public class FriendClient {
     protected RestTemplate restTemplate;
 
@@ -22,12 +28,21 @@ public class FriendClient {
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
     }
 
+    /** Retrieves all friends from the server.
+     *
+     * @return An array of {@link FriendPo} objects representing all friends in the system.
+     */
     public FriendPo[] listFriends() {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<?> request = new HttpEntity<>(headers);
         return restTemplate.exchange(FRIEND_LIST_BY_USERID_URL, HttpMethod.GET, request, FriendPo[].class).getBody();
     }
 
+    /** Adds a new friend to the server.
+     *
+     * @param friendPo The {@link FriendPo} object representing the friend to be added.
+     * @return The {@link FriendPo} object representing the friend that was added.
+     */
     public FriendPo addFriend(FriendPo friendPo) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<FriendPo> request = new HttpEntity<>(friendPo, headers);
@@ -35,6 +50,11 @@ public class FriendClient {
         return restTemplate.exchange(FRIEND_ADD_URL, HttpMethod.POST, request, FriendPo.class, urlParameters).getBody();
     }
 
+    /** Removes a friend from the server.
+     *
+     * @param userId The {@link FriendPo} object representing the friend to be removed.
+     * @return The {@link FriendPo} object representing the friend that was removed.
+     */
     public ResponseEntity<Void> removeFriend(int userId) {
         HttpHeaders headers = HarmoniaUtils.generateRequestHeaders();
         HttpEntity<?> request = new HttpEntity<>(headers);

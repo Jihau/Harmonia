@@ -7,6 +7,11 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
+/**
+ * Class representing the list view of the users.
+ * author Team Harmonia
+ * @version 2.0
+ */
 public class UsersListView extends ListView {
     public UsersListView() {
         super(HarmoniaData.USERS_LIST);

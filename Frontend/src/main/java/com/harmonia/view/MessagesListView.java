@@ -6,6 +6,11 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.ListView;
 
+/**
+ * Class representing the list view of the messages.
+ * @author Team Harmonia
+ * @version 2.0
+ */
 public class MessagesListView extends ListView<DMessagePO> {
     public MessagesListView() {
         super(HarmoniaData.DIRECT_MESSAGES_LIST);
