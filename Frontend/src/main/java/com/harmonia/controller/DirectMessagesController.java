@@ -65,6 +65,9 @@ public class DirectMessagesController extends MainViewController {
 
     }
 
+    /**
+     * function called when clicking the refresh button.
+     */
     @FXML
     public void onRefreshButtonClick() {
         HarmoniaDataLoader.loadDirectMessagesByUserId(false);
@@ -143,7 +146,7 @@ public class DirectMessagesController extends MainViewController {
     }
 
     /**
-     * get selected message from
+     * Prompts the user if they want to delete their message. shows an error if the user tries to delete a message they didn't send.
      */
     @FXML
     public void onRemoveMessageButttonClick() {
@@ -172,6 +175,9 @@ public class DirectMessagesController extends MainViewController {
                     HarmoniaConstants.messages.DIRECT_MESSAGES_NOT_YOURS_BODY_TEXT);
         }
     }
+    /**
+     * Scrolls the message list to the bottom.
+     */
     @FXML
     private void scrollToBottom() {
         ChatListView.scrollTo(HarmoniaData.DIRECT_MESSAGES_LIST.size());

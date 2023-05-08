@@ -83,6 +83,9 @@ public class RegistrationController {
     @FXML
     Label registrationLabel;
 
+    /**
+     * Initializes label texts.
+     */
     public void initialize(){
 
         usernameLabel.setText(HarmoniaConstants.textconstants.usernameLabelText);
@@ -96,7 +99,11 @@ public class RegistrationController {
 
     }
 
-
+    /**
+     * Delays for a given amount of milliseconds, then proceeds with the given runnable operation.
+     * @param millis
+     * @param continuation
+     */
     public static void delay(long millis, Runnable continuation) {
         Task<Void> sleeper = new Task<Void>() {
             @Override

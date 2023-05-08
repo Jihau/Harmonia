@@ -88,6 +88,9 @@ public class LoginController {
         appTitle.setText(HarmoniaUtils.getLabelForIdentifier("harmonia", appTitle.getText()));
     }
 
+    /**
+     * Tries to log the user in if the password and username fields are set. redirects to main view if successful.
+     */
     @FXML
     public void onLoginButtonClick() {
 

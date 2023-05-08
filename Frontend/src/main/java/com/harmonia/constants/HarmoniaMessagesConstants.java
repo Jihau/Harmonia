@@ -105,6 +105,8 @@ public class HarmoniaMessagesConstants {
      * Message shown when failed to update user
      */
     public String PROFILE_EDIT_FAILED_MESSAGE_BODY = HarmoniaConstants.texts.getString("profileEditFailedText");
-
+    /**
+     * Message shown when successfully changing user settings
+     */
     public String SETTINGS_EDIT_SUCCESS_LABEL_TEXT = HarmoniaConstants.texts.getString("settingsLabelSuccessText");
 }

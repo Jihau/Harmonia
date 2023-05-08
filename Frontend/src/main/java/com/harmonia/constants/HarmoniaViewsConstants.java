@@ -46,5 +46,8 @@ public class HarmoniaViewsConstants {
      */
     public static final String NAVBAR = "navOld.fxml";
 
+    /**
+     * the NAVMENULISTVIEWCELL constant represents the name of the FXML file containing the nav menu cell styling
+     */
     public static final String NAVMENULISTVIEWCELL = "navMenuListViewCell.fxml";
 }

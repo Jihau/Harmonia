@@ -161,8 +161,11 @@ public class HarmoniaConstants {
      */
     public static String KEYWORD_GENERATE_KEY = "ha6BrHz1/LYT5f8NX+WM5pmMHH8PLzF+fC12vavd/XE=";
 
+    /**
+     * Sets the application language to the given locale.
+     * @param locale
+     */
     public static void setLanguage(Locale locale) {
-
 
         String langVariant = locale.getVariant();
         if (langVariant.equalsIgnoreCase("fi") || langVariant.equalsIgnoreCase("ar") || langVariant.equalsIgnoreCase("es") || langVariant.equalsIgnoreCase("fr")
@@ -180,6 +183,9 @@ public class HarmoniaConstants {
         HarmoniaUtils.loadContentfulLabels();
     }
 
+    /**
+     * loads messages for labels and other elements.
+     */
     public static void setMessages() {
         HarmoniaConstants.textconstants = new TextConstants();
         HarmoniaConstants.messages = new HarmoniaMessagesConstants();

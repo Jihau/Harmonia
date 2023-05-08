@@ -30,7 +30,7 @@ public class HarmoniaApplication extends Application {
     }
 
     /**
-     * Runs the app *
+     * Runs the app.
      */
     @Override
     public void start(Stage stage) {
@@ -48,6 +48,9 @@ public class HarmoniaApplication extends Application {
         }
     }
 
+    /**
+     * Exits the application.
+     */
     @Override
     public void stop(){
         Runtime.getRuntime().exit(1);
