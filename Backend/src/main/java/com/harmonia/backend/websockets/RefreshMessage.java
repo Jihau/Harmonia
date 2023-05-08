@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 /**
  * This class Represents a message to refresh the chat.
- * Author: Team Harmonia
- * Version: 2.0
+ * @version  2.0
+ * @author  Team Harmonia
  */
 @Getter
 @Setter
