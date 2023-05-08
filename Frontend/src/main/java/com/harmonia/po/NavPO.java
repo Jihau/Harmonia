@@ -1,8 +1,11 @@
 package com.harmonia.po;
 
 import javafx.scene.image.Image;
-
-import java.awt.image.BufferedImage;
+/**
+ * Class representing a single navigation option on the navbar
+ * @author Harmonia team
+ * @version 1.0
+ **/
 
 /** A class representing a navigation item.
  * Used to populate the navigation bar.
@@ -34,11 +37,6 @@ public class NavPO {
     public Image getImage() {
         return image;
     }
-
-    /**
-     * Returns the name of the navigation item.
-     * @return name of the navigation item
-     */
     public String getNavName() {
         return navName;
     }
