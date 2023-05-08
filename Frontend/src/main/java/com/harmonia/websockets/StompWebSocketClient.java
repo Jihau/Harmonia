@@ -11,7 +11,14 @@ import org.springframework.web.socket.messaging.WebSocketStompClient;
 
 import java.util.Scanner;
 
+/** This class is used to start the web socket.
+ * Author: Team Harmonia
+ * Version: 2.0
+ */
 public class StompWebSocketClient {
+
+    /** This method starts the web socket.
+     */
     public static void startWebSocket() {
         WebSocketClient client = new StandardWebSocketClient();
         WebSocketStompClient stompClient = new WebSocketStompClient(client);
